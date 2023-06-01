@@ -1,9 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-<%@include file= "./../../common/header.jsp" %>
+<%@include file= "./../common/header.jsp" %>
+<script type="text/javascript" src="<%=conPath%>/js/jquery.js"></script>
 
-    <div class="hero-wrap hero-bread" style="background-image: url('<%=conPath%>/images/bg_1.jpg');">
+
+
+   <div class="hero-wrap hero-bread" style="background-image: url('<%=conPath%>/images/bg_1.jpg');">
       <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center">
           <div class="col-md-9 ftco-animate text-center">
@@ -19,18 +22,19 @@
     		<div class="row justify-content-center">
     			<div class="col-md-10 mb-5 text-center">
     				<ul class="product-category">
-    					<li><a href="shop.mall" class="active">모두보기</a></li>
-    					<li><a href="#">야채</a></li>
-    					<li><a href="#">과일</a></li>
-    					<li><a href="#">쌀/견과</a></li>
-    					<li><a href="#">정육/계란류</a></li>
-    					<li><a href="#">우유/유제품</a></li>
-    					<li><a href="#">양념/오일</a></li>
+    					<li><a href="shop.mall" class="se">모두보기</a></li>
+    					<li><a href="shop.mall?whatColumn=se&keyword=채소" class="se">채소</a></li>
+    					<li><a href="shop.mall?whatColumn=se&keyword=과일" class="se">과일</a></li>
+    					<li><a href="shop.mall?whatColumn=se&keyword=쌀/견과" class="se">쌀/견과</a></li>
+    					<li><a href="shop.mall?whatColumn=se&keyword=정육/계란류" class="se">정육/계란류</a></li>
+    					<li><a href="shop.mall?whatColumn=se&keyword=우유/유제품" class="se">우유/유제품</a></li>
+    					<li><a href="shop.mall?whatColumn=se&keyword=양념/오일" class="se">양념/오일</a></li>
     				</ul>
     			</div>
+    			</div>
     		</div>
-    		<div class="row">
     		
+    		<div class="row">
   
 				<c:forEach var="i" items="${lists}">  		
     			<div class="col-md-6 col-lg-3 ftco-animate">
@@ -83,4 +87,5 @@
     	</div>
     </section>
 
-<%@include file= "./../../common/footer.jsp" %>
+<%@include file= "./../common/footer.jsp" %>
+

@@ -7,6 +7,10 @@
 
 <select id="GetAllProduct" resultType="mall.model.ProductBean">
 select * from product
+
+<if test="whatColumn=='se'">
+where pd_category like #{keyword}
+</if>
 </select>
 
 </mapper>
