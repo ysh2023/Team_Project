@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 
 <!-- header -->
-<%@include file= "../common/header.jsp" %>
+<%@include file= "WEB-INF/common/header.jsp" %>
 
 <!-- main -->
 	<!-- slider -->
@@ -543,4 +543,4 @@
     <!-- END 7th section -->
     
 <!-- footer -->
-<%@include file= "../common/footer.jsp" %>
+<%@include file= "WEB-INF/common/footer.jsp" %>
