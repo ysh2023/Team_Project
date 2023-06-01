@@ -4,7 +4,7 @@
 <%@include file= "./../common/header.jsp" %>
 <script type="text/javascript" src="<%=conPath%>/js/jquery.js"></script>
 
-<div class="hero-wrap hero-bread" style="background-image: url('<%=conPath%>/images/bg_1.jpg');">
+<div class="hero-wrap hero-bread" style="background-image: url('<%=resourcesPath%>/images/mall_1.jpg');">
       <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center">
           <div class="col-md-9 ftco-animate text-center">
@@ -42,7 +42,7 @@
     					<a href="#" class="img-prod"><img class="img-fluid" src="${i.pdimage}" alt="Colorlib Template">
     					</a>
     					<div class="text py-3 pb-4 px-3 text-center">
-    						<h3><a href="#">${i.pdname }</a></h3>
+    						<h3><a href="">${i.pdname }</a></h3>
     						<div class="d-flex">
     							<div class="pricing">
 		    						<p class="price">${i.pdprice }</p>

@@ -47,10 +47,14 @@
 				<div class="row justify-content-md-center">
 					<div class="col">
 						<!-- 메인 로고 -->
+						
 						<a class="navbar-brand" href="<%=conPath%>/main.jsp"> <img
 							src="<%=resourcesPath%>/images/logo.png" style="height: 60px;">
 						</a>
 						<!-- login -->
+						<% if(session.getAttribute("loginInfo") == null)
+						{//로그인이 안된 상태라면?
+							%>
 						<a href="login.mb"
 							style="font-size: 11px; height: 12px; margin-top: 20px; float: right;">
 							<img src="<%=resourcesPath%>/images/btn_login.png"
@@ -62,6 +66,25 @@
 							<img src="<%=resourcesPath%>/images/btn_register.png"
 							style="height: 33px;"> 회원가입
 						</a>
+						
+						<%
+						}else{
+						%>
+						<a href="#"
+						style="font-size: 11px; height: 12px; margin-top: 20px; ">${loginInfo.id}님 안녕하세요!
+						</a>
+						<!-- sign in -->
+						<a href="#"
+							style="font-size: 11px; height: 12px; margin-top: 20px; margin-right: 15px; float: right;">
+							<img src="<%=resourcesPath%>/images/btn_register.png"
+							style="height: 33px;"> 로그아웃
+						</a>
+						
+						<%
+						}
+						%>
+						
+						
 					</div>
 					<!-- search form  -->
 					<div class="col-md-auto">
