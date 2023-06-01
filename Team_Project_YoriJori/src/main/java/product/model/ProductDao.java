@@ -42,4 +42,11 @@ private String namespace = "product.model.Product";
 		return totalCount;
 	}
 
+
+	public ProductBean getByNum(int pdnum) {
+		ProductBean pd= sqlSessionTemplate.selectOne(namespace+".GetByNum",pdnum);
+		
+		return pd;
+	}
+
 }

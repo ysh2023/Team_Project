@@ -39,10 +39,10 @@
 				<c:forEach var="i" items="${lists}">  		
     			<div class="col-md-6 col-lg-3 ftco-animate">
     				<div class="product">
-    					<a href="#" class="img-prod"><img class="img-fluid" src="${i.pdimage}" alt="Colorlib Template">
+    					<a href="prdDetail.prd?pdnum=${i.pdnum}" class="img-prod"><img class="img-fluid" src="${i.pdimage}" alt="Colorlib Template">
     					</a>
     					<div class="text py-3 pb-4 px-3 text-center">
-    						<h3><a href="">${i.pdname }</a></h3>
+    						<h3><a href="prdDetail.prd?pdnum=${i.pdnum}">${i.pdname }</a></h3>
     						<div class="d-flex">
     							<div class="pricing">
 		    						<p class="price">${i.pdprice }</p>
