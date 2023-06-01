@@ -2,11 +2,9 @@
     pageEncoding="UTF-8"%>
     
 <%@include file= "./../common/header.jsp" %>
-<script type="text/javascript" src="<%=conPath%>/js/jquery.js"></script>
+<script type="text/javascript" src="<%=resourcesPath%>/js/jquery.js"></script>
 
-
-
-   <div class="hero-wrap hero-bread" style="background-image: url('<%=conPath%>/images/bg_1.jpg');">
+   <div class="hero-wrap hero-bread" style="background-image: url('<%=resourcesPath%>/images/bg_1.jpg');">
       <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center">
           <div class="col-md-9 ftco-animate text-center">

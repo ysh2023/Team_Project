@@ -11,6 +11,7 @@
 	
 	<mappers>
 		<mapper resource="mybatis/mall.xml"/>
+		<mapper resource="mybatis/refrigerator.xml"/>
 	</mappers>
 	
 </configuration>
