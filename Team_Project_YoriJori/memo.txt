@@ -1,15 +1,15 @@
 
 drop table member;
 CREATE TABLE member (
-	id	varchar2(30)	NOT NULL,
-	m_name	varchar2(30)	NOT NULL,
-	pw	varchar2(40)	NOT NULL,
-	tel	number	NOT NULL,
-	age	number	NOT NULL,
-	area1	varchar2(100)	NOT NULL,
-	area2	varchar2(100)	NULL
+   id   varchar2(30)   NOT NULL,
+   m_name   varchar2(30)   NOT NULL,
+   pw   varchar2(40)   NOT NULL,
+   tel   number   NOT NULL,
+   age   number   NOT NULL,
+   area1   varchar2(100)   NOT NULL,
+   area2   varchar2(100)   NULL
 );
 
-insert into member values('admin','ê´€ë¦¬ì','1234',01011112222,23,'ê²½ê¸°ë„','ë¶€ì²œì‹œ');
-insert into member values('moon','ë¬¸ìˆ˜í˜„','1234',01045544554,24,'ì„œìš¸','ë§ˆí¬êµ¬');
+insert into member values('admin','°ü¸®ÀÚ','1234',01011112222,23,'°æ±âµµ','ºÎÃµ½Ã');
+insert into member values('moon','¹®¼öÇö','1234',01045544554,24,'¼­¿ï','¸¶Æ÷±¸');
 commit;
