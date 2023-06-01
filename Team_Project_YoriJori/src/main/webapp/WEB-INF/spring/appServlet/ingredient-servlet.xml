@@ -8,14 +8,13 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
 
 
-<mvc:annotation-driven/> 
+	<mvc:annotation-driven/> 
 	
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/WEB-INF/refrigerator/"></property>
+		<property name="prefix" value="/WEB-INF/"></property>
 		<property name="suffix" value=".jsp"></property>
 	</bean>
 
-	<context:component-scan base-package="refrigerator"/>
 	<context:component-scan base-package="ingredient"/>
 
 </beans>

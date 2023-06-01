@@ -130,7 +130,7 @@
 					</ul>
 					<!-- right nav -->
 					<ul class="navbar-nav ml-auto">
-						<li class="nav-item"><a href="insert.ref" class="nav-link">
+						<li class="nav-item"><a href="list.ref" class="nav-link">
 								<img src="<%=resourcesPath%>/images/btn_circle.png"
 								style="width: 18px; margin-right: 5px; margin-bottom: 2px;">
 								나의 냉장고

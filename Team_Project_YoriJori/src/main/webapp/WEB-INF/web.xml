@@ -46,6 +46,22 @@
 		<url-pattern>*.prd</url-pattern>
 	</servlet-mapping>
 	
+	<!-- ingredient -->
+	<servlet>
+		<servlet-name>ingredient</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/spring/appServlet/ingredient-servlet.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>ingredient</servlet-name>
+		<url-pattern>*.ing</url-pattern>
+	</servlet-mapping>
+	
 	<!-- refrigerator -->
 	<servlet>
 		<servlet-name>refrigerator</servlet-name>
