@@ -51,7 +51,7 @@
 							src="<%=resourcesPath%>/images/logo.png" style="height: 60px;">
 						</a>
 						<!-- login -->
-						<a href="#"
+						<a href="login.mb"
 							style="font-size: 11px; height: 12px; margin-top: 20px; float: right;">
 							<img src="<%=resourcesPath%>/images/btn_login.png"
 							style="height: 33px;"> 로그인
