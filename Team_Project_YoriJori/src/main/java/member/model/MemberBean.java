@@ -3,7 +3,6 @@ package member.model;
 public class MemberBean {
 	private String id;
 	private String m_name;
-	private String inum;
 	private String pw;
 	private int tel;
 	private int age;
@@ -14,11 +13,10 @@ public class MemberBean {
 	public MemberBean() {
 		super();
 	}
-	public MemberBean(String id, String m_name, String inum, String pw, int tel, int age, String area1, String area2) {
+	public MemberBean(String id, String m_name, String pw, int tel, int age, String area1, String area2) {
 		super();
 		this.id = id;
 		this.m_name = m_name;
-		this.inum = inum;
 		this.pw = pw;
 		this.tel = tel;
 		this.age = age;
@@ -36,12 +34,6 @@ public class MemberBean {
 	}
 	public void setM_name(String m_name) {
 		this.m_name = m_name;
-	}
-	public String getInum() {
-		return inum;
-	}
-	public void setInum(String inum) {
-		this.inum = inum;
 	}
 	public String getPw() {
 		return pw;

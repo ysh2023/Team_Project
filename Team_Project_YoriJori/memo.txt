@@ -3,7 +3,6 @@ drop table member;
 CREATE TABLE member (
 	id	varchar2(30)	NOT NULL,
 	m_name	varchar2(30)	NOT NULL,
-	inum	varchar2(50)	NULL,
 	pw	varchar2(40)	NOT NULL,
 	tel	number	NOT NULL,
 	age	number	NOT NULL,
@@ -11,6 +10,6 @@ CREATE TABLE member (
 	area2	varchar2(100)	NULL
 );
 
-insert into member values('admin','관리자','','1234',01011112222,23,'경기도','부천시');
-insert into member values('moon','문수현','','1234',01045544554,24,'서울','마포구');
+insert into member values('admin','관리자','1234',01011112222,23,'경기도','부천시');
+insert into member values('moon','문수현','1234',01045544554,24,'서울','마포구');
 commit;
