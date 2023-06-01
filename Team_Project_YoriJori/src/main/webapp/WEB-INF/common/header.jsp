@@ -6,7 +6,9 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<% String conPath = request.getContextPath() + "/resources"; %>
+
+<% String conPath = request.getContextPath(); %>
+<% String resourcesPath = request.getContextPath() + "/resources"; %>
 
 <!-- header.jsp -->
 <!DOCTYPE html>
@@ -22,18 +24,18 @@
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css" />
 	
 	<!-- BootStrap -->
-    <link rel="stylesheet" href="<%=conPath%>/css/open-iconic-bootstrap.min.css">
-    <link rel="stylesheet" href="<%=conPath%>/css/animate.css">
-    <link rel="stylesheet" href="<%=conPath%>/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="<%=conPath%>/css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="<%=conPath%>/css/magnific-popup.css">
-    <link rel="stylesheet" href="<%=conPath%>/css/aos.css">
-    <link rel="stylesheet" href="<%=conPath%>/css/ionicons.min.css">
-    <link rel="stylesheet" href="<%=conPath%>/css/bootstrap-datepicker.css">
-    <link rel="stylesheet" href="<%=conPath%>/css/jquery.timepicker.css">
-    <link rel="stylesheet" href="<%=conPath%>/css/flaticon.css">
-    <link rel="stylesheet" href="<%=conPath%>/css/icomoon.css">
-    <link rel="stylesheet" href="<%=conPath%>/css/style.css">
+    <link rel="stylesheet" href="<%=resourcesPath%>/css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="<%=resourcesPath%>/css/animate.css">
+    <link rel="stylesheet" href="<%=resourcesPath%>/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="<%=resourcesPath%>/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="<%=resourcesPath%>/css/magnific-popup.css">
+    <link rel="stylesheet" href="<%=resourcesPath%>/css/aos.css">
+    <link rel="stylesheet" href="<%=resourcesPath%>/css/ionicons.min.css">
+    <link rel="stylesheet" href="<%=resourcesPath%>/css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="<%=resourcesPath%>/css/jquery.timepicker.css">
+    <link rel="stylesheet" href="<%=resourcesPath%>/css/flaticon.css">
+    <link rel="stylesheet" href="<%=resourcesPath%>/css/icomoon.css">
+    <link rel="stylesheet" href="<%=resourcesPath%>/css/style.css">
   </head>
   
   <body class="goto-here">
@@ -44,17 +46,18 @@
 			<div class="container">
 				<div class="row justify-content-md-center">
 					<div class="col">
-						<a class="navbar-brand" href="index.html"> 
-						<img src="<%=conPath%>/images/logo.png" style="height: 60px;">
+						<!-- 메인 로고 -->
+						<a class="navbar-brand" href="<%=conPath%>/main.jsp"> 
+						<img src="<%=resourcesPath%>/images/logo.png" style="height: 60px;">
 						</a>
 						<!-- login -->
 						<a href="#"	style="font-size: 11px; height: 12px; margin-top: 20px; float: right;">
-							<img src="<%=conPath%>/images/btn_login.png" style="height: 33px;"> 
+							<img src="<%=resourcesPath%>/images/btn_login.png" style="height: 33px;"> 
 							로그인
 						</a>
 						<!-- sign in -->
 						<a href="#"	style="font-size: 11px; height: 12px; margin-top: 20px; margin-right: 15px; float: right;">
-							<img src="<%=conPath%>/images/btn_register.png"	style="height: 33px;"> 
+							<img src="<%=resourcesPath%>/images/btn_register.png"	style="height: 33px;"> 
 							회원가입
 						</a>
 					</div>
@@ -92,13 +95,13 @@
 		  	<ul class="navbar-nav ml-auto">
 		  	  <li class="nav-item">
 		  	  	<a href="index.html" class="nav-link">
-		  	  	  <img src="<%=conPath%>/images/btn_circle.png" style="width:18px; margin-right:5px; margin-bottom:2px;">
+		  	  	  <img src="<%=resourcesPath%>/images/btn_circle.png" style="width:18px; margin-right:5px; margin-bottom:2px;">
 		  	  	  나의 냉장고
 		  	  	</a>
 		  	  </li>
 		      <li class="nav-item">
 		        <a href="about.html" class="nav-link">
-		          <img src="<%=conPath%>/images/btn_circle.png" style="width:18px; margin-right:5px; margin-bottom:2px;">
+		          <img src="<%=resourcesPath%>/images/btn_circle.png" style="width:18px; margin-right:5px; margin-bottom:2px;">
 		          북마크 레시피
 		        </a>
 		      </li>

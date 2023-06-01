@@ -2,6 +2,7 @@ package mall.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -23,10 +24,10 @@ private String namespace = "mall.model.MallBean";
 	}
 	
 	
-	public List<ProductBean> getAllProduct() {
+	public List<ProductBean> getAllProduct(Map<String, String> map) {
 		List<ProductBean> lists= new ArrayList<ProductBean>();
 
-		lists = sqlSessionTemplate.selectList(namespace+".GetAllProduct");
+		lists = sqlSessionTemplate.selectList(namespace+".GetAllProduct",map);
 		
 		return lists;
 	}
