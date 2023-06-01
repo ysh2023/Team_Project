@@ -1,9 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<!-- 커밋 테스트 이수진 -->
 <!-- header -->
-<%@include file= "../common/header.jsp" %>
+<%@include file= "WEB-INF/common/header.jsp" %>
 
 <!-- main -->
 	<!-- slider -->
@@ -544,4 +543,4 @@
     <!-- END 7th section -->
     
 <!-- footer -->
-<%@include file= "../common/footer.jsp" %>
+<%@include file= "WEB-INF/common/footer.jsp" %>
