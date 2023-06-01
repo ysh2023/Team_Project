@@ -12,8 +12,9 @@
 	<mappers>
 		<mapper resource="mybatis/product.xml"/>
 		<mapper resource="mybatis/refrigerator.xml"/>
-		<mapper resource="mybatis/ingredient.xml"/>
 		<mapper resource="mybatis/member.xml"/>
+		<mapper resource="mybatis/ingredient.xml"/>
+		
 	</mappers>
 	
 </configuration>
