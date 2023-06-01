@@ -10,7 +10,7 @@
 	</settings>
 	
 	<mappers>
-		<mapper resource="mybatis/mall.xml"/>
+		<mapper resource="mybatis/product.xml"/>
 		<mapper resource="mybatis/refrigerator.xml"/>
 	</mappers>
 	

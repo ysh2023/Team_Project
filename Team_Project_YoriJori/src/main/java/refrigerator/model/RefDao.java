@@ -8,7 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import mall.model.ProductBean;
+import product.model.ProductBean;
 
 @Component
 public class RefDao {

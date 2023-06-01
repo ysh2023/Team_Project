@@ -32,18 +32,18 @@
 	
 	<!-- mall -->
 	<servlet>
-		<servlet-name>mall</servlet-name>
+		<servlet-name>product</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
-			<param-value>/WEB-INF/spring/appServlet/mall-servlet.xml</param-value>
+			<param-value>/WEB-INF/spring/appServlet/prd-servlet.xml</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 		
 	<servlet-mapping>
-		<servlet-name>mall</servlet-name>
-		<url-pattern>*.mall</url-pattern>
+		<servlet-name>product</servlet-name>
+		<url-pattern>*.prd</url-pattern>
 	</servlet-mapping>
 	
 	<!-- refrigerator -->

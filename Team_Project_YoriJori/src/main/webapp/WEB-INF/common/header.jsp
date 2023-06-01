@@ -47,69 +47,82 @@
 				<div class="row justify-content-md-center">
 					<div class="col">
 						<!-- 메인 로고 -->
-						<a class="navbar-brand" href="<%=conPath%>/main.jsp"> 
-						<img src="<%=resourcesPath%>/images/logo.png" style="height: 60px;">
+						<a class="navbar-brand" href="<%=conPath%>/main.jsp"> <img
+							src="<%=resourcesPath%>/images/logo.png" style="height: 60px;">
 						</a>
 						<!-- login -->
-						<a href="#"	style="font-size: 11px; height: 12px; margin-top: 20px; float: right;">
-							<img src="<%=resourcesPath%>/images/btn_login.png" style="height: 33px;"> 
-							로그인
+						<a href="#"
+							style="font-size: 11px; height: 12px; margin-top: 20px; float: right;">
+							<img src="<%=resourcesPath%>/images/btn_login.png"
+							style="height: 33px;"> 로그인
 						</a>
 						<!-- sign in -->
-						<a href="#"	style="font-size: 11px; height: 12px; margin-top: 20px; margin-right: 15px; float: right;">
-							<img src="<%=resourcesPath%>/images/btn_register.png"	style="height: 33px;"> 
-							회원가입
+						<a href="#"
+							style="font-size: 11px; height: 12px; margin-top: 20px; margin-right: 15px; float: right;">
+							<img src="<%=resourcesPath%>/images/btn_register.png"
+							style="height: 33px;"> 회원가입
 						</a>
 					</div>
 					<!-- search form  -->
 					<div class="col-md-auto">
 						<form action="#" class="search-form">
-							<input class="form-control me-2" type="search" placeholder="요리명 검색" aria-label="Search" style="margin-top: 10px;">
+							<input class="form-control me-2" type="search"
+								placeholder="요리명 검색" aria-label="Search"
+								style="margin-top: 10px;">
 						</form>
 					</div>
 				</div>
 			</div>
 		</nav>
 		<!-- navigation -->
-      <nav class="bg-primary navbar navbar-expand-lg navbar-dark ftco_navbar ftco-navbar-light" id="ftco-navbar" style="height: 50px">
-	    <div class="container">
-	      <div class="collapse navbar-collapse" id="ftco-nav">
-	      	<!-- left nav -->
-	        <ul class="navbar-nav mr-auto">
-		      <li class="nav-item active"><a href="index.html" class="nav-link">Home</a></li>
-		      <li class="nav-item dropdown">
-		        <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">장보기</a>
-		        	<div class="dropdown-menu" aria-labelledby="dropdown04">
-		              <a class="dropdown-item" href="shop.mall">전체보기</a>
-		              <a class="dropdown-item" href="">채소</a>
-		              <a class="dropdown-item" href="">과일·견과·쌀</a>
-		              <a class="dropdown-item" href="">정육·해산물</a>
-		              <a class="dropdown-item" href="">계란·유제품</a>
-		              <a class="dropdown-item" href="">면·양념·오일</a>
-		            </div>
-	          </li>
-		      <li class="nav-item"><a href="about.html" class="nav-link">레시피</a></li>
-		      <li class="nav-item"><a href="blog.html" class="nav-link">방구석 쉐프</a></li>
-		    </ul>
-		    <!-- right nav -->
-		  	<ul class="navbar-nav ml-auto">
-		  	  <li class="nav-item">
-		  	  	<a href="insert.ref" class="nav-link">
-		  	  	  <img src="<%=resourcesPath%>/images/btn_circle.png" style="width:18px; margin-right:5px; margin-bottom:2px;">
-		  	  	  나의 냉장고
-		  	  	</a>
-		  	  </li>
-		      <li class="nav-item">
-		        <a href="about.html" class="nav-link">
-		          <img src="<%=resourcesPath%>/images/btn_circle.png" style="width:18px; margin-right:5px; margin-bottom:2px;">
-		          북마크 레시피
-		        </a>
-		      </li>
-		      <li class="nav-item cta cta-colored"><a href="cart.html" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a></li>
-		     </ul>
-		   </div>
-	    </div>
-	  </nav>
+		<nav
+			class="bg-primary navbar navbar-expand-lg navbar-dark ftco_navbar ftco-navbar-light"
+			id="ftco-navbar" style="height: 50px">
+			<div class="container">
+				<div class="collapse navbar-collapse" id="ftco-nav">
+					<!-- left nav -->
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item active"><a href="index.html"
+							class="nav-link">Home</a></li>
+						<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle" href="#" id="dropdown04"
+							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">장보기</a>
+							<div class="dropdown-menu" aria-labelledby="dropdown04">
+								<a class="dropdown-item" href="shop.prd">전체보기</a> <a
+									class="dropdown-item" href="shop.prd?whatColumn=se&keyword=채소">채소</a>
+								<a class="dropdown-item"
+									href="shop.prd?whatColumn=se&keyword=과일">과일</a> <a
+									class="dropdown-item"
+									href="shop.prd?whatColumn=se&keyword=쌀/견과">쌀/견과</a> <a
+									class="dropdown-item"
+									href="shop.prd?whatColumn=se&keyword=정육/계란류">정육/계란류</a> <a
+									class="dropdown-item"
+									href="shop.prd?whatColumn=se&keyword=우유/유제품">우유/유제품</a> <a
+									class="dropdown-item"
+									href="shop.prd?whatColumn=se&keyword=양념/오일">양념/오일</a>
+							</div></li>
+						<li class="nav-item"><a href="about.html" class="nav-link">레시피</a></li>
+						<li class="nav-item"><a href="blog.html" class="nav-link">방구석
+								쉐프</a></li>
+					</ul>
+					<!-- right nav -->
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item"><a href="insert.ref" class="nav-link">
+								<img src="<%=resourcesPath%>/images/btn_circle.png"
+								style="width: 18px; margin-right: 5px; margin-bottom: 2px;">
+								나의 냉장고
+						</a></li>
+						<li class="nav-item"><a href="about.html" class="nav-link">
+								<img src="<%=resourcesPath%>/images/btn_circle.png"
+								style="width: 18px; margin-right: 5px; margin-bottom: 2px;">
+								북마크 레시피
+						</a></li>
+						<li class="nav-item cta cta-colored"><a href="cart.html"
+							class="nav-link"><span class="icon-shopping_cart"></span>[0]</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
 	</header>
     <!-- END header -->
     

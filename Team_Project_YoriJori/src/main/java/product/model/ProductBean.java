@@ -1,4 +1,4 @@
-package mall.model;
+package product.model;
 
 public class ProductBean {
 
@@ -12,6 +12,7 @@ public class ProductBean {
 	
 	public ProductBean() {
 		super();
+		
 	}
 	public ProductBean(int pdnum, String pdimage, String pdname, String pdprice, String pdstock, String pdcategory,
 			String pdcontent) {

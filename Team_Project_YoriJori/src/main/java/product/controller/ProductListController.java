@@ -1,4 +1,4 @@
-package mall.controller;
+package product.controller;
 
 import java.util.HashMap;
 import java.util.List;
@@ -14,13 +14,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import mall.model.ProductBean;
-import mall.model.ProductDao;
+
+import product.model.ProductBean;
+import product.model.ProductDao;
+import utility.Paging;
 
 @Controller
-public class MallListController {
+public class ProductListController {
 
-	private final String command="/shop.mall";
+	private final String command="/shop.prd";
 	private final String getPage="allShop";
 	
 	@Autowired
@@ -28,24 +30,32 @@ public class MallListController {
 	ProductDao pdao;
 	
 	
+	
+	
 	@RequestMapping(value=command,method = RequestMethod.GET)
 	public ModelAndView doAction(@RequestParam(value="keyword",required = false) String keyword,
-			@RequestParam(value="whatColumn",required = false) String whatColumn, 
+			@RequestParam(value="whatColumn",required = false) String whatColumn,
+			@RequestParam(value="pageNumber",required = false) String pageNumber,
 			Model model, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		
 		Map<String,String> map= new HashMap<String,String>();
-
+		
 		map.put("whatColumn", whatColumn);
 		map.put("keyword", "%"+keyword+"%");
+		String url= request.getContextPath()+command;
 		
-		List<ProductBean> lists = pdao.getAllProduct(map);
+		int totalCount=pdao.getTotalCount(map);
+		
+		Paging pageInfo= new Paging(pageNumber,"8",totalCount,url,whatColumn,keyword,null);
+		
+		List<ProductBean> lists = pdao.getAllProduct(pageInfo,map);
 		
 		
 		mav.addObject("lists", lists);
 		mav.setViewName(getPage);
 		
-		
+		mav.addObject("pageInfo",pageInfo);
 		return mav; 
 		
 	}
