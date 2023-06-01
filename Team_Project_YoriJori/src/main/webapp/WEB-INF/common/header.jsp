@@ -66,25 +66,27 @@
 							<img src="<%=resourcesPath%>/images/btn_register.png"
 							style="height: 33px;"> 회원가입
 						</a>
-						
+
 						<%
-						}else{
+						} else {
 						%>
 						<a href="#"
-						style="font-size: 11px; height: 12px; margin-top: 20px; ">${loginInfo.id}님 안녕하세요!
-						</a>
-						<!-- sign in -->
-						<a href="#"
+							style="font-size: 11px; height: 12px; margin-top: 20px;">${loginInfo.id}님
+							안녕하세요! </a> <a href="login.mb"
+							style="font-size: 11px; height: 12px; margin-top: 20px; float: right;">
+							<img src="<%=resourcesPath%>/images/mypage.png"
+							style="height: 33px;"> 마이페이지
+						</a> <a href="#"
 							style="font-size: 11px; height: 12px; margin-top: 20px; margin-right: 15px; float: right;">
-							<img src="<%=resourcesPath%>/images/btn_register.png"
+							<img src="<%=resourcesPath%>/images/btn_logout.png"
 							style="height: 33px;"> 로그아웃
 						</a>
-						
+
 						<%
 						}
 						%>
-						
-						
+
+
 					</div>
 					<!-- search form  -->
 					<div class="col-md-auto">

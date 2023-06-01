@@ -29,13 +29,13 @@ public class RefInsertController {
 						@RequestParam(value="whatColumn",required=false) String whatColumn,
 						@RequestParam(value="keyword",required=false) String keyword) {
 		
-		List<IngBean> ingList1 = ingdao.getIngbyCtg("°î·ù/Äá/°ß°ú·ù");
-		List<IngBean> ingList2 = ingdao.getIngbyCtg("°è¶õ/À¯Á¦Ç°");
-		List<IngBean> ingList3 = ingdao.getIngbyCtg("Ã¤¼Ò");
-		List<IngBean> ingList4 = ingdao.getIngbyCtg("°úÀÏ");
-		List<IngBean> ingList5 = ingdao.getIngbyCtg("Á¤À°/ÇØ»ê¹°");
-		List<IngBean> ingList6 = ingdao.getIngbyCtg("¸é/»§/¶±");
-		List<IngBean> ingList7 = ingdao.getIngbyCtg("¼Ò½º/¿ÀÀÏ");
+		List<IngBean> ingList1 = ingdao.getIngbyCtg("ê³¡ë¥˜/ì½©/ê²¬ê³¼ë¥˜");
+		List<IngBean> ingList2 = ingdao.getIngbyCtg("ê³„ë€/ìœ ì œí’ˆ");
+		List<IngBean> ingList3 = ingdao.getIngbyCtg("ì±„ì†Œ");
+		List<IngBean> ingList4 = ingdao.getIngbyCtg("ê³¼ì¼");
+		List<IngBean> ingList5 = ingdao.getIngbyCtg("ì •ìœ¡/í•´ì‚°ë¬¼");
+		List<IngBean> ingList6 = ingdao.getIngbyCtg("ë©´/ë¹µ/ë–¡");
+		List<IngBean> ingList7 = ingdao.getIngbyCtg("ì†ŒìŠ¤/ì˜¤ì¼");
 		
 		model.addAttribute("ingList1", ingList1);
 		model.addAttribute("ingList2", ingList2);
@@ -45,7 +45,7 @@ public class RefInsertController {
 		model.addAttribute("ingList6", ingList6);
 		model.addAttribute("ingList7", ingList7);
 		
-		return getPage; 
+		return getPage;
 	}
 	
 	@RequestMapping(value=command, method = RequestMethod.POST)

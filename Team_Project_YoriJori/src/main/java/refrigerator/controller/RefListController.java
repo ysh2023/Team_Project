@@ -15,11 +15,11 @@ public class RefListController {
 	
 	@RequestMapping(value=command, method = RequestMethod.GET)
 	public String doAction(HttpSession session) {
-		
-		if(session.getAttribute("loginInfo") == null) {	//·Î±×ÀÎ ¾ÈÇßÀ¸¸é
-			return gotoPage;	//·Î±×ÀÎ ÆäÀÌÁö·Î
+
+		if(session.getAttribute("loginInfo") == null) {	//ë¡œê·¸ì¸ ì•ˆí–ˆìœ¼ë©´
+			return gotoPage;	//ë¡œê·¸ì¸ í˜ì´ì§€ë¡œ
 		}else {
-			return getPage;	//³ÃÀå°í ÆäÀÌÁö·Î
+			return getPage;	//ëƒ‰ì¥ê³  í˜ì´ì§€ë¡œ
 		}
 		
 	}
