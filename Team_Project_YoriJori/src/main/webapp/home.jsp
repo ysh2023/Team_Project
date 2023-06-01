@@ -9,7 +9,7 @@
     <section id="home-section" class="hero">
 		  <div class="home-slider owl-carousel">
 		  <!-- first slide -->
-	      <div class="slider-item" style="background-image: url(<%=conPath%>/images/bg_1.jpg);">
+	      <div class="slider-item" style="background-image: url(<%=resourcesPath%>/images/bg_1.jpg);">
 	      	<div class="overlay"></div>
 	        <div class="container">
 	          <div class="row slider-text" data-scrollax-parent="true">
@@ -23,7 +23,7 @@
 	        </div>
 	      </div>
 		  <!-- second slide -->
-	      <div class="slider-item" style="background-image: url(<%=conPath%>/images/bg_2.jpg);">
+	      <div class="slider-item" style="background-image: url(<%=resourcesPath%>/images/bg_2.jpg);">
 	      	<div class="overlay"></div>
 	        <div class="container">
 	          <div class="row slider-text" data-scrollax-parent="true">
@@ -108,12 +108,12 @@
 							</div>
 						</div>
 						<div class="col-md-6">
-							<div class="category-wrap ftco-animate img mb-4 d-flex align-items-end" style="background-image: url(<%=conPath%>/images/category-1.jpg);">
+							<div class="category-wrap ftco-animate img mb-4 d-flex align-items-end" style="background-image: url(<%=resourcesPath%>/images/category-1.jpg);">
 								<div class="text px-3 py-1">
 									<h2 class="mb-0"><a href="#">Fruits</a></h2>
 								</div>
 							</div>
-							<div class="category-wrap ftco-animate img d-flex align-items-end" style="background-image: url(<%=conPath%>/images/category-2.jpg);">
+							<div class="category-wrap ftco-animate img d-flex align-items-end" style="background-image: url(<%=resourcesPath%>/images/category-2.jpg);">
 								<div class="text px-3 py-1">
 									<h2 class="mb-0"><a href="#">Vegetables</a></h2>
 								</div>
@@ -122,12 +122,12 @@
 					</div>
 				</div>
 				<div class="col-md-4">
-					<div class="category-wrap ftco-animate img mb-4 d-flex align-items-end" style="background-image: url(<%=conPath%>/images/category-3.jpg);">
+					<div class="category-wrap ftco-animate img mb-4 d-flex align-items-end" style="background-image: url(<%=resourcesPath%>/images/category-3.jpg);">
 						<div class="text px-3 py-1">
 							<h2 class="mb-0"><a href="#">Juices</a></h2>
 						</div>		
 					</div>
-					<div class="category-wrap ftco-animate img d-flex align-items-end" style="background-image: url(<%=conPath%>/images/category-4.jpg);">
+					<div class="category-wrap ftco-animate img d-flex align-items-end" style="background-image: url(<%=resourcesPath%>/images/category-4.jpg);">
 						<div class="text px-3 py-1">
 							<h2 class="mb-0"><a href="#">Dried</a></h2>
 						</div>
@@ -154,7 +154,7 @@
     		<div class="row">
     			<div class="col-md-6 col-lg-3 ftco-animate">
     				<div class="product">
-    					<a href="#" class="img-prod"><img class="img-fluid" src="<%=conPath%>/images/product-1.jpg" alt="Colorlib Template">
+    					<a href="#" class="img-prod"><img class="img-fluid" src="<%=resourcesPath%>/images/product-1.jpg" alt="Colorlib Template">
     						<span class="status">30%</span>
     						<div class="overlay"></div>
     					</a>
@@ -211,7 +211,7 @@
     			</div>
     			<div class="col-md-6 col-lg-3 ftco-animate">
     				<div class="product">
-    					<a href="#" class="img-prod"><img class="img-fluid" src="<%=conPath%>/images/product-3.jpg" alt="Colorlib Template">
+    					<a href="#" class="img-prod"><img class="img-fluid" src="<%=resourcesPath%>/images/product-3.jpg" alt="Colorlib Template">
 	    					<div class="overlay"></div>
 	    				</a>
     					<div class="text py-3 pb-4 px-3 text-center">
@@ -239,7 +239,7 @@
     			</div>
     			<div class="col-md-6 col-lg-3 ftco-animate">
     				<div class="product">
-    					<a href="#" class="img-prod"><img class="img-fluid" src="<%=conPath%>/images/product-4.jpg" alt="Colorlib Template">
+    					<a href="#" class="img-prod"><img class="img-fluid" src="<%=resourcesPath%>/images/product-4.jpg" alt="Colorlib Template">
     						<div class="overlay"></div>
     					</a>
     					<div class="text py-3 pb-4 px-3 text-center">
@@ -268,7 +268,7 @@
 				<!-- 2nd row -->
     			<div class="col-md-6 col-lg-3 ftco-animate">
     				<div class="product">
-    					<a href="#" class="img-prod"><img class="img-fluid" src="<%=conPath%>/images/product-5.jpg" alt="Colorlib Template">
+    					<a href="#" class="img-prod"><img class="img-fluid" src="<%=resourcesPath%>/images/product-5.jpg" alt="Colorlib Template">
     						<span class="status">30%</span>
     						<div class="overlay"></div>
     					</a>
@@ -325,7 +325,7 @@
     			</div>
     			<div class="col-md-6 col-lg-3 ftco-animate">
     				<div class="product">
-    					<a href="#" class="img-prod"><img class="img-fluid" src="<%=conPath%>/images/product-7.jpg" alt="Colorlib Template">
+    					<a href="#" class="img-prod"><img class="img-fluid" src="<%=resourcesPath%>/images/product-7.jpg" alt="Colorlib Template">
 	    					<div class="overlay"></div>
 	    				</a>
     					<div class="text py-3 pb-4 px-3 text-center">
@@ -353,7 +353,7 @@
     			</div>
     			<div class="col-md-6 col-lg-3 ftco-animate">
     				<div class="product">
-    					<a href="#" class="img-prod"><img class="img-fluid" src="<%=conPath%>/images/product-8.jpg" alt="Colorlib Template">
+    					<a href="#" class="img-prod"><img class="img-fluid" src="<%=resourcesPath%>/images/product-8.jpg" alt="Colorlib Template">
     						<div class="overlay"></div>
     					</a>
     					<div class="text py-3 pb-4 px-3 text-center">
@@ -385,7 +385,7 @@
     <!-- End 3rd section -->
 		
 	<!-- 4th section -->
-	<section class="ftco-section img" style="background-image: url(<%=conPath%>/images/bg_3.jpg);">
+	<section class="ftco-section img" style="background-image: url(<%=resourcesPath%>/images/bg_3.jpg);">
     	<div class="container">
 				<div class="row justify-content-end">
           <div class="col-md-6 heading-section ftco-animate deal-of-the-day ftco-animate">
@@ -421,7 +421,7 @@
             <div class="carousel-testimony owl-carousel">
               <div class="item">
                 <div class="testimony-wrap p-4 pb-5">
-                  <div class="user-img mb-5" style="background-image: url(<%=conPath%>/images/person_1.jpg)">
+                  <div class="user-img mb-5" style="background-image: url(<%=resourcesPath%>/images/person_1.jpg)">
                     <span class="quote d-flex align-items-center justify-content-center">
                       <i class="icon-quote-left"></i>
                     </span>
@@ -435,7 +435,7 @@
               </div>
               <div class="item">
                 <div class="testimony-wrap p-4 pb-5">
-                  <div class="user-img mb-5" style="background-image: url(<%=conPath%>/images/person_2.jpg)">
+                  <div class="user-img mb-5" style="background-image: url(<%=resourcesPath%>/images/person_2.jpg)">
                     <span class="quote d-flex align-items-center justify-content-center">
                       <i class="icon-quote-left"></i>
                     </span>
@@ -449,7 +449,7 @@
               </div>
               <div class="item">
                 <div class="testimony-wrap p-4 pb-5">
-                  <div class="user-img mb-5" style="background-image: url(<%=conPath%>/images/person_3.jpg)">
+                  <div class="user-img mb-5" style="background-image: url(<%=resourcesPath%>/images/person_3.jpg)">
                     <span class="quote d-flex align-items-center justify-content-center">
                       <i class="icon-quote-left"></i>
                     </span>
@@ -463,7 +463,7 @@
               </div>
               <div class="item">
                 <div class="testimony-wrap p-4 pb-5">
-                  <div class="user-img mb-5" style="background-image: url(<%=conPath%>/images/person_1.jpg)">
+                  <div class="user-img mb-5" style="background-image: url(<%=resourcesPath%>/images/person_1.jpg)">
                     <span class="quote d-flex align-items-center justify-content-center">
                       <i class="icon-quote-left"></i>
                     </span>
@@ -477,7 +477,7 @@
               </div>
               <div class="item">
                 <div class="testimony-wrap p-4 pb-5">
-                  <div class="user-img mb-5" style="background-image: url(<%=conPath%>/images/person_1.jpg)">
+                  <div class="user-img mb-5" style="background-image: url(<%=resourcesPath%>/images/person_1.jpg)">
                     <span class="quote d-flex align-items-center justify-content-center">
                       <i class="icon-quote-left"></i>
                     </span>
@@ -502,19 +502,19 @@
     	<div class="container">
     		<div class="row">
     			<div class="col-sm ftco-animate">
-    				<a href="#" class="partner"><img src="<%=conPath%>/images/partner-1.png" class="img-fluid" alt="Colorlib Template"></a>
+    				<a href="#" class="partner"><img src="<%=resourcesPath%>/images/partner-1.png" class="img-fluid" alt="Colorlib Template"></a>
     			</div>
     			<div class="col-sm ftco-animate">
-    				<a href="#" class="partner"><img src="<%=conPath%>/images/partner-2.png" class="img-fluid" alt="Colorlib Template"></a>
+    				<a href="#" class="partner"><img src="<%=resourcesPath%>/images/partner-2.png" class="img-fluid" alt="Colorlib Template"></a>
     			</div>
     			<div class="col-sm ftco-animate">
-    				<a href="#" class="partner"><img src="<%=conPath%>/images/partner-3.png" class="img-fluid" alt="Colorlib Template"></a>
+    				<a href="#" class="partner"><img src="<%=resourcesPath%>/images/partner-3.png" class="img-fluid" alt="Colorlib Template"></a>
     			</div>
     			<div class="col-sm ftco-animate">
-    				<a href="#" class="partner"><img src="<%=conPath%>/images/partner-4.png" class="img-fluid" alt="Colorlib Template"></a>
+    				<a href="#" class="partner"><img src="<%=resourcesPath%>/images/partner-4.png" class="img-fluid" alt="Colorlib Template"></a>
     			</div>
     			<div class="col-sm ftco-animate">
-    				<a href="#" class="partner"><img src="<%=conPath%>/images/partner-5.png" class="img-fluid" alt="Colorlib Template"></a>
+    				<a href="#" class="partner"><img src="<%=resourcesPath%>/images/partner-5.png" class="img-fluid" alt="Colorlib Template"></a>
     			</div>
     		</div>
     	</div>
