@@ -11,18 +11,17 @@ import org.springframework.web.servlet.ModelAndView;
 public class RefListController {
 	private final String command = "/list.ref";
 	private String getPage = "userRefrigerator";
-	//private String gotoPage = "redirect:/login.main";
+	private String gotoPage = "redirect:/login.main";
 	
 	@RequestMapping(value=command, method = RequestMethod.GET)
 	public String doAction(HttpSession session) {
-		/*
+		
 		if(session.getAttribute("loginInfo") == null) {	//로그인 안했으면
 			return gotoPage;	//로그인 페이지로
 		}else {
 			return getPage;	//냉장고 페이지로
-		}*/
+		}
 		
-		return getPage;
 	}
 	
 	@RequestMapping(value=command, method = RequestMethod.POST)

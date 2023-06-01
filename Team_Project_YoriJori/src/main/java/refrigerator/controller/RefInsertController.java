@@ -45,7 +45,7 @@ public class RefInsertController {
 		model.addAttribute("ingList6", ingList6);
 		model.addAttribute("ingList7", ingList7);
 		
-		return getPage;
+		return getPage; 
 	}
 	
 	@RequestMapping(value=command, method = RequestMethod.POST)

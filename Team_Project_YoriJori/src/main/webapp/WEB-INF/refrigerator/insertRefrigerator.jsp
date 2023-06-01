@@ -9,7 +9,7 @@
 	추후에 제이쿼리로 tr toggle로 변경
 	<form>
 		<table border="1" style="width: 800px;">
-				<tr>
+				<tr> 
 					<th><%=category[0]%></th>
 				</tr>
 				<tr>
