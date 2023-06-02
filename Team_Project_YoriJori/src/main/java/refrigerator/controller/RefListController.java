@@ -28,6 +28,7 @@ public class RefListController {
 		MemberBean loginInfo = (MemberBean)session.getAttribute("loginInfo");
 		
 		if(session.getAttribute("loginInfo") == null) {	//로그인 안했으면
+			session.setAttribute("destination", "redirect:/list.ref");	//destination 속성 설정
 			return gotoPage;	//로그인 페이지로
 		}else {
 			List<RefBean> refList = refdao.getUserRef(loginInfo.getId());
