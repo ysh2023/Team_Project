@@ -44,12 +44,11 @@ public class MemberLoginController {
 		MemberBean mb = mdao.GetMemberById(input_id);
 		
 		
-		if(mb == null) { // °¡ÀÔ¾ÈÇÔ
-			System.out.println("°¡ÀÔÇÏÁö ¾ÊÀº È¸¿ø");
+		if(mb == null) { 
 			
 			try {
 				out = response.getWriter();
-				out.println("<script>alert('ÇØ´ç ¾ÆÀÌµğ°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.');history.go(-1);</script>");
+				out.println("<script>alert('í•´ë‹¹ ì•„ì´ë””ê°€ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.');history.go(-1);</script>");
 				out.flush();
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -57,11 +56,10 @@ public class MemberLoginController {
 			
 			mav.setViewName(getPage);
 			
-		}else { // °¡ÀÔÇÑ È¸¿ø
-			System.out.println("°¡ÀÔÇÑ È¸¿ø");
-
+		}else { 
+			System.out.println("ê°€ì…í•œ íšŒì›");
 			if (mb.getPw().equals(input_password)) {
-				// ·Î±×ÀÎ
+				// ï¿½Î±ï¿½ï¿½ï¿½
 				session.setAttribute("loginInfo", mb);
 				
 				String destination = (String)session.getAttribute("destination");
@@ -77,7 +75,7 @@ public class MemberLoginController {
 				
 				try {
 					out = response.getWriter();
-					out.println("<script>alert('ºñ¹øÀÌ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù.');history.go(-1);</script>");
+					out.println("<script>alert('ë¹„ë²ˆì´ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.');history.go(-1);</script>");
 					out.flush();
 				} catch (IOException e) {
 					e.printStackTrace();

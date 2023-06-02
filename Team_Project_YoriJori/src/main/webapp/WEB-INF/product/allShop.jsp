@@ -14,13 +14,15 @@ $(document).ready(function(){
 	const keyword = urlParams.get('keyword');
 	
 	
-	 if(whatColumn==null){
+	 if(whatColumn!="se "){
 			//alert("없다");
 			document.getElementById('le1').style.backgroundColor = ' #89A621';
 			document.getElementById('le1').style.color = 'yellow';
-		}else {
-			
-			if(keyword=="채소"){
+		}
+	 
+	 
+	 else{
+		   	if(keyword=="채소"){
 				document.getElementById('le2').style.backgroundColor = ' #89A621';
 				document.getElementById('le2').style.color = 'yellow';
 			}else if(keyword=="과일"){
