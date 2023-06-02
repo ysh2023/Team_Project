@@ -89,10 +89,9 @@
 					</div>
 					<!-- search form  -->
 					<div class="col-md-auto">
-						<form action="#" class="search-form">
-							<input class="form-control me-2" type="search"
-								placeholder="요리명 검색" aria-label="Search"
-								style="margin-top: 10px;">
+						<form action="list.re" class="search-form">
+							<input type="hidden" value="recipename" name="whatColumn">
+							<input class="form-control me-2" type="search" placeholder="요리명 검색" aria-label="Search" style="margin-top: 10px;" name="keyword">
 						</form>
 					</div>
 				</div>
@@ -125,7 +124,7 @@
 									class="dropdown-item"
 									href="shop.prd?whatColumn=se&keyword=양념/오일">양념/오일</a>
 							</div></li>
-						<li class="nav-item"><a href="about.html" class="nav-link">레시피</a></li>
+						<li class="nav-item"><a href="list.re" class="nav-link">레시피</a></li>
 						<li class="nav-item"><a href="blog.html" class="nav-link">방구석
 								쉐프</a></li>
 					</ul>

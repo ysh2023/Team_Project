@@ -39,13 +39,13 @@ public class RefInsertController {
 		List<RefBean> refList = refdao.getUserRef(loginInfo.getId());
 		model.addAttribute("refList", refList);
 		
-		List<IngBean> ingList1 = ingdao.getIngbyCtg("°î·ù/Äá/°ß°ú·ù");
-		List<IngBean> ingList2 = ingdao.getIngbyCtg("°è¶õ/À¯Á¦Ç°");
-		List<IngBean> ingList3 = ingdao.getIngbyCtg("Ã¤¼Ò");
-		List<IngBean> ingList4 = ingdao.getIngbyCtg("°úÀÏ");
-		List<IngBean> ingList5 = ingdao.getIngbyCtg("Á¤À°/ÇØ»ê¹°");
-		List<IngBean> ingList6 = ingdao.getIngbyCtg("¸é/»§/¶±");
-		List<IngBean> ingList7 = ingdao.getIngbyCtg("¼Ò½º/¿ÀÀÏ");
+		List<IngBean> ingList1 = ingdao.getIngbyCtg("ê³¡ë¥˜/ì½©/ê²¬ê³¼ë¥˜");
+		List<IngBean> ingList2 = ingdao.getIngbyCtg("ê³„ë€/ìœ ì œí’ˆ");
+		List<IngBean> ingList3 = ingdao.getIngbyCtg("ì±„ì†Œ");
+		List<IngBean> ingList4 = ingdao.getIngbyCtg("ê³¼ì¼");
+		List<IngBean> ingList5 = ingdao.getIngbyCtg("ì •ìœ¡/í•´ì‚°ë¬¼");
+		List<IngBean> ingList6 = ingdao.getIngbyCtg("ë©´/ë¹µ/ë–¡");
+		List<IngBean> ingList7 = ingdao.getIngbyCtg("ì†ŒìŠ¤/ì˜¤ì¼");
 		
 		model.addAttribute("ingList1", ingList1);
 		model.addAttribute("ingList2", ingList2);
@@ -80,10 +80,10 @@ public class RefInsertController {
         	refbean.setIngnum(arr_ingnum[i]);
         	
         	SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
-        	Date now = new Date();	//sysdate(Àç·á Ãß°¡ÀÏ)
+        	Date now = new Date();	//sysdate(ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ï¿½ï¿½)
         	Calendar cal = Calendar.getInstance();
         	cal.setTime(now);	
-        	cal.add(Calendar.DATE, ingbean.getExpiry());	//ÇöÀç ³¯Â¥¿¡ ¼ÒºñÀÏ ´õÇÏ±â
+        	cal.add(Calendar.DATE, ingbean.getExpiry());	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Â¥ï¿½ï¿½ ï¿½Òºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï±ï¿½
         	String refdday = simpleDate.format(cal.getTime());
         	
         	refbean.setRefdday(refdday);
@@ -92,9 +92,9 @@ public class RefInsertController {
         }
         
         if(cnt!=-1) {
-        	System.out.println("³ÃÀå°í insert ¼º°ø");
+        	System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ insert ï¿½ï¿½ï¿½ï¿½");
         }else {
-        	System.out.println("³ÃÀå°í insert ½ÇÆĞ");
+        	System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ insert ï¿½ï¿½ï¿½ï¿½");
         }
 		
 		return gotoPage;
