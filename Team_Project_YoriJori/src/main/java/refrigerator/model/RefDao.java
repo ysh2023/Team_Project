@@ -12,17 +12,17 @@ import product.model.ProductBean;
 
 @Component
 public class RefDao {
-	private String namespace = "mall.model.RefBean";
+	private String namespace = "refrigerator.model.Refrigerator";
 	
 	@Autowired
 	SqlSessionTemplate sqlSessionTemplate;
 	
-	public List<RefBean> getUserRef(Map<String, String> map) {
-		List<RefBean> lists= new ArrayList<RefBean>();
+	public List<RefBean> getUserRef(String id) {
+		List<RefBean> refList = new ArrayList<RefBean>();
 
-		lists = sqlSessionTemplate.selectList(namespace+".GetUserRef",map);
+		refList = sqlSessionTemplate.selectList(namespace+".GetUserRef",id);
 		
-		return lists;
+		return refList;
 	}
 	
 }

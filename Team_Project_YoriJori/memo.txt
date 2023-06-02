@@ -1,4 +1,5 @@
 
+--member 테이블 (회원)
 drop table member;
 CREATE TABLE member (
    id   varchar2(30)   NOT NULL,
@@ -13,3 +14,31 @@ CREATE TABLE member (
 insert into member values('admin','관리자','1234',01011112222,23,'경기도','부천시');
 insert into member values('moon','문수현','1234',01045544554,24,'서울','마포구');
 commit;
+
+
+--ingredient 테이블 (식재료)
+drop table ingredient;
+create table ingredient(
+	ing_num number primary key,			--식재료 번호
+	ing_category varchar2(50) not null,	--식재료 카테고리
+	ing_name varchar2(50) not null,		--식재료명
+	expiry number						--소비기간(일)
+);
+--식재료 insert는 구글 드라이브 식재료.xlsx 파일
+
+--refrigerator 테이블(사용자 냉장고)
+drop table refrigerator cascade constraints;
+create table refrigerator(
+	id varchar2(30) references member(id) on delete cascade, 			--member 아이디
+	ing_num number references ingredient(ing_num) on delete cascade,	--ingredient 번호
+	inputdate date default sysdate,				--식재료 추가한 날짜
+	ref_dday date,								--유통기한
+	ref_storage varchar2(20) default '냉장',		--보관 위치(냉장/냉동/실온)
+	ref_detail varchar2(100)		--상세 메모
+);
+
+insert into refrigerator values('moon',19,sysdate,'2023-06-15','실온','우유식빵');
+insert into refrigerator values('moon',40,sysdate,'2023-06-07','냉장','');
+insert into refrigerator values('moon',139,sysdate,'2023-08-30','냉동','');
+commit;
+

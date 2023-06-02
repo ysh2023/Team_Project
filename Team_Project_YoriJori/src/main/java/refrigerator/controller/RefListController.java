@@ -1,34 +1,42 @@
 package refrigerator.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
+
+import member.model.MemberBean;
+import refrigerator.model.RefBean;
+import refrigerator.model.RefDao;
 
 @Controller
 public class RefListController {
 	private final String command = "/list.ref";
 	private String getPage = "userRefrigerator";
-	private String gotoPage = "redirect:/login.main";
+	private String gotoPage = "redirect:/login.mb";
+	
+	@Autowired
+	RefDao refdao;
 	
 	@RequestMapping(value=command, method = RequestMethod.GET)
-	public String doAction(HttpSession session) {
-
-		if(session.getAttribute("loginInfo") == null) {	//ë¡œê·¸ì¸ ì•ˆí–ˆìœ¼ë©´
-			return gotoPage;	//ë¡œê·¸ì¸ í˜ì´ì§€ë¡œ
+	public String doAction(HttpSession session, Model model) {
+		MemberBean loginInfo = (MemberBean)session.getAttribute("loginInfo");
+		
+		if(session.getAttribute("loginInfo") == null) {	//·Î±×ÀÎ ¾ÈÇßÀ¸¸é
+			return gotoPage;	//·Î±×ÀÎ ÆäÀÌÁö·Î
 		}else {
-			return getPage;	//ëƒ‰ì¥ê³  í˜ì´ì§€ë¡œ
+			List<RefBean> refList = refdao.getUserRef(loginInfo.getId());
+			
+			model.addAttribute("refList",refList);
+			model.addAttribute("loginInfo", loginInfo);
+			return getPage;	//³ÃÀå°í ÆäÀÌÁö·Î
 		}
 		
 	}
-	
-	@RequestMapping(value=command, method = RequestMethod.POST)
-	public ModelAndView insert() {
-		ModelAndView mav = new ModelAndView();
-		return mav;
-	}
-	
 	
 }
