@@ -3,6 +3,54 @@
     
 <%@include file= "./../common/header.jsp" %>
 <script type="text/javascript" src="<%=conPath%>/js/jquery.js"></script>
+<script type="text/javascript" src="<%=resourcesPath%>/js/jquery-3.2.1.min.js"/></script>
+
+
+<script>
+
+$(document).ready(function(){	
+	const urlParams = new URL(location.href).searchParams;
+	const whatColumn = urlParams.get('whatColumn');
+	const keyword = urlParams.get('keyword');
+	
+	
+	 if(whatColumn==null){
+			//alert("없다");
+			document.getElementById('le1').style.backgroundColor = ' #89A621';
+			document.getElementById('le1').style.color = 'yellow';
+		}else {
+			
+			if(keyword=="채소"){
+				document.getElementById('le2').style.backgroundColor = ' #89A621';
+				document.getElementById('le2').style.color = 'yellow';
+			}else if(keyword=="과일"){
+				document.getElementById('le3').style.backgroundColor = ' #89A621';
+				document.getElementById('le3').style.color = 'yellow';
+			}else if(keyword=="쌀/견과"){
+				document.getElementById('le4').style.backgroundColor = ' #89A621';
+				document.getElementById('le4').style.color = 'yellow';
+			}else if(keyword=="정육/계란류"){
+				document.getElementById('le5').style.backgroundColor = ' #89A621';
+				document.getElementById('le5').style.color = 'yellow';
+			}else if(keyword=="우유/유제품"){
+				document.getElementById('le6').style.backgroundColor = ' #89A621';
+				document.getElementById('le6').style.color = 'yellow';
+			}else{
+				document.getElementById('le7').style.backgroundColor = ' #89A621';
+				document.getElementById('le7').style.color = 'yellow';
+			}
+		}
+	
+	
+
+	
+});
+
+
+</script>
+
+
+
 
 <div class="hero-wrap hero-bread" style="background-image: url('<%=resourcesPath%>/images/mall_1.jpg');">
       <div class="container">
@@ -17,18 +65,19 @@
       
     </div>
 
+
     <section class="ftco-section">
     	<div class="container">
     		<div class="row justify-content-center">
     			<div class="col-md-10 mb-5 text-center">
     				<ul class="product-category">
-    					<li><a href="shop.prd" >모두보기</a></li>
-    					<li><a href="shop.prd?whatColumn=se&keyword=채소">채소</a></li>
-    					<li><a href="shop.prd?whatColumn=se&keyword=과일" >과일</a></li>
-    					<li><a href="shop.prd?whatColumn=se&keyword=쌀/견과" >쌀/견과</a></li>
-    					<li><a href="shop.prd?whatColumn=se&keyword=정육/계란류">정육/계란류</a></li>
-    					<li><a href="shop.prd?whatColumn=se&keyword=우유/유제품">우유/유제품</a></li>
-    					<li><a href="shop.prd?whatColumn=se&keyword=양념/오일" >양념/오일</a></li>
+    					<li ><a href="shop.prd"  id="le1" >모두보기</a></li>
+    					<li><a href="shop.prd?whatColumn=se&keyword=채소" id="le2">채소</a></li>
+    					<li><a href="shop.prd?whatColumn=se&keyword=과일"  id="le3">과일</a></li>
+    					<li><a href="shop.prd?whatColumn=se&keyword=쌀/견과"  id="le4">쌀/견과</a></li>
+    					<li><a href="shop.prd?whatColumn=se&keyword=정육/계란류"  id="le5">정육/계란류</a></li>
+    					<li><a href="shop.prd?whatColumn=se&keyword=우유/유제품"  id="le6">우유/유제품</a></li>
+    					<li><a href="shop.prd?whatColumn=se&keyword=양념/오일"  id="le7">양념/오일</a></li>
     				</ul>
     			</div>
     			</div>
@@ -79,4 +128,3 @@
     </section>
 
 <%@include file= "./../common/footer.jsp" %>
-

@@ -1,3 +1,7 @@
+--product 테이블 (6/2최종수정)
+xlsx등록하시면 됨(등록한 칼럼명 그대로)
+ALTER TABLE product ADD PRIMARY KEY (pd_num);
+
 
 --member 테이블 (회원)
 drop table member;
