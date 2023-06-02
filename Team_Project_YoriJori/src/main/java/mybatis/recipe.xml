@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="recipe.model.RecipeBean">
+  	<select id="GetAllRecipe" resultType="recipe.model.RecipeBean">
+  		select * from recipe
+  		<if test="whatColumn == 'recipename'">
+  			where recipe_name like #{keyword}
+  		</if>
+  		<if test="whatColumn == 'recipecategory'">
+  			where recipe_category like #{keyword}
+  		</if>
+  		order by recipe_num
+  	</select>
+  	
+  	<select id="GetTotalCount" resultType="int">
+  		select count(*) from recipe
+  		<if test="whatColumn == 'recipename'">
+  			where recipe_name like #{keyword}
+  		</if>
+  		<if test="whatColumn == 'recipecategory'">
+  			where recipe_category like #{keyword}
+  		</if>
+  	</select>
+  	<select id="GetRecipe" resultType="recipe.model.RecipeBean">
+  		select * from recipe
+  		where recipe_num =#{recipenum}
+  	</select>
+  	
+  	<select id="GetRecipeContent" resultType="recipe.model.RecipeContentBean">
+  		select * from recipe_content
+  		where recipe_num=#{recipenum}
+  		order by recipe_content_num asc
+  	</select>
+  	
+  	<select id="GetFood" resultType="recipe.model.FoodBean">
+  		select * from recipe_food
+  		where recipe_num=#{recipenum}
+  	</select>
+  </mapper>
