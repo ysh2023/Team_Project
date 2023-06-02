@@ -1,5 +1,8 @@
 package refrigerator.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -10,32 +13,39 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 import ingredient.model.IngBean;
 import ingredient.model.IngDao;
+import member.model.MemberBean;
+import refrigerator.model.RefBean;
+import refrigerator.model.RefDao;
 
 
 @Controller
 public class RefInsertController {
 	private final String command = "/insert.ref";
 	private String getPage = "insertRefrigerator";
+	private String gotoPage = "redirect:/list.ref";
 	
 	@Autowired
 	IngDao ingdao;
+	@Autowired
+	RefDao refdao;
 	
 	@RequestMapping(value=command, method = RequestMethod.GET)
-	public String doAction(Model model, HttpSession session,
-						@RequestParam(value="whatColumn",required=false) String whatColumn,
-						@RequestParam(value="keyword",required=false) String keyword) {
+	public String doAction(Model model, HttpSession session) {
 		
-		List<IngBean> ingList1 = ingdao.getIngbyCtg("Í≥°Î•ò/ÏΩ©/Í≤¨Í≥ºÎ•ò");
-		List<IngBean> ingList2 = ingdao.getIngbyCtg("Í≥ÑÎûÄ/Ïú†Ï†úÌíà");
-		List<IngBean> ingList3 = ingdao.getIngbyCtg("Ï±ÑÏÜå");
-		List<IngBean> ingList4 = ingdao.getIngbyCtg("Í≥ºÏùº");
-		List<IngBean> ingList5 = ingdao.getIngbyCtg("Ï†ïÏú°/Ìï¥ÏÇ∞Î¨º");
-		List<IngBean> ingList6 = ingdao.getIngbyCtg("Î©¥/Îπµ/Îñ°");
-		List<IngBean> ingList7 = ingdao.getIngbyCtg("ÏÜåÏä§/Ïò§Ïùº");
+		MemberBean loginInfo = (MemberBean)session.getAttribute("loginInfo");
+		List<RefBean> refList = refdao.getUserRef(loginInfo.getId());
+		model.addAttribute("refList", refList);
+		
+		List<IngBean> ingList1 = ingdao.getIngbyCtg("∞Ó∑˘/ƒ·/∞ﬂ∞˙∑˘");
+		List<IngBean> ingList2 = ingdao.getIngbyCtg("∞Ë∂ı/¿Ø¡¶«∞");
+		List<IngBean> ingList3 = ingdao.getIngbyCtg("√§º“");
+		List<IngBean> ingList4 = ingdao.getIngbyCtg("∞˙¿œ");
+		List<IngBean> ingList5 = ingdao.getIngbyCtg("¡§¿∞/«ÿªÍπ∞");
+		List<IngBean> ingList6 = ingdao.getIngbyCtg("∏È/ªß/∂±");
+		List<IngBean> ingList7 = ingdao.getIngbyCtg("º“Ω∫/ø¿¿œ");
 		
 		model.addAttribute("ingList1", ingList1);
 		model.addAttribute("ingList2", ingList2);
@@ -49,9 +59,45 @@ public class RefInsertController {
 	}
 	
 	@RequestMapping(value=command, method = RequestMethod.POST)
-	public ModelAndView insert() {
-		ModelAndView mav = new ModelAndView();
-		return mav;
+	public String insert(HttpSession session, @RequestParam(value="ingnum", required=false) String str_ingnum) {
+		MemberBean loginInfo = (MemberBean)session.getAttribute("loginInfo");
+		System.out.println("id: "+loginInfo.getId());
+		
+		System.out.println("str_ingnum: "+str_ingnum);
+		String[] arr_str = str_ingnum.split(",");
+		
+		int[] arr_ingnum = new int[arr_str.length];
+        for(int i=0; i<arr_str.length; i++) {
+        	arr_ingnum[i] = Integer.parseInt(arr_str[i]);
+        }
+        
+        int cnt = -1;
+        for(int i=0; i<arr_ingnum.length; i++) {
+        	IngBean ingbean = ingdao.getIngInfo(arr_ingnum[i]);
+        	
+        	RefBean refbean = new RefBean();
+        	refbean.setId(loginInfo.getId());
+        	refbean.setIngnum(arr_ingnum[i]);
+        	
+        	SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
+        	Date now = new Date();	//sysdate(¿Á∑· √ﬂ∞°¿œ)
+        	Calendar cal = Calendar.getInstance();
+        	cal.setTime(now);	
+        	cal.add(Calendar.DATE, ingbean.getExpiry());	//«ˆ¿Á ≥Ø¬•ø° º“∫Ò¿œ ¥ı«œ±‚
+        	String refdday = simpleDate.format(cal.getTime());
+        	
+        	refbean.setRefdday(refdday);
+        	
+        	cnt += refdao.insertRef(refbean);
+        }
+        
+        if(cnt!=-1) {
+        	System.out.println("≥√¿Â∞Ì insert º∫∞¯");
+        }else {
+        	System.out.println("≥√¿Â∞Ì insert Ω«∆–");
+        }
+		
+		return gotoPage;
 	}
 	
 	

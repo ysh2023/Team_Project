@@ -23,6 +23,11 @@ private String namespace = "ingredient.model.Ingredient";
 		return ingList;
 	}
 
+	public IngBean getIngInfo(int num) {
+		IngBean ingbean = sqlSessionTemplate.selectOne(namespace+".GetIngInfo", num);
+		
+		return ingbean;
+	}
 
 
 }

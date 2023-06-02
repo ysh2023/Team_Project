@@ -1,14 +1,12 @@
 package refrigerator.model;
 
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import product.model.ProductBean;
 
 @Component
 public class RefDao {
@@ -23,6 +21,14 @@ public class RefDao {
 		refList = sqlSessionTemplate.selectList(namespace+".GetUserRef",id);
 		
 		return refList;
+	}
+
+	public int insertRef(RefBean refbean) {
+		int cnt = -1;
+		
+		cnt = sqlSessionTemplate.insert(namespace+".InsertRef",refbean);
+		
+		return cnt;
 	}
 	
 }

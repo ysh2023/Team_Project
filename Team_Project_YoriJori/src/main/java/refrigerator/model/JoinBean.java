@@ -1,8 +1,11 @@
 package refrigerator.model;
 
-public class RefBean {
+public class JoinBean {
 	private String id;
 	private int ingnum;
+	private String ingcategory;
+	private String ingname;
+	private int expiry;
 	private String inputdate;
 	private String refdday;
 	private String refstorage;
@@ -20,6 +23,27 @@ public class RefBean {
 	}
 	public void setIngnum(int ingnum) {
 		this.ingnum = ingnum;
+	}
+	
+	public String getIngcategory() {
+		return ingcategory;
+	}
+	public void setIngcategory(String ingcategory) {
+		this.ingcategory = ingcategory;
+	}
+	
+	public String getIngname() {
+		return ingname;
+	}
+	public void setIngname(String ingname) {
+		this.ingname = ingname;
+	}
+	
+	public int getExpiry() {
+		return expiry;
+	}
+	public void setExpiry(int expiry) {
+		this.expiry = expiry;
 	}
 	
 	public String getInputdate() {
@@ -49,6 +73,4 @@ public class RefBean {
 	public void setRefdetail(String refdetail) {
 		this.refdetail = refdetail;
 	}
-	
-	
 }
