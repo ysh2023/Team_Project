@@ -1,5 +1,5 @@
 
---member Å×ÀÌºí (È¸¿ø)
+--member í…Œì´ë¸” (íšŒì›)
 drop table member;
 CREATE TABLE member (
    id   varchar2(30)   NOT NULL,
@@ -11,34 +11,33 @@ CREATE TABLE member (
    area2   varchar2(100)   NULL
 );
 
-insert into member values('admin','°ü¸®ÀÚ','1234',01011112222,23,'°æ±âµµ','ºÎÃµ½Ã');
-insert into member values('moon','¹®¼öÇö','1234',01045544554,24,'¼­¿ï','¸¶Æ÷±¸');
+insert into member values('admin','ê´€ë¦¬ì','1234',01011112222,23,'ê²½ê¸°ë„','ë¶€ì²œì‹œ');
+insert into member values('moon','ë¬¸ìˆ˜í˜„','1234',01045544554,24,'ì„œìš¸','ë§ˆí¬êµ¬');
 commit;
 
 
---ingredient Å×ÀÌºí (½ÄÀç·á)
+--ingredient í…Œì´ë¸” (ì‹ì¬ë£Œ)
 drop table ingredient;
 create table ingredient(
-	ing_num number primary key,			--½ÄÀç·á ¹øÈ£
-	ing_category varchar2(50) not null,	--½ÄÀç·á Ä«Å×°í¸®
-	ing_name varchar2(50) not null,		--½ÄÀç·á¸í
-	expiry number						--¼Òºñ±â°£(ÀÏ)
+	ing_num number primary key,			--ì‹ì¬ë£Œ ë²ˆí˜¸
+	ing_category varchar2(50) not null,	--ì‹ì¬ë£Œ ì¹´í…Œê³ ë¦¬
+	ing_name varchar2(50) not null,		--ì‹ì¬ë£Œëª…
+	expiry number						--ì†Œë¹„ê¸°ê°„(ì¼)
 );
---½ÄÀç·á insert´Â ±¸±Û µå¶óÀÌºê ½ÄÀç·á.xlsx ÆÄÀÏ
+--ì‹ì¬ë£Œ insertëŠ” êµ¬ê¸€ ë“œë¼ì´ë¸Œ ì‹ì¬ë£Œ.xlsx íŒŒì¼
 
---refrigerator Å×ÀÌºí(»ç¿ëÀÚ ³ÃÀå°í)
+--refrigerator í…Œì´ë¸”(ì‚¬ìš©ì ëƒ‰ì¥ê³ )
 drop table refrigerator cascade constraints;
 create table refrigerator(
-	id varchar2(30) references member(id) on delete cascade, 			--member ¾ÆÀÌµğ
-	ing_num number references ingredient(ing_num) on delete cascade,	--ingredient ¹øÈ£
-	inputdate date default sysdate,				--½ÄÀç·á Ãß°¡ÇÑ ³¯Â¥
-	ref_dday date,								--À¯Åë±âÇÑ
-	ref_storage varchar2(20) default '³ÃÀå',		--º¸°ü À§Ä¡(³ÃÀå/³Ãµ¿/½Ç¿Â)
-	ref_detail varchar2(100)		--»ó¼¼ ¸Ş¸ğ
+	id varchar2(30) references member(id) on delete cascade, 			--member ì•„ì´ë””
+	ing_num number references ingredient(ing_num) on delete cascade,	--ingredient ë²ˆí˜¸
+	inputdate date default sysdate,				--ì‹ì¬ë£Œ ì¶”ê°€í•œ ë‚ ì§œ
+	ref_dday date,								--ìœ í†µê¸°í•œ
+	ref_storage varchar2(20) default 'ëƒ‰ì¥',		--ë³´ê´€ ìœ„ì¹˜(ëƒ‰ì¥/ëƒ‰ë™/ì‹¤ì˜¨)
+	ref_detail varchar2(100)		--ìƒì„¸ ë©”ëª¨
 );
 
-insert into refrigerator values('moon',19,sysdate,'2023-06-15','½Ç¿Â','¿ìÀ¯½Ä»§');
-insert into refrigerator values('moon',40,sysdate,'2023-06-07','³ÃÀå','');
-insert into refrigerator values('moon',139,sysdate,'2023-08-30','³Ãµ¿','');
+insert into refrigerator values('moon', 19, sysdate,'2023-06-15', 'ì‹¤ì˜¨', 'ìš°ìœ ì‹ë¹µ');
+insert into refrigerator values('moon', 40, sysdate,'2023-06-07', 'ëƒ‰ì¥', '');
+insert into refrigerator values('moon', 139, sysdate,'2023-08-30', 'ëƒ‰ë™', '');
 commit;
-
