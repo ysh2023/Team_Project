@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="board.model.Board">
+	<select id="GetAllBoard" resultType="board.model.BoardBean">
+		select * from board <if test="category!='All'">where category like #{category}</if> order by bod_num
+	</select>
+	<insert id="InsertBoard">insert into board values(bod_seq.nextval, #{title},
+		#{servings}, #{time}, #{category}, #{tags}, #{id}, #{bodImage})</insert>
+	<insert id="InsertBoardContent">insert into boardcontent values(bcn_seq.nextval,
+		#{image}, #{bod_content}, bod_seq.currval)</insert>
+	<insert id="InsertBoardIngredient">insert into boardingredient values(big_seq.nextval,
+		#{ing_num}, bod_seq.currval, #{big_name}, #{big_category})</insert>
+	<select id="GetTopBoard" resultType="board.model.BoardBean">
+		select board.bod_num, title, servings, time, category, tags, id, bod_image from board inner join (select count(*)cnt, bod_num  from recommend group by bod_num order by cnt desc) sel on board.bod_num = sel.bod_num
+	</select>
+	<select id="GetBoardByBodNum" resultType="board.model.BoardBean">select * from board where bod_num = #{bodNum}</select>
+	<select id="GetBoardContentByBodNum" resultType="board.model.BoardContentBean">select * from boardcontent where bod_num = #{bod_num}</select>
+	<select id="GetCommentByBodNum" resultType="board.model.comments">select * from comments where bod_num = #{bodNum} order by ref desc, ref_level asc, ref_step asc</select>
+</mapper>
