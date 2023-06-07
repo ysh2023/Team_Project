@@ -63,4 +63,16 @@ public class RecipeDao {
 		int cnt = sqlSessionTemplate.insert(namespace+".InsertReview", reviewbean); 
 		return cnt;
 	}
+	public int getBookmarkCount(int recipenum) {
+		int count = sqlSessionTemplate.selectOne(namespace+".GetBookmarkCount", recipenum);
+		return count;
+	}
+	public int insertBookMark(RecipeBookMarkBean BMBean) {
+		int count = sqlSessionTemplate.insert(namespace+".InsertBookMark", BMBean);
+		return count;
+	}
+	public int insertReport(RecipeReviewReportBean reportBean) {
+		int count = sqlSessionTemplate.insert(namespace+".InsertReport", reportBean);
+		return count;
+	}
 }

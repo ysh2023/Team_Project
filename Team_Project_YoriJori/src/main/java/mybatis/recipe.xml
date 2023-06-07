@@ -59,4 +59,19 @@
   		insert into review
   		values(recipe_re_seq.nextval,#{review},#{id},#{recipenum}) 
   	</insert>
+  	
+  	<select id="GetBookmarkCount" resultType="int">
+  		select count(*) from bookmark
+  		where recipe_num=#{recipenum}
+  	</select>
+  	
+  	<insert id="InsertBookMark">
+  		insert into bookmark
+  		values(bookmark_seq.nextval,#{id},#{recipenum})
+  	</insert>
+  	
+  	<insert id="InsertReport">
+  		insert into review_report
+  		values(recipe_report_seq.nextval,#{reportcontent},#{reviewnum})
+  	</insert>
   </mapper>

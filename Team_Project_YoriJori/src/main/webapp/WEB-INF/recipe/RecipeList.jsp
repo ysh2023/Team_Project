@@ -78,7 +78,7 @@
 	    					<div class="bottom-area d-flex px-3">
 	    						<div class="m-auto d-flex"> 
 	    							<!-- 찜하기 -->
-	    							<a href="#" class="heart d-flex justify-content-center align-items-center ">
+	    							<a href="BookmarkInsert.re?recipenum=${recipe.recipenum}" class="heart d-flex justify-content-center align-items-center ">
 	    								<span><i class="ion-ios-heart"></i></span>
 	    							</a>
     							</div>

@@ -10,23 +10,21 @@
     				<a href="images/product-1.jpg" class="image-popup"><img src="${recipe.cookimage}" class="img-fluid" alt="Colorlib Template"></a>
     			</div>
     			<div class="col-lg-6 product-details pl-md-5 ftco-animate">
-    				<h3>${recipe.recipename}</h3>
+    				<h1>${recipe.recipename}</h1>
     				<div class="rating d-flex">
-							<p class="text-left mr-4">
-								<a href="#" class="mr-2">5.0</a>
-								<a href="#"><span class="ion-ios-star-outline"></span></a>
-								<a href="#"><span class="ion-ios-star-outline"></span></a>
-								<a href="#"><span class="ion-ios-star-outline"></span></a>
-								<a href="#"><span class="ion-ios-star-outline"></span></a>
-								<a href="#"><span class="ion-ios-star-outline"></span></a>
-							</p>
-							<p class="text-left mr-4">
+							
+							<p class="text-left mr-5">
 								<!-- 조회수 -->
-								<a href="#" class="mr-2" style="color: #000;">100 <span style="color: #bbb;">찜</span></a>
+								<a href="#" class="mr-2" style="color: #000;">${SelectedRecipeCount} <span style="color: #bbb;"><i class="ion-ios-heart"></i></span></a>
 							</p>
-							<p class="text-left">
+							<p class="text-left ml-5">
 								<!-- 북마크 수 -->
-								<a href="#" class="mr-2" style="color: #000;">500 <span style="color: #bbb;">조회</span></a>
+								<!-- 누르면 북마크 추가 되도록 -->
+								<form action="BookmarkInsert.re" method="post">
+								<input type="hidden" name="recipenum" value="${recipe.recipenum}">
+								<a href="#" class="mr-2" style="color: #000;">
+								<span style="color: #bbb;"><input type="submit" value="찜" class="btn px-4 btn-primary"></span></a>
+								</form>
 							</p>
 						</div>
     				<p class="price"><span>재료</span></p>
@@ -36,13 +34,13 @@
     						${food.foodname}
     					</p>
     					</c:forEach>
-          			<p><a href="#" class="btn btn-black py-3 px-5">찜</a></p>
     			</div>
     		</div>
     	</div>
     </section>
 
 <section class="ftco-section ftco-degree-bg">
+<h2 align="center" style="margin-bottom: 20px; padding-bottom: 20px;">조리 방법</h2>
       <div class="container">
         <div class="row">
           <div class="col-lg-12 ftco-animate">
@@ -88,7 +86,7 @@
 		                    <!-- 시간 넣기 -->
 		                    <div class="meta"></div>
 		                    <p>${review.review}</p>
-		                    <p><a href="#" class="reply">신고하기</a></p>	
+		                    <p><a href="report.re?reviewnum=${review.reviewnum}&recipenum=${recipe.recipenum}" class="reply">신고하기</a></p>	
 		                  </div>
 		                </li>
 		              </c:forEach>

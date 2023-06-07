@@ -28,11 +28,13 @@ public class RecipeDetailViewController {
 		List<RecipeContentBean> recipeContentList = rdao.getRecipeContent(recipenum);
 		List<FoodBean> foodList = rdao.getFood(recipenum); 
 		List<RecipeReviewBean> reviewList = rdao.getReviewbyRecipe(recipenum);
+		int SelectedRecipeCount = rdao.getBookmarkCount(recipenum);
 		
 		model.addAttribute("recipe", rbean);
 		model.addAttribute("recipeContentList", recipeContentList);
 		model.addAttribute("foodList", foodList);
 		model.addAttribute("reviewList", reviewList);
+		model.addAttribute("SelectedRecipeCount", SelectedRecipeCount);
 		return getPage;
 	}
 }
