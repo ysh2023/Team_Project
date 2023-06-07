@@ -44,6 +44,11 @@ public class RecipeDao {
 		return foodList;
 	}
 	
+	public List<RecipeReviewBean> getReviewbyRecipe (int recipenum){
+		List<RecipeReviewBean> reviewList = sqlSessionTemplate.selectList(namespace+".GetReviewByRecipe", recipenum);
+		return reviewList;
+	}
+	
 	public List<Integer> getBookmarkById(String id){
 		List<Integer> BookmarkList = sqlSessionTemplate.selectList(namespace+".GetBookmarkById", id);
 		return BookmarkList;
@@ -51,6 +56,11 @@ public class RecipeDao {
 	
 	public int deleteBookmark(MemberBean mb) {
 		int cnt = sqlSessionTemplate.delete(namespace+".DeleteBookmark", mb);
+		return cnt;
+	}
+	
+	public int insertReview(RecipeReviewBean reviewbean) {
+		int cnt = sqlSessionTemplate.insert(namespace+".InsertReview", reviewbean);
 		return cnt;
 	}
 }

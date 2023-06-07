@@ -36,7 +36,7 @@
     						${food.foodname}
     					</p>
     					</c:forEach>
-          			<p><a href="cart.html" class="btn btn-black py-3 px-5">찜</a></p>
+          			<p><a href="#" class="btn btn-black py-3 px-5">찜</a></p>
     			</div>
     		</div>
     	</div>
@@ -53,9 +53,6 @@
 		              <a href="blog-single.html" class="block-20" style="background-image: url('${recipeContent.recipeimage}');">
 		              </a>
 		              <div class="text d-block pl-md-4">
-		              	<div class="meta mb-3">
-		                  <div><a href="#">${status.count}</a></div>
-		                </div>
 		                <h3 class="heading"><a href="#">${recipeContent.cookcontent}</a></h3>
 		              </div>
 		            </div>
@@ -66,7 +63,6 @@
 				</div>
           	</div> <!-- .col-md-8 -->
 	       </div>
-      </div>
     </section> <!-- .section -->
 
 <section class="ftco-section ftco-degree-bg">
@@ -74,49 +70,51 @@
         <div class="row">
           <div class="col-lg-12 ftco-animate">
   <div class="pt-5 mt-5">
-              <h3 class="mb-5">댓글 숫자</h3>
+              <h3 class="mb-5">등록된 리뷰 갯수 : ${reviewList.size()}</h3>
               <ul class="comment-list">
-              <!--  댓글 반복(댓글 list) 댓글 0개일때 보여줄 문구  -->
-                <li class="comment">
-                  <div class="vcard bio">
-                    <img src="images/person_1.jpg" alt="Image placeholder">
-                  </div>
-                  <div class="comment-body">
-                    <h3>John Doe</h3>
-                    <div class="meta">June 27, 2018 at 2:21pm</div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-                    <p><a href="#" class="reply">신고하기</a></p>
-                  </div>
-                </li>
-              </ul>
+	              <!--  댓글 반복(댓글 list) 댓글 0개일때 보여줄 문구  -->
+	              <c:if test="${empty reviewList}">
+	              	 <li class="comment"> 등록된 리뷰가 없습니다.</li>
+	              </c:if>
+	              <c:if test="${not empty reviewList}">
+		              <c:forEach var="review" items="${reviewList}">
+		                <li class="comment">
+		                  <div class="vcard bio">
+		                  <!-- 괜찮은 이미지 넣기 -->
+		                    <img src="images/person_1.jpg" alt="Image placeholder">
+		                  </div>
+		                  <div class="comment-body">
+		                    <h3>${review.id}</h3>
+		                    <!-- 시간 넣기 -->
+		                    <div class="meta"></div>
+		                    <p>${review.review}</p>
+		                    <p><a href="#" class="reply">신고하기</a></p>	
+		                  </div>
+		                </li>
+		              </c:forEach>
+	              </c:if>
+	          </ul>
               <!-- END comment-list -->
               
               <div class="comment-form-wrap pt-5">
-                <h3 class="mb-5">Leave a comment</h3>
-                <form action="#" class="p-5 bg-light">
+                <h3 class="mb-5">리뷰를 남겨주세요.</h3>
+                <form action="insertReview.re" class="p-5 bg-light">
                   <div class="form-group">
-                    <label for="name">Name *</label>
-                    <input type="text" class="form-control" id="name">
-                  </div>
-                  <div class="form-group">
-                    <label for="email">Email *</label>
-                    <input type="email" class="form-control" id="email">
-                  </div>
-                  <div class="form-group">
-                    <label for="website">Website</label>
-                    <input type="url" class="form-control" id="website">
+                    <input type="hidden" class="form-control" name="id" value="${loginInfo.id}">
+                    <input type="hidden" class="form-control" name="recipenum" value="${recipe.recipenum}">
                   </div>
 
                   <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea name="" id="message" cols="30" rows="10" class="form-control"></textarea>
+                    <label for="message">리뷰</label>
+                    <textarea name="review" id="message" cols="30" rows="10" class="form-control"></textarea>
                   </div>
                   <div class="form-group">
-                    <input type="submit" value="Post Comment" class="btn py-3 px-4 btn-primary">
+                    <input type="submit" value="리뷰 남기기" class="btn py-3 px-4 btn-primary">
                   </div>
 
                 </form>
               </div>
+            </div>
             </div>
             </div>
             </div>

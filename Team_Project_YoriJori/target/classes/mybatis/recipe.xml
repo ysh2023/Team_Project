@@ -49,4 +49,14 @@
   		delete bookmark
   		where id=#{id} and recipe_num=#{tel}
   	</delete>
+  	
+  	<select id="GetReviewByRecipe" resultType="recipe.model.RecipeReviewBean">
+  		select * from review
+  		where recipe_num=#{recipenum}
+  	</select>
+  	
+  	<insert id="InsertReview">
+  		insert into review
+  		values(recipe_re_seq.nextval,#{review},#{id},#{recipenum})
+  	</insert>
   </mapper>
