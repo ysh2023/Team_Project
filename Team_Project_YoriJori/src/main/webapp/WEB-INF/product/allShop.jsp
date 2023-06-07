@@ -90,7 +90,7 @@ $(document).ready(function(){
 				<c:forEach var="i" items="${lists}">  		
     			<div class="col-md-6 col-lg-3 ftco-animate">
     				<div class="product">
-    					<a href="prdDetail.prd?pdnum=${i.pdnum}" class="img-prod"><img class="img-fluid" src="${i.pdimage}" alt="Colorlib Template">
+    					<a href="prdDetail.prd?pdnum=${i.pdnum}" class="img-prod"><img class="img-fluid" src="<%=resourcesPath%>/img_pd/${i.pdnum}.jpg" alt="Colorlib Template">
     					</a>
     					<div class="text py-3 pb-4 px-3 text-center">
     						<h3><a href="prdDetail.prd?pdnum=${i.pdnum}">${i.pdname }</a></h3>

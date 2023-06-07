@@ -3,8 +3,19 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="admin.model.admin">
+<mapper namespace="admin.model.Admin">
 
+<select id="GetAllProduct" resultType="product.model.ProductBean">
+select * from product
+</select>
 
+<delete id="DeleteProduct">
+delete product where pd_num=#{pdnum}
+</delete>
+	
+<insert id="InsertProduct">
+insert into product
+values(prdseq.nextval,#{pdname},#{pdcategory},#{pdcontent},#{pdstock},#{pdprice},#{pdimage})
+</insert>
 	
 </mapper>
