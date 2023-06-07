@@ -39,4 +39,14 @@
   		select * from recipe_food
   		where recipe_num=#{recipenum}
   	</select>
+  	
+  	<select id="GetBookmarkById" resultType="int">
+  		select recipe_num from bookmark
+  		where id = #{id}
+  	</select>
+  	
+  	<delete id="DeleteBookmark">
+  		delete bookmark
+  		where id=#{id} and recipe_num=#{tel}
+  	</delete>
   </mapper>

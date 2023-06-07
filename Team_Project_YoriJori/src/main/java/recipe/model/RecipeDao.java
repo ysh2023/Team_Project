@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import member.model.MemberBean;
 import utility.Paging;
 
 @Component
@@ -41,5 +42,15 @@ public class RecipeDao {
 	public List<FoodBean> getFood (int recipenum){
 		List<FoodBean> foodList = sqlSessionTemplate.selectList(namespace+".GetFood", recipenum);
 		return foodList;
+	}
+	
+	public List<Integer> getBookmarkById(String id){
+		List<Integer> BookmarkList = sqlSessionTemplate.selectList(namespace+".GetBookmarkById", id);
+		return BookmarkList;
+	}
+	
+	public int deleteBookmark(MemberBean mb) {
+		int cnt = sqlSessionTemplate.delete(namespace+".DeleteBookmark", mb);
+		return cnt;
 	}
 }

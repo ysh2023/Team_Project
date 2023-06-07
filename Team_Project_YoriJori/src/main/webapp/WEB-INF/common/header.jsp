@@ -135,7 +135,7 @@
 								style="width: 18px; margin-right: 5px; margin-bottom: 2px;">
 								나의 냉장고
 						</a></li>
-						<li class="nav-item"><a href="about.html" class="nav-link">
+						<li class="nav-item"><a href="bookmark.re" class="nav-link">
 								<img src="<%=resourcesPath%>/images/btn_circle.png"
 								style="width: 18px; margin-right: 5px; margin-bottom: 2px;">
 								북마크 레시피
