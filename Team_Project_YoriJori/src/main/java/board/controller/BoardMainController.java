@@ -18,19 +18,27 @@ public class BoardMainController {
 	BoardDao bdao;
 
 	@RequestMapping("main.board")
-	public String doAction(Model model, @RequestParam(value = "category", required = false) String category) {
+	public String doAction(Model model, @RequestParam(value = "category", required = false) String category,
+			@RequestParam(value = "categoryType", required = false) String categoryType) {
 		Map<String, String> map = new HashMap<String, String>();
 		if (category == null || category.equals("All")) {
 			category = "All";
+			categoryType = "0";
 			map.put("category", category);
+			map.put("categoryType", categoryType);
 		} else {
 			map.put("category", "%" + category + "%");
+			map.put("categoryType", categoryType);
 		}
-		System.out.println(category + "카테고리 메인");
+		System.out.println(map.get("categoryType"));
+
 		model.addAttribute("boardList", bdao.getAllBoard(map));
+
 		String arr[] = { "All", "밥", "국", "찌개", "반찬", "라면", "기타" };
+
 //		model.addAttribute("categorys", bdao.getAllCategory());
-		model.addAttribute("categorys", arr);
+		model.addAttribute("foodCategorys", arr);
+		model.addAttribute("ingredientCategorys", bdao.getIngredientCategory());
 		model.addAttribute("selectCategory", category);
 		model.addAttribute("topBoards", bdao.getTopBoard());
 		return "boardMain";

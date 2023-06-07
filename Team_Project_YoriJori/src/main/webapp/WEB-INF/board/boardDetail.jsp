@@ -10,24 +10,25 @@
 	<section class="ftco-section ftco-category ftco-no-pt">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-8 ftco-animate">
-					<div>${board.title }</div>
-					<br>
-					<div>${board.servings }</div>
-					<br>
-					<div>${board.time }</div>
-					<br>
-					<div>${board.category }</div>
-					<br>
+				<div class="col-lg-12 ftco-animate">
+					<h2>${board.title }</h2><a class="" href="boardDelete.board?bodNum=${board.bodNum}" style="cursor: pointer; background-color: pink;">삭제</a>
+					<div class="row">
+						<div class="col-md-6">요리량 : ${board.servings }인분</div>
+						<div class="col-md-6">조리시간 : ${board.time }분</div>
+					</div>
+					<div>요리 분류 : ${board.category }</div>
+					<hr>
 
-					<c:forEach items="${boardContentList }" var="boardContent">
-						<div>${boardContent.bod_content }<c:if test="${boardContent.image != null}">
+					<c:forEach items="${boardContentList }" var="boardContent" varStatus="status">
+						<div>조리과정 ${status.index+1 }${boardContent.bodContent } <c:if test="${boardContent.image != ''}">
 								<img src="<%=resourcesPath%>/images/${boardContent.image}" alt="조리과정 이미지">
 							</c:if>
 						</div>
 					</c:forEach>
 
-					<div>${board.tags }</div>
+					<div>
+						<c:forEach items="${tags }" var="tag">#${tag } </c:forEach>
+					</div>
 
 				</div>
 			</div>
@@ -39,7 +40,7 @@
 			<div class="row">
 				<div class="col-lg-12 ftco-animate">
 					<div class="pt-5 mt-5">
-						<h3 class="mb-5">${fn:length(comments) } 댓글</h3>
+						<h3 class="mb-5">${fn:length(comments) }댓글</h3>
 						<ul class="comment-list">
 							<li class="comment">
 								<div class="vcard bio">

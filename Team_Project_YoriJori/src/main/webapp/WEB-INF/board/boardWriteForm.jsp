@@ -47,6 +47,18 @@
 			f.submit();
 		}
 	}
+	
+	var addIngredientIndex = 0;
+	
+	function addIngredient() {
+		$("#selectIngName").append("<div id='addingredient"+addIngredientIndex+"'><input type='hidden' name='big_name' value='"+$('input[name=ing_name]').val()+"'>"+$('input[name=ing_name]').val()+"<span style='cursor:pointer;' onclick='removeIngredient(\""+addIngredientIndex+"\")'>X</span></div>");
+		addIngredientIndex++;
+		$('input[name=ing_name]').val("");
+	}
+	
+	function removeIngredient(removeIndex){
+		$('#addingredient'+removeIndex).remove();
+	}
 </script>
 <body>
 
@@ -55,7 +67,7 @@
 			<div class="cart-total mb-3">
 				<h2>나만의 레시피 공유하기</h2>
 				<p>본인만의 레시피를 등록하면 다른 사람들과 공유할 수 있습니다</p>
-				<form commandName="boardFormBean" action="write.board" method="post" class="info" name="f" enctype="multipart/form-data">
+				<form action="write.board" method="post" class="info" name="f" enctype="multipart/form-data">
 					<div class="form-group">
 						<div class="row">
 							<div class="col-md-6">
@@ -77,18 +89,36 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="category">* 카테고리 <span id="categoryMsg"></span></label> <select name="category" class="form-control text-left px-3">
-							<option value="">카테고리를 선택해주세요
-								<c:forEach items="${categorys }" var="category">
-									<option>${category }
-								</c:forEach>
-						</select>
+						<div class="row">
+							<div class="col-md-6">
+								<label for="category">* 카테고리 <span id="categoryMsg"></span></label> <select name="category" class="form-control text-left px-3">
+									<option value="">카테고리를 선택해주세요
+										<c:forEach items="${categorys }" var="category">
+											<option>${category }
+										</c:forEach>
+								</select>
+							</div>
+							<div class="col-md-6">
+								<label for="tags">해쉬태그 </label> <input name="tags" type="text" class="form-control text-left px-3" placeholder="태그를 작성해주세요 예 : #김 #밥">
+
+							</div>
+						</div>
 					</div>
 					<div class="form-group">
-						<label for="tags">해쉬태그 </label> <input name="tags" type="text" class="form-control text-left px-3" placeholder="태그를 작성해주세요 예 : #김 #밥">
-					</div>
-					<div class="form-group">
-						<label for="big_name">식재료 </label> <input name="big_name" type="text" class="form-control text-left px-3" placeholder="">
+						<div class="row">
+							<div class="col-md-10">
+								<label for="ing_name">식재료 </label> <input type="text" name="ing_name" list="ing_name" class="form-control text-left px-3" placeholder="검색 후 추가 목록에 없으면 작성 후 추가">
+								<datalist id="ing_name">
+									<c:forEach items="${ingredients }" var="ingredient">
+										<option value="${ingredient.ingName}"></option>
+									</c:forEach>
+								</datalist>
+							</div>
+							<div class="col-md-2">
+								<input class="btn btn-primary mt-3 px-5 py-4" type="button" value="추가" onclick="addIngredient()">
+							</div>
+							<div class="col-md-12" id="selectIngName"></div>
+						</div>
 					</div>
 					<div class="form-group">
 						<div id="cookProcess">

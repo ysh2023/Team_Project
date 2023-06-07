@@ -21,12 +21,11 @@ import board.model.BoardContentBean;
 import board.model.BoardDao;
 import board.model.BoardFormBean;
 import board.model.BoardIngredientBean;
-import member.model.MemberBean;
 
 @Controller
 public class BoardInsertController {
 	private final String command = "write.board";
-	private String formPage = "writeForm";
+	private String formPage = "boardWriteForm";
 	private String page = "redirect:/main.board";
 
 	@Autowired
@@ -42,10 +41,9 @@ public class BoardInsertController {
 			response.getWriter().append("<script>alert('로그인 후 이용 가능합니다'); location.href='login.mb'</script>").flush();
 			return null;
 		} else {
-			String[] categoryss = { "a", "b" };
+			String[] categoryss = { "밥", "국", "찌개", "반찬", "라면", "기타" };
 			model.addAttribute("categorys", categoryss);
-			String[] ingredients = { "쌀", "고기" };
-			model.addAttribute("ingredients", ingredients);
+			model.addAttribute("ingredients", bdao.getAllIngredient());
 			return formPage;
 		}
 
@@ -64,11 +62,13 @@ public class BoardInsertController {
 
 		// 게시글 테이블
 		boardBean.setTitle(boardFormBean.getTitle());
-		boardBean.setServings(Integer.parseInt(boardFormBean.getServings()));
-		boardBean.setTime(Integer.parseInt(boardFormBean.getTime()));
+		boardBean.setServings(
+				boardFormBean.getServings().equals("") ? 0 : Integer.parseInt(boardFormBean.getServings()));
+		boardBean.setTime(boardFormBean.getTime().equals("") ? 0 : Integer.parseInt(boardFormBean.getTime()));
 		boardBean.setCategory(boardFormBean.getCategory());
 		boardBean.setTags(boardFormBean.getTags());
-		boardBean.setId(((MemberBean) session.getAttribute("loginInfo")).getId());
+//		boardBean.setId(((MemberBean) session.getAttribute("loginInfo")).getId());
+		boardBean.setId("admin");
 		boardBean.setBodImage(boardFormBean.getBod_image());
 		int boardResult = bdao.insertBoard(boardBean);
 
@@ -90,18 +90,17 @@ public class BoardInsertController {
 			int boardIngredientResult = 0;
 			int boardContentResult = 0;
 
-			String big_name[] = boardFormBean.getBig_name().split(" ");
+			String big_name[] = boardFormBean.getBig_name().split(",");
 			for (int i = 0; i < big_name.length; i++) {
 				BoardIngredientBean boardIngredientBean = new BoardIngredientBean();
-				boardIngredientBean.setIng_num(1);
-				boardIngredientBean.setBig_name(big_name[i]);
-				boardIngredientBean.setBig_category("");
+				boardIngredientBean.setBigName(big_name[i]);
 				boardIngredientResult += bdao.insertBoardIngredient(boardIngredientBean);
 			}
 			for (int i = 0; i < boardFormBean.getBod_content().length; i++) {
 				BoardContentBean boardContentBean = new BoardContentBean();
-				boardContentBean.setImage(boardFormBean.getImage()[i]);
-				boardContentBean.setBod_content(boardFormBean.getBod_content()[i]);
+				boardContentBean.setImage(boardFormBean.getImage()[i] == null ? "" : boardFormBean.getImage()[i]);
+				boardContentBean.setBodContent(
+						boardFormBean.getBod_content()[i] == null ? "" : boardFormBean.getBod_content()[i]);
 				boardContentResult += bdao.insertBoardContent(boardContentBean);
 			}
 			System.out.println("content : " + boardContentResult);

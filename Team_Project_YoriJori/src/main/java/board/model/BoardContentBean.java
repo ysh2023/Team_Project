@@ -1,17 +1,17 @@
 package board.model;
 
 public class BoardContentBean {
-	private int bim_num;
+	private int bimNum;
 	private String image;
-	private String bod_content;
-	private int bod_num;
+	private String bodContent;
+	private int bodNum;
 
-	public int getBim_num() {
-		return bim_num;
+	public int getBimNum() {
+		return bimNum;
 	}
 
-	public void setBim_num(int bim_num) {
-		this.bim_num = bim_num;
+	public void setBimNum(int bim_num) {
+		this.bimNum = bim_num;
 	}
 
 	public String getImage() {
@@ -22,19 +22,19 @@ public class BoardContentBean {
 		this.image = image;
 	}
 
-	public String getBod_content() {
-		return bod_content;
+	public String getBodContent() {
+		return bodContent;
 	}
 
-	public void setBod_content(String bod_content) {
-		this.bod_content = bod_content;
+	public void setBodContent(String bod_content) {
+		this.bodContent = bod_content;
 	}
 
-	public int getBod_num() {
-		return bod_num;
+	public int getBodNum() {
+		return bodNum;
 	}
 
-	public void setBod_num(int bod_num) {
-		this.bod_num = bod_num;
+	public void setBodNum(int bod_num) {
+		this.bodNum = bod_num;
 	}
 }

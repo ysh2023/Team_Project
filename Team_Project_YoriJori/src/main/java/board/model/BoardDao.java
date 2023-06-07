@@ -7,6 +7,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import ingredient.model.IngBean;
+
 @Component
 public class BoardDao {
 	private final String namespace = "board.model.Board";
@@ -58,9 +60,30 @@ public class BoardDao {
 		return list;
 	}
 
-	public List<CommentBean> getCommentByBodNum(String bodNum) {
-		List<CommentBean> list = sessionTemplate.selectList(namespace + ".GetCommentByBodNum", bodNum);
+	public List<CommentsBean> getCommentByBodNum(String bodNum) {
+		List<CommentsBean> list = sessionTemplate.selectList(namespace + ".GetCommentByBodNum", bodNum);
 		return list;
+	}
+
+	public List<String> getIngredientCategory() {
+		List<String> list = sessionTemplate.selectList(namespace + ".GetIngredientCategory");
+		return list;
+	}
+
+	public List<IngBean> getAllIngredient() {
+		List<IngBean> list = sessionTemplate.selectList(namespace + ".GetAllIngredient");
+		return list;
+	}
+
+	public List<BoardIngredientBean> getBoardIngredientByBodNum(String bodNum) {
+		List<BoardIngredientBean> list = sessionTemplate.selectList(namespace + ".GetBoardIngredientByBodNum", bodNum);
+		return list;
+	}
+
+	public int deleteBoardByBodNum(String bodNum) {
+		int cnt = sessionTemplate.delete(namespace + ".DeleteBoardByBodNum", bodNum);
+
+		return cnt;
 	}
 
 }
