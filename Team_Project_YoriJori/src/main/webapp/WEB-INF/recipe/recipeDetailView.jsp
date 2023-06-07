@@ -79,12 +79,12 @@
 		                <li class="comment">
 		                  <div class="vcard bio">
 		                  <!-- 괜찮은 이미지 넣기 -->
-		                    <img src="images/person_1.jpg" alt="Image placeholder">
+		                    <img src="<%=resourcesPath%>/images/user_img.jpg" alt="Image placeholder">
 		                  </div>
 		                  <div class="comment-body">
 		                    <h3>${review.id}</h3>
 		                    <!-- 시간 넣기 -->
-		                    <div class="meta"></div>
+		                    <div class="meta">시간</div>
 		                    <p>${review.review}</p>
 		                    <p><a href="report.re?reviewnum=${review.reviewnum}&recipenum=${recipe.recipenum}" class="reply">신고하기</a></p>	
 		                  </div>

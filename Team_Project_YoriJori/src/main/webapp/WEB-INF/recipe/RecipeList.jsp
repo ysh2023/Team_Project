@@ -3,7 +3,7 @@
 <%@include file= "./../common/header.jsp" %>
 <script type="text/javascript" src="<%=request.getContextPath()%>resoutces/js/jquery.js"></script>
 <main>
-${param.msg}
+
   <section id="home-section" class="hero">
 		  <div class="home-slider owl-carousel">
 	      <div class="slider-item" style="background-image: url(<%=resourcesPath%>/images/banner3.jpg);">
@@ -57,6 +57,11 @@ ${param.msg}
     					<li><a href="list.re?whatColumn=recipecategory&keyword=콩/견과류">콩/견과류</a></li>
     					<li><a href="list.re?whatColumn=recipecategory&keyword=곡류">곡류</a></li>
     					<li><a href="list.re?whatColumn=recipecategory&keyword=기타">기타</a></li>
+    					<li><a href="list.re?whatColumn=recipecategory&keyword=반찬">반찬</a></li>
+    					<li><a href="list.re?whatColumn=recipecategory&keyword=국&찌개">국&찌개</a></li>
+    					<li><a href="list.re?whatColumn=recipecategory&keyword=일품">일품</a></li>
+    					<li><a href="list.re?whatColumn=recipecategory&keyword=밥">밥</a></li>
+    					<li><a href="list.re?whatColumn=recipecategory&keyword=후식">후식</a></li>
     				</ul>
     			</div>
     		</div>
