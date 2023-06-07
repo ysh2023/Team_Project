@@ -74,4 +74,9 @@
   		insert into review_report
   		values(recipe_report_seq.nextval,#{reportcontent},#{reviewnum})
   	</insert>
+  	
+  	<select id="CheckBookMark" resultType="int">
+  		select count(*) from bookmark
+  		where id=#{id} and recipe_num=#{recipenum}
+  	</select>
   </mapper>

@@ -3,7 +3,7 @@
 <%@include file= "./../common/header.jsp" %>
 <script type="text/javascript" src="<%=request.getContextPath()%>resoutces/js/jquery.js"></script>
 <main>
-
+${param.msg}
   <section id="home-section" class="hero">
 		  <div class="home-slider owl-carousel">
 	      <div class="slider-item" style="background-image: url(<%=resourcesPath%>/images/banner3.jpg);">

@@ -4,6 +4,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,7 +23,7 @@ public class RecipeBookMarkInsertController {
 	
 	//recipeList에서 찜 버튼 눌렀을때 get
 	@RequestMapping(value=command, method=RequestMethod.GET)
-	public String doAction(HttpSession session,@RequestParam("recipenum") int recipenum) {
+	public String doAction(HttpSession session,@RequestParam("recipenum") int recipenum,Model model) {
 		if(session.getAttribute("loginInfo") == null) {
 			session.setAttribute("destination", "redirect:/list.re?recipenum="+recipenum); 
 			return "redirect:/login.mb";
@@ -32,13 +33,18 @@ public class RecipeBookMarkInsertController {
 		
 		BMBean.setId(mb.getId());
 		BMBean.setRecipenum(recipenum);
-		rdao.insertBookMark(BMBean);
+		boolean flag = rdao.checkBookMark(BMBean);
+		if(flag == false) {
+			rdao.insertBookMark(BMBean);
+		}else {
+			//model.addAttribute("msg", "중복");
+		}
 		return getPage;
 	}
 	
 	//recipedetail에서 찜 버튼 눌렀을때 post
 	@RequestMapping(value=command,method=RequestMethod.POST)
-	public String doAction2(HttpSession session,@RequestParam("recipenum") int recipenum) {
+	public String doAction2(HttpSession session,@RequestParam("recipenum") int recipenum,Model model) {
 		if(session.getAttribute("loginInfo") == null) {
 			session.setAttribute("destination", "redirect:/detail.re?recipenum="+recipenum); 
 			return "redirect:/login.mb";
@@ -48,7 +54,12 @@ public class RecipeBookMarkInsertController {
 		
 		BMBean.setId(mb.getId());
 		BMBean.setRecipenum(recipenum);
-		rdao.insertBookMark(BMBean);
+		boolean flag = rdao.checkBookMark(BMBean);
+		if(flag == false) {
+			rdao.insertBookMark(BMBean);
+		}else {
+			//model.addAttribute("msg", "중복");
+		}
 		return getPage;
 	}
 }

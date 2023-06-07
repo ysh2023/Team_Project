@@ -75,4 +75,13 @@ public class RecipeDao {
 		int count = sqlSessionTemplate.insert(namespace+".InsertReport", reportBean);
 		return count;
 	}
+	
+	public boolean checkBookMark(RecipeBookMarkBean BMBean) {
+		boolean flag = false;
+		int count = sqlSessionTemplate.selectOne(namespace+".CheckBookMark", BMBean);
+		if(count>0) {
+			flag = true;
+		}
+		return flag;
+	}
 }
