@@ -23,7 +23,7 @@ public class RecipeReviewInsertController {
 	public String doAction(Model model ,HttpSession session,RecipeReviewBean reviewbean) {
 		model.addAttribute("recipenum", reviewbean.getRecipenum());
 		if(session.getAttribute("loginInfo") == null) {
-			session.setAttribute("destination", "redirect:/detail.re?recipenum="+reviewbean.getRecipenum());
+			session.setAttribute("destination", "redirect:/detail.re?recipenum="+reviewbean.getRecipenum()); 
 			return "redirect:/login.mb";
 		}
 		

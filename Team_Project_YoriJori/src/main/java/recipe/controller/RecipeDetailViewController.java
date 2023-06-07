@@ -17,7 +17,7 @@ import recipe.model.RecipeReviewBean;
 @Controller
 public class RecipeDetailViewController {
 	private final String command="/detail.re";
-	private final String getPage="recipeDetailView";
+	private final String getPage="recipeDetailView"; 
 	
 	@Autowired
 	RecipeDao rdao;

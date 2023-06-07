@@ -60,7 +60,7 @@ public class RecipeDao {
 	}
 	
 	public int insertReview(RecipeReviewBean reviewbean) {
-		int cnt = sqlSessionTemplate.insert(namespace+".InsertReview", reviewbean);
+		int cnt = sqlSessionTemplate.insert(namespace+".InsertReview", reviewbean); 
 		return cnt;
 	}
 }

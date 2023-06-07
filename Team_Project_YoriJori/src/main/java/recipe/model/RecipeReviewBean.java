@@ -5,7 +5,7 @@ public class RecipeReviewBean {
 	private String review;
 	private String id;
 	private int recipenum;
-	
+	 
 	public int getReviewnum() {
 		return Reviewnum;
 	}

@@ -24,7 +24,7 @@ public class RecipeBookMarkListController {
 	RecipeDao rdao;
 	
 	@RequestMapping(value = commnad)
-	public String doAction(HttpSession session, Model model ) {
+	public String doAction(HttpSession session, Model model ) { 
 		if(session.getAttribute("loginInfo") == null) {
 			session.setAttribute("destination", "redirect:/bookmark.re");
 			return "redirect:/login.mb";
