@@ -3,7 +3,6 @@
 <%@include file= "./../common/header.jsp" %>
 <script type="text/javascript" src="<%=request.getContextPath()%>resoutces/js/jquery.js"></script>
 <main>
-
   <section id="home-section" class="hero">
 		  <div class="home-slider owl-carousel">
 	      <div class="slider-item" style="background-image: url(<%=resourcesPath%>/images/banner3.jpg);">
@@ -70,11 +69,11 @@
     			<div class="col-md-6 col-lg-3 ftco-animate">
     				<div class="product">
     					<a href="detail.re?recipenum=${recipe.recipenum}" class="img-prod">
-    					<img class="img-fluid" src="${recipe.cookimage}" alt="Colorlib Template" ">
+    					<img class="img-thumbnail" src="${recipe.cookimage}" alt="Colorlib Template" style="height: 250px; width: 100%; ">
     						<div class="overlay"></div>
     					</a>
     					<div class="text py-3 pb-4 px-3 text-center">
-    						<h3><a href="#">${recipe.recipename}</a></h3>
+    						<h3><a href="detail.re?recipenum=${recipe.recipenum}">${recipe.recipename}</a></h3>
     						<div class="d-flex">
     							<div class="pricing">
 		    						<p class="price">${recipe.servings}인분</p>
