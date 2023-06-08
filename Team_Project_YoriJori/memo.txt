@@ -1,6 +1,8 @@
 --product 테이블 (6/2최종수정)
 xlsx등록하시면 됨(등록한 칼럼명 그대로)
 ALTER TABLE product ADD PRIMARY KEY (pd_num);
+ drop sequence prdseq;
+create sequence prdseq start with 102 increment by 1 nocache ;
 
 
 --member 테이블 (회원)

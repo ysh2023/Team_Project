@@ -59,8 +59,12 @@ public class MemberLoginController {
 		}else { 
 			System.out.println("가입한 회원");
 			if (mb.getPw().equals(input_password)) {
-				// �α���
+				//  α   
 				session.setAttribute("loginInfo", mb);
+				
+				if(mb.getId().equals("admin")) {
+					mav.setViewName("redirect:main.am");
+				}else {
 				
 				String destination = (String)session.getAttribute("destination");
 				System.out.println("destination: "+destination);
@@ -71,7 +75,7 @@ public class MemberLoginController {
 					mav.setViewName(destination);
 				}
 
-			} else { 
+			}} else { 
 				
 				try {
 					out = response.getWriter();

@@ -4,7 +4,7 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="refrigerator.model.Refrigerator">
-	<!-- join -->
+	<!-- select join -->
 	<select id="GetUserRef" resultType="refrigerator.model.JoinBean">
 		select r.id, r.ing_num, i.ing_category, i.ing_name, i.expiry, r.inputdate, r.ref_dday, r.ref_storage, r.ref_detail
 		from refrigerator r full outer join ingredient i
@@ -17,5 +17,26 @@
 		insert into refrigerator(id,ing_num,inputdate,ref_dday)
 		values(#{id},#{ingnum},sysdate,#{refdday})
 	</insert>
+	
+	<!-- detail -->
+	<select id="GetRefDetail" resultType="refrigerator.model.JoinBean">
+		select r.id, r.ing_num, i.ing_category, i.ing_name, i.expiry, r.inputdate, r.ref_dday, r.ref_storage, r.ref_detail
+		from refrigerator r full outer join ingredient i
+		on r.ing_num = i.ing_num
+		where r.id = #{id} and r.ing_num = #{ingnum}
+	</select>
+	
+	<!-- update -->
+	<update id="UpdateRef">
+		update refrigerator set
+		ref_dday = #{refdday}, ref_storage = #{refstorage}, ref_detail=#{refdetail}
+		where id = #{id} and ing_num = #{ingnum}
+	</update>
+	
+	<!-- delete -->
+	<delete id="DeleteRef">
+		delete from refrigerator
+		where id = #{id} and ing_num = #{ingnum}
+	</delete>
 	
 </mapper>

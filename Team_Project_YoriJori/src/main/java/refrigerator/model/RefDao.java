@@ -3,6 +3,7 @@ package refrigerator.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,29 @@ public class RefDao {
 		int cnt = -1;
 		
 		cnt = sqlSessionTemplate.insert(namespace+".InsertRef",refbean);
+		
+		return cnt;
+	}
+
+	public JoinBean getRefDetail(Map<String, String> map) {
+		JoinBean joinbean = new JoinBean();
+		joinbean = sqlSessionTemplate.selectOne(namespace+".GetRefDetail", map);
+		
+		return joinbean;
+	}
+
+	public int updateRef(RefBean refbean) {
+		int cnt = -1;
+		
+		cnt = sqlSessionTemplate.update(namespace+".UpdateRef",refbean);
+		
+		return cnt;
+	}
+
+	public int deleteRef(Map<String, String> map) {
+		int cnt = -1;
+		
+		cnt = sqlSessionTemplate.delete(namespace+".DeleteRef",map);
 		
 		return cnt;
 	}
