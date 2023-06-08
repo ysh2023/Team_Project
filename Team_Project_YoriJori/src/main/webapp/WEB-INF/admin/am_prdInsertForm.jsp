@@ -56,7 +56,7 @@
                  <div class="row mb-3">
                    <label for="inputNumber" class="col-sm-2 col-form-label" >가격</label>
                   <div class="col-sm-10">
-                     <input type="number" class="form-control"  name="pdprice"required>
+                     <input type="number" class="form-control"  name="pdprice" required>
                   </div>
                  </div>
                 

@@ -6,7 +6,7 @@ public class MemberBean {
 	private String id;
 	private String mname;
 	private String pw;
-	private int tel;
+	private String tel;
 	private int age;
 	private String area1;
 	private String area2;
@@ -17,7 +17,7 @@ public class MemberBean {
 	}
 	
 	
-	public MemberBean(String id, String mname, String pw, int tel, int age, String area1, String area2) {
+	public MemberBean(String id, String mname, String pw, String tel, int age, String area1, String area2) {
 		super();
 		this.id = id;
 		this.mname = mname;
@@ -61,12 +61,12 @@ public class MemberBean {
 	}
 
 
-	public int getTel() {
+	public String getTel() {
 		return tel;
 	}
 
 
-	public void setTel(int tel) {
+	public void setTel(String tel) {
 		this.tel = tel;
 	}
 

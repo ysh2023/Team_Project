@@ -18,13 +18,13 @@
               <table class="table datatable">
                 <thead>
                   <tr>
-                    <th scope="col">상품번호</th>
-                    <th scope="col">상품이름</th>
-                    <th scope="col">카테고리</th>
-                    <th scope="col">가격</th>
-                    <th scope="col">재고량</th>
-                    <th scope="col">이미지</th>
-                    <th scope="col">수정</th>
+                    <th scope="col">아이디</th>
+                    <th scope="col">이름</th>
+                    <th scope="col">비번</th>
+                    <th scope="col">전화번호</th>
+                    <th scope="col">나이</th>
+                    <th scope="col">지역</th>
+                    <th scope="col">상세지역</th>
                     <th scope="col">삭제</th>
                   </tr>
                 </thead>
@@ -32,14 +32,14 @@
                 
                 <c:forEach var="i" items="${lists}">
                  <tr>
-                    <th scope="row">${i.pdnum}</th>
-                    <td>${i.pdname}</td>
-                    <td>${i.pdcategory}</td>
-                    <td>${i.pdprice}</td>
-                    <td>${i.pdstock}</td>
-                    <td><img  src="<%=resourcesPath%>/img_pd/${i.pdimage}" width="50px" height="50px" ></td>
-                    <td><a href="updatePrd.am?pdnum=${i.pdnum}">수정</a></td>
-                    <td><a href="deletePrd.am?pdnum=${i.pdnum}">삭제</a></td>
+                    <th scope="row">${i.id}</th>
+                    <td>${i.mname}</td>
+                    <td>${i.pw}</td>
+                    <td>${i.tel}</td>
+                    <td>${i.age}</td>
+                    <td>${i.area1}</td>
+                    <td>${i.area2}</td>
+                    <td><a href="deleteMb.am?pdnum=${i.id}">삭제</a></td>
                   </tr>
                 </c:forEach>
          
@@ -54,5 +54,5 @@
     </section>
 
   </main>
-  
-  <%@include file= "./../common/admin_footer.jsp" %>
+
+ <%@include file= "./../common/admin_footer.jsp" %>

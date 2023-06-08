@@ -6,21 +6,27 @@
 <mapper namespace="product.model.Product">
 
 <select id="GetAllProduct" resultType="product.model.ProductBean">
-select * from product
-
+select * from (select * from product
 <if test="whatColumn=='se'">
-where pd_category like #{keyword}
+where pd_category = #{keyword}
+</if>)
+<if test="searchName!=''">
+where pd_name like #{searchName}
 </if>
+order by pd_num 
 
 
 </select>
 
 
 	<select id="GetTotalCount" resultType="int">
-		select count(*) from product
-		<if test="whatColumn=='se'">
-			where pd_category like #{keyword}
-		</if>
+		select count(*) from (select * from product
+<if test="whatColumn=='se'">
+where pd_category = #{keyword}
+</if>)
+<if test="searchName!=''">
+where pd_name like #{searchName}
+</if>
 	</select>
 	
 	<select id="GetByNum"  resultType="product.model.ProductBean">

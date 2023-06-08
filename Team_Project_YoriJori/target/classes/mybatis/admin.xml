@@ -5,17 +5,37 @@
 
 <mapper namespace="admin.model.Admin">
 
-<select id="GetAllProduct" resultType="product.model.ProductBean">
-select * from product
-</select>
+	<select id="GetAllProduct"
+		resultType="product.model.ProductBean">
+		select * from product
+		order by pd_num
+	</select>
 
-<delete id="DeleteProduct">
-delete product where pd_num=#{pdnum}
-</delete>
+	<delete id="DeleteProduct">
+		delete product where pd_num=#{pdnum}
+	</delete>
+
+	<insert id="InsertProduct">
+		insert into product
+		values(prdseq.nextval,#{pdname},#{pdcategory},#{pdcontent},#{pdstock},#{pdprice},#{pdimage})
+	</insert>
+
+	<select id="GetByNum" resultType="product.model.ProductBean">
+		select * from product
+		where pd_num=#{pdnum}
+	</select>
 	
-<insert id="InsertProduct">
-insert into product
-values(prdseq.nextval,#{pdname},#{pdcategory},#{pdcontent},#{pdstock},#{pdprice},#{pdimage})
-</insert>
+	<update id="UpdateProduct">
+	update product set pd_name=#{pdname},pd_category=#{pdcategory},pd_content=#{pdcontent},pd_stock=#{pdstock},
+	pd_price=#{pdprice},pd_image=#{pdimage}
+	where pd_num=#{pdnum}
+	</update>
 	
+	<select id="GetAllMember" resultType="member.model.MemberBean">
+		select * from member
+		order by id
+	</select>
+	
+
+
 </mapper>

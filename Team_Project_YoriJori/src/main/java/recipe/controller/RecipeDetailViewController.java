@@ -12,11 +12,12 @@ import recipe.model.FoodBean;
 import recipe.model.RecipeBean;
 import recipe.model.RecipeContentBean;
 import recipe.model.RecipeDao;
+import recipe.model.RecipeReviewBean;
 
 @Controller
 public class RecipeDetailViewController {
 	private final String command="/detail.re";
-	private final String getPage="recipeDetailView";
+	private final String getPage="recipeDetailView"; 
 	
 	@Autowired
 	RecipeDao rdao;
@@ -26,10 +27,14 @@ public class RecipeDetailViewController {
 		RecipeBean rbean = rdao.getRecipe(recipenum);
 		List<RecipeContentBean> recipeContentList = rdao.getRecipeContent(recipenum);
 		List<FoodBean> foodList = rdao.getFood(recipenum); 
+		List<RecipeReviewBean> reviewList = rdao.getReviewbyRecipe(recipenum);
+		int SelectedRecipeCount = rdao.getBookmarkCount(recipenum);
 		
 		model.addAttribute("recipe", rbean);
 		model.addAttribute("recipeContentList", recipeContentList);
 		model.addAttribute("foodList", foodList);
+		model.addAttribute("reviewList", reviewList);
+		model.addAttribute("SelectedRecipeCount", SelectedRecipeCount);
 		return getPage;
 	}
 }
