@@ -3,7 +3,6 @@
 <%@include file= "./../common/header.jsp" %>
 <script type="text/javascript" src="<%=request.getContextPath()%>resoutces/js/jquery.js"></script>
 <main>
-
   <section id="home-section" class="hero">
 		  <div class="home-slider owl-carousel">
 	      <div class="slider-item" style="background-image: url(<%=resourcesPath%>/images/banner3.jpg);">
@@ -57,6 +56,11 @@
     					<li><a href="list.re?whatColumn=recipecategory&keyword=콩/견과류">콩/견과류</a></li>
     					<li><a href="list.re?whatColumn=recipecategory&keyword=곡류">곡류</a></li>
     					<li><a href="list.re?whatColumn=recipecategory&keyword=기타">기타</a></li>
+    					<li><a href="list.re?whatColumn=recipecategory&keyword=반찬">반찬</a></li>
+    					<li><a href="list.re?whatColumn=recipecategory&keyword=국&찌개">국&찌개</a></li>
+    					<li><a href="list.re?whatColumn=recipecategory&keyword=일품">일품</a></li>
+    					<li><a href="list.re?whatColumn=recipecategory&keyword=밥">밥</a></li>
+    					<li><a href="list.re?whatColumn=recipecategory&keyword=후식">후식</a></li>
     				</ul>
     			</div>
     		</div>
@@ -65,25 +69,20 @@
     			<div class="col-md-6 col-lg-3 ftco-animate">
     				<div class="product">
     					<a href="detail.re?recipenum=${recipe.recipenum}" class="img-prod">
-    					<img class="img-fluid" src="${recipe.cookimage}" alt="Colorlib Template" ">
+    					<img class="img-thumbnail" src="${recipe.cookimage}" alt="Colorlib Template" style="height: 250px; width: 100%; ">
     						<div class="overlay"></div>
     					</a>
     					<div class="text py-3 pb-4 px-3 text-center">
-    						<h3><a href="#">${recipe.recipename}</a></h3>
+    						<h3><a href="detail.re?recipenum=${recipe.recipenum}">${recipe.recipename}</a></h3>
     						<div class="d-flex">
     							<div class="pricing">
 		    						<p class="price">${recipe.servings}인분</p>
 		    					</div>
 	    					</div>
 	    					<div class="bottom-area d-flex px-3">
-	    						<div class="m-auto d-flex">
-	    							<a href="#" class="add-to-cart d-flex justify-content-center align-items-center text-center">
-	    								<span><i class="ion-ios-menu"></i></span>
-	    							</a>
-	    							<a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
-	    								<span><i class="ion-ios-cart"></i></span>
-	    							</a>
-	    							<a href="#" class="heart d-flex justify-content-center align-items-center ">
+	    						<div class="m-auto d-flex"> 
+	    							<!-- 찜하기 -->
+	    							<a href="BookmarkInsert.re?recipenum=${recipe.recipenum}" class="heart d-flex justify-content-center align-items-center ">
 	    								<span><i class="ion-ios-heart"></i></span>
 	    							</a>
     							</div>
