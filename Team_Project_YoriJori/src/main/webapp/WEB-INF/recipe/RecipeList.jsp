@@ -2,46 +2,35 @@
     pageEncoding="UTF-8"%>
 <%@include file= "./../common/header.jsp" %>
 <script type="text/javascript" src="<%=request.getContextPath()%>resoutces/js/jquery.js"></script>
+<script>
+$(function(){
+	$(".my").click(function(){
+	  alert("dd");
+	  $(".my").removeClass("active");
+	  $(this).addClass("active");
+	});
+});
+</script>
 <main>
-  <section id="home-section" class="hero">
-		  <div class="home-slider owl-carousel">
-	      <div class="slider-item" style="background-image: url(<%=resourcesPath%>/images/banner3.jpg);">
-	      	<div class="overlay"></div>
-	        <div class="container">
-	          <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
-
-	            <div class="col-md-12 ftco-animate text-center">
-	              <h1 class="mb-2">easy cooking </h1>
-	              <p><a href="#" class="btn btn-primary">View Details</a></p>
-	            </div>
-
-	          </div>
-	        </div>
-	      </div>
-
-	      <div class="slider-item" style="background-image: url(<%=resourcesPath%>/images/banner2.jpg);">
-	      	<div class="overlay"></div>	
-	        <div class="container">
-	          <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
-
-	            <div class="col-sm-12 ftco-animate text-center">
-	              <h1 class="mb-2">enjoy cooking      </h1>
-	              <p><a href="#" class="btn btn-primary">View Details</a></p>
-	            </div>
-
-	          </div>
-	        </div>
-	      </div>
-	    </div>
-    </section>
+	
+	<div class="hero-wrap hero-bread" style="background-image: url(<%=resourcesPath%>/images/banner3.jpg);">
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+          <div class="col-md-9 ftco-animate text-center">
+          	<p class="breadcrumbs"><span class="mr-2"><a href="index.html">다양한</a></span> <span>레시피</span></p>
+            <h1 class="mb-0 bread">즐거운 요리</h1>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <section class="ftco-section">
     	<div class="container">
     		<div class="row justify-content-center">
     			<div class="col-md-10 mb-5 text-center">
-    				<ul class="product-category">
-    					<li><a href="list.re" class="active">All</a></li>
-    					<li><a href="list.re?whatColumn=recipecategory&keyword=돼지고기">돼지고기</a></li>
+    				<ul class="product-category" id="category">
+    					<li><a href="list.re" class="active" >All</a></li>
+    					<li><a href="list.re?whatColumn=recipecategory&keyword=돼지고기" class="my" onclick="getClass()">돼지고기</a></li>
     					<li><a href="list.re?whatColumn=recipecategory&keyword=소고기">소고기</a></li>
     					<li><a href="list.re?whatColumn=recipecategory&keyword=닭고기">닭고기</a></li>
     					<li><a href="list.re?whatColumn=recipecategory&keyword=채소류">채소류</a></li>

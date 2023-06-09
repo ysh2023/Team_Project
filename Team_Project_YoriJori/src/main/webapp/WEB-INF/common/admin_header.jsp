@@ -191,47 +191,47 @@
 
 			<li class="nav-item"><a class="nav-link collapsed"
 				data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
-					<i class="bi bi-journal-text"></i><span>Forms</span><i
+					<i class="bi bi-journal-text"></i><span>레시피</span><i
 					class="bi bi-chevron-down ms-auto"></i>
 			</a>
 				<ul id="forms-nav" class="nav-content collapse "
 					data-bs-parent="#sidebar-nav">
 					<li><a
 						href="<%=request.getContextPath()%>/resources/html/forms-elements.html">
-							<i class="bi bi-circle"></i><span>Form Elements</span>
+							<i class="bi bi-circle"></i><span>레시피 리스트</span>
 					</a></li>
 					<li><a
 						href="<%=request.getContextPath()%>/resources/html/forms-layouts.html">
-							<i class="bi bi-circle"></i><span>Form Layouts</span>
+							<i class="bi bi-circle"></i><span>레시피 등록</span>
 					</a></li>
 					<li><a
 						href="<%=request.getContextPath()%>/resources/html/forms-editors.html">
-							<i class="bi bi-circle"></i><span>Form Editors</span>
+							<i class="bi bi-circle"></i><span>레시피 수정</span>
 					</a></li>
 					<li><a
 						href="<%=request.getContextPath()%>/resources/html/forms-validation.html">
-							<i class="bi bi-circle"></i><span>Form Validation</span>
+							<i class="bi bi-circle"></i><span>레시피 삭제</span>
 					</a></li>
 				</ul></li>
-			<!-- End Forms Nav -->
+			<!-- End recipe Nav -->
 
 			<li class="nav-item"><a class="nav-link collapsed"
 				data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
-					<i class="bi bi-layout-text-window-reverse"></i><span>Tables</span><i
+					<i class="bi bi-layout-text-window-reverse"></i><span>문의사항</span><i
 					class="bi bi-chevron-down ms-auto"></i>
 			</a>
 				<ul id="tables-nav" class="nav-content collapse "
 					data-bs-parent="#sidebar-nav">
 					<li><a
 						href="<%=request.getContextPath()%>/resources/html/tables-general.html">
-							<i class="bi bi-circle"></i><span>General Tables</span>
+							<i class="bi bi-circle"></i><span>신고목록	</span>
 					</a></li>
 					<li><a
 						href="<%=request.getContextPath()%>/resources/html/tables-data.html">
 							<i class="bi bi-circle"></i><span>Data Tables</span>
 					</a></li>
 				</ul></li>
-			<!-- End Tables Nav -->
+			<!-- End report Nav -->
 
 			<li class="nav-item"><a class="nav-link collapsed"
 				data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">

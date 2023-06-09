@@ -84,4 +84,14 @@ public class RecipeDao {
 		}
 		return flag;
 	}
+	
+	public int getingrecipeTotalCount(Map<String, String> map) {
+		int cnt = sqlSessionTemplate.selectOne(namespace+".GetingrecipeTotalCount", map);
+		return cnt;
+	}
+	public List<RecipeBean> getAllRecipeByIngre(Map<String, String> map,Paging pageInfo){
+		RowBounds rowBounds = new RowBounds(pageInfo.getOffset(), pageInfo.getLimit());
+		List<RecipeBean> recipeList = sqlSessionTemplate.selectList(namespace+".GetAllRecipeByIngre",map,rowBounds);
+		return recipeList;
+	}
 }

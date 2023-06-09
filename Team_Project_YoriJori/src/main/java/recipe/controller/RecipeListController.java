@@ -31,20 +31,29 @@ public class RecipeListController {
 								HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		Map<String, String> map = new HashMap<String, String>();
-		
-		map.put("whatColumn", whatColumn);
-		map.put("keyword", "%"+keyword+"%");
-		
-		int totalCount = rdao.getTotalCount(map);
+			map.put("whatColumn", whatColumn);
+			map.put("keyword", "%"+keyword+"%");
 		String url = request.getContextPath()+command;
-		Paging pageInfo = new Paging(pageNumber, "12", totalCount, url, whatColumn, keyword, null);
-		System.out.println(whatColumn);
-		System.out.println(totalCount);
-		System.out.println(keyword);
-		List<RecipeBean> recipeList = rdao.getAllRecipe(map,pageInfo);
-		mav.addObject("recipeList", recipeList);
-		mav.addObject("pageInfo", pageInfo);
-		mav.setViewName(getPage);
+		
+		if("food_name".equals(whatColumn)) {
+			int ingrecipetotalCount=rdao.getingrecipeTotalCount(map);
+			System.out.println("레시피객수"+ingrecipetotalCount);
+			Paging pageInfo = new Paging(pageNumber, "12", ingrecipetotalCount, url, whatColumn, keyword, null);
+			List<RecipeBean> recipeList = rdao.getAllRecipeByIngre(map,pageInfo);
+			mav.addObject("recipeList", recipeList);
+			mav.addObject("pageInfo", pageInfo);
+			mav.setViewName(getPage);
+		}else {
+			int totalCount = rdao.getTotalCount(map);
+			Paging pageInfo = new Paging(pageNumber, "12", totalCount, url, whatColumn, keyword, null);
+			System.out.println(whatColumn);
+			System.out.println(totalCount);
+			System.out.println(keyword);
+			List<RecipeBean> recipeList = rdao.getAllRecipe(map,pageInfo);
+			mav.addObject("recipeList", recipeList);
+			mav.addObject("pageInfo", pageInfo);
+			mav.setViewName(getPage);
+		}
 		return mav;
 	}
 	
