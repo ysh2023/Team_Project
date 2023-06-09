@@ -156,6 +156,40 @@
 		<servlet-name>admin</servlet-name>
 		<url-pattern>*.am</url-pattern>
 	</servlet-mapping>
+	
+	<!-- basket -->
+	<servlet>
+		<servlet-name>basket</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet
+		</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/spring/appServlet/basket-servlet.xml
+			</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>basket</servlet-name>
+		<url-pattern>*.bsk</url-pattern>
+	</servlet-mapping>
+	
+	<!-- order -->
+	<servlet>
+		<servlet-name>order</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet
+		</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/spring/appServlet/order-servlet.xml
+			</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>order</servlet-name>
+		<url-pattern>*.ord</url-pattern>
+	</servlet-mapping>
 
 	<filter>
 		<filter-name>encodingFilter</filter-name>
