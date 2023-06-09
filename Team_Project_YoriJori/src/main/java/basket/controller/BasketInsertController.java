@@ -2,6 +2,8 @@ package basket.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -39,22 +41,24 @@ public class BasketInsertController {
 			session.setAttribute("destination", "redirect:/shop.prd");	//destination 속성 설정
 			mav.setViewName(gotologinPage);
 			return mav;	//로그인 페이지로
-		}else {
+		}else { 
 			
 			BasketBean bb = new BasketBean();
 			bb.setBskid(String.valueOf(loginInfo.getId()));
 			bb.setBskpdnum(pdnum);
 			bb.setBskqty(qty);
-			BasketBean bb2 = bdao.getBasketnum(pdnum);
-			if(bb2 == null) { // 장바구니가 비어있을때
-				int cnt = bdao.insertBasket(bb);
-				if(cnt > 1) {
+			List<BasketBean> lists = new ArrayList<BasketBean>();
+			lists = bdao.getBasketNullList(pdnum,loginInfo.getId());
+			if(lists.size() == 0) {
+				int cnt = -1;
+				cnt = bdao.insertBasket(bb);
+				if(cnt != -1) {
 					System.out.println("장바구니 insert 성공");
 				}else {
 					System.out.println("장바구니 insert 실패");
 				}
 				mav.setViewName(gotoPage);
-			}else if(bb2.getBskpdnum() == pdnum) {// 장바구니에 있는 상품을 장바구니에 추가 했을때
+			}else{
 				try {
 					response.setContentType("text/html; charset=UTF-8");
 					PrintWriter out = response.getWriter();
@@ -64,7 +68,7 @@ public class BasketInsertController {
 					e.printStackTrace();
 				}
 			}
-
+			
 		}
 		return mav;
 		

@@ -65,5 +65,15 @@ private String namespace = "basket.model.Basket";
 	}
 
 
+	public List<BasketBean> getBasketNullList(int pdnum, String id) {
+		List<BasketBean> lists = new ArrayList<BasketBean>();
+		BasketBean bb3 = new BasketBean();
+		bb3.setBskid(id);
+		bb3.setBskpdnum(pdnum);
+		lists = sqlSessionTemplate.selectList(namespace+".getBasketNullList",bb3);
+		return lists;
+	}
+
+
 	
 }

@@ -269,7 +269,7 @@
 								style="width: 18px; margin-right: 5px; margin-bottom: 2px;">
 								북마크 레시피
 						</a></li>
-						<li class="nav-item cta cta-colored"><a href="cart.html"
+						<li class="nav-item cta cta-colored"><a href="list.bsk"
 							class="nav-link"><span class="icon-shopping_cart"></span>[0]</a></li>
 					</ul>
 				</div>

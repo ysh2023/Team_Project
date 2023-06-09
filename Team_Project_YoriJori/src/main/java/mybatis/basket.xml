@@ -23,6 +23,11 @@
 		where bsk_pdnum = #{pdnum}
 	</select>
 	
+	<select id="getBasketNullList" resultType="basket.model.BasketBean">
+		select * from basket 
+		where bsk_id = #{bskid} and bsk_pdnum = #{bskpdnum}
+	</select>
+	
 	<delete id="deleteNumBasket">
 		delete basket where bsk_num = #{bsknum}
 	</delete>
