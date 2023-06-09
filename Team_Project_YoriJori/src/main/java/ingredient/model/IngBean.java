@@ -5,6 +5,7 @@ public class IngBean {
 	private String ingcategory;
 	private String ingname;
 	private int expiry;
+	private String ingicon;
 	
 	public int getIngnum() {
 		return ingnum;
@@ -30,6 +31,11 @@ public class IngBean {
 	public void setExpiry(int expiry) {
 		this.expiry = expiry;
 	}
-	
+	public String getIngicon() {
+		return ingicon;
+	}
+	public void setIngicon(String ingicon) {
+		this.ingicon = ingicon;
+	}
 	
 }

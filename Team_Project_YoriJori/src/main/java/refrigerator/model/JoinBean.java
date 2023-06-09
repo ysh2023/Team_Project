@@ -6,6 +6,7 @@ public class JoinBean {
 	private String ingcategory;
 	private String ingname;
 	private int expiry;
+	private String ingicon;
 	private String inputdate;
 	private String refdday;
 	private String refstorage;
@@ -44,6 +45,13 @@ public class JoinBean {
 	}
 	public void setExpiry(int expiry) {
 		this.expiry = expiry;
+	}
+	
+	public String getIngicon() {
+		return ingicon;
+	}
+	public void setIngicon(String ingicon) {
+		this.ingicon = ingicon;
 	}
 	
 	public String getInputdate() {
