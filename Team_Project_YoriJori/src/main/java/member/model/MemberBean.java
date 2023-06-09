@@ -10,14 +10,17 @@ public class MemberBean {
 	private int age;
 	private String area1;
 	private String area2;
+	private String email;
 
 
 	public MemberBean() {
 		super();
 	}
 	
-	
-	public MemberBean(String id, String mname, String pw, String tel, int age, String area1, String area2) {
+
+
+	public MemberBean(String id, String mname, String pw, String tel, int age, String area1, String area2,
+			String email) {
 		super();
 		this.id = id;
 		this.mname = mname;
@@ -26,10 +29,26 @@ public class MemberBean {
 		this.age = age;
 		this.area1 = area1;
 		this.area2 = area2;
+		this.email = email;
 	}
 
 
 
+
+
+
+	public String getEmail() {
+		return email;
+	}
+
+
+
+
+
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
 	public String getId() {
 		return id;

@@ -23,7 +23,7 @@
                     <th scope="col">비번</th>
                     <th scope="col">전화번호</th>
                     <th scope="col">나이</th>
-                    <th scope="col">지역</th>
+                    <th scope="col">우편번호</th>
                     <th scope="col">상세지역</th>
                     <th scope="col">삭제</th>
                   </tr>

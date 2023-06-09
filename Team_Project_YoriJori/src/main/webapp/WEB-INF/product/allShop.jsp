@@ -73,13 +73,13 @@ $(document).ready(function(){
     		<div class="row justify-content-center">
     			<div class="col-md-10 mb-5 text-center">
     				<ul class="product-category">
-    					<li ><a href="shop.prd?whatColumn=no&searchName=${searchName}"  id="le1" >모두보기</a></li>
-    					<li><a href="shop.prd?whatColumn=se&keyword=채소&searchName=${searchName}" id="le2">채소</a></li>
-    					<li><a href="shop.prd?whatColumn=se&keyword=과일&searchName=${searchName}"  id="le3">과일</a></li>
-    					<li><a href="shop.prd?whatColumn=se&keyword=쌀/견과&searchName=${searchName}"  id="le4">쌀/견과</a></li>
-    					<li><a href="shop.prd?whatColumn=se&keyword=정육/계란류&searchName=${searchName}"  id="le5">정육/계란류</a></li>
-    					<li><a href="shop.prd?whatColumn=se&keyword=우유/유제품&searchName=${searchName}"  id="le6">우유/유제품</a></li>
-    					<li><a href="shop.prd?whatColumn=se&keyword=양념/오일&searchName=${searchName}"  id="le7">양념/오일</a></li>
+    					<li ><a href="shop.prd?whatColumn=no&searchName= "  id="le1" >모두보기</a></li>
+    					<li><a href="shop.prd?whatColumn=se&keyword=채소&searchName=" id="le2">채소</a></li>
+    					<li><a href="shop.prd?whatColumn=se&keyword=과일&searchName= "  id="le3">과일</a></li>
+    					<li><a href="shop.prd?whatColumn=se&keyword=쌀/견과&searchName= "  id="le4">쌀/견과</a></li>
+    					<li><a href="shop.prd?whatColumn=se&keyword=정육/계란류&searchName= "  id="le5">정육/계란류</a></li>
+    					<li><a href="shop.prd?whatColumn=se&keyword=우유/유제품&searchName= "  id="le6">우유/유제품</a></li>
+    					<li><a href="shop.prd?whatColumn=se&keyword=양념/오일&searchName= "  id="le7">양념/오일</a></li>
     				</ul>
     			</div>
     			</div>
@@ -89,9 +89,9 @@ $(document).ready(function(){
 						<form action="shop.prd" class="search-form">
 							<input type="hidden" value="${keyword}" name="keyword">
 								<input type="hidden" value="${whatColumn}" name="whatColumn">
-							<input  type="search" placeholder="검색" aria-label="Search"  name="searchName"
+							<input  type="search" placeholder="상품명 입력하세요" aria-label="Search"  name="searchName"
 							width="30px;" style="margin-bottom: 10px;">
-							<input type="submit" >
+							<input type="submit" value="검색">
 						</form>
 					</div>
 			</center>
@@ -107,7 +107,7 @@ $(document).ready(function(){
     						<h3><a href="prdDetail.prd?pdnum=${i.pdnum}">${i.pdname }</a></h3>
     						<div class="d-flex">
     							<div class="pricing">
-		    						<p class="price">${i.pdprice }</p>
+		    						<p class="price">  <fmt:formatNumber value="${i.pdprice }" /> <br/></p>
 		    					</div>
 	    					</div>
 	    					<div class="bottom-area d-flex px-3">

@@ -105,10 +105,10 @@
 				<div class="collapse navbar-collapse" id="ftco-nav">
 					<!-- left nav -->
 					<ul class="navbar-nav mr-auto">
-						<li class="nav-item active"><a href="index.html"
+						<li class="nav-item active"><a href="<%=conPath%>/main.jsp"
 							class="nav-link">Home</a></li>
 						<li class="nav-item dropdown"><a
-							class="nav-link dropdown-toggle" href="#" id="dropdown04"
+							class="nav-link dropdown-toggle" href="shop.prd?whatColumn=no&searchName=${searchName}" id="dropdown04"
 							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">장보기</a>
 							<div class="dropdown-menu" aria-labelledby="dropdown04">
 								<a class="dropdown-item" href="shop.prd?whatColumn=no&searchName=${searchName}">전체보기</a> <a

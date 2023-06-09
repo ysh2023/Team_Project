@@ -60,11 +60,9 @@
 			</td>
 		</tr>
 		<tr>
-			<td colspan="2">
+			<td colspan="2" align="center">
 				<input type="submit" value="로그인">
 				<input type="button" value="회원가입" onclick="location.href='insert.mb'">
-				<input type="button" value="아이디찾기">
-				<input type="button" value="비밀번호찾기">
 			</td>
 		</tr>
 	</table>   
