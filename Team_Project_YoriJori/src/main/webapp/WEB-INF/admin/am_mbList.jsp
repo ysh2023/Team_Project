@@ -16,7 +16,7 @@
           <div class="card">
             <div class="card-body">
               <table class="table datatable">
-                <thead>
+                <thead> 
                   <tr>
                     <th scope="col">아이디</th>
                     <th scope="col">이름</th>
