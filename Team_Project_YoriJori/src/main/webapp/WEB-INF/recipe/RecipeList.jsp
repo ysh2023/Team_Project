@@ -6,7 +6,7 @@
 $(function(){
 	$(".my").click(function(){
 	  alert("dd");
-	  $(".my").removeClass("active");
+	  $(".my").removeClass("active");dq
 	  $(this).addClass("active");
 	});
 });
