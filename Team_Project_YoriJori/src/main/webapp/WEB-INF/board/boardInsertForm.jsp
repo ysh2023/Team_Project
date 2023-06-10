@@ -9,6 +9,7 @@
 <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 <script>
 	var cookProcessIndex = 1;
+	/* 조리과정 추가  */
 	function addCookProcess() {
 
 		$('#cookProcess')
@@ -19,10 +20,12 @@
 
 	}
 
+	/* 조리과정 삭제  */
 	function removeCookProcess(id) {
 		$('#' + id).remove();
 	}
 
+	/* 유효성 검사  */
 	function submitHandle() {
 		var isCheck = true;
 		if ($('input[name=title]').val().length == 0) {
@@ -47,17 +50,38 @@
 			f.submit();
 		}
 	}
-	
+
 	var addIngredientIndex = 0;
-	
+
+	/* 식재료 추가 */
 	function addIngredient() {
-		$("#selectIngName").append("<div id='addingredient"+addIngredientIndex+"'><input type='hidden' name='big_name' value='"+$('input[name=ing_name]').val()+"'>"+$('input[name=ing_name]').val()+"<span style='cursor:pointer;' onclick='removeIngredient(\""+addIngredientIndex+"\")'>X</span></div>");
-		addIngredientIndex++;
-		$('input[name=ing_name]').val("");
+		if($('input[name=inputIngName]').val().length==0){
+			alert('식재료를 입력하세요');
+			$('input[name=inputIngName]').focus();
+		}else{
+			$("#selectIngName")
+					.append(
+							"<span  style='border: 1px solid gray; border-radius: 20px; padding: 5px; margin:5px;' id='addingredient"+addIngredientIndex+"'><input type='hidden' name='big_name' value='"
+									+ $('input[name=inputIngName]').val()
+									+ "'>재료명 : "
+									+ $('input[name=inputIngName]').val()
+									+ "<input type='hidden' name='big_amount' value='"
+									+ ($('input[name=inputBig]').val() == "" ? null : $('input[name=inputBig]').val())
+									+ "'> 용량 : "
+									+ $('input[name=inputBig]').val()
+									+ "<input type='hidden' name='ing_num' value='"
+									+ ($('#ingNameList option[value="'+$('input[name=inputIngName]').val()+'"]').data('value') == null ? null:$('#ingNameList option[value="'+$('input[name=inputIngName]').val()+'"]').data('value'))
+									+ "'><span style='cursor:pointer;' onclick='removeIngredient(\""
+									+ addIngredientIndex + "\")'>X</span></span>");
+			addIngredientIndex++;
+			$('input[name=inputIngName]').val("");
+			$('input[name=inputBig]').val("");
+		}
 	}
-	
-	function removeIngredient(removeIndex){
-		$('#addingredient'+removeIndex).remove();
+
+	/* 식재료 삭제 */
+	function removeIngredient(removeIndex) {
+		$('#addingredient' + removeIndex).remove();
 	}
 </script>
 <body>
@@ -106,16 +130,29 @@
 					</div>
 					<div class="form-group">
 						<div class="row">
-							<div class="col-md-10">
-								<label for="ing_name">식재료 </label> <input type="text" name="ing_name" list="ing_name" class="form-control text-left px-3" placeholder="검색 후 추가 목록에 없으면 작성 후 추가">
-								<datalist id="ing_name">
-									<c:forEach items="${ingredients }" var="ingredient">
-										<option value="${ingredient.ingName}"></option>
-									</c:forEach>
-								</datalist>
-							</div>
-							<div class="col-md-2">
-								<input class="btn btn-primary mt-3 px-5 py-4" type="button" value="추가" onclick="addIngredient()">
+							<div class="col-md-12">
+								<div class="row">
+									<div class="col-md-6">
+										<label for="inputIngName">식재료 </label> <input name="inputIngName" id="inputIngName" list="ingNameList" class="form-control " placeholder="검색 후 추가 목록에 없으면 작성 후 추가">
+										<datalist id="ingNameList">
+											<c:forEach items="${ingredients }" var="ingredient">
+												<option data-value="${ingredient.ingNum}" value="${ingredient.ingName}">${ingredient.ingNum}</option>
+											</c:forEach>
+										</datalist>
+									</div>
+									<div class="col-md-6">
+										<label for="inputBig">용량</label>
+										<div class="row">
+											<div class="col-md-9">
+												<input type="text" name="inputBig" class="form-control text-left px-3" placeholder="식재료 양을 적어주세요">
+
+											</div>
+											<div class="col-md-3">
+												<input class="btn btn-primary px-4 py-3" type="button" value="추가" onclick="addIngredient()">
+											</div>
+										</div>
+									</div>
+								</div>
 							</div>
 							<div class="col-md-12" id="selectIngName"></div>
 						</div>
@@ -123,18 +160,22 @@
 					<div class="form-group">
 						<div id="cookProcess">
 							<div class="row">
-								<div class="col-md-6">
+								<div class="col-md-12">
 									<label for="bod_content">조리과정 </label>
-									<textarea name="bod_content" cols="40" rows="10" style="resize: none;" class="form-control text-left px-3" placeholder=""></textarea>
-								</div>
-								<div class="col-md-6">
-									<input type="file" name="upload">
+									<div class="row">
+										<div class="col-md-6">
+											<textarea name="bod_content" cols="40" rows="10" style="resize: none;" class="form-control text-left px-3" placeholder=""></textarea>
+										</div>
+										<div class="col-md-6">
+											<input type="file" name="upload">
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 					<div class="form-group">
-						<input class="btn btn-primary col-md-12" id="addCookProcessBtn" type="button" value="조리과정추가" onclick="addCookProcess()">
+						<input class="btn btn-primary col-md-12 py-3" id="addCookProcessBtn" type="button" value="조리과정추가" onclick="addCookProcess()">
 					</div>
 					<div class="btn btn-primary py-3 px-4" onclick="submitHandle()">레시피 등록하기</div>
 				</form>
@@ -142,32 +183,5 @@
 		</div>
 	</section>
 
-	<!-- 두번째 디자인 -->
-	<!-- <section class="ftco-section">
-		<div class="container">
-			<div class="cart-total mb-3">
-				<form action="#" class="p-5 bg-light" name="cookForm">
-					<div class="form-group">
-						<label for="name">Name *</label> <input type="text" class="form-control" id="name">
-					</div>
-					<div class="form-group">
-						<label for="email">Email *</label> <input type="email" class="form-control" id="email">
-					</div>
-					<div class="form-group">
-						<label for="website">Website</label> <input type="url" class="form-control" id="website">
-
-					</div>
-
-					<div class="form-group">
-						<label for="message">Message</label>
-						<textarea name="" id="message" cols="30" rows="10" class="form-control"></textarea>
-					</div>
-					<div class="form-group">
-						<input type="submit" value="Post Comment" class="btn py-3 px-4 btn-primary">
-					</div>
-				</form>
-			</div>
-		</div>
-	</section> -->
 </body>
 </html>

@@ -2,10 +2,10 @@ package board.model;
 
 public class BoardIngredientBean {
 	private int bigNum;
-	private int ingNum;
+	private String ingNum;
 	private int bodNum;
 	private String bigName;
-	private String bigCategory;
+	private String bigAmount;
 
 	public int getBigNum() {
 		return bigNum;
@@ -15,11 +15,11 @@ public class BoardIngredientBean {
 		this.bigNum = bigNum;
 	}
 
-	public int getIngNum() {
+	public String getIngNum() {
 		return ingNum;
 	}
 
-	public void setIngNum(int ingNum) {
+	public void setIngNum(String ingNum) {
 		this.ingNum = ingNum;
 	}
 
@@ -39,12 +39,12 @@ public class BoardIngredientBean {
 		this.bigName = bigName;
 	}
 
-	public String getBigCategory() {
-		return bigCategory;
+	public String getBigAmount() {
+		return bigAmount;
 	}
 
-	public void setBigCategory(String bigCategory) {
-		this.bigCategory = bigCategory;
+	public void setBigAmount(String bigAmount) {
+		this.bigAmount = bigAmount;
 	}
 
 }

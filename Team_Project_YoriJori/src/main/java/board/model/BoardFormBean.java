@@ -9,9 +9,35 @@ public class BoardFormBean {
 	private String time;
 	private String category;
 	private String tags;
-	private String big_name;
+	private String[] big_name;
 	private String bod_image;
+	private String[] big_amount;
+	private String[] ing_num;
 	private MultipartFile bod_image_upload;
+
+	public String[] getBig_name() {
+		return big_name;
+	}
+
+	public void setBig_name(String[] big_name) {
+		this.big_name = big_name;
+	}
+
+	public String[] getBig_amount() {
+		return big_amount;
+	}
+
+	public void setBig_amount(String[] big_amount) {
+		this.big_amount = big_amount;
+	}
+
+	public String[] getIng_num() {
+		return ing_num;
+	}
+
+	public void setIng_num(String[] ing_num) {
+		this.ing_num = ing_num;
+	}
 
 	public String getBod_image() {
 		return bod_image;
@@ -26,7 +52,6 @@ public class BoardFormBean {
 	}
 
 	public void setBod_image_upload(MultipartFile bod_image_upload) {
-		System.out.println("bodimageupload");
 		this.bod_image_upload = bod_image_upload;
 		this.bod_image = bod_image_upload.getOriginalFilename();
 	}
@@ -54,7 +79,6 @@ public class BoardFormBean {
 
 		for (int i = 0; i < upload.length; i++) {
 			this.image[i] = upload[i].getOriginalFilename();
-			System.out.println(upload[i].getOriginalFilename() + "beanÀÌ¹ÌÁö");
 		}
 
 	}
@@ -113,14 +137,6 @@ public class BoardFormBean {
 
 	public void setTags(String tags) {
 		this.tags = tags;
-	}
-
-	public String getBig_name() {
-		return big_name;
-	}
-
-	public void setBig_name(String big_name) {
-		this.big_name = big_name;
 	}
 
 	public String[] getBod_content() {

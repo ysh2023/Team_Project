@@ -30,7 +30,6 @@ public class BoardMainController {
 			map.put("category", "%" + category + "%");
 			map.put("categoryType", categoryType);
 		}
-		System.out.println(map.get("categoryType"));
 
 		model.addAttribute("boardList", bdao.getAllBoard(map));
 

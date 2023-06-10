@@ -27,13 +27,10 @@
 				<div class="col-md-12">
 					<div class="carousel-testimony owl-carousel">
 						<c:forEach items="${topBoards }" var="topBoard" varStatus="status">
-							<div class="item" onclick="location.href='boardDetail.board?bodNum=${board.bodNum}'">
+							<div class="item" onclick="location.href='boardDetail.board?bodNum=${topBoard.bodNum}'" style="cursor: pointer; border: 1px solid gray; border-radius: 20px;">
 								<div class="testimony-wrap p-4 pb-5">
 									<div>${status.index+1 }번</div>
-									<div class="user-img mb-5" style="background-image: url(<%=resourcesPath%>/images/${topBoard.bodImage==null ? 'noimage.png' : topBoard.bodImage}); background-size:cover;">
-										<span class="quote d-flex align-items-center justify-content-center"> <i class="icon-quote-left"></i>
-										</span>
-									</div>
+									<div class="" style="background-image: url(<%=resourcesPath%>/images/${topBoard.bodImage==null ? 'noimage.png' : topBoard.bodImage}); background-size:cover; height:150px;;width:100%;"></div>
 									<div class="text text-center">
 										<p class="mb-5 pl-4 line">${topBoard.servings}인분</p>
 										<p class="name">${topBoard.time }</p>
@@ -58,8 +55,14 @@
 		<div class="row justify-content-center">
 			<div class="col-md-10 mb-5 text-center">
 				<ul class="product-category">
-					<c:forEach items="${categorys}" var="category">
-						<li><a href="main.board?category=${category }" ${selectCategory == category ? 'class="active"':"" }>${category }</a></li>
+					<c:forEach items="${foodCategorys}" var="category">
+						<li><a href="main.board?category=${category }&categoryType=0" ${selectCategory == category ? 'class="active"':"" }>${category }</a></li>
+					</c:forEach>
+
+				</ul>
+				<ul class="product-category">
+					<c:forEach items="${ingredientCategorys}" var="category">
+						<li><a href="main.board?category=${category }&categoryType=1" ${selectCategory == category ? 'class="active"':"" }>${category }</a></li>
 					</c:forEach>
 
 				</ul>
@@ -68,35 +71,11 @@
 
 		<div class="container">
 			<div class="row">
-				<%-- <div class="col-md-8">
-						<div class="col-md-6 order-md-last align-items-stretch d-flex">
-							<div class="category-wrap-2 ftco-animate img align-self-stretch d-flex" style="background-image: url(<%=conPath%>/images/category.jpg);">
-								<div class="text text-center">
-									<h2>Vegetables</h2>
-									<p>Protect the health of every home</p>
-									<p><a href="#" class="btn btn-primary">Shop now</a></p>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="category-wrap ftco-animate img mb-4 d-flex align-items-end" style="background-image: url(<%=resourcesPath%>/images/category-1.jpg);">
-								<div class="text px-3 py-1">
-									<h2 class="mb-0"><a href="#">Fruits</a></h2>
-								</div>
-							</div>
-							<div class="category-wrap ftco-animate img d-flex align-items-end" style="background-image: url(<%=resourcesPath%>/images/category-2.jpg);">
-								<div class="text px-3 py-1">
-									<h2 class="mb-0"><a href="#">Vegetables</a></h2>
-								</div>
-							</div>
-						
-					</div>
-				</div> --%>
+
 				<c:forEach items="${boardList }" var="board">
 					<div class="col-md-6 col-lg-3 ftco-animate">
-						<div class="product" onclick="location.href='boardDetail.board?bodNum=${board.bodNum}'">
-							<a href="#" class="img-prod"><img style="width: 100%; height: 100%;" class="img-fluid" src="<%=resourcesPath%>/images/${board.bodImage==null ? 'noimage.png' : board.bodImage}" alt="음식 대표 이미지"> <!-- <span class="status">30%</span> -->
-								<!-- <div class="overlay">asdfas</div> --> </a>
+						<div class="product">
+							<a href="boardDetail.board?bodNum=${board.bodNum}" class="img-prod"><img style="width: 100%; height: 100%;" class="img-fluid" src="<%=resourcesPath%>/images/${board.bodImage==null ? 'noimage.png' : board.bodImage}" alt="음식 대표 이미지"> <!-- <span class="status">30%</span> --> <!-- <div class="overlay">asdfas</div> --> </a>
 							<div class="text py-3 pb-4 px-3 text-center">
 								<h3>
 									<a href="#">${board.title }</a>

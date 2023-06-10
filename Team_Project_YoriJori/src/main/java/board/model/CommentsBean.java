@@ -1,27 +1,45 @@
 package board.model;
 
 public class CommentsBean {
-	private int com_num;
-	private String com_content;
+	private int comNum;
+	private String comContent;
 	private int ref;
 	private int refStep;
 	private int refLevel;
+	private String createAt;
 	private int bodNum;
+	private String id;
 
-	public int getCom_num() {
-		return com_num;
+	public String getCreateAt() {
+		return createAt;
 	}
 
-	public void setCom_num(int com_num) {
-		this.com_num = com_num;
+	public void setCreateAt(String createAt) {
+		this.createAt = createAt;
 	}
 
-	public String getCom_content() {
-		return com_content;
+	public String getId() {
+		return id;
 	}
 
-	public void setCom_content(String com_content) {
-		this.com_content = com_content;
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public int getComNum() {
+		return comNum;
+	}
+
+	public void setComNum(int comNum) {
+		this.comNum = comNum;
+	}
+
+	public String getComContent() {
+		return comContent;
+	}
+
+	public void setComContent(String comContent) {
+		this.comContent = comContent;
 	}
 
 	public int getRef() {

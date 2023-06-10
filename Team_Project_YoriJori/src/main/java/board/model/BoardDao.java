@@ -38,9 +38,21 @@ public class BoardDao {
 		return cnt;
 	}
 
+	public int updateInsertBoardContent(BoardContentBean boardContentBean) {
+		int cnt = -1;
+		cnt = sessionTemplate.insert(namespace + ".UpdateInsertBoardContent", boardContentBean);
+		return cnt;
+	}
+
 	public int insertBoardIngredient(BoardIngredientBean boardIngredientBean) {
 		int cnt = -1;
 		cnt = sessionTemplate.insert(namespace + ".InsertBoardIngredient", boardIngredientBean);
+		return cnt;
+	}
+
+	public int updateInsertBoardIngredient(BoardIngredientBean boardIngredientBean) {
+		int cnt = -1;
+		cnt = sessionTemplate.insert(namespace + ".UpdateInsertBoardIngredient", boardIngredientBean);
 		return cnt;
 	}
 
@@ -81,9 +93,82 @@ public class BoardDao {
 	}
 
 	public int deleteBoardByBodNum(String bodNum) {
-		int cnt = sessionTemplate.delete(namespace + ".DeleteBoardByBodNum", bodNum);
+		int cnt = -1;
+		cnt = sessionTemplate.delete(namespace + ".DeleteBoardByBodNum", bodNum);
 
 		return cnt;
 	}
 
+	public int insertComment(CommentsBean commentsBean) {
+		int cnt = -1;
+		cnt = sessionTemplate.insert(namespace + ".InsertComment", commentsBean);
+		return cnt;
+	}
+
+	public int deleteCommentByBodNum(String comNum) {
+		int cnt = -1;
+		cnt = sessionTemplate.insert(namespace + ".DeleteComment", comNum);
+		return cnt;
+
+	}
+
+	public int ReplyUpdateByBodNum(CommentsBean commentsBean) {
+		int cnt = -1;
+		cnt = sessionTemplate.update(namespace + ".ReplyUpdate", commentsBean);
+		return cnt;
+	}
+
+	public int insertReplyComment(CommentsBean commentsBean) {
+		int cnt = -1;
+		cnt = sessionTemplate.insert(namespace + ".ReplyInsert", commentsBean);
+		System.out.println("cnt " + cnt);
+		return cnt;
+	}
+
+	public CommentsBean getCommentByComNum(String comNum) {
+		CommentsBean commentsBean = sessionTemplate.selectOne(namespace + ".GetCommentsByComNum", comNum);
+		return commentsBean;
+	}
+
+	public int getReplyInsertRefStep(CommentsBean commentsBean) {
+		int cnt = 0;
+		cnt = sessionTemplate.selectOne(namespace + ".GetReplyInsertRefStep", commentsBean);
+		return cnt;
+	}
+
+	public int updateCommentByBodNum(CommentsBean commentsBean) {
+		int cnt = -1;
+		cnt = sessionTemplate.update(namespace + ".UpdateComment", commentsBean);
+		return cnt;
+	}
+
+	public int insertCommentReport(CommentReportBean commentReportBean) {
+		int cnt = -1;
+		cnt = sessionTemplate.insert(namespace + ".InsertCommentReport", commentReportBean);
+		return cnt;
+
+	}
+
+	public RecommendBean getRecommendByBodNumAndId(Map<String, String> map) {
+		RecommendBean recommendBean = sessionTemplate.selectOne(namespace + ".GetRecommend", map);
+		return recommendBean;
+	}
+
+	public int insertRecommend(Map<String, String> map) {
+		int cnt = -1;
+		cnt = sessionTemplate.insert(namespace + ".InsertRecommend", map);
+		return cnt;
+	}
+
+	public int deleteRecommend(RecommendBean recommendBean) {
+		int cnt = -1;
+		cnt = sessionTemplate.delete(namespace + ".DeleteRecommend", recommendBean);
+		return cnt;
+	}
+
+	public int updateBoard(BoardBean boardBean) {
+		int cnt = -1;
+		cnt = sessionTemplate.update(namespace + ".UpdateBoard", boardBean);
+		return cnt;
+	}
 }
