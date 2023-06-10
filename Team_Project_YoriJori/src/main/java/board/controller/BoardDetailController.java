@@ -32,8 +32,6 @@ public class BoardDetailController {
 		BoardBean boardBean = bdao.getBoardByBodNum(bodNum);
 		List<BoardContentBean> boardContentList = bdao.getBoardContentByBodNum(bodNum);
 		List<BoardIngredientBean> boardIngredientList = bdao.getBoardIngredientByBodNum(bodNum);
-		// bdao.getBoardIngredientByBodNum(bodNum);
-		System.out.println(bodNum);
 		MemberBean memberBean = (MemberBean) session.getAttribute("loginInfo");
 		model.addAttribute("loginInfo", memberBean);
 		model.addAttribute("board", boardBean);

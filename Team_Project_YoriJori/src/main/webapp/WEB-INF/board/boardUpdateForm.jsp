@@ -99,7 +99,7 @@
 								<label for="title">* 요리명 <span id="titleMsg"></span></label><input type="text" name="title" value="${board.title }" class="form-control text-left px-3" placeholder="요리제목을 입력하세요">
 							</div>
 							<div class="col-md-6">
-								<input type="file" name="bod_image_upload">
+								<input type="hidden" name="prev_bod_image" value="${board.bodImage }"> <img src="<%=resourcesPath%>/images/${board.bodImage == null ? 'noimage.png' : board.bodImage}" width="300" height="200"> <input type="file" name="bod_image_upload">
 							</div>
 						</div>
 					</div>
@@ -195,13 +195,12 @@
 											<div class="col-md-6">
 												<div class="row">
 													<div class="col-md-8">
-														<c:if test="${boardContentBean.image != null }">
-															<div>
-																<img style="width: 200px; height: 150px;" alt="조리과정이미지" src="<%=resourcesPath%>/images/${boardContentBean.image}">
-															</div>
-															<input type="hidden" name="image" value="${boardContentBean.image }">
-														</c:if>
-														<input type="file" name="upload">
+
+														<div>
+															<img style="width: 200px; height: 150px;" alt="조리과정이미지" src="<%=resourcesPath%>/images/${boardContentBean.image != null ? boardContentBean.image : 'noimage.png'}">
+														</div>
+														<input type="text" name="prev_image" value="${boardContentBean.image == null ? '' : boardContentBean.image }"> <input type="file" name="upload">
+														<input type="text" value="${boardContentBean.image }">
 													</div>
 													<div class="col-md-4">
 														<c:if test="${status.index>0 }">
@@ -225,7 +224,9 @@
 			</div>
 		</div>
 	</section>
-	<hr><br><br>
+	<hr>
+	<br>
+	<br>
 </body>
 <%@ include file="../common/footer.jsp"%>
 </html>

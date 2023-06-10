@@ -171,4 +171,16 @@ public class BoardDao {
 		cnt = sessionTemplate.update(namespace + ".UpdateBoard", boardBean);
 		return cnt;
 	}
+
+	public int deleteBoardIngredient(int bod_num) {
+		int cnt = -1;
+		cnt = sessionTemplate.update(namespace + ".DeleteBoardIngredient", bod_num);
+		return cnt;
+	}
+
+	public int deleteBoardContent(int bod_num) {
+		int cnt = -1;
+		cnt = sessionTemplate.update(namespace + ".DeleteBoardContent", bod_num);
+		return cnt;
+	}
 }

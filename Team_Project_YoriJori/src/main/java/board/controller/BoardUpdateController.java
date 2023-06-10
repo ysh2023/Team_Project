@@ -65,12 +65,16 @@ public class BoardUpdateController {
 		boardBean.setCategory(boardFormBean.getCategory());
 		boardBean.setTags(boardFormBean.getTags());
 		boardBean.setId(((MemberBean) session.getAttribute("loginInfo")).getId());
-		boardBean.setBodImage(boardFormBean.getBod_image());
 		boardBean.setBodNum(boardFormBean.getBod_num());
+		String updateFileName = boardFormBean.getBod_image_upload().getOriginalFilename().equals("")
+				? boardFormBean.getPrev_bod_image()
+				: boardFormBean.getBod_image_upload().getOriginalFilename();
+		boardBean.setBodImage(updateFileName);
+
 		int boardResult = bdao.updateBoard(boardBean);
 
-		destination = new File(uploadPath + File.separator + boardFormBean.getBod_image_upload().getOriginalFilename());
-		destination_local = new File(str + File.separator + boardFormBean.getBod_image_upload().getOriginalFilename());
+		destination = new File(uploadPath + File.separator + updateFileName);
+		destination_local = new File(str + File.separator + updateFileName);
 		MultipartFile multi = boardFormBean.getBod_image_upload();
 
 		if (boardResult > 0) {
@@ -84,53 +88,72 @@ public class BoardUpdateController {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			int boardIngredientResult = -1;
-			int boardContentResult = -1;
+			int boardIngredientResult = 0;
+			int boardContentResult = 0;
 
-			for (int i = 0; i < boardFormBean.getBig_name().length; i++) {
-				BoardIngredientBean boardIngredientBean = new BoardIngredientBean();
-				boardIngredientBean.setBodNum(boardFormBean.getBod_num());
-				boardIngredientBean.setBigName(boardFormBean.getBig_name()[i]);
-				boardIngredientBean
-						.setBigAmount(boardFormBean.getBig_amount()[i] == null ? "" : boardFormBean.getBig_amount()[i]);
-				boardIngredientBean.setIngNum(boardFormBean.getIng_num()[i]);
-				boardIngredientResult += bdao.updateInsertBoardIngredient(boardIngredientBean);
-
-			}
-
-			for (int i = 0; i < boardFormBean.getBod_content().length; i++) {
-				BoardContentBean boardContentBean = new BoardContentBean();
-				boardContentBean.setBodNum(boardFormBean.getBod_num());
-				boardContentBean.setImage(boardFormBean.getImage()[i] == null ? "" : boardFormBean.getImage()[i]);
-				boardContentBean.setBodContent(
-						boardFormBean.getBod_content()[i] == null ? "" : boardFormBean.getBod_content()[i]);
-				boardContentResult += bdao.updateInsertBoardContent(boardContentBean);
-			}
-
-			if (boardIngredientResult < 0) {
-				System.out.println("수정 - boardIngredient 삽입 실패 : ");
-			}
-			if (boardContentResult < 0) {
-				System.out.println("수정 - boardContent 삽입 실패 : ");
-			}
-
-			for (int i = 0; i < boardFormBean.getUpload().length; i++) {
-				destination = new File(
-						uploadPath + File.separator + boardFormBean.getUpload()[i].getOriginalFilename());
-				destination_local = new File(str + File.separator + boardFormBean.getUpload()[i].getOriginalFilename());
-				multi = boardFormBean.getUpload()[i];
-
-				try {
-					multi.transferTo(destination);
-					int a = FileCopyUtils.copy(destination, destination_local);
-				} catch (IllegalStateException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+			// 식재료 테이블 삭제 후 수정
+			if (bdao.deleteBoardIngredient(boardFormBean.getBod_num()) > 0) {
+				for (int i = 0; i < boardFormBean.getBig_name().length; i++) {
+					BoardIngredientBean boardIngredientBean = new BoardIngredientBean();
+					boardIngredientBean.setBodNum(boardFormBean.getBod_num());
+					boardIngredientBean.setBigName(boardFormBean.getBig_name()[i]);
+					boardIngredientBean.setBigAmount(
+							boardFormBean.getBig_amount()[i] == null ? "" : boardFormBean.getBig_amount()[i]);
+					boardIngredientBean.setIngNum(boardFormBean.getIng_num()[i]);
+					boardIngredientResult = bdao.updateInsertBoardIngredient(boardIngredientBean);
+					if (boardIngredientResult < 0) {
+						System.out.println("수정 - boardIngredient 삽입 실패" + i);
+					}
 
 				}
+			} else {
+				System.out.println("수정 - boardIngredient 삭제 실패");
+
+			}
+
+			// 조리과정 테이블 삭제 후 수정
+			if (bdao.deleteBoardContent(boardFormBean.getBod_num()) > 0) {
+
+				for (int i = 0; i < boardFormBean.getBod_content().length; i++) {
+					BoardContentBean boardContentBean = new BoardContentBean();
+					boardContentBean.setBodNum(boardFormBean.getBod_num());
+
+					String updateContentImage = boardFormBean.getImage()[i].equals("")
+							? boardFormBean.getPrev_image()[i] == null ? "" : boardFormBean.getPrev_image()[i]
+							: boardFormBean.getImage()[i];
+					boardContentBean.setImage(updateContentImage);
+					boardContentBean.setBodContent(
+							boardFormBean.getBod_content()[i] == null ? "" : boardFormBean.getBod_content()[i]);
+
+					boardContentResult = bdao.updateInsertBoardContent(boardContentBean);
+
+					if (boardContentResult > 0) {
+						if (boardFormBean.getUpload()[i].getOriginalFilename().equals("")) {
+							continue;
+						}
+
+						destination = new File(uploadPath + File.separator + updateContentImage);
+						destination_local = new File(str + File.separator + updateContentImage);
+						multi = boardFormBean.getUpload()[i];
+
+						try {
+							multi.transferTo(destination);
+							int a = FileCopyUtils.copy(destination, destination_local);
+						} catch (IllegalStateException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+
+					} else {
+						System.out.println("수정 - boardContent 삽입 실패" + i);
+					}
+				}
+			} else {
+				System.out.println("수정 - boardContent 삭제 실패");
+
 			}
 
 		}

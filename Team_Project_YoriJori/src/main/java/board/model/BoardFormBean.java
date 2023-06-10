@@ -14,6 +14,15 @@ public class BoardFormBean {
 	private String[] big_amount;
 	private String[] ing_num;
 	private MultipartFile bod_image_upload;
+	private String prev_bod_image;
+
+	public String getPrev_bod_image() {
+		return prev_bod_image;
+	}
+
+	public void setPrev_bod_image(String prev_bod_image) {
+		this.prev_bod_image = prev_bod_image;
+	}
 
 	public String[] getBig_name() {
 		return big_name;
@@ -58,6 +67,7 @@ public class BoardFormBean {
 
 	private String[] bod_content;
 	private String[] image;
+	private String[] prev_image;
 	private MultipartFile[] upload;
 	private String[] upload2;
 
@@ -67,6 +77,14 @@ public class BoardFormBean {
 
 	public void setImage(String[] image) {
 		this.image = image;
+	}
+
+	public String[] getPrev_image() {
+		return prev_image;
+	}
+
+	public void setPrev_image(String[] prev_image) {
+		this.prev_image = prev_image;
 	}
 
 	public MultipartFile[] getUpload() {
