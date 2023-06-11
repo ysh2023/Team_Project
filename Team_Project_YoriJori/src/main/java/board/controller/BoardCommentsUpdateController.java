@@ -33,10 +33,10 @@ public class BoardCommentsUpdateController {
 		response.setContentType("text/html; charset=utf-8;");
 		model.addAttribute("commentsList", bdao.getCommentByBodNum(bodNum));
 		if (result > 0) {
-			response.getWriter().append("<Script>alert('¼öÁ¤µÇ¾ú½À´Ï´Ù');</Script>").flush();
+			response.getWriter().append("<Script>alert('ìˆ˜ì •ë˜ì—ˆìŠµë‹ˆë‹¤');</Script>").flush();
 			return page;
 		} else {
-			response.getWriter().append("<Script>alert('¼öÁ¤ ½ÇÆĞ');</Script>").flush();
+			response.getWriter().append("<Script>alert('ìˆ˜ì • ì‹¤íŒ¨');</Script>").flush();
 			return page;
 
 		}

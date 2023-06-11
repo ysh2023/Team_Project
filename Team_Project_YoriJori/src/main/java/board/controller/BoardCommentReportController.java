@@ -34,14 +34,14 @@ public class BoardCommentReportController {
 		if (result > 0) {
 
 			try {
-				response.getWriter().append("½Å°í°¡ Á¢¼öµÇ¾ú½À´Ï´Ù.").flush();
+				response.getWriter().append("ì‹ ê³ ê°€ ì ‘ìˆ˜ë˜ì—ˆìŠµë‹ˆë‹¤.").flush();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		} else {
 			try {
-				response.getWriter().append("½Å°í¸¦ ½ÇÆĞÇß½À´Ï´Ù.").flush();
+				response.getWriter().append("ì‹ ê³ ë¥¼ ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.").flush();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

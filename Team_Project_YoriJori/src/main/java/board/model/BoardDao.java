@@ -3,11 +3,13 @@ package board.model;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import ingredient.model.IngBean;
+import utility.Paging;
 
 @Component
 public class BoardDao {
@@ -16,8 +18,15 @@ public class BoardDao {
 	@Autowired
 	SqlSessionTemplate sessionTemplate;
 
-	public List<BoardBean> getAllBoard(Map<String, String> map) {
-		List<BoardBean> list = sessionTemplate.selectList(namespace + ".GetAllBoard", map);
+	public int getTotalCount(Map<String, String> map) {
+		int cnt = 0;
+		cnt = sessionTemplate.selectOne(namespace + ".GetTotalCount", map);
+		return cnt;
+	}
+
+	public List<BoardBean> getAllBoard(Map<String, String> map, Paging pageInfo) {
+		RowBounds rowBounds = new RowBounds(pageInfo.getOffset(), pageInfo.getLimit());
+		List<BoardBean> list = sessionTemplate.selectList(namespace + ".GetAllBoard", map, rowBounds);
 		return list;
 	}
 

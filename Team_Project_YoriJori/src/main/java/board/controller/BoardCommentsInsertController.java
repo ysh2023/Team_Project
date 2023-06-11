@@ -40,7 +40,7 @@ public class BoardCommentsInsertController {
 
 			} else {
 				try {
-					response.getWriter().append("<script>alert('´ñ±Û ÀÛ¼º¿¡ ½ÇÆĞÇß½À´Ï´Ù');</script>").flush();
+					response.getWriter().append("<script>alert('ëŒ“ê¸€ ì‘ì„±ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤');</script>").flush();
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

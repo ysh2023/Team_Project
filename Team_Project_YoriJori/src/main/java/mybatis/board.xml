@@ -4,17 +4,30 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="board.model.Board">
-	<select id="GetAllBoard" resultType="board.model.BoardBean">
-	select * from board
+	<select id="GetTotalCount" resultType="int">select count(*) from board 
+		<if test="keyword!='%All%'">
 		<choose>
-			<when test="categoryType=='0'">
-				  <if test="category!='All'">where category like #{category}</if>
-			order by bod_num
+			<when test="whatColumn=='foodCategory'">
+				  where category like #{keyword} order by bod_num
 			</when>
-			<when test="categoryType=='1'">
-				where bod_num in(select bod_num from boardIngredient where ing_num in(select ing_num from ingredient where ing_category = #{category}))
+			<when test="whatColumn=='ingredientCategory'">
+				where bod_num in(select bod_num from boardIngredient where ing_num in(select ing_num from ingredient where ing_category like #{keyword}))
 			</when>
 		</choose>
+		</if>
+	</select>
+	<select id="GetAllBoard" resultType="board.model.BoardBean">
+	select bod_num, title, servings, time, category, tags, id, bod_image from board
+		<if test="keyword!='%All%'">
+		<choose>
+			<when test="whatColumn=='foodCategory'">
+				  where category like #{keyword} order by bod_num
+			</when>
+			<when test="whatColumn=='ingredientCategory'">
+				where bod_num in(select bod_num from boardIngredient where ing_num in(select ing_num from ingredient where ing_category like #{keyword}))
+			</when>
+		</choose>
+		</if>
 	</select>
 	<insert id="InsertBoard">insert into board values(bod_seq.nextval, #{title},
 		#{servings}, #{time}, #{category}, #{tags}, #{id}, #{bodImage})</insert>

@@ -3,6 +3,8 @@ package board.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,37 +12,40 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import board.model.BoardDao;
+import utility.Paging;
 
 @Controller
 public class BoardMainController {
+	private final String command = "/main.board";
+	private String page = "boardMain";
 
 	@Autowired
 	BoardDao bdao;
 
-	@RequestMapping("main.board")
-	public String doAction(Model model, @RequestParam(value = "category", required = false) String category,
-			@RequestParam(value = "categoryType", required = false) String categoryType) {
+	@RequestMapping(command)
+	public String doAction(Model model, @RequestParam(value = "whatColumn", required = false) String whatColumn,
+			@RequestParam(value = "keyword", required = false) String keyword,
+			@RequestParam(value = "pageNumber", required = false) String pageNumber, HttpServletRequest request) {
 		Map<String, String> map = new HashMap<String, String>();
-		if (category == null || category.equals("All")) {
-			category = "All";
-			categoryType = "0";
-			map.put("category", category);
-			map.put("categoryType", categoryType);
-		} else {
-			map.put("category", "%" + category + "%");
-			map.put("categoryType", categoryType);
-		}
+		map.put("whatColumn", whatColumn);
+		map.put("keyword", "%" + keyword + "%");
 
-		model.addAttribute("boardList", bdao.getAllBoard(map));
+		int totalCount = bdao.getTotalCount(map);
+		System.out.println("totalCount : " + totalCount);
+		Paging pageInfo = new Paging(pageNumber, "12", totalCount, request.getContextPath() + command, whatColumn,
+				keyword, null);
 
-		String arr[] = { "All", "π‰", "±π", "¬Ó∞≥", "π›¬˘", "∂Û∏È", "±‚≈∏" };
+		model.addAttribute("boardList", bdao.getAllBoard(map, pageInfo));
+
+		String arr[] = { "All", "Î∞•", "Íµ≠", "Ï∞åÍ∞ú", "Î∞òÏ∞¨", "ÎùºÎ©¥", "Í∏∞ÌÉÄ" };
 
 //		model.addAttribute("categorys", bdao.getAllCategory());
 		model.addAttribute("foodCategorys", arr);
 		model.addAttribute("ingredientCategorys", bdao.getIngredientCategory());
-		model.addAttribute("selectCategory", category);
+		model.addAttribute("selectCategory", keyword == null ? "All" : keyword);
 		model.addAttribute("topBoards", bdao.getTopBoard());
-		return "boardMain";
+		model.addAttribute("pageInfo", pageInfo);
+		return page;
 
 	}
 }

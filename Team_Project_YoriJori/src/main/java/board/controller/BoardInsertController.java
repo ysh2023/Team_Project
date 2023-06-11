@@ -39,10 +39,10 @@ public class BoardInsertController {
 	public String doAction(Model model, HttpSession session, HttpServletResponse response) throws IOException {
 		if (session.getAttribute("loginInfo") == null) {
 			response.setContentType("text/html; charset=utf-8");
-			response.getWriter().append("<script>alert('·Î±×ÀÎ ÈÄ ÀÌ¿ë °¡´ÉÇÕ´Ï´Ù'); location.href='login.mb'</script>").flush();
+			response.getWriter().append("<script>alert('ë¡œê·¸ì¸ í›„ ì´ìš© ê°€ëŠ¥í•©ë‹ˆë‹¤'); location.href='login.mb'</script>").flush();
 			return null;
 		} else {
-			String[] categoryss = { "¹ä", "±¹", "Âî°³", "¹İÂù", "¶ó¸é", "±âÅ¸" };
+			String[] categoryss = { "ë°¥", "êµ­", "ì°Œê°œ", "ë°˜ì°¬", "ë¼ë©´", "ê¸°íƒ€" };
 			model.addAttribute("categorys", categoryss);
 			model.addAttribute("ingredients", bdao.getAllIngredient());
 			return formPage;
@@ -61,7 +61,7 @@ public class BoardInsertController {
 
 		BoardBean boardBean = new BoardBean();
 
-		// °Ô½Ã±Û Å×ÀÌºí
+		// ï¿½Ô½Ã±ï¿½ ï¿½ï¿½ï¿½Ìºï¿½
 		boardBean.setTitle(boardFormBean.getTitle());
 		boardBean.setServings(
 				boardFormBean.getServings().equals("") ? 0 : Integer.parseInt(boardFormBean.getServings()));

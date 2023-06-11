@@ -28,12 +28,12 @@ public class BoardCommentsDeleteController {
 		response.setContentType("text/html; charset=utf-8;");
 		System.out.println(bodNum);
 		if (result > 0) {
-			response.getWriter()
-					.append("<Script>alert('»èÁ¦ ¼º°ø');location.href='boardDetail.board?bodNum=" + bodNum + "'</Script>")
+			response.getWriter().append(
+					"<Script>alert('ì‹ ê³ ê°€ ì ‘ìˆ˜ë˜ì—ˆìŠµë‹ˆë‹¤');location.href='boardDetail.board?bodNum=" + bodNum + "'</Script>")
 					.flush();
 
 		} else {
-			response.getWriter().append("<Script>alert('»èÁ¦ ½ÇÆĞ');history.back();</Script>").flush();
+			response.getWriter().append("<Script>alert('ì‹ ê³ ì ‘ìˆ˜ ì‹¤íŒ¨');history.back();</Script>").flush();
 
 		}
 	}

@@ -40,7 +40,7 @@ public class BoardUpdateController {
 		model.addAttribute("boardContentList", bdao.getBoardContentByBodNum(bodNum));
 		model.addAttribute("boardIngredientList", bdao.getBoardIngredientByBodNum(bodNum));
 
-		String[] categoryss = { "¹ä", "±¹", "Âî°³", "¹ÝÂù", "¶ó¸é", "±âÅ¸" };
+		String[] categoryss = { "ë°¥", "êµ­", "ì°Œê°œ", "ë°˜ì°¬", "ë¼ë©´", "ê¸°íƒ€" };
 		model.addAttribute("categorys", categoryss);
 		model.addAttribute("ingredients", bdao.getAllIngredient());
 
@@ -57,7 +57,7 @@ public class BoardUpdateController {
 
 		BoardBean boardBean = new BoardBean();
 
-		// °Ô½Ã±Û Å×ÀÌºí
+		// ê²Œì‹œê¸€ í…Œì´ë¸”
 		boardBean.setTitle(boardFormBean.getTitle());
 		boardBean.setServings(
 				boardFormBean.getServings().equals("") ? 0 : Integer.parseInt(boardFormBean.getServings()));
@@ -91,7 +91,7 @@ public class BoardUpdateController {
 			int boardIngredientResult = 0;
 			int boardContentResult = 0;
 
-			// ½ÄÀç·á Å×ÀÌºí »èÁ¦ ÈÄ ¼öÁ¤
+			// ì‹ìž¬ë£Œ í…Œì´ë¸” ì‚­ì œ í›„ ìˆ˜ì •
 			if (bdao.deleteBoardIngredient(boardFormBean.getBod_num()) > 0) {
 				for (int i = 0; i < boardFormBean.getBig_name().length; i++) {
 					BoardIngredientBean boardIngredientBean = new BoardIngredientBean();
@@ -102,16 +102,16 @@ public class BoardUpdateController {
 					boardIngredientBean.setIngNum(boardFormBean.getIng_num()[i]);
 					boardIngredientResult = bdao.updateInsertBoardIngredient(boardIngredientBean);
 					if (boardIngredientResult < 0) {
-						System.out.println("¼öÁ¤ - boardIngredient »ðÀÔ ½ÇÆÐ" + i);
+						System.out.println("ìˆ˜ì • - boardIngredient ì‚½ìž… ì‹¤íŒ¨" + i);
 					}
 
 				}
 			} else {
-				System.out.println("¼öÁ¤ - boardIngredient »èÁ¦ ½ÇÆÐ");
+				System.out.println("ìˆ˜ì • - boardIngredient ì‚­ì œ ì‹¤íŒ¨");
 
 			}
 
-			// Á¶¸®°úÁ¤ Å×ÀÌºí »èÁ¦ ÈÄ ¼öÁ¤
+			// ì¡°ë¦¬ê³¼ì • í…Œì´ë¸” ì‚­ì œ í›„ ìˆ˜ì •
 			if (bdao.deleteBoardContent(boardFormBean.getBod_num()) > 0) {
 
 				for (int i = 0; i < boardFormBean.getBod_content().length; i++) {
@@ -148,11 +148,11 @@ public class BoardUpdateController {
 						}
 
 					} else {
-						System.out.println("¼öÁ¤ - boardContent »ðÀÔ ½ÇÆÐ" + i);
+						System.out.println("ìˆ˜ì • - boardContent ì‚½ìž… ì‹¤íŒ¨" + i);
 					}
 				}
 			} else {
-				System.out.println("¼öÁ¤ - boardContent »èÁ¦ ½ÇÆÐ");
+				System.out.println("ìˆ˜ì • - boardContent ì‚­ì œ ì‹¤íŒ¨");
 
 			}
 
