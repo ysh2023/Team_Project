@@ -25,9 +25,11 @@ public class IngBean {
 	public void setIngname(String ingname) {
 		this.ingname = ingname;
 	}
+
 	public int getExpiry() {
 		return expiry;
 	}
+
 	public void setExpiry(int expiry) {
 		this.expiry = expiry;
 	}

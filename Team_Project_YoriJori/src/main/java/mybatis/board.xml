@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="board.model.Board">
+	<select id="GetTotalCount" resultType="int">select count(*) from board 
+		<if test="keyword!='%All%'">
+		<choose>
+			<when test="whatColumn=='foodCategory'">
+				  where category like #{keyword} order by bod_num
+			</when>
+			<when test="whatColumn=='ingredientCategory'">
+				where bod_num in(select bod_num from boardIngredient where ing_num in(select ing_num from ingredient where ing_category like #{keyword}))
+			</when>
+		</choose>
+		</if>
+	</select>
+	<select id="GetAllBoard" resultType="board.model.BoardBean">
+	select bod_num, title, servings, time, category, tags, id, bod_image from board
+		<if test="keyword!='%All%'">
+		<choose>
+			<when test="whatColumn=='foodCategory'">
+				  where category like #{keyword} order by bod_num
+			</when>
+			<when test="whatColumn=='ingredientCategory'">
+				where bod_num in(select bod_num from boardIngredient where ing_num in(select ing_num from ingredient where ing_category like #{keyword}))
+			</when>
+		</choose>
+		</if>
+	</select>
+	<insert id="InsertBoard">insert into board values(bod_seq.nextval, #{title},
+		#{servings}, #{time}, #{category}, #{tags}, #{id}, #{bodImage})</insert>
+	<update id="UpdateBoard">update board set title=#{title}, servings = #{servings}, time = #{time}, category = #{category}, tags = #{tags}, id = #{id}, bod_image = #{bodImage} where bod_num = #{bodNum} </update>
+	<insert id="InsertBoardContent">insert into boardcontent values(bcn_seq.nextval,
+		#{image}, #{bodContent}, bod_seq.currval)</insert>
+	<insert id="UpdateInsertBoardContent">insert into boardcontent values(bcn_seq.nextval,
+		#{image}, #{bodContent}, #{bodNum})</insert>
+	<insert id="InsertBoardIngredient">
+	insert into boardingredient values(big_seq.nextval, bod_seq.currval, #{bigName},#{bigAmount}, <if test="ingNum=='null'">null</if><if test="ingNum!='null'">#{ingNum}</if>)
+	</insert>
+	<insert id="UpdateInsertBoardIngredient">
+	insert into boardingredient values(big_seq.nextval, #{bodNum}, #{bigName},#{bigAmount}, <if test="ingNum=='null'">null</if><if test="ingNum!='null'">#{ingNum}</if>)
+	</insert>
+	<delete id="DeleteBoardIngredient">delete from boardingredient where bod_num = #{bodNum}</delete>
+	<delete id="DeleteBoardContent">delete from boardContent where bod_num = #{bodNum}</delete>
+	
+	<select id="GetTopBoard" resultType="board.model.BoardBean">
+		select board.bod_num, title, servings, time, category, tags, id, bod_image from board inner join (select count(*)cnt, bod_num  from recommend group by bod_num order by cnt desc) sel on board.bod_num = sel.bod_num
+	</select>
+	<select id="GetBoardByBodNum" resultType="board.model.BoardBean">select * from board where bod_num = #{bodNum}</select>
+	<select id="GetBoardContentByBodNum" resultType="board.model.BoardContentBean">select * from boardcontent where bod_num = #{bod_num} order by bim_num</select>
+	<select id="GetAllIngredient" resultType="ingredient.model.IngBean">select * from ingredient order by ing_num</select>
+	<select id="GetCommentByBodNum" resultType="board.model.CommentsBean">select * from comments where bod_num = #{bodNum} order by ref desc,  ref_step asc, ref_level asc</select>
+	<select id="GetIngredientCategory" resultType="String">select distinct ing_category from ingredient</select>
+	<select id="GetBoardIngredientByBodNum" resultType="board.model.BoardIngredientBean">select * from boardIngredient where bod_num=#{bodNum}</select>
+	<delete id="DeleteBoardByBodNum">delete from board where bod_num = #{bodNum}</delete>
+	<insert id="InsertComment">insert into comments values(com_seq.nextval, #{comContent}, com_seq.currval, 0, 0, sysdate, #{bodNum}, #{id} )</insert>
+	<update id="ReplyUpdate">update comments set ref_step = ref_step+1 where ref = #{ref} and ref_step > #{refStep} </update>
+	<insert id="ReplyInsert">insert into comments values(com_seq.nextval, #{comContent}, #{ref}, #{refStep}, #{refLevel}, sysdate, #{bodNum}, #{id} )</insert>
+	<delete id="DeleteComment">delete from comments where com_num = #{comNum}</delete>
+	<update id="UpdateComment">update comments set com_content = #{comContent}, createat = sysdate where com_num = #{comNum}</update>
+	<select id="GetCommentsByComNum" resultType="board.model.CommentsBean">select * from comments where com_num = #{comNum} </select>
+	<select id="GetReplyInsertRefStep" resultType="int">select max(ref_step) from comments where ref = #{ref} and ref_level =#{refLevel}</select>
+	<insert id="InsertCommentReport">insert into commentreport values(cor_seq.nextval, #{reasons}, #{comNum}, #{id}, #{repDiscription})</insert>
+	
+	<select id="GetRecommend" resultType="board.model.RecommendBean" >select * from recommend where bod_num = #{bodNum} and id = #{id}</select>
+	<insert id="InsertRecommend">insert into recommend values(rec_seq.nextval, #{bodNum}, #{id})</insert>
+	<delete id="DeleteRecommend">delete from recommend where bod_num = #{bodNum} and id = #{id}</delete>
+</mapper> 

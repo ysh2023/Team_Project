@@ -125,7 +125,7 @@
 									href="shop.prd?whatColumn=se&keyword=양념/오일&searchName=${searchName}">양념/오일</a>
 							</div></li>
 						<li class="nav-item"><a href="list.re" class="nav-link">레시피</a></li>
-						<li class="nav-item"><a href="blog.html" class="nav-link">방구석
+						<li class="nav-item"><a href="main.board" class="nav-link">방구석
 								쉐프</a></li>
 					</ul>
 					<!-- right nav -->
