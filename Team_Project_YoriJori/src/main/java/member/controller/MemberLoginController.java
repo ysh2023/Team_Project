@@ -26,8 +26,10 @@ public class MemberLoginController {
 	MemberDao mdao;
 
 	@RequestMapping(value = command, method = RequestMethod.GET)
-	public String doAction() {
-
+	public String doAction(HttpSession session) {
+		String destination = (String)session.getAttribute("destination");
+		System.out.println("destination: "+destination);
+		
 		return getPage;
 	}
 
@@ -42,8 +44,7 @@ public class MemberLoginController {
 		MemberBean mb = mdao.GetMemberById(input_id);
 		
 		
-		if(mb == null) { // 가입안함
-			System.out.println("가입하지 않은 회원");
+		if(mb == null) { 
 			
 			try {
 				out = response.getWriter();
@@ -55,17 +56,27 @@ public class MemberLoginController {
 			
 			mav.setViewName(getPage);
 			
-		}else { // 가입한 회원
+		}else { 
 			System.out.println("가입한 회원");
-
 			if (mb.getPw().equals(input_password)) {
-				// 로그인
+				//  α   
 				session.setAttribute("loginInfo", mb);
+				
+				if(mb.getId().equals("admin")) {
+					mav.setViewName("redirect:main.am");
+				}else {
+				
+				String destination = (String)session.getAttribute("destination");
+				System.out.println("destination: "+destination);
+				
+				if(destination == null) {
+					mav.setViewName(gotoPage);
+				}else {
+					mav.setViewName(destination);
+				}
 
-				mav.setViewName(gotoPage);
-
-			} else { 
-
+			}} else { 
+				
 				try {
 					out = response.getWriter();
 					out.println("<script>alert('비번이 일치하지 않습니다.');history.go(-1);</script>");

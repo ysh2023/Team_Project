@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="admin.model.Admin">
+
+	<select id="GetAllProduct"
+		resultType="product.model.ProductBean">
+		select * from product
+		order by pd_num
+	</select>
+
+	<delete id="DeleteProduct">
+		delete product where pd_num=#{pdnum}
+	</delete>
+
+	<insert id="InsertProduct">
+		insert into product
+		values(prdseq.nextval,#{pdname},#{pdcategory},#{pdcontent},#{pdstock},#{pdprice},#{pdimage})
+	</insert>
+
+	<select id="GetByNum" resultType="product.model.ProductBean">
+		select * from product
+		where pd_num=#{pdnum}
+	</select>
+	
+	<update id="UpdateProduct">
+	update product set pd_name=#{pdname},pd_category=#{pdcategory},pd_content=#{pdcontent},pd_stock=#{pdstock},
+	pd_price=#{pdprice},pd_image=#{pdimage}
+	where pd_num=#{pdnum}
+	</update>
+	
+	<select id="GetAllMember" resultType="member.model.MemberBean">
+		select * from member
+		order by id
+	</select>
+	
+
+
+</mapper>

@@ -9,12 +9,12 @@
 		where id=#{id}
 	</select>
 	
-<!-- 		<insert id="InsertMember">
+ 		<insert id="InsertMember">
 		insert into
-		member(id,m_name,i_num,pw,tel,age,area1,area2)
-		values(#{id},#{mname},#{inum},#{pw},#{tel},#{age},#{area1},#{area2})
+		member(id,m_name,pw,tel,age,area1,area2,email)
+		values(#{id},#{mname},#{pw},#{tel},#{age},#{area1},#{area2},#{email})
 	</insert>
-	 -->
+	 
 
 	
 </mapper>

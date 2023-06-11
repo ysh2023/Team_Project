@@ -14,7 +14,7 @@
 	        <div class="container">
 	          <div class="row slider-text" data-scrollax-parent="true">
 				<!-- text -->
-	            <div class="col-md-12 ftco-animate text-center" style="padding-top: 45px">
+	            <div class="col-md-12 ftco-animate text-center" style="padding-top: 45px" >
 	              <h1 class="mb-2">We serve Fresh Vegestables &amp; Fruits</h1>
 	              <h2 class="subheading mb-4">We deliver organic vegetables &amp; fruits</h2>
 	              <p><a href="#" class="btn btn-primary">View Details</a></p>
@@ -27,7 +27,7 @@
 	      	<div class="overlay"></div>
 	        <div class="container">
 	          <div class="row slider-text" data-scrollax-parent="true">
-	            <div class="col-sm-12 ftco-animate text-center" style="padding-top: 45px">
+	            <div class="col-sm-12 ftco-animate text-center" style="padding-top: 45px" >
 	              <h1 class="mb-2">100% Fresh &amp; Organic Foods</h1>
 	              <h2 class="subheading mb-4">We deliver organic vegetables &amp; fruits</h2>
 	              <p><a href="#" class="btn btn-primary">View Details</a></p>

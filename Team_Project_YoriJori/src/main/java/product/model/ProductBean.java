@@ -1,20 +1,41 @@
 package product.model;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class ProductBean {
 
 	private int pdnum;
 	private String pdimage;
 	private String pdname;
-	private String pdprice;
-	private String pdstock;
+	private int pdprice;
+	private int pdstock;
 	private String pdcategory;
 	private String pdcontent;
+	
+	private MultipartFile upload;
+	private String upload2;
+	
+	public String getUpload2() {
+		return upload2;
+	}
+	public void setUpload2(String upload2) {
+		this.upload2 = upload2;
+	}
+	public MultipartFile getUpload() {
+		return upload;
+	}
+	public void setUpload(MultipartFile upload) {
+		this.upload = upload;
+		
+		String fileName = upload.getOriginalFilename();
+		this.pdimage = fileName;
+	}
 	
 	public ProductBean() {
 		super();
 		
 	}
-	public ProductBean(int pdnum, String pdimage, String pdname, String pdprice, String pdstock, String pdcategory,
+	public ProductBean(int pdnum, String pdimage, String pdname, int pdprice, int pdstock, String pdcategory,
 			String pdcontent) {
 		super();
 		this.pdnum = pdnum;
@@ -43,16 +64,16 @@ public class ProductBean {
 	public void setPdname(String pdname) {
 		this.pdname = pdname;
 	}
-	public String getPdprice() {
+	public int getPdprice() {
 		return pdprice;
 	}
-	public void setPdaprice(String pdprice) {
+	public void setPdprice(int pdprice) {
 		this.pdprice = pdprice;
 	}
-	public String getPdstock() {
+	public int getPdstock() {
 		return pdstock;
 	}
-	public void setPdstock(String pdstock) {
+	public void setPdstock(int pdstock) {
 		this.pdstock = pdstock;
 	}
 	public String getPdcategory() {

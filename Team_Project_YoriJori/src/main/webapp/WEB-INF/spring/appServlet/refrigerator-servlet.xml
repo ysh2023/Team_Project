@@ -16,5 +16,6 @@
 	</bean>
 
 	<context:component-scan base-package="refrigerator"/>
+	<context:component-scan base-package="ingredient"/>
 
 </beans>

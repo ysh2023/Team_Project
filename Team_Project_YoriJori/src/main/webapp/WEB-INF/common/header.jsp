@@ -60,38 +60,38 @@
 							<img src="<%=resourcesPath%>/images/btn_login.png"
 							style="height: 33px;"> 로그인
 						</a>
-						<!-- sign in -->
-						<a href="#"
+						<a href="insert.mb"
 							style="font-size: 11px; height: 12px; margin-top: 20px; margin-right: 15px; float: right;">
 							<img src="<%=resourcesPath%>/images/btn_register.png"
 							style="height: 33px;"> 회원가입
 						</a>
-						
+
 						<%
-						}else{
+						} else {
 						%>
 						<a href="#"
-						style="font-size: 11px; height: 12px; margin-top: 20px; ">${loginInfo.id}님 안녕하세요!
-						</a>
-						<!-- sign in -->
-						<a href="#"
+							style="font-size: 11px; height: 12px; margin-top: 20px;">${loginInfo.mname}님
+							안녕하세요! </a> <a href="mypage.mb"
+							style="font-size: 11px; height: 12px; margin-top: 20px; float: right;">
+							<img src="<%=resourcesPath%>/images/mypage.png"
+							style="height: 33px;"> 마이페이지
+						</a> <a href="logout.mb"
 							style="font-size: 11px; height: 12px; margin-top: 20px; margin-right: 15px; float: right;">
-							<img src="<%=resourcesPath%>/images/btn_register.png"
+							<img src="<%=resourcesPath%>/images/btn_logout.png"
 							style="height: 33px;"> 로그아웃
 						</a>
-						
+
 						<%
 						}
 						%>
-						
-						
+
+
 					</div>
 					<!-- search form  -->
 					<div class="col-md-auto">
-						<form action="#" class="search-form">
-							<input class="form-control me-2" type="search"
-								placeholder="요리명 검색" aria-label="Search"
-								style="margin-top: 10px;">
+						<form action="list.re" class="search-form">
+							<input type="hidden" value="recipename" name="whatColumn">
+							<input class="form-control me-2" type="search" placeholder="요리명 검색" aria-label="Search" style="margin-top: 10px;" name="keyword">
 						</form>
 					</div>
 				</div>
@@ -105,37 +105,37 @@
 				<div class="collapse navbar-collapse" id="ftco-nav">
 					<!-- left nav -->
 					<ul class="navbar-nav mr-auto">
-						<li class="nav-item active"><a href="index.html"
+						<li class="nav-item active"><a href="<%=conPath%>/main.jsp"
 							class="nav-link">Home</a></li>
 						<li class="nav-item dropdown"><a
-							class="nav-link dropdown-toggle" href="#" id="dropdown04"
+							class="nav-link dropdown-toggle" href="shop.prd?whatColumn=no&searchName=${searchName}" id="dropdown04"
 							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">장보기</a>
 							<div class="dropdown-menu" aria-labelledby="dropdown04">
-								<a class="dropdown-item" href="shop.prd">전체보기</a> <a
-									class="dropdown-item" href="shop.prd?whatColumn=se&keyword=채소">채소</a>
+								<a class="dropdown-item" href="shop.prd?whatColumn=no&searchName=${searchName}">전체보기</a> <a
+									class="dropdown-item" href="shop.prd?whatColumn=se&keyword=채소&searchName=reset">채소</a>
 								<a class="dropdown-item"
-									href="shop.prd?whatColumn=se&keyword=과일">과일</a> <a
+									href="shop.prd?whatColumn=se&keyword=과일&searchName=${searchName}">과일</a> <a
 									class="dropdown-item"
-									href="shop.prd?whatColumn=se&keyword=쌀/견과">쌀/견과</a> <a
+									href="shop.prd?whatColumn=se&keyword=쌀/견과&searchName=${searchName}">쌀/견과</a> <a
 									class="dropdown-item"
-									href="shop.prd?whatColumn=se&keyword=정육/계란류">정육/계란류</a> <a
+									href="shop.prd?whatColumn=se&keyword=정육/계란류&searchName=${searchName}">정육/계란류</a> <a
 									class="dropdown-item"
-									href="shop.prd?whatColumn=se&keyword=우유/유제품">우유/유제품</a> <a
+									href="shop.prd?whatColumn=se&keyword=우유/유제품&searchName=${searchName}">우유/유제품</a> <a
 									class="dropdown-item"
-									href="shop.prd?whatColumn=se&keyword=양념/오일">양념/오일</a>
+									href="shop.prd?whatColumn=se&keyword=양념/오일&searchName=${searchName}">양념/오일</a>
 							</div></li>
-						<li class="nav-item"><a href="about.html" class="nav-link">레시피</a></li>
+						<li class="nav-item"><a href="list.re" class="nav-link">레시피</a></li>
 						<li class="nav-item"><a href="main.board" class="nav-link">방구석
 								쉐프</a></li>
 					</ul>
 					<!-- right nav -->
 					<ul class="navbar-nav ml-auto">
-						<li class="nav-item"><a href="insert.ref" class="nav-link">
+						<li class="nav-item"><a href="list.ref" class="nav-link">
 								<img src="<%=resourcesPath%>/images/btn_circle.png"
 								style="width: 18px; margin-right: 5px; margin-bottom: 2px;">
 								나의 냉장고
 						</a></li>
-						<li class="nav-item"><a href="about.html" class="nav-link">
+						<li class="nav-item"><a href="bookmark.re" class="nav-link">
 								<img src="<%=resourcesPath%>/images/btn_circle.png"
 								style="width: 18px; margin-right: 5px; margin-bottom: 2px;">
 								북마크 레시피

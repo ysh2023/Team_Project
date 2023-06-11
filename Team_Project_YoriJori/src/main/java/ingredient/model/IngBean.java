@@ -1,33 +1,29 @@
 package ingredient.model;
 
 public class IngBean {
-	private int ingNum;
-	private String ingCategory;
-	private String ingName;
+	private int ingnum;
+	private String ingcategory;
+	private String ingname;
 	private int expiry;
-
-	public int getIngNum() {
-		return ingNum;
+	private String ingicon;
+	
+	public int getIngnum() {
+		return ingnum;
 	}
-
-	public void setIngNum(int ing_num) {
-		this.ingNum = ing_num;
+	public void setIngnum(int ingnum) {
+		this.ingnum = ingnum;
 	}
-
-	public String getIngCategory() {
-		return ingCategory;
+	public String getIngcategory() {
+		return ingcategory;
 	}
-
-	public void setIngCategory(String ing_category) {
-		this.ingCategory = ing_category;
+	public void setIngcategory(String ingcategory) {
+		this.ingcategory = ingcategory;
 	}
-
-	public String getIngName() {
-		return ingName;
+	public String getIngname() {
+		return ingname;
 	}
-
-	public void setIngName(String ing_name) {
-		this.ingName = ing_name;
+	public void setIngname(String ingname) {
+		this.ingname = ingname;
 	}
 
 	public int getExpiry() {
@@ -37,5 +33,11 @@ public class IngBean {
 	public void setExpiry(int expiry) {
 		this.expiry = expiry;
 	}
-
+	public String getIngicon() {
+		return ingicon;
+	}
+	public void setIngicon(String ingicon) {
+		this.ingicon = ingicon;
+	}
+	
 }
