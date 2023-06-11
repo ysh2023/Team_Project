@@ -14,7 +14,7 @@
 
 		$('#cookProcess')
 				.append(
-						'<div class="row" id='+cookProcessIndex+'><div class="col-md-6"> <label for="country">조리과정 </label> <textarea name="bod_content" cols="40" rows="10" style="resize: none;" class="form-control text-left px-3" placeholder=""></textarea> </div> <div  class="col-md-6"><input type="file" name="upload"><input class="btn btn-danger py-2 px-2" type="button" value="삭제" onclick="removeCookProcess(\''
+						'<div class="row" id='+cookProcessIndex+'><div class="col-md-6"> <label for="country">조리과정 </label> <textarea name="bod_content" cols="40" rows="10" style="resize: none;" class="form-control text-left px-3" placeholder=""></textarea> </div> <div  class="col-md-6"> <input type="hidden" name="prev_image" > <input type="file" name="upload"><input class="btn btn-danger py-2 px-2" type="button" value="삭제" onclick="removeCookProcess(\''
 								+ cookProcessIndex + '\')"></div>	</div>');
 		cookProcessIndex++;
 
@@ -175,6 +175,7 @@
 											<div class="col-md-6">
 												<div class="row">
 													<div class="col-md-8">
+													<input type="hidden" name="prev_image" >
 														<input type="file" name="upload">
 													</div>
 												</div>
@@ -199,8 +200,7 @@
 														<div>
 															<img style="width: 200px; height: 150px;" alt="조리과정이미지" src="<%=resourcesPath%>/images/${boardContentBean.image != null ? boardContentBean.image : 'noimage.png'}">
 														</div>
-														<input type="text" name="prev_image" value="${boardContentBean.image == null ? '' : boardContentBean.image }"> <input type="file" name="upload">
-														<input type="text" value="${boardContentBean.image }">
+														<input type="hidden" name="prev_image" value="${boardContentBean.image == null ? '' : boardContentBean.image }"> <input type="file" name="upload">
 													</div>
 													<div class="col-md-4">
 														<c:if test="${status.index>0 }">
