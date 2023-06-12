@@ -3,13 +3,7 @@
 <%@include file= "./../common/header.jsp" %>
 <script type="text/javascript" src="<%=request.getContextPath()%>resoutces/js/jquery.js"></script>
 <script>
-$(function(){
-	$(".my").click(function(){
-	  alert("dd");
-	  $(".my").removeClass("active");dq
-	  $(this).addClass("active");
-	});
-});
+
 </script>
 <main>
 	
@@ -27,30 +21,80 @@ $(function(){
     <section class="ftco-section">
     	<div class="container">
     		<div class="row justify-content-center">
-    			<div class="col-md-10 mb-5 text-center">
-    				<ul class="product-category" id="category">
-    					<li><a href="list.re" class="active" >All</a></li>
-    					<li><a href="list.re?whatColumn=recipecategory&keyword=돼지고기" class="my" onclick="getClass()">돼지고기</a></li>
-    					<li><a href="list.re?whatColumn=recipecategory&keyword=소고기">소고기</a></li>
-    					<li><a href="list.re?whatColumn=recipecategory&keyword=닭고기">닭고기</a></li>
-    					<li><a href="list.re?whatColumn=recipecategory&keyword=채소류">채소류</a></li>
-    					<li><a href="list.re?whatColumn=recipecategory&keyword=해물류">해물류</a></li>
-    					<li><a href="list.re?whatColumn=recipecategory&keyword=달걀/유제품">달걀/유제품</a></li>
-    					<li><a href="list.re?whatColumn=recipecategory&keyword=가공식품류">가공식품류</a></li>
-    					<li><a href="list.re?whatColumn=recipecategory&keyword=쌀">쌀</a></li>
-    					<li><a href="list.re?whatColumn=recipecategory&keyword=밀가루">밀가루</a></li>
-    					<li><a href="list.re?whatColumn=recipecategory&keyword=건어물류">건어물류</a></li>
-    					<li><a href="list.re?whatColumn=recipecategory&keyword=버섯류">버섯류</a></li>
-    					<li><a href="list.re?whatColumn=recipecategory&keyword=과일류">과일류</a></li>
-    					<li><a href="list.re?whatColumn=recipecategory&keyword=콩/견과류">콩/견과류</a></li>
-    					<li><a href="list.re?whatColumn=recipecategory&keyword=곡류">곡류</a></li>
-    					<li><a href="list.re?whatColumn=recipecategory&keyword=기타">기타</a></li>
-    					<li><a href="list.re?whatColumn=recipecategory&keyword=반찬">반찬</a></li>
-    					<li><a href="list.re?whatColumn=recipecategory&keyword=국&찌개">국&찌개</a></li>
-    					<li><a href="list.re?whatColumn=recipecategory&keyword=일품">일품</a></li>
-    					<li><a href="list.re?whatColumn=recipecategory&keyword=밥">밥</a></li>
-    					<li><a href="list.re?whatColumn=recipecategory&keyword=후식">후식</a></li>
-    				</ul>
+    			<div class="col-md-12 mb-5 text-center">
+    			<table>
+    				<tr>
+    					<td>
+    						<a class="active">구분별</a>
+    					</td>
+    					<td>
+    						<ul class="product-category">
+    							<li><a href="list.re" class="active" >전체</a></li>
+		    					<li><a href="list.re?whatColumn=readcount">조회많은순</a></li>
+		    					<li><a href="list.re?whatColumn=bookmark">찜많은순</a></li>
+		    				</ul>
+    					</td>
+    				</tr>
+    				<tr>
+    					<td width="20%">
+    						카테고리별
+    					</td>
+    					<td>
+    						<ul class="product-category">
+    							<li><a href="list.re" class="active" >전체</a></li>
+		    					<li><a href="list.re?whatColumn=recipecategory&keyword=반찬">반찬</a></li>
+		    					<li><a href="list.re?whatColumn=recipecategory&keyword=국&찌개">국&찌개</a></li>
+		    					<li><a href="list.re?whatColumn=recipecategory&keyword=일품">일품</a></li>
+		    					<li><a href="list.re?whatColumn=recipecategory&keyword=밥">밥</a></li>
+		    					<li><a href="list.re?whatColumn=recipecategory&keyword=후식">후식</a></li>
+    							<li><a href="list.re?whatColumn=recipecategory&keyword=기타">기타</a></li>
+    						</ul>
+    					</td>
+    				</tr>
+    				<tr>
+    					<td>
+    						식재료별
+    					</td>
+    					<td>
+    						<ul class="product-category">
+    							<li><a href="list.re" class="active" >전체</a></li>
+    							<li><a href="list.re?whatColumn=foodcategory&keyword=곡류/콩/견과류">곡류/콩/견과류</a></li>
+    							<li><a href="list.re?whatColumn=foodcategory&keyword=소스/오일">소스/오일</a></li>
+    							<li><a href="list.re?whatColumn=foodcategory&keyword=채소">채소</a></li>
+    							<li><a href="list.re?whatColumn=foodcategory&keyword=과일">과일</a></li>
+    							<li><a href="list.re?whatColumn=foodcategory&keyword=정육/해산물">정육/해산물</a></li>
+    							<li><a href="list.re?whatColumn=foodcategory&keyword=계란/유제품">계란/유제품</a></li>
+    							<li><a href="list.re?whatColumn=foodcategory&keyword=면/빵/떡">면/빵/떡</a></li>
+    						</ul>
+    					</td>
+    				</tr>
+    				<tr>
+    					<td>
+    						분류별
+    					</td>
+    					<td>
+	    					<ul class="product-category" id="category">
+		    					<li><a href="list.re" class="active" >전체</a></li>
+		    					<li><a href="list.re?whatColumn=recipecategory&keyword=돼지고기" onclick="getClass()">돼지고기</a></li>
+		    					<li><a href="list.re?whatColumn=recipecategory&keyword=소고기">소고기</a></li>
+		    					<li><a href="list.re?whatColumn=recipecategory&keyword=닭고기">닭고기</a></li>
+		    					<li><a href="list.re?whatColumn=recipecategory&keyword=육류">육류</a></li>
+		    					<li><a href="list.re?whatColumn=recipecategory&keyword=채소류">채소류</a></li>
+		    					<li><a href="list.re?whatColumn=recipecategory&keyword=해물류">해물류</a></li>
+		    					<li><a href="list.re?whatColumn=recipecategory&keyword=달걀/유제품">달걀/유제품</a></li>
+		    					<li><a href="list.re?whatColumn=recipecategory&keyword=가공식품류">가공식품류</a></li>
+		    					<li><a href="list.re?whatColumn=recipecategory&keyword=쌀">쌀</a></li>
+		    					<li><a href="list.re?whatColumn=recipecategory&keyword=밀가루">밀가루</a></li>
+		    					<li><a href="list.re?whatColumn=recipecategory&keyword=건어물류">건어물류</a></li>
+		    					<li><a href="list.re?whatColumn=recipecategory&keyword=버섯류">버섯류</a></li>
+		    					<li><a href="list.re?whatColumn=recipecategory&keyword=과일류">과일류</a></li>
+		    					<li><a href="list.re?whatColumn=recipecategory&keyword=콩/견과류">콩/견과류</a></li>
+		    					<li><a href="list.re?whatColumn=recipecategory&keyword=곡류">곡류</a></li>
+		    					<li><a href="list.re?whatColumn=recipecategory&keyword=기타">기타</a></li>
+	    					</ul>
+    					</td>
+    				</tr>
+    			</table>
     			</div>
     		</div>
     		<div class="row">

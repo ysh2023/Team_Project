@@ -1,6 +1,6 @@
 package utility;
 
-public class Paging {
+public class Paging2 {
 	//페이징 관련 변수	
 	private int totalCount = 0 ; //총 레코드 건수
 	private int totalPage = 0 ; //전체 페이지 수
@@ -175,7 +175,7 @@ public class Paging {
 	}
 
 
-	public Paging(
+	public Paging2(
 			String _pageNumber, 
 			String _pageSize,  
 			int totalCount,
@@ -254,23 +254,24 @@ public class Paging {
 		String added_param = "&whatColumn=" + whatColumn + "&keyword=" + keyword ; // &whatColumn=singer&keyword=아
 		
 		if (this.beginPage != 1) { // 앞쪽, pageSize:한 화면에 보이는 레코드 수
-			result += "&nbsp;<a href='" + url  
-					+ "?pageNumber=" + ( 1 ) + "&pageSize=" + this.pageSize 
-					+ added_param + "'>맨 처음</a>&nbsp;" ;
-			result += "&nbsp;<a href='" + url 
+			
+			result += "<ul><li><a href='" + url 
 					+ "?pageNumber=" + (this.beginPage - 1 ) + "&pageSize=" + this.pageSize 
-					+ added_param + "'>이전</a>&nbsp;" ;
+					+ added_param + "'>&lt;</a></li>" ;
+		}
+		if(this.beginPage == 1) {
+			result += "<ul><li><a href='&#35;'>&lt;</a></li>" ;
 		}
 		
 		//가운데
 		for (int i = this.beginPage; i <= this.endPage ; i++) {
 			if ( i == this.pageNumber ) {
-				result += "&nbsp;<font color='red'>" + i + "</font>&nbsp;"	;
+				result += "<li class='active'><span>" + i + "</span></li>"	;
 						
 			} else {
-				result += "&nbsp;<a href='" + url   
+				result += "<li><a href='" + url   
 						+ "?pageNumber=" + i + "&pageSize=" + this.pageSize 
-						+ added_param + "'>" + i + "</a>&nbsp;" ;
+						+ added_param + "'>" + i + "</a></li>" ;
 				
 			}
 		}
@@ -280,13 +281,11 @@ public class Paging {
 		
 		if ( this.endPage != this.totalPage) { // 뒤쪽
 			
-			result += "&nbsp;<a href='" + url  
+			result += "<li><a href='" + url  
 					+ "?pageNumber=" + (this.endPage + 1 ) + "&pageSize=" + this.pageSize 
-					+ added_param + "'>다음</a>&nbsp;" ;
+					+ added_param + "'>&gt</a></li></ul>" ;
 			
-			result += "&nbsp;<a href='" + url  
-					+ "?pageNumber=" + (this.totalPage ) + "&pageSize=" + this.pageSize 
-					+ added_param + "'>맨 끝</a>&nbsp;" ;
+			
 		}		
 		System.out.println("result2:"+result);
 		// result2 : <a href='/ex/list.ab?pageNumber=1&pageSize=2'>맨 처음</a>&nbsp;&nbsp;<a href='/ex/list.ab?pageNumber=3&pageSize=2&whatColumn=null&keyword=null'>이전</a>&nbsp;&nbsp;<font color='red'>4</font>&nbsp;&nbsp;<a href='/ex/list.ab?pageNumber=5&pageSize=2&whatColumn=null&keyword=null'>5</a>&nbsp;
