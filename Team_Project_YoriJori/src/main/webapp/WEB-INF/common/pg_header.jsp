@@ -9,7 +9,7 @@
   margin: 0;
   padding: 0;
   width: 25%;
-  height:100%;
+  height:1000px;
   background-color: #f1f1f1;
   display: block;
   text-align: center;
@@ -34,7 +34,7 @@
  #main{
  
  margin-left:40%;
- margin-top:-400px;
+ margin-top:-980px;
  }
 
 </style>
@@ -53,7 +53,7 @@
       
  	<strong>  <li style="font-size: 30px">개인정보</li></strong> 
  	<li><a href="updateMb.mp">수정하기</a></li>
- 	<li><a href="#">탈퇴하기</a></li>
+ 	<li><a href="deleteMb.mp">탈퇴하기</a></li>
    	
    
 </ul>

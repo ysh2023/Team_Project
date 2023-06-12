@@ -50,7 +50,7 @@ public class MypageUpdateMemberController {
 		model.addAttribute("mb",mb);
 		
 		System.out.println(cnt);
-		if(cnt==0) {
+		if(cnt>0) {
 				try {
 					out = response.getWriter();
 					out.println("<script>alert('수정이 완료되었습니다.');history.go(-1);</script>");

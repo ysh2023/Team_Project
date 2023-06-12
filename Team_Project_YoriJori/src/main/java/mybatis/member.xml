@@ -21,4 +21,8 @@
 		
 	</update>
 	
+	<delete id="DeleteMember">
+		delete member where id=#{id}
+	</delete>
+	
 </mapper>

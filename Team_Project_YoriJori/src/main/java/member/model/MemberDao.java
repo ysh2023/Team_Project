@@ -33,7 +33,16 @@ public class MemberDao {
 		cnt=sqlSessionTemplate.update(namespace + ".UpdatetMember", mb);
 		
 		
-		return 0;
+		return cnt;
+	}
+
+	public int deleteMember(String id) {
+		int cnt=-1;
+		
+		cnt=sqlSessionTemplate.delete(namespace + ".DeleteMember", id);
+		
+		return cnt;
+		
 	}
 
 

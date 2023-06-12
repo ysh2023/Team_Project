@@ -78,6 +78,7 @@ function kakaopost() {
 	width: 70px;
 	height: 40px;
 }
+
 </style>
 
 <main  id="main" style="margin-left: -20px">
