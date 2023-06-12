@@ -15,6 +15,10 @@
 		values(#{id},#{mname},#{pw},#{tel},#{age},#{area1},#{area2},#{email})
 	</insert>
 	 
-
+	<update id="UpdatetMember">
+		update member set m_name=#{mname},pw=#{pw},tel=#{tel},age=#{age},area1=#{area1},area2=#{area2},
+		email=#{email} where id=#{id}
+		
+	</update>
 	
 </mapper>

@@ -27,5 +27,14 @@ public class MemberDao {
 		return cnt;
 	}
 
+	public int updateMember(MemberBean mb) {
+		int cnt=-1;
+		
+		cnt=sqlSessionTemplate.update(namespace + ".UpdatetMember", mb);
+		
+		
+		return 0;
+	}
+
 
 }
