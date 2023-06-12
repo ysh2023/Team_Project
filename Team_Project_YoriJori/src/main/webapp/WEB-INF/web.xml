@@ -190,6 +190,23 @@
 		<servlet-name>order</servlet-name>
 		<url-pattern>*.ord</url-pattern>
 	</servlet-mapping>
+	
+	<!-- order -->
+	<servlet>
+		<servlet-name>orderdetail</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet
+		</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/spring/appServlet/orderdetail-servlet.xml
+			</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>orderdetail</servlet-name>
+		<url-pattern>*.odt</url-pattern>
+	</servlet-mapping>
 
 	<filter>
 		<filter-name>encodingFilter</filter-name>

@@ -97,12 +97,12 @@
 		    						<span><fmt:formatNumber type="number" maxFractionDigits="3" value="${totalAmount}" />원</span>
 		    					</p>
 		    					<p class="d-flex">
-		    						<span>Delivery</span>
-		    						<span>$0.00</span>
+		    						<span>배송비</span>
+		    						<span>무료</span>
 		    					</p>
 		    					<p class="d-flex">
-		    						<span>Discount</span>
-		    						<span>$3.00</span>
+		    						<span>할인가격</span>
+		    						<span>0원</span>
 		    					</p>
 		    					<hr>
 		    					<p class="d-flex total-price">

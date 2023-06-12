@@ -41,5 +41,10 @@
 	<delete id="deleteIdBasket">
 		delete basket where bsk_id = #{id}
 	</delete>
+	
+		<select id="getBasketListB" resultType="basket.model.BasketBean">
+		select * from basket
+		where bsk_id = #{bskid}
+	</select>
 
 </mapper>

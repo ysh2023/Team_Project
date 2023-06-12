@@ -20,11 +20,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import basket.model.BasketBean;
 import basket.model.BasketDao;
 import basket.model.JoinBean;
 import member.model.MemberBean;
 import member.model.MemberDao;
 import order.model.OrderDao;
+import orderdetail.map.DetailList;
 
 @Controller
 public class OrderPayController {
@@ -52,8 +54,19 @@ public class OrderPayController {
 		for(int i=0;i<slist.size();i++) {
 			ordpdname += (slist.get(i).getPdname()+",");
 		}
-		//끝에 , 제거
+		// DetailList session 설정
+		DetailList detail = (DetailList)session.getAttribute("detail");
+		if(detail == null) {
+			detail = new DetailList();
+		}
+		List<BasketBean> dlist = bdao.getBasketListB(loginInfo.getId());
+		for(int i=0;i<dlist.size();i++) {
+			detail.addOrder(dlist.get(i).getBskpdnum(),dlist.get(i).getBskqty());
+		}
+		session.setAttribute("detail", detail);
+		
 		ordpdname = ordpdname.replaceAll(",$", "");
+		//상품이름 끝에 , 제거
 		System.out.println("ordpdname1:"+ordpdname);
 		model.addAttribute("buyname", buyname);
 		model.addAttribute("ordpdname", ordpdname);
@@ -67,6 +80,7 @@ public class OrderPayController {
 	public ModelAndView doAction(
 			@RequestParam("pdname") String pdname,
 			@RequestParam("pdprice") int pdprice,
+			@RequestParam("pdnum") int pdnum,
 			@RequestParam("qty") int qty,HttpSession session,HttpServletResponse response
 			) {
 		ModelAndView mav = new ModelAndView();
@@ -89,6 +103,14 @@ public class OrderPayController {
 			jb.setBskqty(qty);
 			List<JoinBean> slist = new ArrayList<JoinBean>();
 			slist.add(jb);
+			
+			// DetailList session 설정
+			DetailList detail = (DetailList)session.getAttribute("detail");
+			if(detail == null) {
+				detail = new DetailList();
+			}
+				detail.addOrder(pdnum,qty);
+			session.setAttribute("detail", detail);
 			int totalAmount = (pdprice*qty);
 			System.out.println("ordpdname2:"+pdname);
 			mav.addObject("ordpdname", pdname);

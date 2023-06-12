@@ -74,6 +74,14 @@ private String namespace = "basket.model.Basket";
 		return lists;
 	}
 
+	public List<BasketBean> getBasketListB(String bskid) {
+		List<BasketBean> lists = new ArrayList<BasketBean>();
+		lists = sqlSessionTemplate.selectList(namespace+".getBasketListB",bskid);
+		for(int i=0;i<lists.size();i++) {
+			lists.get(i);
+		}
+		return lists;
+	}
 
 	
 }
