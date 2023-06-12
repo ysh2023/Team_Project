@@ -37,8 +37,8 @@
                     <td>${i.pdcategory}</td>
                     <td>${i.pdprice}</td>
                     <td>${i.pdstock}</td>
-                    <td><img  src="<%=resourcesPath%>/img_pd/${i.pdnum}.jpg" width="50px" height="50px" ></td>
-                    <td><a href="#">수정</a></td>
+                    <td><img  src="<%=resourcesPath%>/img_pd/${i.pdimage}" width="50px" height="50px" ></td>
+                    <td><a href="updatePrd.am?pdnum=${i.pdnum}">수정</a></td>
                     <td><a href="deletePrd.am?pdnum=${i.pdnum}">삭제</a></td>
                   </tr>
                 </c:forEach>

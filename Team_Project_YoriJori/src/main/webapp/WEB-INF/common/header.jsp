@@ -126,27 +126,27 @@
 				<div class="collapse navbar-collapse" id="ftco-nav">
 					<!-- left nav -->
 					<ul class="navbar-nav mr-auto">
-						<li class="nav-item active"><a href="index.html"
+						<li class="nav-item active"><a href="<%=conPath%>/main.jsp"
 							class="nav-link">Home</a></li>
 						<li class="nav-item dropdown"><a
-							class="nav-link dropdown-toggle" href="#" id="dropdown04"
+							class="nav-link dropdown-toggle" href="shop.prd?whatColumn=no&searchName=${searchName}" id="dropdown04"
 							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">장보기</a>
 							<div class="dropdown-menu" aria-labelledby="dropdown04">
-								<a class="dropdown-item" href="shop.prd">전체보기</a> <a
-									class="dropdown-item" href="shop.prd?whatColumn=se&keyword=채소">채소</a>
+								<a class="dropdown-item" href="shop.prd?whatColumn=no&searchName=${searchName}">전체보기</a> <a
+									class="dropdown-item" href="shop.prd?whatColumn=se&keyword=채소&searchName=reset">채소</a>
 								<a class="dropdown-item"
-									href="shop.prd?whatColumn=se&keyword=과일">과일</a> <a
+									href="shop.prd?whatColumn=se&keyword=과일&searchName=${searchName}">과일</a> <a
 									class="dropdown-item"
-									href="shop.prd?whatColumn=se&keyword=쌀/견과">쌀/견과</a> <a
+									href="shop.prd?whatColumn=se&keyword=쌀/견과&searchName=${searchName}">쌀/견과</a> <a
 									class="dropdown-item"
-									href="shop.prd?whatColumn=se&keyword=정육/계란류">정육/계란류</a> <a
+									href="shop.prd?whatColumn=se&keyword=정육/계란류&searchName=${searchName}">정육/계란류</a> <a
 									class="dropdown-item"
-									href="shop.prd?whatColumn=se&keyword=우유/유제품">우유/유제품</a> <a
+									href="shop.prd?whatColumn=se&keyword=우유/유제품&searchName=${searchName}">우유/유제품</a> <a
 									class="dropdown-item"
-									href="shop.prd?whatColumn=se&keyword=양념/오일">양념/오일</a>
+									href="shop.prd?whatColumn=se&keyword=양념/오일&searchName=${searchName}">양념/오일</a>
 							</div></li>
 						<li class="nav-item"><a href="list.re" class="nav-link">레시피</a></li>
-						<li class="nav-item"><a href="blog.html" class="nav-link">방구석
+						<li class="nav-item"><a href="main.board" class="nav-link">방구석
 								쉐프</a></li>
 					</ul>
 					<!-- right nav -->

@@ -13,6 +13,7 @@
 		<mapper resource="mybatis/product.xml"/>
 		<mapper resource="mybatis/refrigerator.xml"/>
 		<mapper resource="mybatis/member.xml"/>
+		<mapper resource="mybatis/board.xml"/>
 		<mapper resource="mybatis/ingredient.xml"/>
 		<mapper resource="mybatis/recipe.xml"/>
 		<mapper resource="mybatis/admin.xml"/>

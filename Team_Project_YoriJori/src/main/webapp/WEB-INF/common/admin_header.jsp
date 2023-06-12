@@ -166,7 +166,7 @@
 
 			<li class="nav-item"><a class="nav-link collapsed"
 				href="main.am">
-					<i class="bi bi-grid"></i> <span>Dashboard</span>
+					<i class="bi bi-grid"></i> <span>메인화면</span>
 			</a></li>
 			<!-- End Dashboard Nav -->
 
@@ -188,31 +188,23 @@
 
 				</ul></li>
 			<!-- End Components Nav -->
-
+			
+			
 			<li class="nav-item"><a class="nav-link collapsed"
-				data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
-					<i class="bi bi-journal-text"></i><span>레시피</span><i
+
+				data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+					<i class="bi bi-menu-button-wide"></i><span>멤버</span><i
 					class="bi bi-chevron-down ms-auto"></i>
 			</a>
-				<ul id="forms-nav" class="nav-content collapse "
+				<ul id="components-nav" class="nav-content collapse "
 					data-bs-parent="#sidebar-nav">
-					<li><a
-						href="<%=request.getContextPath()%>/resources/html/forms-elements.html">
-							<i class="bi bi-circle"></i><span>레시피 리스트</span>
+					<li><a	href="mbList.am">
+							<i class="bi bi-circle"></i><span>멤버 리스트</span>
+
 					</a></li>
-					<li><a
-						href="<%=request.getContextPath()%>/resources/html/forms-layouts.html">
-							<i class="bi bi-circle"></i><span>레시피 등록</span>
-					</a></li>
-					<li><a
-						href="<%=request.getContextPath()%>/resources/html/forms-editors.html">
-							<i class="bi bi-circle"></i><span>레시피 수정</span>
-					</a></li>
-					<li><a
-						href="<%=request.getContextPath()%>/resources/html/forms-validation.html">
-							<i class="bi bi-circle"></i><span>레시피 삭제</span>
-					</a></li>
+
 				</ul></li>
+
 			<!-- End recipe Nav -->
 
 			<li class="nav-item"><a class="nav-link collapsed"
@@ -323,5 +315,7 @@
 
 		</ul>
 
+
+			
 	</aside>
 	

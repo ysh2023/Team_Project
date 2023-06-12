@@ -13,6 +13,7 @@ public class Paging {
 	private int endPage = 0 ; //페이징 처리 끝 페이지 번호
 	private int offset = 0;
 	private int limit = 0 ;
+	private String searchName="";
 	private String url = "" ; //예시 ==>  http://localhost:8989/MyServlet/list.do
 	private String pagingHtml = "";//하단의 숫자 페이지 링크
 	//private String pagingStatus = ""; //상단 우측의 현재 페이지 위치 표시
@@ -87,6 +88,16 @@ public class Paging {
 
 	public void setPageCount(int pageCount) {
 		this.pageCount = pageCount;
+	}
+
+
+	public String getSearchName() {
+		return searchName;
+	}
+
+
+	public void setSearchName(String searchName) {
+		this.searchName = searchName;
 	}
 
 
@@ -182,7 +193,7 @@ public class Paging {
 			String url, 
 			String whatColumn, 
 			String keyword,
-			String whologin) {		
+			Object object) {		
 
 		if(  _pageNumber == null || _pageNumber.equals("null") || _pageNumber.equals("")  ){
 			
@@ -230,17 +241,15 @@ public class Paging {
 		this.beginPage = ( this.pageNumber - 1 ) / this.pageCount * this.pageCount + 1  ;
 		this.endPage = this.beginPage + this.pageCount - 1 ;
 		
-		System.out.println("pageNumber:"+pageNumber+"/totalPage:"+totalPage);	
 		
 		if( this.endPage > this.totalPage ){
 			this.endPage = this.totalPage ;
 		}
 		
-		System.out.println("pageNumber2:"+pageNumber+"/totalPage2:"+totalPage);	
 		this.url = url ; //  /ex/list.ab
 		this.whatColumn = whatColumn ;
 		this.keyword = keyword ;
-		System.out.println("whatColumn:"+whatColumn+"/keyword:"+keyword);
+		this.searchName=searchName;
 		
 		this.pagingHtml = getPagingHtml(url) ;
 	
@@ -251,26 +260,24 @@ public class Paging {
 		// getPagingHtml url:/ex/list.ab
 		
 		String result = "" ;
-		String added_param = "&whatColumn=" + whatColumn + "&keyword=" + keyword ; // &whatColumn=singer&keyword=아
+		String added_param = "&whatColumn=" + whatColumn + "&keyword=" + keyword+"&searchName="+searchName ; // &whatColumn=singer&keyword=아
 		
 		if (this.beginPage != 1) { // 앞쪽, pageSize:한 화면에 보이는 레코드 수
-			result += "&nbsp;<a href='" + url  
-					+ "?pageNumber=" + ( 1 ) + "&pageSize=" + this.pageSize 
-					+ added_param + "'>맨 처음</a>&nbsp;" ;
-			result += "&nbsp;<a href='" + url 
+
+			result += "<li><a href='" + url 
 					+ "?pageNumber=" + (this.beginPage - 1 ) + "&pageSize=" + this.pageSize 
-					+ added_param + "'>이전</a>&nbsp;" ;
+					+ added_param + "'>이전</a></li>" ;
 		}
 		
 		//가운데
 		for (int i = this.beginPage; i <= this.endPage ; i++) {
 			if ( i == this.pageNumber ) {
-				result += "&nbsp;<font color='red'>" + i + "</font>&nbsp;"	;
+				result += "<li class='active'><span>"+i+"</span></li>"	;
 						
 			} else {
-				result += "&nbsp;<a href='" + url   
+				result += "<li><a href='" + url   
 						+ "?pageNumber=" + i + "&pageSize=" + this.pageSize 
-						+ added_param + "'>" + i + "</a>&nbsp;" ;
+						+ added_param + "'>" + i + "</a></li>" ;
 				
 			}
 		}
@@ -280,13 +287,11 @@ public class Paging {
 		
 		if ( this.endPage != this.totalPage) { // 뒤쪽
 			
-			result += "&nbsp;<a href='" + url  
+			result += "<li><a href='" + url  
 					+ "?pageNumber=" + (this.endPage + 1 ) + "&pageSize=" + this.pageSize 
-					+ added_param + "'>다음</a>&nbsp;" ;
+					+ added_param + "'>다음</a></li>" ;
 			
-			result += "&nbsp;<a href='" + url  
-					+ "?pageNumber=" + (this.totalPage ) + "&pageSize=" + this.pageSize 
-					+ added_param + "'>맨 끝</a>&nbsp;" ;
+
 		}		
 		System.out.println("result2:"+result);
 		// result2 : <a href='/ex/list.ab?pageNumber=1&pageSize=2'>맨 처음</a>&nbsp;&nbsp;<a href='/ex/list.ab?pageNumber=3&pageSize=2&whatColumn=null&keyword=null'>이전</a>&nbsp;&nbsp;<font color='red'>4</font>&nbsp;&nbsp;<a href='/ex/list.ab?pageNumber=5&pageSize=2&whatColumn=null&keyword=null'>5</a>&nbsp;

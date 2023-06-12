@@ -36,13 +36,16 @@ public class ProductListController {
 	public ModelAndView doAction(@RequestParam(value="keyword",required = false) String keyword,
 			@RequestParam(value="whatColumn",required = false) String whatColumn,
 			@RequestParam(value="pageNumber",required = false) String pageNumber,
+			@RequestParam(value="searchName",required = false) String searchName,
 			Model model, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
+		
 		
 		Map<String,String> map= new HashMap<String,String>();
 		
 		map.put("whatColumn", whatColumn);
-		map.put("keyword", "%"+keyword+"%");
+		map.put("keyword", keyword);
+		map.put("searchName", "%"+searchName+"%");
 		String url= request.getContextPath()+command;
 		
 		int totalCount=pdao.getTotalCount(map);
@@ -53,7 +56,12 @@ public class ProductListController {
 		
 		
 		mav.addObject("lists", lists);
+		mav.addObject("keyword", keyword);
+		mav.addObject("whatColumn", whatColumn);
+		
+		mav.addObject("searchName", searchName);
 		mav.setViewName(getPage);
+		
 		
 		mav.addObject("pageInfo",pageInfo);
 		return mav; 

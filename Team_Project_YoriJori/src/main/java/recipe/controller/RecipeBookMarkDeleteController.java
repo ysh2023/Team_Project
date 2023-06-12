@@ -19,7 +19,7 @@ public class RecipeBookMarkDeleteController {
 	RecipeDao rdao;
 	
 	@RequestMapping(value = command)
-	public String doAction(@RequestParam("recipenum") int recipenum , HttpSession session) { 
+	public String doAction(@RequestParam("recipenum") String recipenum , HttpSession session) { 
 		MemberBean mb = (MemberBean)session.getAttribute("loginInfo");
 		mb.setTel(recipenum);
 		int cnt = rdao.deleteBookmark(mb);

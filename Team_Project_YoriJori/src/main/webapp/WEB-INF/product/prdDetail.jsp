@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
 <%@include file= "./../common/header.jsp" %>
 
 
@@ -18,7 +19,7 @@
     	<div class="container">
     		<div class="row">
     			<div class="col-lg-6 mb-5 ftco-animate">
-    				<a href="#" class="image-popup"><img src=${product.pdimage }" class="img-fluid" alt="Colorlib Template"></a>
+    				<a href="#" class="image-popup"><img src="${product.pdimage}" class="img-fluid" alt="Colorlib Template"></a>
     			</div>
     			<div class="col-lg-6 product-details pl-md-5 ftco-animate">
     				<h3>${product.pdname }</h3>

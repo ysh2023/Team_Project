@@ -7,21 +7,32 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import member.model.MemberBean;
 import member.model.MemberDao;
 
 @Controller
 public class MemberMypageController {
 	
-	private final String command = "/mypage.mb";
-	private String getPage = "mypage";
-	
 	@Autowired
 	MemberDao mdao;
 
-	@RequestMapping(value = command, method = RequestMethod.GET)
+	@RequestMapping("/mypage.mb")
 	public String doAction() {
 	
-		return getPage;
+		return "mypage";
+	}
+
+	
+	@RequestMapping("/update.mb")
+	public String update_Form(HttpSession session) {
+	
+		MemberBean mb= (MemberBean)(session.getAttribute("loginInfo"));
+		
+		String mb_id= mb.getId();
+		
+		System.out.println(mb_id);
+		
+		return "updateMember";
 	}
 
 }

@@ -73,30 +73,41 @@ $(document).ready(function(){
     		<div class="row justify-content-center">
     			<div class="col-md-10 mb-5 text-center">
     				<ul class="product-category">
-    					<li ><a href="shop.prd"  id="le1" >모두보기</a></li>
-    					<li><a href="shop.prd?whatColumn=se&keyword=채소" id="le2">채소</a></li>
-    					<li><a href="shop.prd?whatColumn=se&keyword=과일"  id="le3">과일</a></li>
-    					<li><a href="shop.prd?whatColumn=se&keyword=쌀/견과"  id="le4">쌀/견과</a></li>
-    					<li><a href="shop.prd?whatColumn=se&keyword=정육/계란류"  id="le5">정육/계란류</a></li>
-    					<li><a href="shop.prd?whatColumn=se&keyword=우유/유제품"  id="le6">우유/유제품</a></li>
-    					<li><a href="shop.prd?whatColumn=se&keyword=양념/오일"  id="le7">양념/오일</a></li>
+    					<li ><a href="shop.prd?whatColumn=no&searchName= "  id="le1" >모두보기</a></li>
+    					<li><a href="shop.prd?whatColumn=se&keyword=채소&searchName=" id="le2">채소</a></li>
+    					<li><a href="shop.prd?whatColumn=se&keyword=과일&searchName= "  id="le3">과일</a></li>
+    					<li><a href="shop.prd?whatColumn=se&keyword=쌀/견과&searchName= "  id="le4">쌀/견과</a></li>
+    					<li><a href="shop.prd?whatColumn=se&keyword=정육/계란류&searchName= "  id="le5">정육/계란류</a></li>
+    					<li><a href="shop.prd?whatColumn=se&keyword=우유/유제품&searchName= "  id="le6">우유/유제품</a></li>
+    					<li><a href="shop.prd?whatColumn=se&keyword=양념/오일&searchName= "  id="le7">양념/오일</a></li>
     				</ul>
     			</div>
     			</div>
     		</div>
+    		<center>
+    			<div>
+						<form action="shop.prd" class="search-form">
+							<input type="hidden" value="${keyword}" name="keyword">
+								<input type="hidden" value="${whatColumn}" name="whatColumn">
+							<input  type="search" placeholder="상품명 입력하세요" aria-label="Search"  name="searchName"
+							width="30px;" style="margin-bottom: 10px;">
+							<input type="submit" value="검색">
+						</form>
+					</div>
+			</center>
     		
     		<div class="row">
   
 				<c:forEach var="i" items="${lists}">  		
     			<div class="col-md-6 col-lg-3 ftco-animate">
     				<div class="product">
-    					<a href="prdDetail.prd?pdnum=${i.pdnum}" class="img-prod"><img class="img-fluid" src="<%=resourcesPath%>/img_pd/${i.pdnum}.jpg" alt="Colorlib Template">
+    					<a href="prdDetail.prd?pdnum=${i.pdnum}" class="img-prod"><img class="img-fluid" src="<%=resourcesPath%>/img_pd/${i.pdimage}" alt="Colorlib Template">
     					</a>
     					<div class="text py-3 pb-4 px-3 text-center">
     						<h3><a href="prdDetail.prd?pdnum=${i.pdnum}">${i.pdname }</a></h3>
     						<div class="d-flex">
     							<div class="pricing">
-		    						<p class="price">${i.pdprice }</p>
+		    						<p class="price">  <fmt:formatNumber value="${i.pdprice }" /> <br/></p>
 		    					</div>
 	    					</div>
 	    					<div class="bottom-area d-flex px-3">
@@ -122,7 +133,9 @@ $(document).ready(function(){
     		<div class="row mt-5">
           <div class="col text-center">
             <div class="block-27">
+            <ul>
       		 ${pageInfo.pagingHtml}
+      		 </ul>
             </div>
           </div>
         </div>

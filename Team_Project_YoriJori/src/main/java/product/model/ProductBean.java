@@ -67,7 +67,7 @@ public class ProductBean {
 	public int getPdprice() {
 		return pdprice;
 	}
-	public void setPdaprice(int pdprice) {
+	public void setPdprice(int pdprice) {
 		this.pdprice = pdprice;
 	}
 	public int getPdstock() {

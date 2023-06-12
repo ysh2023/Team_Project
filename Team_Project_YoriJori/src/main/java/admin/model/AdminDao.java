@@ -1,4 +1,4 @@
-package admin.moel;
+package admin.model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,19 +32,36 @@ public class AdminDao {
 
 	public int insertProduct(ProductBean product) {
 		int cnt=-1;
-		
-		System.out.println(product.getPdcategory());
-		System.out.println(product.getPdimage());
-		System.out.println(product.getPdname());
-		System.out.println(product.getPdstock());
-		System.out.println(product.getPdcontent());
-		
+
 		cnt= sqlSessionTemplate.insert(namespace+".InsertProduct",product);
 		
 		
 		
 		return cnt;
 		
+	}
+	
+	public ProductBean getByNum(int pdnum) {
+		ProductBean pd= sqlSessionTemplate.selectOne(namespace+".GetByNum",pdnum);
+		
+		return pd;
+	}
+
+	public int updateProduct(ProductBean productBean) {
+		int cnt=-1;
+		cnt=sqlSessionTemplate.update(namespace+".UpdateProduct",productBean);
+		
+		System.out.println("pd_num:"+productBean.getPdnum());
+		System.out.println("pd_cate:"+productBean.getPdcategory());
+		System.out.println("pd_image:"+productBean.getPdimage());
+		return cnt;
+		
+	}
+
+	public List<ProductBean> getAllMember() {
+		List<ProductBean> lists= new ArrayList<ProductBean>();
+		lists = sqlSessionTemplate.selectList(namespace+".GetAllMember"); 
+		return lists;
 	}
 
 }

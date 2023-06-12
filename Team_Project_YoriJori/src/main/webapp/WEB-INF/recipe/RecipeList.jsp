@@ -129,7 +129,9 @@
     		<div class="row mt-5">
           <div class="col text-center">
             <div class="block-27">
+            <ul>
               ${pageInfo.pagingHtml}
+              </ul>
             </div>
           </div>
         </div>
