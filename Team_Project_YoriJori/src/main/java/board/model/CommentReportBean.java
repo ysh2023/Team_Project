@@ -6,6 +6,30 @@ public class CommentReportBean {
 	private int comNum;
 	private String id;
 	private String repDiscription;
+	private String comcontent; //해당 신고 댓글 내용 불러오기위해 넣음
+	private String count;
+	
+	
+
+	public String getCount() {
+		return count;
+	}
+
+	public void setCount(String count) {
+		this.count = count;
+	}
+
+	public void setComcontent(String comcontent) {
+		this.comcontent = comcontent;
+	}
+
+	public String getComcontent() {
+		return comcontent;
+	}
+
+	public void setCom_content(String comcontent) {
+		this.comcontent = comcontent;
+	}
 
 	public String getRepDiscription() {
 		return repDiscription;

@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<!-- common -->
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<!-- common -->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <% String conPath = request.getContextPath(); %>
 <% String resourcesPath = request.getContextPath() + "/resources"; %>
@@ -73,8 +73,7 @@
 	<header id="header" class="header fixed-top d-flex align-items-center">
 
 		<div class="d-flex align-items-center justify-content-between">
-			<a href="main.am"
-				class="logo d-flex align-items-center"> <img
+			<a href="main.am" class="logo d-flex align-items-center"> <img
 				src="<%=request.getContextPath()%>/resources/images/logo.png" alt="">
 				<span class="d-none d-lg-block">관리자페이지</span>
 			</a> <i class="bi bi-list toggle-sidebar-btn"></i>
@@ -165,8 +164,7 @@
 		<ul class="sidebar-nav" id="sidebar-nav">
 
 			<li class="nav-item"><a class="nav-link collapsed"
-				href="main.am">
-					<i class="bi bi-grid"></i> <span>메인화면</span>
+				href="main.am"> <i class="bi bi-grid"></i> <span>메인화면</span>
 			</a></li>
 			<!-- End Dashboard Nav -->
 
@@ -177,19 +175,17 @@
 			</a>
 				<ul id="components-nav" class="nav-content collapse "
 					data-bs-parent="#sidebar-nav">
-					<li><a
-						href="prdList.am">
-							<i class="bi bi-circle"></i><span>상품 리스트</span>
+					<li><a href="prdList.am"> <i class="bi bi-circle"></i><span>상품
+								리스트</span>
 					</a></li>
-					<li><a
-						href="insertPrd.am">
-							<i class="bi bi-circle"></i><span>상품 추가</span>
+					<li><a href="insertPrd.am"> <i class="bi bi-circle"></i><span>상품
+								추가</span>
 					</a></li>
 
 				</ul></li>
 			<!-- End Components Nav -->
-			
-			
+
+
 			<li class="nav-item"><a class="nav-link collapsed"
 				data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
 					<i class="bi bi-menu-button-wide"></i><span>멤버</span><i
@@ -197,13 +193,12 @@
 			</a>
 				<ul id="components-nav" class="nav-content collapse "
 					data-bs-parent="#sidebar-nav">
-					<li><a
-						href="mbList.am">
-							<i class="bi bi-circle"></i><span>멤버 리스트</span>
+					<li><a href="mbList.am"> <i class="bi bi-circle"></i><span>멤버
+								리스트</span>
+					</a></li>
+					<li><a href="mbReportList.am"> <i class="bi bi-circle"></i><span>멤버 신고 리스트</span>
 					</a></li>
 
-				</ul></li>
 
-			
+				</ul></li>
 	</aside>
-	
