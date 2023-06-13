@@ -1,6 +1,6 @@
 package utility;
 
-public class Paging2 {
+public class Paging2 { 
 	//페이징 관련 변수	
 	private int totalCount = 0 ; //총 레코드 건수
 	private int totalPage = 0 ; //전체 페이지 수

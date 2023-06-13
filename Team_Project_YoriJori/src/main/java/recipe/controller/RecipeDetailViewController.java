@@ -36,6 +36,6 @@ public class RecipeDetailViewController {
 		model.addAttribute("foodList", foodList);
 		model.addAttribute("reviewList", reviewList);
 		model.addAttribute("SelectedRecipeCount", SelectedRecipeCount);
-		return getPage;
+		return getPage; 
 	}                    
 }

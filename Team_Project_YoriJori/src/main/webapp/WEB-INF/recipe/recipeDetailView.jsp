@@ -27,7 +27,7 @@
 								<a href="#" class="mr-2" style="color: #000;">
 								<span style="color: #bbb;"><input type="submit" value="찜" class="btn px-4 btn-primary"></span></a>
 								</form>
-							</p>
+							</p> 
 						</div>
     				<p class="price"><span>재료</span></p>
     				<div class="d-flex justify-content-center">
