@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import recipe.model.RecipeBean;
 import recipe.model.RecipeDao;
 import utility.Paging;
+import utility.Paging2;
 
 @Controller
 public class RecipeListController {
@@ -31,20 +32,56 @@ public class RecipeListController {
 								HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		Map<String, String> map = new HashMap<String, String>();
-		
-		map.put("whatColumn", whatColumn);
-		map.put("keyword", "%"+keyword+"%");
-		
-		int totalCount = rdao.getTotalCount(map);
+			map.put("whatColumn", whatColumn);
+			map.put("keyword", "%"+keyword+"%");
 		String url = request.getContextPath()+command;
-		Paging pageInfo = new Paging(pageNumber, "12", totalCount, url, whatColumn, keyword, null);
-		System.out.println(whatColumn);
-		System.out.println(totalCount);
-		System.out.println(keyword);
-		List<RecipeBean> recipeList = rdao.getAllRecipe(map,pageInfo);
-		mav.addObject("recipeList", recipeList);
-		mav.addObject("pageInfo", pageInfo);
-		mav.setViewName(getPage);
+		
+		if("food_name".equals(whatColumn)) {
+			int ingrecipetotalCount=rdao.getingrecipeTotalCount(map);
+			System.out.println("�젅�떆�뵾媛앹닔"+ingrecipetotalCount);
+			Paging2 pageInfo = new Paging2(pageNumber, "12", ingrecipetotalCount, url, whatColumn, keyword, null);
+			List<RecipeBean> recipeList = rdao.getAllRecipeByIngre(map,pageInfo);
+			mav.addObject("recipeList", recipeList);
+			mav.addObject("pageInfo", pageInfo);
+			mav.setViewName(getPage);
+			
+		}else if("food_category".equals(whatColumn)){
+			int foodRecipeTotalCount = rdao.getFoodRecipeTotalCount(map);
+			System.out.println("�젅�떆�뵾媛��닔"+foodRecipeTotalCount);
+			Paging2 pageInfo = new Paging2(pageNumber, "12", foodRecipeTotalCount, url, whatColumn, keyword, null);
+			List<RecipeBean> recipeList = rdao.getAllRecipeByFoodCate(map,pageInfo);
+			mav.addObject("recipeList", recipeList); 
+			mav.addObject("pageInfo", pageInfo);
+			mav.setViewName(getPage);
+			
+		}else if("readcount".equals(whatColumn)) {
+			int totalCount = rdao.getTotalCount(map);
+			Paging2 pageInfo = new Paging2(pageNumber, "12", totalCount, url, whatColumn, keyword, null);
+			List<RecipeBean> recipeList = rdao.getAllRecipeByReadCount(map,pageInfo);
+			mav.addObject("recipeList", recipeList);
+			mav.addObject("pageInfo", pageInfo);
+			mav.setViewName(getPage);
+			
+		}else if("bookmark".equals(whatColumn)) {
+			int totalCount = rdao.getTotalCount(map);
+			Paging2 pageInfo = new Paging2(pageNumber, "12", totalCount, url, whatColumn, keyword, null);
+			List<RecipeBean> recipeList = rdao.getAllRecipeByBookMark(map,pageInfo);
+			mav.addObject("recipeList", recipeList);
+			mav.addObject("pageInfo", pageInfo);
+			mav.setViewName(getPage);
+			
+		}else {
+			int totalCount = rdao.getTotalCount(map);
+			Paging2 pageInfo = new Paging2(pageNumber, "12", totalCount, url, whatColumn, keyword, null);
+			System.out.println(whatColumn);
+			System.out.println(totalCount);
+			System.out.println(keyword);
+			List<RecipeBean> recipeList = rdao.getAllRecipe(map,pageInfo);
+			System.out.println(recipeList.get(0).getRecipenum());
+			mav.addObject("recipeList", recipeList);
+			mav.addObject("pageInfo", pageInfo);
+			mav.setViewName(getPage);
+		}
 		return mav;
 	}
 	

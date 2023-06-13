@@ -7,17 +7,19 @@
     	<div class="container">
     		<div class="row">
     			<div class="col-lg-6 mb-5 ftco-animate">
-    				<a href="images/product-1.jpg" class="image-popup"><img src="${recipe.cookimage}" class="img-fluid" alt="Colorlib Template"></a>
+    				<a href="images/product-1.jpg" class="d-flex justify-content-center"><img src="${recipe.cookimage}" class="img-fluid" alt="Colorlib Template"></a>
     			</div>
     			<div class="col-lg-6 product-details pl-md-5 ftco-animate">
     				<h1>${recipe.recipename}</h1>
     				<div class="rating d-flex">
-							
 							<p class="text-left mr-5">
-								<!-- 조회수 -->
+								<a href="#" class="mr-2" style="color: #000;">${recipe.readcount} <span style="color: #bbb;">조회수</span></a>
+							</p>
+							<p class="text-left mr-5">
+								
 								<a href="#" class="mr-2" style="color: #000;">${SelectedRecipeCount} <span style="color: #bbb;"><i class="ion-ios-heart"></i></span></a>
 							</p>
-							<p class="text-left ml-5">
+							<p class="text-left mr-5">
 								<!-- 북마크 수 -->
 								<!-- 누르면 북마크 추가 되도록 -->
 								<form action="BookmarkInsert.re" method="post">
@@ -28,12 +30,13 @@
 							</p>
 						</div>
     				<p class="price"><span>재료</span></p>
-    				
-    					<c:forEach items="${foodList}" var="food">
-    					<p>
-    						${food.foodname}
-    					</p>
-    					</c:forEach>
+    				<div class="d-flex justify-content-center">
+    					<ul>
+	    					<c:forEach items="${foodList}" var="food">
+	    						<li style="inline : block; float: left; margin-right: 40px">${food.foodname}  ${food.foodamount}</li>
+	    					</c:forEach>
+    					</ul>
+    				</div>
     			</div>
     		</div>
     	</div>
@@ -84,7 +87,7 @@
 		                  <div class="comment-body">
 		                    <h3>${review.id}</h3>
 		                    <!-- 시간 넣기 -->
-		                    <div class="meta">시간</div>
+		                    <div class="meta">${review.reviewdate}</div>
 		                    <p>${review.review}</p>
 		                    <p><a href="report.re?reviewnum=${review.reviewnum}&recipenum=${recipe.recipenum}" class="reply">신고하기</a></p>	
 		                  </div>

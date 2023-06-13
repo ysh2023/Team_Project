@@ -4,6 +4,14 @@ public class RecipeReviewBean {
 	private int Reviewnum;
 	private String review;
 	private String id;
+	private String reviewdate;
+	
+	public String getReviewdate() {
+		return reviewdate;
+	}
+	public void setReviewdate(String reviewdate) {
+		this.reviewdate = reviewdate;
+	}
 	private int recipenum;
 	 
 	public int getReviewnum() {

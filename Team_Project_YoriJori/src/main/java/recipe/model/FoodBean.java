@@ -5,7 +5,16 @@ public class FoodBean {
 	private int recipenum;
 	private String foodcategory;
 	private String foodname;
+	private String foodamount;
 	
+	
+	
+	public String getFoodamount() {
+		return foodamount;
+	}
+	public void setFoodamount(String foodamount) {
+		this.foodamount = foodamount;
+	}
 	public int getFoodnum() {
 		return foodnum;
 	}

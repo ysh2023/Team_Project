@@ -10,6 +10,7 @@
 <% String conPath = request.getContextPath(); %>
 <% String resourcesPath = request.getContextPath() + "/resources"; %>
 
+
 <!-- header.jsp -->
 <!DOCTYPE html>
 <html>
@@ -38,6 +39,20 @@
     <link rel="stylesheet" href="<%=resourcesPath%>/css/style.css">
   </head>
   
+<script type="text/javascript" src="<%=resourcesPath%>/js/jquery.js"></script>
+<script type="text/javascript">
+	function toggle(element){
+		console.log(element.checked);
+		if(element.checked){
+			document.search.action="main.board";
+		}else{
+			document.search.action="list.re";
+		}
+	}
+	$(document).ready(function(){ 
+		//alert(1);
+	});
+</script>
   <body class="goto-here">
   	<!-- header -->
 	<header>
@@ -89,9 +104,15 @@
 					</div>
 					<!-- search form  -->
 					<div class="col-md-auto">
-						<form action="list.re" class="search-form">
+						<form action="list.re" class="search-form" name="search">
 							<input type="hidden" value="recipename" name="whatColumn">
-							<input class="form-control me-2" type="search" placeholder="요리명 검색" aria-label="Search" style="margin-top: 10px;" name="keyword">
+							<div class="custom-control custom-switch">
+		  					<input type="checkbox" class="custom-control-input" id="customSwitch1" onclick="toggle(this)">
+		  					<label class="custom-control-label" for="customSwitch1"><span id="switchMessage">스위치 체크시 방구석쉐프 검색</span></label>
+							</div>
+							<div class="input-group mb-3">
+  							 <input type="search" class="form-control" placeholder="요리명 검색" aria-label="Example text with two button addons" name="keyword">
+							 </div>
 						</form>
 					</div>
 				</div>
