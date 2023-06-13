@@ -1,33 +1,110 @@
+<%@page import="java.util.List"%>
+<%@page import="refrigerator.model.RefBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file= "../common/header.jsp" %>
 
 <script type="text/javascript">
-	/* 펼치기 */
-	function expand(){
-		var objclassName = document.getElementById('showIcon').className;
+	/* 전체 토글  */
+	function expandAll(){
+		$('.expand').hide();
+		$('.expand').next().show();       
+		$('.expand').parent().parent().parent().next().show();
+	}//expandAll
+	
+	function collapseAll(){
+		$('.collapse').hide();
+		$('.collapse').prev().show();
+		$('.collapse').parent().parent().parent().next().hide();
+	}//collapseAll
+	
+	/* 카테고리별 토글 */
+	function expandCtg(a){
+		alert(0);
+		var atagId = $(a).attr('id');
 		
-		if(objclassName == "showToggle"){
-			$('.showToggle').hide();
-			$('.showToggle').next().show();       
-			$('.showToggle').parent().parent().parent().next().show();
-			objclassName = "hideToggle";
+		if(atagId == "showCtg1"){
+			$('#showCtg1').hide();
+			$('#showCtg1').next().show();       
+			$('#showCtg1').parent().parent().parent().next().show();
+		}
+		if(atagId == "showCtg2"){
+			$('#showCtg2').hide();
+			$('#showCtg2').next().show();       
+			$('#showCtg2').parent().parent().parent().next().show();
+		}
+		if(atagId == "showCtg3"){
+			$('#showCtg3').hide();
+			$('#showCtg3').next().show();       
+			$('#showCtg3').parent().parent().parent().next().show();
+		}
+		if(atagId == "showCtg4"){
+			$('#showCtg4').hide();
+			$('#showCtg4').next().show();       
+			$('#showCtg4').parent().parent().parent().next().show();
+		}
+		if(atagId == "showCtg5"){
+			$('#showCtg5').hide();
+			$('#showCtg5').next().show();       
+			$('#showCtg5').parent().parent().parent().next().show();
+		}
+		if(atagId == "showCtg6"){
+			$('#showCtg6').hide();
+			$('#showCtg6').next().show();       
+			$('#showCtg6').parent().parent().parent().next().show();
+		}
+		if(atagId == "showCtg7"){
+			$('#showCtg7').hide();
+			$('#showCtg7').next().show();       
+			$('#showCtg7').parent().parent().parent().next().show();
 		}
 	}
 	
-	/* 접기 */
-	function collapse(){
-		var objclassName = document.getElementById('hideIcon').className;
+	function collapseCtg(a){
+		alert(1);
+		var atagId = $(a).attr('id');
 		
-		if(objclassName == "hideToggle"){
-			$('.hideToggle').hide();
-			$('.hideToggle').prev().show();
-			$('.hideToggle').parent().parent().parent().next().hide();
-			objclassName = "showToggle";
+		if(atagId == "hideCtg1"){
+			$('#hideCtg1').hide();
+			$('#hideCtg1').prev().show();
+			$('#hideCtg1').parent().parent().parent().next().hide();
 		}
+		if(atagId == "hideCtg2"){
+			$('#hideCtg2').hide();
+			$('#hideCtg2').prev().show();
+			$('#hideCtg2').parent().parent().parent().next().hide();
+		}
+		if(atagId == "hideCtg3"){
+			$('#hideCtg3').hide();
+			$('#hideCtg3').prev().show();
+			$('#hideCtg3').parent().parent().parent().next().hide();
+		}
+		if(atagId == "hideCtg4"){
+			$('#hideCtg4').hide();
+			$('#hideCtg4').prev().show();
+			$('#hideCtg4').parent().parent().parent().next().hide();
+		}
+		if(atagId == "hideCtg5"){
+			$('#hideCtg5').hide();
+			$('#hideCtg5').prev().show();
+			$('#hideCtg5').parent().parent().parent().next().hide();
+		}
+		if(atagId == "hideCtg6"){
+			$('#hideCtg6').hide();
+			$('#hideCtg6').prev().show();
+			$('#hideCtg6').parent().parent().parent().next().hide();
+		}
+		if(atagId == "hideCtg7"){
+			$('#hideCtg7').hide();
+			$('#hideCtg7').prev().show();
+			$('#hideCtg7').parent().parent().parent().next().hide();
+		}
+		
 	}
+
 	
-	function checkIng(){ //추가하기 버튼 클릭
+	/* 추가하기 버튼 클릭 */
+	function checkIng(){
 		flag = false;
 		var rchk = document.getElementsByName('rowchk');
 			
@@ -80,17 +157,25 @@
 			</select>
 			<input type="button" value="추가하기" class="btn btn-primary" onclick="checkIng()" style="display:inline; position: absolute; right: 5%; margin-top:10px; font-size: 14pt;">
 	    </div>
+	    <div>
+	    	<a href="#" class="expand" onclick="expandAll()" style="display: show; font-size: 14pt;">
+	    		<i class="icon-sort-up"></i> &nbsp; 전체 펼치기
+	    	</a>
+	    	<a href="#" class="collapse" onclick="collapseAll()" style="display: none; font-size: 14pt;">
+				<i class="icon-sort-down"></i> &nbsp; 전체 접기
+			</a>
+	    </div>
 		<div class="cart-list">
 			<table class="table">
 				<!-- 곡류/콩/견과류 -->
 				<thead style="background-color: #89A621; height:30px;">
 					<tr class="text-center">
 						<th colspan="2">
-							<a href="#" class="showToggle" id="showIcon" onclick="expand()" style="display: show; font-size: 12pt; color: white;">
+							<a href="#" class="expand" id="showCtg1" onclick="expandCtg(this)" style="display: show; font-size: 12pt; color: white;">
 								<i class="icon-sort-up"></i>
 								&nbsp; <%=category[0]%>
 							</a>
-							<a href="#" class="hideToggle" id="hideIcon" onclick="collapse()" style="display: none; font-size: 12pt; color: white;">
+							<a href="#" class="collapse" id="hideCtg1" onclick="collapseCtg(this)" style="display: none; font-size: 12pt; color: white;">
 								<i class="icon-sort-down"></i>
 								&nbsp; <%=category[0]%>
 							</a>
@@ -103,8 +188,18 @@
 							<div class="row" align="center" style="margin-left:20px; margin-right:20px;">
 							<c:forEach var="list" items="${ingList1}" varStatus="status">
 								<div class="col-lg-1 text-center" style="height: 100px;">
-						  			<input type="checkbox" name="rowchk" value="${list.ingnum}" style="display: inline;">
+									<input type="checkbox" name="rowchk" value="${list.ingnum}" style="display: inline;">
 						  			<img src="<%=resourcesPath%>/images/icon/${list.ingicon}" style="width: 40px; display: inline;"> <br>
+						  			<!-- 사용자 냉장고와 비교해 있는 식재료면 아이콘 표시 -->
+						  	  		<c:set var="flag" value="false"/>
+						  			<c:forEach var="user" items="${allList}">
+						  				<c:if test="${not flag}">
+						  					<c:if test="${user.ingnum eq list.ingnum}">
+						  						<i class="icon-check-circle"></i>
+						  						<c:set var="flag" value="true"/>
+						  					</c:if>
+						  				</c:if>
+						  			</c:forEach>
 						  	  		<b>${list.ingname}</b><br>
 						  		</div>
 							</c:forEach>
@@ -116,11 +211,11 @@
 				<thead style="background-color: #89A621; height:30px;">
 					<tr class="text-center">
 						<th colspan="2">
-							<a href="#" class="showToggle" id="showIcon" onclick="expand()" style="font-size: 12pt; color: white;">
+							<a href="#" class="expand" id="showCtg2" onclick="expandCtg(this)" style="font-size: 12pt; color: white;">
 								<i class="icon-sort-up"></i>
 								&nbsp; <%=category[1]%>
 							</a>
-							<a href="#" class="hideToggle" id="hideIcon" onclick="collapse()" style="display: none; font-size: 12pt; color: white;">
+							<a href="#" class="collapse" id="hideCtg2" onclick="collapseCtg(this)" style="display: none; font-size: 12pt; color: white;">
 								<i class="icon-sort-down"></i>
 								&nbsp; <%=category[1]%>
 							</a>
@@ -135,6 +230,16 @@
 								<div class="col-lg-2 text-center" style="height: 100px;">
 						  			<input type="checkbox" name="rowchk" value="${list.ingnum}" style="display: inline;">
 						  			<img src="<%=resourcesPath%>/images/icon/${list.ingicon}" style="width: 40px; display: inline;"> <br>
+						  	  		<!-- 사용자 냉장고와 비교해 있는 식재료면 아이콘 표시 -->
+						  	  		<c:set var="flag" value="false"/>
+						  			<c:forEach var="user" items="${allList}">
+						  				<c:if test="${not flag}">
+						  					<c:if test="${user.ingnum eq list.ingnum}">
+						  						<i class="icon-check-circle"></i>
+						  						<c:set var="flag" value="true"/>
+						  					</c:if>
+						  				</c:if>
+						  			</c:forEach>
 						  	  		<b>${list.ingname}</b><br>
 						  		</div>
 							</c:forEach>
@@ -146,11 +251,11 @@
 				<thead style="background-color: #89A621; height:30px;">
 					<tr class="text-center">
 						<th colspan="2">
-							<a href="#" class="showToggle" id="showIcon" onclick="expand()" style="display: show; font-size: 12pt; color: white;">
+							<a href="#" class="expand" id="showCtg3" onclick="expandCtg(this)" style="display: show; font-size: 12pt; color: white;">
 								<i class="icon-sort-up"></i>
 								&nbsp; <%=category[2]%>
 							</a>
-							<a href="#" class="hideToggle" id="hideIcon" onclick="collapse()" style="display: none; font-size: 12pt; color: white;">
+							<a href="#" class="collapse" id="hideCtg3" onclick="collapseCtg(this)" style="display: none; font-size: 12pt; color: white;">
 								<i class="icon-sort-down"></i>
 								&nbsp; <%=category[2]%>
 							</a>
@@ -165,6 +270,16 @@
 								<div class="col-lg-1 text-center" style="height: 100px;">
 						  			<input type="checkbox" name="rowchk" value="${list.ingnum}" style="display: inline;">
 						  			<img src="<%=resourcesPath%>/images/icon/${list.ingicon}" style="width: 40px; display: inline;"> <br>
+						  	  		<!-- 사용자 냉장고와 비교해 있는 식재료면 아이콘 표시 -->
+						  	  		<c:set var="flag" value="false"/>
+						  			<c:forEach var="user" items="${allList}">
+						  				<c:if test="${not flag}">
+						  					<c:if test="${user.ingnum eq list.ingnum}">
+						  						<i class="icon-check-circle"></i>
+						  						<c:set var="flag" value="true"/>
+						  					</c:if>
+						  				</c:if>
+						  			</c:forEach>
 						  	  		<b>${list.ingname}</b><br>
 						  		</div>
 							</c:forEach>
@@ -176,11 +291,11 @@
 				<thead style="background-color: #89A621; height:30px;">
 					<tr class="text-center">
 						<th colspan="2">
-							<a href="#" class="showToggle" id="showIcon" onclick="expand()" style="display: show; font-size: 12pt; color: white;">
+							<a href="#" class="expand" id="showCtg4" onclick="expandCtg(this)" style="display: show; font-size: 12pt; color: white;">
 								<i class="icon-sort-up"></i>
 								&nbsp; <%=category[3]%>
 							</a>
-							<a href="#" class="hideToggle" id="hideIcon" onclick="collapse()" style="display: none; font-size: 12pt; color: white;">
+							<a href="#" class="collapse" id="hideCtg4" onclick="collapseCtg(this)" style="display: none; font-size: 12pt; color: white;">
 								<i class="icon-sort-down"></i>
 								&nbsp; <%=category[3]%>
 							</a>
@@ -195,6 +310,16 @@
 								<div class="col-lg-1 text-center" style="height: 100px;">
 						  			<input type="checkbox" name="rowchk" value="${list.ingnum}" style="display: inline;">
 						  			<img src="<%=resourcesPath%>/images/icon/${list.ingicon}" style="width: 40px; display: inline;"> <br>
+						  	  		<!-- 사용자 냉장고와 비교해 있는 식재료면 아이콘 표시 -->
+						  	  		<c:set var="flag" value="false"/>
+						  			<c:forEach var="user" items="${allList}">
+						  				<c:if test="${not flag}">
+						  					<c:if test="${user.ingnum eq list.ingnum}">
+						  						<i class="icon-check-circle"></i>
+						  						<c:set var="flag" value="true"/>
+						  					</c:if>
+						  				</c:if>
+						  			</c:forEach>
 						  	  		<b>${list.ingname}</b><br>
 						  		</div>
 							</c:forEach>
@@ -206,11 +331,11 @@
 				<thead style="background-color: #89A621; height:30px;">
 					<tr class="text-center">
 						<th colspan="2">
-							<a href="#" class="showToggle" id="showIcon" onclick="expand()" style="display: show; font-size: 12pt; color: white;">
+							<a href="#" class="expand" id="showCtg5" onclick="expandCtg(this)" style="display: show; font-size: 12pt; color: white;">
 								<i class="icon-sort-up"></i>
 								&nbsp; <%=category[4]%>
 							</a>
-							<a href="#" class="hideToggle" id="hideIcon" onclick="collapse()" style="display: none; font-size: 12pt; color: white;">
+							<a href="#" class="collapse" id="hideCtg5" onclick="collapseCtg(this)" style="display: none; font-size: 12pt; color: white;">
 								<i class="icon-sort-down"></i>
 								&nbsp; <%=category[4]%>
 							</a>
@@ -225,6 +350,16 @@
 								<div class="col-lg-1 text-center" style="height: 100px;">
 						  			<input type="checkbox" name="rowchk" value="${list.ingnum}" style="display: inline;">
 						  			<img src="<%=resourcesPath%>/images/icon/${list.ingicon}" style="width: 40px; display: inline;"> <br>
+						  	  		<!-- 사용자 냉장고와 비교해 있는 식재료면 아이콘 표시 -->
+						  	  		<c:set var="flag" value="false"/>
+						  			<c:forEach var="user" items="${allList}">
+						  				<c:if test="${not flag}">
+						  					<c:if test="${user.ingnum eq list.ingnum}">
+						  						<i class="icon-check-circle"></i>
+						  						<c:set var="flag" value="true"/>
+						  					</c:if>
+						  				</c:if>
+						  			</c:forEach>
 						  	  		<b>${list.ingname}</b><br>
 						  		</div>
 							</c:forEach>
@@ -236,11 +371,11 @@
 				<thead style="background-color: #89A621; height:30px;">
 					<tr class="text-center">
 						<th colspan="2">
-							<a href="#" class="showToggle" id="showIcon" onclick="expand()" style="display: show; font-size: 12pt; color: white;">
+							<a href="#" class="expand" id="showCtg6" onclick="expandCtg(this)" style="display: show; font-size: 12pt; color: white;">
 								<i class="icon-sort-up"></i>
 								&nbsp; <%=category[5]%>
 							</a>
-							<a href="#" class="hideToggle" id="hideIcon" onclick="collapse()" style="display: none; font-size: 12pt; color: white;">
+							<a href="#" class="collapse" id="hideCtg6" onclick="collapseCtg(this)" style="display: none; font-size: 12pt; color: white;">
 								<i class="icon-sort-down"></i>
 								&nbsp; <%=category[5]%>
 							</a>
@@ -255,6 +390,16 @@
 								<div class="col-lg-1 text-center" style="height: 100px;">
 						  			<input type="checkbox" name="rowchk" value="${list.ingnum}" style="display: inline;">
 						  			<img src="<%=resourcesPath%>/images/icon/${list.ingicon}" style="width: 40px; display: inline;"> <br>
+						  	  		<!-- 사용자 냉장고와 비교해 있는 식재료면 아이콘 표시 -->
+						  	  		<c:set var="flag" value="false"/>
+						  			<c:forEach var="user" items="${allList}">
+						  				<c:if test="${not flag}">
+						  					<c:if test="${user.ingnum eq list.ingnum}">
+						  						<i class="icon-check-circle"></i>
+						  						<c:set var="flag" value="true"/>
+						  					</c:if>
+						  				</c:if>
+						  			</c:forEach>
 						  	  		<b>${list.ingname}</b><br>
 						  		</div>
 							</c:forEach>
@@ -266,11 +411,11 @@
 				<thead style="background-color: #89A621; height:30px;">
 					<tr class="text-center">
 						<th colspan="2">
-							<a href="#" class="showToggle" id="showIcon" onclick="expand()" style="display: show; font-size: 12pt; color: white;">
+							<a href="#" class="expand" id="showCtg7" onclick="expandCtg(this)" style="display: show; font-size: 12pt; color: white;">
 								<i class="icon-sort-up"></i>
 								&nbsp; <%=category[6]%>
 							</a>
-							<a href="#" class="hideToggle" id="hideIcon" onclick="collapse()" style="display: none; font-size: 12pt; color: white;">
+							<a href="#" class="collapse" id="hideCtg7" onclick="collapseCtg(this)" style="display: none; font-size: 12pt; color: white;">
 								<i class="icon-sort-down"></i>
 								&nbsp; <%=category[6]%>
 							</a>
@@ -285,6 +430,16 @@
 								<div class="col-lg-1 text-center" style="height: 100px;">
 						  			<input type="checkbox" name="rowchk" value="${list.ingnum}" style="display: inline;">
 						  			<img src="<%=resourcesPath%>/images/icon/${list.ingicon}" style="width: 40px; display: inline;"> <br>
+						  	  		<!-- 사용자 냉장고와 비교해 있는 식재료면 아이콘 표시 -->
+						  	  		<c:set var="flag" value="false"/>
+						  			<c:forEach var="user" items="${allList}">
+						  				<c:if test="${not flag}">
+						  					<c:if test="${user.ingnum eq list.ingnum}">
+						  						<i class="icon-check-circle"></i>
+						  						<c:set var="flag" value="true"/>
+						  					</c:if>
+						  				</c:if>
+						  			</c:forEach>
 						  	  		<b>${list.ingname}</b><br>
 						  		</div>
 							</c:forEach>

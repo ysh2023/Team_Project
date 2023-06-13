@@ -9,7 +9,7 @@
 
 <script type="text/javascript">
 	
-	/* 식재료 체크박스 */
+	/* 전체 선택 */
 	function allCheck(obj){	//obj=allcheck
 		var rchk = document.getElementsByName('rowchk');	//rowchk들을 배열 변수에 담음
 			
@@ -23,6 +23,63 @@
 			}
 		}
 	}//allCheck
+	
+	/* 냉장보관 선택 */
+	function refCheck(obj){	//obj=refcheck
+		var rchk = document.getElementsByName('rowchk');	//rowchk들을 배열 변수에 담음
+			
+		if(obj.checked){ //refcheck 체크했으면
+			for(i=0; i<rchk.length; i++){
+				if(rchk[i].id == "냉장"){
+					rchk[i].checked = true;	//rowchk들을 checked 상태로
+				}
+			}
+		}else{ //refcheck 체크 해제했으면
+			for(i=0; i<rchk.length; i++){
+				if(rchk[i].id == "냉장"){
+					rchk[i].checked = false;	//rowchk들을 checked 상태 해제
+				}
+			}
+		}
+	}//refCheck
+	
+	/* 냉동보관 선택 */
+	function freezeCheck(obj){	//obj=refcheck
+		var rchk = document.getElementsByName('rowchk');	//rowchk들을 배열 변수에 담음
+			
+		if(obj.checked){ //refcheck 체크했으면
+			for(i=0; i<rchk.length; i++){
+				if(rchk[i].id == "냉동"){
+					rchk[i].checked = true;	//rowchk들을 checked 상태로
+				}
+			}
+		}else{ //refcheck 체크 해제했으면
+			for(i=0; i<rchk.length; i++){
+				if(rchk[i].id == "냉동"){
+					rchk[i].checked = false;	//rowchk들을 checked 상태 해제
+				}
+			}
+		}
+	}//freezeCheck
+	
+	/* 실온보관 선택 */
+	function roomCheck(obj){	//obj=refcheck
+		var rchk = document.getElementsByName('rowchk');	//rowchk들을 배열 변수에 담음
+			
+		if(obj.checked){ //refcheck 체크했으면
+			for(i=0; i<rchk.length; i++){
+				if(rchk[i].id == "실온"){
+					rchk[i].checked = true;	//rowchk들을 checked 상태로
+				}
+			}
+		}else{ //refcheck 체크 해제했으면
+			for(i=0; i<rchk.length; i++){
+				if(rchk[i].id == "실온"){
+					rchk[i].checked = false;	//rowchk들을 checked 상태 해제
+				}
+			}
+		}
+	}//roomCheck
 	
 	function checkDel(){ //삭제 버튼 클릭
 		flag = false;
@@ -85,10 +142,10 @@
     </div>
 </section>
 
-<!-- 냉장고 리스트 -->
 <section class="ftco-section testimony-section">
 	<div class="container">
-        <div class="row ftco-animate">
+        <div class="row">
+          <!-- 냉장고 리스트 -->
           <div class="col-md-12">
             <div class="text text-center" style="margin-bottom: 50px;">
             	<a class="button" href="#all">전체보기</a> &nbsp;
@@ -112,7 +169,7 @@
                     <span class="position">show all</span>
                   </div>
                   <!-- select, check, button -->
-                  <div style="margin: 40px; height: 60px; display:flex; align-items: center;">
+                  <div style="margin: 40px; margin-bottom:0px; height: 60px; display:flex; align-items: center;">
                     <form method="get" style="display: inline;">
                   	  <select name="arrange" onchange="this.form.submit()">
                   		<option value="i.ing_name" <c:if test="${arrange eq 'i.ing_name'}">selected</c:if>>이름순 정렬</option>
@@ -123,21 +180,34 @@
                   	&nbsp;&nbsp;&nbsp;
                   	<!-- Check all -->
                   	<span>
-                  		<input type="checkbox" id="allcheck" name="allcheck" onClick="allCheck(this)"> 전체 선택
+                  		<input type="checkbox" id="allcheck" name="allcheck" onClick="allCheck(this)"> 전체 선택 &nbsp;&nbsp;
+                  		<input type="checkbox" id="refcheck" name="refcheck" onClick="refCheck(this)"> 냉장보관 선택 &nbsp;&nbsp;
+                  		<input type="checkbox" id="freezecheck" name="freezecheck" onClick="freezeCheck(this)"> 냉동보관 선택 &nbsp;&nbsp;
+                  		<input type="checkbox" id="roomcheck" name="roomcheck" onClick="roomCheck(this)"> 실온보관 선택
                   	</span>
-                  	<!-- 추가, 삭제 button -->
+                  	<!-- 삭제, 추가 button -->
                   	<ul class="ftco-footer-social list-unstyled" style="display:inline; position: absolute; right: 5%">
+					    <li class="ftco-animate fadeInUp ftco-animated">
+					      <a href="#" onclick="checkDel();" style="background-color: gray;">
+					        <span class="icon-delete_forever" style="color: white;"></span>
+					      </a>
+					    </li>
 					    <li class="ftco-animate fadeInUp ftco-animated">
 					      <a href="insert.ref?arrange=${arrange}&storage=ref" style="background-color: #F2BC1B;">
 					        <span class="icon-add_circle" style="color: white;"></span>
 					      </a>
 					    </li>
-					    <li class="ftco-animate fadeInUp ftco-animated">
-					      <a href="#" onclick="checkDel();" style="background-color: #F2BC1B">
-					        <span class="icon-delete_forever" style="color: white;"></span>
-					      </a>
-					    </li>
 					</ul>
+                  </div>
+                  <!-- 보관별 선택 -->
+                  <div style="margin: 20px; margin-top: 0px; height: 40px; display:flex; align-items: center;">
+                  	<span style="padding-left:20px;">
+                  		<i class="icon-leaf" style="color:#7cde6a;"></i> 냉장보관 &nbsp;&nbsp;
+						<i class="icon-snowflake-o" style="color:#99c2f7;"></i> 냉동보관 &nbsp;&nbsp;
+						<i class="icon-inbox" style="color:#786248;"></i> 실온보관 &nbsp;&nbsp;
+					</span>
+					<span style="display:inline; position: absolute; right: 5%">
+					</span>
                   </div>
                   <!-- 식재료 리스트 -->
                   <form id="all_list" name="all_list" action="delete.ref" method="post">
@@ -148,9 +218,19 @@
 					  <c:if test="${allList != null}">
 					    <c:forEach var="list" items="${allList}">
 						  <div class="col-lg-2 text-center" style="height: 100px">
-						  	<input type="checkbox" name="rowchk" value="${list.ingnum}" style="display: inline;">
+						  	<input type="checkbox" name="rowchk" id="${list.refstorage}" value="${list.ingnum}" style="display: inline;">
 						  	<a href="update.ref?ingnum=${list.ingnum}">
 						  	  <img src="<%=resourcesPath%>/images/icon/${list.ingicon}" style="width: 40px; display: inline;"> <br>
+						  	  <!-- 보관 위치별 아이콘 색 -->
+						  	  <c:if test="${list.refstorage eq '냉장'}">
+						  	  	<i class="icon-leaf" style="color:#7cde6a;"></i>
+						  	  </c:if>
+						  	  <c:if test="${list.refstorage eq '냉동'}">
+						  	  	<i class="icon-snowflake-o" style="color:#99c2f7;"></i>
+						  	  </c:if>
+						  	  <c:if test="${list.refstorage eq '실온'}">
+						  	  	<i class="icon-inbox" style="color:#786248;"></i>
+						  	  </c:if>
 						  	  <b>${list.ingname}</b>
 						  	</a><br>
 						  	<!-- 소비기한 디데이 계산 -->
@@ -208,21 +288,21 @@
                   	&nbsp;&nbsp;&nbsp;
                   	<!-- Check all -->
                   	<span>
-                  		<input type="checkbox" id="allcheck" name="allcheck" onClick="allCheck(this)"> 전체 선택
+                  		<input type="checkbox" id="refcheck" name="refcheck" onClick="refCheck(this)"> 전체 선택
                   	</span>
-                  	<!-- 추가, 삭제 button -->
+                  	<!-- 삭제, 추가 button -->
                   	<ul class="ftco-footer-social list-unstyled" style="display:inline; position: absolute; right: 5%">
+                  		<li class="ftco-animate fadeInUp ftco-animated">
+					      <a href="#" onclick="checkDel();" style="background-color: gray;">
+					        <span class="icon-delete_forever" style="color: white;"></span>
+					      </a>
+					    </li>
 					    <li class="ftco-animate fadeInUp ftco-animated">
 					      <a href="insert.ref?arrange=${arrange}&storage=ref" style="background-color: #F2BC1B;">
 					        <span class="icon-add_circle" style="color: white;"></span>
 					      </a>
 					    </li>
-					    <li class="ftco-animate fadeInUp ftco-animated">
-					      <a href="#" onclick="checkDel();" style="background-color: #F2BC1B">
-					        <span class="icon-delete_forever" style="color: white;"></span>
-					      </a>
-					    </li>
-					  </ul>
+					</ul>
                   </div>
                   <!-- 식재료 리스트 -->
                   <form id="ref_list" name="ref_list" action="delete.ref" method="post">
@@ -233,7 +313,7 @@
 					  <c:if test="${refList != null}">
 					    <c:forEach var="list" items="${refList}">
 						  <div class="col-lg-2 text-center" style="height: 100px">
-						  	<input type="checkbox" name="rowchk" value="${list.ingnum}" style="display: inline;">
+						    <input type="checkbox" name="rowchk" id="${list.refstorage}" value="${list.ingnum}" style="display: inline;">
 						  	<a href="update.ref?ingnum=${list.ingnum}">
 						  	  <img src="<%=resourcesPath%>/images/icon/${list.ingicon}" style="width: 40px; display: inline;"> <br>
 						  	  <b>${list.ingname}</b>
@@ -291,21 +371,21 @@
                   	&nbsp;&nbsp;&nbsp;
                   	<!-- Check all -->
                   	<span>
-                  		<input type="checkbox" id="allcheck" name="allcheck" onClick="allCheck(this)"> 전체 선택
+                  		<input type="checkbox" id="freezecheck" name="freezecheck" onClick="freezeCheck(this)"> 전체 선택
                   	</span>
-                  	<!-- 추가, 삭제 button -->
+                  	<!-- 삭제, 추가 button -->
                   	<ul class="ftco-footer-social list-unstyled" style="display:inline; position: absolute; right: 5%">
-					    <li class="ftco-animate fadeInUp ftco-animated">
-					      <a href="insert.ref?arrange=${arrange}&storage=freeze" style="background-color: #F2BC1B;">
-					        <span class="icon-add_circle" style="color: white;"></span>
-					      </a>
-					    </li>
-					    <li class="ftco-animate fadeInUp ftco-animated">
-					      <a href="#" onclick="checkDel();" style="background-color: #F2BC1B">
+                  		<li class="ftco-animate fadeInUp ftco-animated">
+					      <a href="#" onclick="checkDel();" style="background-color: gray;">
 					        <span class="icon-delete_forever" style="color: white;"></span>
 					      </a>
 					    </li>
-					  </ul>
+					    <li class="ftco-animate fadeInUp ftco-animated">
+					      <a href="insert.ref?arrange=${arrange}&storage=ref" style="background-color: #F2BC1B;">
+					        <span class="icon-add_circle" style="color: white;"></span>
+					      </a>
+					    </li>
+					</ul>
                   </div>
                   <!-- 식재료 리스트 -->
                   <form id="freeze_list" name="freeze_list" action="delete.ref" method="post">
@@ -316,7 +396,7 @@
                       <c:if test="${freezeList != null}">
 					    <c:forEach var="list" items="${freezeList}">
 					      <div class="col-lg-2 text-center" style="height: 100px">
-						  	<input type="checkbox" name="rowchk" value="${list.ingnum}" style="display: inline;">
+					        <input type="checkbox" name="rowchk" id="${list.refstorage}" value="${list.ingnum}" style="display: inline;">
 						  	<a href="update.ref?ingnum=${list.ingnum}">
 						  	  <img src="<%=resourcesPath%>/images/icon/${list.ingicon}" style="width: 40px; display: inline;"> <br>
 						  	  <b>${list.ingname}</b>
@@ -374,21 +454,21 @@
                   	&nbsp;&nbsp;&nbsp;
                   	<!-- Check all -->
                   	<span>
-                  		<input type="checkbox" id="allcheck" name="allcheck" onClick="allCheck(this)"> 전체 선택
+                  		<input type="checkbox" id="roomcheck" name="roomcheck" onClick="roomCheck(this)"> 전체 선택
                   	</span>
-                  	<!-- 추가, 삭제 button -->
+                  	<!-- 삭제, 추가 button -->
                   	<ul class="ftco-footer-social list-unstyled" style="display:inline; position: absolute; right: 5%">
-					    <li class="ftco-animate fadeInUp ftco-animated">
-					      <a href="insert.ref?arrange=${arrange}&storage=room" style="background-color: #F2BC1B;">
-					        <span class="icon-add_circle" style="color: white;"></span>
-					      </a>
-					    </li>
-					    <li class="ftco-animate fadeInUp ftco-animated">
-					      <a href="#" onclick="checkDel();" style="background-color: #F2BC1B">
+                  		<li class="ftco-animate fadeInUp ftco-animated">
+					      <a href="#" onclick="checkDel();" style="background-color: gray;">
 					        <span class="icon-delete_forever" style="color: white;"></span>
 					      </a>
 					    </li>
-					  </ul>
+					    <li class="ftco-animate fadeInUp ftco-animated">
+					      <a href="insert.ref?arrange=${arrange}&storage=ref" style="background-color: #F2BC1B;">
+					        <span class="icon-add_circle" style="color: white;"></span>
+					      </a>
+					    </li>
+					</ul>
                   </div>
                   <!-- 식재료 리스트 -->
                   <form id="room_list" name="room_list" action="delete.ref" method="post">
@@ -398,7 +478,8 @@
                       </c:if>
                       <c:if test="${roomList != null}">
 					    <c:forEach var="list" items="${roomList}">
-					      <div class="col-lg-2 text-center" style="height: 100px"><input type="checkbox" name="rowchk" value="${list.ingnum}" style="display: inline;">
+					      <div class="col-lg-2 text-center" style="height: 100px">
+					        <input type="checkbox" name="rowchk" id="${list.refstorage}" value="${list.ingnum}" style="display: inline;">
 						  	<a href="update.ref?ingnum=${list.ingnum}">
 						  	  <img src="<%=resourcesPath%>/images/icon/${list.ingicon}" style="width: 40px; display: inline;"> <br>
 						  	  <b>${list.ingname}</b>
