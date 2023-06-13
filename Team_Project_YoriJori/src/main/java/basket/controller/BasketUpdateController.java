@@ -18,6 +18,8 @@ import basket.model.BasketBean;
 import basket.model.BasketDao;
 import basket.model.JoinBean;
 import member.model.MemberBean;
+import product.model.ProductBean;
+import product.model.ProductDao;
 
 @Controller
 public class BasketUpdateController {
@@ -27,21 +29,38 @@ public class BasketUpdateController {
 	@Autowired
 	BasketDao bdao;
 	
+	@Autowired
+	ProductDao pdao;
+	
 	@RequestMapping(value=command)
 	public ModelAndView doAction(@RequestParam(value="bsknum") int bsknum,
 			@RequestParam(value="qty") int qty,
 			Model model, HttpServletRequest request,HttpSession session,HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView();
-		BasketBean bb = new BasketBean();
-		bb.setBsknum(bsknum);
-		bb.setBskqty(qty);
-		int cnt = bdao.updateBasket(bb);
-		if(cnt > 1) {
-			System.out.println("삭제성공");
+		BasketBean bb2  = bdao.getByNumBasket(bsknum);
+		System.out.println("bskpdnum:"+bb2.getBskpdnum());
+		ProductBean pb = pdao.getByNum(bb2.getBskpdnum());
+		if(pb.getPdstock() < qty) {
+			try {
+				response.setContentType("text/html; charset=UTF-8");
+				PrintWriter out = response.getWriter();
+				out.println("<script>alert('구매수량이 재고수량보다 많습니다.'); location.href='list.bsk';</script>");
+				out.flush();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}else {
-			System.out.println("삭제실패");
+			BasketBean bb = new BasketBean();
+			bb.setBsknum(bsknum);
+			bb.setBskqty(qty);
+			int cnt = bdao.updateBasket(bb);
+			if(cnt > 1) {
+				System.out.println("삭제성공");
+			}else {
+				System.out.println("삭제실패");
+			}
+			mav.setViewName(gotoPage);
 		}
-		mav.setViewName(gotoPage);
 		return mav;
 	}
 }

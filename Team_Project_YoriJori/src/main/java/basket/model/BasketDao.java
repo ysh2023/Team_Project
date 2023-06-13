@@ -83,5 +83,12 @@ private String namespace = "basket.model.Basket";
 		return lists;
 	}
 
+	public BasketBean getByNumBasket(int bsknum) {
+		BasketBean bb3 = new BasketBean();
+		bb3 = sqlSessionTemplate.selectOne(namespace+".getByNumBasket", bsknum);
+		System.out.println("bb3:"+bb3);
+		return bb3;
+	}
+
 	
 }

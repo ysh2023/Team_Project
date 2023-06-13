@@ -51,13 +51,24 @@
 	                 </button>
 	             	</span>
 	          	</div>
-	          	<div class="w-100"></div>
-
+	          	<div class="w-100">
+		          	<div class="col-md-12">
+		          		<p style="color: #000;">상품 재고 : ${product.pdstock }</p>
+		          	</div>
+	          	</div>
           	</div>
-          	<p>
-          		<input type="submit" formaction="orderpay.ord" class="btn btn-black py-3 px-5" value="구매하기">
-          		<input type="submit" formaction="insert.bsk" class="btn btn-black py-3 px-5" value="장바구니에 담기">
-          	</p>
+		    <p>
+          	<c:choose>
+	          	<c:when test="${product.pdstock > 0 }">
+			          	<input type="submit" formaction="orderpay.ord" class="btn btn-black py-3 px-5" value="구매하기">
+			          	<input type="submit" formaction="insert.bsk" class="btn btn-black py-3 px-5" value="장바구니에 담기">
+	          	</c:when>
+	          	<c:otherwise>
+	          			<span>품절된 상품입니다.</span>
+	          	</c:otherwise>
+          	</c:choose>
+		    </p>
+          	
     			</div>
     		</div>
     	</div>
@@ -67,7 +78,6 @@
 	<script type="text/javascript" src="<%=resourcesPath%>/js/jquery-3.2.1.min.js"/></script>
     <script>
 		$(document).ready(function(){
-
 		var quantitiy=0;
 		   $('.quantity-right-plus').click(function(e){
 		        
@@ -75,10 +85,9 @@
 		        e.preventDefault();
 		        // Get the field name
 		        var quantity = parseInt($('#quantity').val());
-		        
 		        // If is not undefined
-		            
-		            $('#quantity').val(quantity + 1);
+		          	 $('#quantity').val(quantity + 1);
+		            	
 
 		          
 		            // Increment

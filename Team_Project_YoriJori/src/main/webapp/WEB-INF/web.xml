@@ -191,7 +191,7 @@
 		<url-pattern>*.ord</url-pattern>
 	</servlet-mapping>
 	
-	<!-- order -->
+	<!-- orderdetail -->
 	<servlet>
 		<servlet-name>orderdetail</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet

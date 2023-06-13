@@ -122,46 +122,6 @@
   		});
   		
   	});
-      
-      /*
-      function requestPay() {
-          IMP.request_pay(
-                  {
-                	pg : 'html5_inicis',
-                    pay_method: "card",
-                    merchant_uid: "IMP"+makeMerchantUid, // 결제 고유 번호
-                    name: '${ordpdname}', //상품명
-                    amount: ${totalAmount}, //상품가격
-                    buyer_email: document.getElementById('ordemail').value,
-                    buyer_name: document.getElementById('ordname').value,
-                    buyer_tel: document.getElementById('ordphone').value,
-                    buyer_addr: document.getElementById('ordaddr').value,
-                    buyer_postcode: document.getElementById('ordzipcode').value 
-                  },
-                  function (rsp) {
-                	  if (rsp.success) {// 결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
-                		  var msg = '결제가 완료되었습니다.';
-                	        msg += '주문 번호 : ' + rsp.merchant_uid;
-                	        msg += '상품 이름 : ' + rsp.name;
-                	        msg += '결제 금액 : ' + rsp.paid_amount;
-                	        msg += '구매자 이메일 : ' + rsp.buyer_email;
-                	        msg += '구매자 이름 : ' + rsp.buyer_name;
-                	        msg += '구매자 번호 : ' + rsp.buyer_tel;
-                	        msg += '구매자 주소 : ' + rsp.buyer_addr;
-                	        msg += '구매자 우편번호 : ' + rsp.buyer_postcode;
-                	        alert(msg);
-                            location.href="orderinsert.ord?merchant_uid="+rsp.merchant_uid+"&name="+rsp.name+"&amount="+rsp.paid_amount+"&buyer_email="+rsp.buyer_email+
-                            		"&buyer_name="+rsp.buyer_name+"&buyer_tel="+rsp.buyer_tel+"&buyer_addr="+rsp.buyer_addr+"&buyer_postcode="+rsp.buyer_postcode;
-                      } else {
-                    	  var msg = '결제에 실패하였습니다.';
-                          msg += '에러내용 : ' + rsp.error_msg;
-                          alert(msg);
-                      }
-                  });
-          
-      }
-      */
-      
     </script>
     <!-- 아임포트 api 설정 끝-->
     
