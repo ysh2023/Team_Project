@@ -40,12 +40,19 @@ public class ProductListController {
 			Model model, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		
+		System.out.print("serachName:"+searchName);
+		
 		
 		Map<String,String> map= new HashMap<String,String>();
 		
 		map.put("whatColumn", whatColumn);
 		map.put("keyword", keyword);
+		if(searchName!=null) {
 		map.put("searchName", "%"+searchName+"%");
+		}
+		else {
+			map.put("searchName", "");
+		}
 		String url= request.getContextPath()+command;
 		
 		int totalCount=pdao.getTotalCount(map);

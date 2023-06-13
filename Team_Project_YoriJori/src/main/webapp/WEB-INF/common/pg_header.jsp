@@ -49,6 +49,9 @@
    	 <strong><li style="font-size: 30px">게시물</li></strong> 
    	<li><a href="#">내가 쓴 게시물</a></li>
    	<li><a href="#">내가 쓴 댓글</a></li>
+   	
+   	<strong><li style="font-size: 30px">찜</li></strong> 
+   	<li><a href="listDibs.mp">찜한 상품</a></li>
    	  
       
  	<strong>  <li style="font-size: 30px">개인정보</li></strong> 

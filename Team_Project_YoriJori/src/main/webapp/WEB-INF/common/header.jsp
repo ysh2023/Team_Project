@@ -111,7 +111,7 @@
 							class="nav-link dropdown-toggle" href="shop.prd?whatColumn=no&searchName=${searchName}" id="dropdown04"
 							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">장보기</a>
 							<div class="dropdown-menu" aria-labelledby="dropdown04">
-								<a class="dropdown-item" href="shop.prd?whatColumn=no&searchName=${searchName}">전체보기</a> <a
+								<a class="dropdown-item" href="shop.prd?whatColumn=no">전체보기</a> <a
 									class="dropdown-item" href="shop.prd?whatColumn=se&keyword=채소&searchName=${searchName}">채소</a>
 								<a class="dropdown-item"
 									href="shop.prd?whatColumn=se&keyword=과일&searchName=${searchName}">과일</a> <a

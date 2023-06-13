@@ -4,8 +4,34 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="mypage.model.Mypage">
+<insert id="InsertDibs">
+insert into dibs values(dibseq.nextval,#{id},#{pdnum})
+</insert>
+
+<select id="GetAllDibs" resultType="mypage.model.DibsBean">
+
+select pd.pd_num,pd.pd_name,pd.pd_price,pd.pd_image ,
+dib.dibs_pdnum,dib.dibs_id,dib.dibs_num
+from product pd inner join dibs dib
+on pd.pd_num= dib.dibs_pdnum and dibs_id=#{user_id}
 
 
+</select>
+
+
+	<select id="GetTotalCount" resultType="int">
+		select count(*) from dibs
+		where dibs_id=#{id}
+
+	</select>
 	
+	<select id="GetDibsByNum" resultType="mypage.model.DibsBean">
+	select * from dibs where dibs_id=#{id} and dibs_pdnum=#{pdnum}
+	</select>
+	
+	<delete id="DeleteDibs">
+	delete dibs where dibs_id=#{id} and dibs_pdnum=#{pdnum}
+	</delete>
+
 
 </mapper>
