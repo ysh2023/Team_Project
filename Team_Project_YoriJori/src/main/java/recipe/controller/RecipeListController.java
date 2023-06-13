@@ -38,7 +38,7 @@ public class RecipeListController {
 		
 		if("food_name".equals(whatColumn)) {
 			int ingrecipetotalCount=rdao.getingrecipeTotalCount(map);
-			System.out.println("레시피객수"+ingrecipetotalCount);
+			System.out.println("�젅�떆�뵾媛앹닔"+ingrecipetotalCount);
 			Paging2 pageInfo = new Paging2(pageNumber, "12", ingrecipetotalCount, url, whatColumn, keyword, null);
 			List<RecipeBean> recipeList = rdao.getAllRecipeByIngre(map,pageInfo);
 			mav.addObject("recipeList", recipeList);
@@ -47,10 +47,10 @@ public class RecipeListController {
 			
 		}else if("food_category".equals(whatColumn)){
 			int foodRecipeTotalCount = rdao.getFoodRecipeTotalCount(map);
-			System.out.println("레시피갯수"+foodRecipeTotalCount);
+			System.out.println("�젅�떆�뵾媛��닔"+foodRecipeTotalCount);
 			Paging2 pageInfo = new Paging2(pageNumber, "12", foodRecipeTotalCount, url, whatColumn, keyword, null);
 			List<RecipeBean> recipeList = rdao.getAllRecipeByFoodCate(map,pageInfo);
-			mav.addObject("recipeList", recipeList);
+			mav.addObject("recipeList", recipeList); 
 			mav.addObject("pageInfo", pageInfo);
 			mav.setViewName(getPage);
 			
