@@ -10,6 +10,11 @@
 		insert into orderdetail(odt_num,odt_id,odt_ordnum,odt_pdnum,odt_qty,odt_price)
 		values(seqodt_num.nextval,#{odtid},#{odtordnum},#{odtpdnum},#{odtqty},#{odtprice})
 	</insert>
-	
 
+	<select id="getByOrdnum" resultType="orderdetail.model.JoinBean">
+		select odt.odt_ordnum,p.pd_name, p.pd_image,p.pd_price,odt.odt_qty
+		from orderdetail odt full outer join product p
+		on odt.odt_pdnum = p.pd_num
+		where odt_ordnum = #{odtordnum}
+	</select>
 </mapper>

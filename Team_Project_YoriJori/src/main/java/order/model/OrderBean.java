@@ -3,29 +3,31 @@ package order.model;
 public class OrderBean {
 	private String ordnum;
 	private String ordpdname;
-	private int ordtotalprice;
+	private int ordtotalpay;
 	private String ordemail;
 	private String ordname;
 	private String ordtel;
 	private String ordaddr;
 	private String ordzipcode;
 	private String ordmemid;
+	private String orddate;
 	
 	public OrderBean() {
 		
 	}
-	public OrderBean(String ordnum, String ordpdname, int ordtotalprice, String ordemail, String ordname, String ordtel,
-			String ordaddr, String ordzipcode,String ordmemid) {
+	public OrderBean(String ordnum, String ordpdname, int ordtotalpay, String ordemail, String ordname, String ordtel,
+			String ordaddr, String ordzipcode,String ordmemid,String orddate) {
 		super();
 		this.ordnum = ordnum;
 		this.ordpdname = ordpdname;
-		this.ordtotalprice = ordtotalprice;
+		this.ordtotalpay = ordtotalpay;
 		this.ordemail = ordemail;
 		this.ordname = ordname;
 		this.ordtel = ordtel;
 		this.ordaddr = ordaddr;
 		this.ordzipcode = ordzipcode;
 		this.ordmemid = ordmemid;
+		this.orddate = orddate;
 	}
 	public String getOrdnum() {
 		return ordnum;
@@ -39,11 +41,11 @@ public class OrderBean {
 	public void setOrdpdname(String ordpdname) {
 		this.ordpdname = ordpdname;
 	}
-	public int getOrdtotalprice() {
-		return ordtotalprice;
+	public int getOrdtotalpay() {
+		return ordtotalpay;
 	}
-	public void setOrdtotalprice(int ordtotalprice) {
-		this.ordtotalprice = ordtotalprice;
+	public void setOrdtotalpay(int ordtotalpay) {
+		this.ordtotalpay = ordtotalpay;
 	}
 	public String getOrdemail() {
 		return ordemail;
@@ -80,6 +82,12 @@ public class OrderBean {
 	}
 	public void setOrdmemid(String ordmemid) {
 		this.ordmemid = ordmemid;
+	}
+	public String getOrddate() {
+		return orddate;
+	}
+	public void setOrddate(String orddate) {
+		this.orddate = orddate;
 	}
 	
 	

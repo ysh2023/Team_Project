@@ -6,14 +6,19 @@
 <mapper namespace="order.model.Order">
 
 	<select id="GetAllOrder" resultType="order.model.OrderBean">
-	select * from order
+	select * from orders
 	
 	</select>
 	
 	<insert id="InsertOrder">
 		insert into orders(ord_num,ord_pdname,ord_totalpay,ord_email,ord_name,ord_addr,ord_zipcode,ord_tel,ord_memid)
-		values(#{ordnum},#{ordpdname},#{ordtotalprice},#{ordemail},#{ordname},#{ordaddr},#{ordzipcode},#{ordtel},#{ordmemid})
+		values(#{ordnum},#{ordpdname},#{ordtotalpay},#{ordemail},#{ordname},#{ordaddr},#{ordzipcode},#{ordtel},#{ordmemid})
 	</insert>
 	
+	<select id="GetByIdOrder" resultType="order.model.OrderBean">
+		select * from orders
+		where ord_memid = #{id}
+		order by ord_date desc
+	</select>
 
 </mapper>

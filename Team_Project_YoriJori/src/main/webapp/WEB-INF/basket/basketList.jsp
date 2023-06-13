@@ -7,7 +7,7 @@
       <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center">
           <div class="col-md-9 ftco-animate text-center">
-          	<p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> <span>주문목록</span></p>
+          	<p class="breadcrumbs"><span class="mr-2"><a href="<%=conPath%>/main.jsp">Home</a></span> <span>주문목록</span></p>
             <h1 class="mb-0 bread">주문 목록 확인</h1>
           </div>
         </div>
@@ -32,29 +32,38 @@
 						      </tr>
 						    </thead>
 						    <tbody>
-						    <c:forEach var="bsk" items="${slist }">
-						      <tr class="text-center">
-						        <td class="product-remove"><a href="delete.bsk?bsknum=${bsk.bsknum }"><span class="ion-ios-close"></span></a></td>
-						        
-						        <td class="image-prod"><div class="img" style="background-image:url('<%=resourcesPath%>/img_pd/${bsk.pdimage}');"></div></td>
-						        
-						        <td class="product-name">
-						        	<h3>${bsk.pdname }</h3>
-						        </td>
-						        
-						        <td class="price"><fmt:formatNumber type="number" maxFractionDigits="3" value="${bsk.pdprice }" />원</td>
-						        <form action="update.bsk">
-						        <input type="hidden" name="bsknum" value="${bsk.bsknum }">
-						        <td class="quantity">
-						        	<div class="input-group mb-3">
-					             	<input type="text" name="qty" class="quantity form-control input-number" value="${bsk.bskqty }" min="1" max="100">
-					          	</div>
-					          </td>
-						        	<td class="update"><input type="submit" value="수정하기"></td>
-						        </form>
-						        <td class="total"><fmt:formatNumber type="number" maxFractionDigits="3" value="${bsk.pdprice * bsk.bskqty }" />원</td>
-						      </tr><!-- END TR-->
-						    </c:forEach>
+						    <c:choose>
+						    	<c:when test="${fn:length(slist) == 0 }">
+							    	<tr class="text-center">
+							    		<td colspan="7" align="center">장바구니에 등록된 상품이 없습니다.</td>
+							    	</tr>
+						    	</c:when>
+						    	<c:otherwise>
+							    <c:forEach var="bsk" items="${slist }">
+							      <tr class="text-center">
+							        <td class="product-remove"><a href="delete.bsk?bsknum=${bsk.bsknum }"><span class="ion-ios-close"></span></a></td>
+							        
+							        <td class="image-prod"><div class="img" style="background-image:url('<%=resourcesPath%>/img_pd/${bsk.pdimage}');"></div></td>
+							        
+							        <td class="product-name">
+							        	<h3>${bsk.pdname }</h3>
+							        </td>
+							        
+							        <td class="price"><fmt:formatNumber type="number" maxFractionDigits="3" value="${bsk.pdprice }" />원</td>
+							        <form action="update.bsk">
+							        <input type="hidden" name="bsknum" value="${bsk.bsknum }">
+							        <td class="quantity">
+							        	<div class="input-group mb-3">
+						             	<input type="text" name="qty" class="quantity form-control input-number" value="${bsk.bskqty }" min="1" max="100">
+						          	</div>
+						          </td>
+							        	<td class="update"><input type="submit" value="수정하기"></td>
+							        </form>
+							        <td class="total"><fmt:formatNumber type="number" maxFractionDigits="3" value="${bsk.pdprice * bsk.bskqty }" />원</td>
+							      </tr><!-- END TR-->
+							    </c:forEach>
+						    	</c:otherwise>
+						    </c:choose>
 						    </tbody>
 						  </table>
 					  </div>

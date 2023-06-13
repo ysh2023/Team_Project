@@ -63,7 +63,7 @@ public class OrderInsertController {
 		OrderBean ob = new OrderBean();
 		ob.setOrdnum(merchantuid);
 		ob.setOrdpdname(name);
-		ob.setOrdtotalprice(amount);
+		ob.setOrdtotalpay(amount);
 		ob.setOrdemail(buyeremail);
 		ob.setOrdname(buyername);
 		ob.setOrdtel(buyertel);
@@ -86,11 +86,10 @@ public class OrderInsertController {
 				odt.setOdtqty(mapLists.get(key));
 				odt.setOdtprice(amount);
 				cnt2 += odtdao.insertOrderDetail(odt);
-				
 				//상품 재고수량 감소
 				int stock_cnt = pdao.updatePqty(odt.getOdtpdnum(),odt.getOdtqty());
 			}
-			
+			detail.deleteOrder();
 			bdao.deleteIdBasket(loginInfo.getId()); // 장바구니 삭제
 			System.out.println("insertOrder 성공");
 		}else {

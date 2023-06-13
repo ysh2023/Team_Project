@@ -6,7 +6,7 @@
       <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center">
           <div class="col-md-9 ftco-animate text-center">
-          	<p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> <span>결제</span></p>
+          	<p class="breadcrumbs"><span class="mr-2"><a href="<%=conPath%>/main.jsp">Home</a></span> <span>결제</span></p>
             <h1 class="mb-0 bread">결제 하기</h1>
           </div>
         </div>
@@ -22,34 +22,18 @@
 	          		<div class="col-md-6">
 	                <div class="form-group">
 	                	<label for="name">이름</label>
-	                  <input type="text" class="form-control" name="name" id="ordname" value="${buyname }" >
+	                  <input type="text" class="form-control" name="name" id="ordname" value="${mb.mname }" >
 	                	<div class="invalid-feedback">
 			                이름을 입력해주세요.
 			            </div>
 	                </div>
 	              </div>
               <div class="w-100"></div>
-		           <!--    <div class="col-md-12">
-		            	<div class="form-group">
-		            		<label for="country">State / Country</label>
-		            		<div class="select-wrap">
-		                  <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-		                  <select name="" id="" class="form-control">
-		                  	<option value="">France</option>
-		                    <option value="">Italy</option>
-		                    <option value="">Philippines</option>
-		                    <option value="">South Korea</option>
-		                    <option value="">Hongkong</option>
-		                    <option value="">Japan</option>
-		                  </select>
-		                </div>
-		            	</div>
-		            </div>-->
 		            <div class="w-100"></div>
 		            <div class="col-md-6">
 		            	<div class="form-group">
 		            		<label for="postcodezip">우편번호</label>
-	                  <input type="text" class="form-control" name="ordzipcode" id="ordzipcode">
+	                  <input type="text" class="form-control" name="ordzipcode" id="ordzipcode" value="${mb.area1 }">
 	                  <div class="invalid-feedback">
 		                우편번호를 입력해주세요.
 		              </div>
@@ -59,7 +43,7 @@
 		            <div class="col-md-12">
 		            	<div class="form-group">
 	                	<label for="streetaddress">주소</label>
-	                  <input type="text" class="form-control" placeholder="주소를 입력해 주세요." name="ordaddr" id="ordaddr">
+	                  <input type="text" class="form-control" placeholder="주소를 입력해 주세요." name="ordaddr" id="ordaddr" value="${mb.area2 }">
 	                  <div class="invalid-feedback">
 		                주소를 입력해주세요.
 		              </div>
@@ -69,7 +53,7 @@
 		            <div class="col-md-6">
 	                <div class="form-group">
 	                	<label for="phone">핸드폰 번호</label>
-	                  <input type="text" class="form-control" placeholder="" name="ordtel" id="ordtel">
+	                  <input type="text" class="form-control" placeholder="" name="ordtel" id="ordtel" value="${mb.tel }">
 	                  <div class="invalid-feedback">
 		                핸드폰 번호를 입력해주세요.
 		              </div>
@@ -78,7 +62,7 @@
 	              <div class="col-md-6">
 	                <div class="form-group">
 	                	<label for="emailaddress">이메일 주소</label>
-	                  <input type="text" class="form-control" placeholder="" name="ordemail" id="ordemail">
+	                  <input type="text" class="form-control" placeholder="" name="ordemail" id="ordemail" value="${mb.email}">
 	                  <div class="invalid-feedback">
 		                이메일을 입력해주세요.
 		              </div>
@@ -113,35 +97,6 @@
 	          	</div>
 	          	<div class="col-md-12">
 	          		<div class="cart-detail p-3 p-md-4">
-	<!--           			<h3 class="billing-heading mb-4">결제 수단</h3>
-									<div class="form-group">
-										<div class="col-md-12">
-											<div class="radio">
-											   <label><input type="radio" name="optradio" class="mr-2" value="무통장 입금"> 무통장 입금</label>
-											</div>
-										</div>
-									</div>
-									<div class="form-group">
-										<div class="col-md-12">
-											<div class="radio">
-											   <label><input type="radio" name="optradio" class="mr-2" value="카드 결제"> 카드 결제</label>
-											</div>
-										</div>
-									</div>
-									<div class="form-group">
-										<div class="col-md-12">
-											<div class="radio">
-											   <label><input type="radio" name="optradio" class="mr-2" value="일반 결제"> 일반 결제</label>
-											</div>
-										</div>
-									</div>
-									<div class="form-group">
-										<div class="col-md-12">
-											<div class="checkbox">
-											   <label><input type="checkbox" value="" class="mr-2"> I have read and accept the terms and conditions</label>
-											</div>
-										</div>
-									</div> -->
 									<p>
 									<button class="btn btn-primary py-3 px-4" id="requestPay" onclick="">결제하기</button>
 									<!-- <button type="submit" class="btn btn-primary py-3 px-4" onclick="return requestPay()">결제하기</button> -->

@@ -16,15 +16,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import order.model.OrderDao;
+import orderdetail.model.OrderDetailDao;
 
 @Controller
 public class OrderListController {
 	private final String command="/list.ord";
-	private final String getPage="productDetail";
+	private final String getPage="memberorderList";
 	
-//	@Autowired
-//	OrderDao odao;
+	@Autowired
+	OrderDao odao;
 	
+	@Autowired
+	OrderDetailDao odtdao;
 	
 	@RequestMapping(value=command,method = RequestMethod.GET)
 	public ModelAndView doAction(

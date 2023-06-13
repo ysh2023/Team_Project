@@ -35,4 +35,11 @@ private String namespace = "order.model.Order";
 		cnt = sqlSessionTemplate.insert(namespace+".InsertOrder",ob);
 		return cnt;
 	}
+
+
+	public List<OrderBean> getByIdOrder(String id) {
+		List<OrderBean> lists = new ArrayList<OrderBean>();
+		lists = sqlSessionTemplate.selectList(namespace+".GetByIdOrder",id);
+		return lists;
+	}
 }

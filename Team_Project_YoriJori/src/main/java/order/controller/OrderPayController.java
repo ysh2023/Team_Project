@@ -73,7 +73,7 @@ public class OrderPayController {
 		ordpdname = ordpdname.replaceAll(",$", "");
 		//상품이름 끝에 , 제거
 		System.out.println("ordpdname1:"+ordpdname);
-		model.addAttribute("buyname", buyname);
+		model.addAttribute("mb", mb);
 		model.addAttribute("ordpdname", ordpdname);
 		model.addAttribute("slist", slist);
 		model.addAttribute("totalAmount", totalAmount);
@@ -91,7 +91,6 @@ public class OrderPayController {
 		ModelAndView mav = new ModelAndView();
 		MemberBean loginInfo = (MemberBean)session.getAttribute("loginInfo");
 		ProductBean pb = pdao.getByNum(pdnum);
-		
 		//구매하기 눌렀을시 재고수량 체크
 		if(pb.getPdstock() < qty) {
 			try {
@@ -131,6 +130,8 @@ public class OrderPayController {
 				session.setAttribute("detail", detail);
 				int totalAmount = (pdprice*qty);
 				System.out.println("ordpdname2:"+pdname);
+				MemberBean mb = mdao.GetMemberById(loginInfo.getId());
+				mav.addObject("mb", mb);
 				mav.addObject("ordpdname", pdname);
 				mav.addObject("slist", slist);
 				mav.addObject("qty", qty);

@@ -18,4 +18,8 @@ public class DetailList {
 		
 		return orderlists;
 	}
+	
+	public void deleteOrder() {
+		orderlists.clear();
+	}
 }
