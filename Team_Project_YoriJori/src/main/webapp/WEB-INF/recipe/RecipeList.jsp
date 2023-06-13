@@ -64,7 +64,7 @@
     							<li><a href="list.re?whatColumn=foodcategory&keyword=과일">과일</a></li>
     							<li><a href="list.re?whatColumn=foodcategory&keyword=정육/해산물">정육/해산물</a></li>
     							<li><a href="list.re?whatColumn=foodcategory&keyword=계란/유제품">계란/유제품</a></li>
-    							<li><a href="list.re?whatColumn=foodcategory&keyword=면/빵/떡">면/빵/떡</a></li>
+    							<li><a href="list.re?whatColumn=foodcategory&keyword=면/빵/떡">면/빵/떡</a></li> 
     						</ul>
     					</td>
     				</tr>

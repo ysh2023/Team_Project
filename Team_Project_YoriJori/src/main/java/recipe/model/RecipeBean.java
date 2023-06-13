@@ -6,7 +6,7 @@ public class RecipeBean {
 	private String recipecategory;
 	private String servings;
 	private String cookimage;
-	private int readcount;
+	private int readcount; 
 	
 	
 	public int getReadcount() {

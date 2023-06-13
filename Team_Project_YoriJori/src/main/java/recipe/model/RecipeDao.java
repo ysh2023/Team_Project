@@ -118,6 +118,6 @@ public class RecipeDao {
 	public List<RecipeBean> getAllRecipeByBookMark(Map<String, String> map,Paging2 pageInfo){
 		RowBounds rowBounds = new RowBounds(pageInfo.getOffset(), pageInfo.getLimit());
 		List<RecipeBean> recipeList = sqlSessionTemplate.selectList(namespace+".GetAllRecipeByBookMark", pageInfo, rowBounds);
-		return recipeList;
+		return recipeList; 
 	}
 }

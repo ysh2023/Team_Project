@@ -6,7 +6,7 @@ public class FoodBean {
 	private String foodcategory;
 	private String foodname;
 	private String foodamount;
-	
+	 
 	
 	
 	public String getFoodamount() {
