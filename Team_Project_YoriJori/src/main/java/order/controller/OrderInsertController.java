@@ -96,7 +96,7 @@ public class OrderInsertController {
 			System.out.println("insertOrder ½ÇÆÐ");
 		}
 		
-		return getPage; 
+		return getPage;  
 	}
 	/*
 	@RequestMapping(value=command,method = RequestMethod.POST)
