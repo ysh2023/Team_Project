@@ -1,12 +1,20 @@
 package refrigerator.model;
 
 public class RefBean {
+	private int refnum;
 	private String id;
 	private int ingnum;
 	private String inputdate;
 	private String refdday;
 	private String refstorage;
 	private String refdetail;
+	
+	public int getRefnum() {
+		return ingnum;
+	}
+	public void setRefnum(int refnum) {
+		this.refnum = refnum;
+	}
 	
 	public String getId() {
 		return id;

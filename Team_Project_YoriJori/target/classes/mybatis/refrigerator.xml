@@ -6,39 +6,39 @@
 <mapper namespace="refrigerator.model.Refrigerator">
 	<!-- total count -->
 	<select id="TotalCount" resultType="int">
-		select count(ing_num) from refrigerator
+		select count(ref_num) from refrigerator
 		where id = #{id}
 	</select>
 	
 	<!-- ref count -->
 	<select id="RefCount" resultType="int">
-		select count(ing_num) from refrigerator
+		select count(ref_num) from refrigerator
 		where id = #{id} and ref_storage='냉장'
 	</select>
 	
 	<!-- freeze count -->
 	<select id="FreezeCount" resultType="int">
-		select count(ing_num) from refrigerator
+		select count(ref_num) from refrigerator
 		where id = #{id} and ref_storage='냉동'
 	</select>
 	
 	<!-- room count -->
 	<select id="RoomCount" resultType="int">
-		select count(ing_num) from refrigerator
+		select count(ref_num) from refrigerator
 		where id = #{id} and ref_storage='실온'
 	</select>
 	
 	<!-- dday count -->
 	<select id="DdayCount" resultType="int">
 		<![CDATA[
-			select count(ing_num) from refrigerator
+			select count(ref_num) from refrigerator
 			where id = #{id} and trunc((ref_dday - sysdate)+1)<=3
 		]]> 
 	</select>
 	
 	<!-- select all -->
 	<select id="GetUserRef" resultType="refrigerator.model.JoinBean">
-		select r.id, r.ing_num, i.ing_category, i.ing_name, i.expiry, i.ing_icon, r.inputdate, r.ref_dday, r.ref_storage, r.ref_detail
+		select r.ref_num, r.id, r.ing_num, i.ing_category, i.ing_name, i.expiry, i.ing_icon, r.inputdate, r.ref_dday, r.ref_storage, r.ref_detail
 		from refrigerator r full outer join ingredient i
 		on r.ing_num = i.ing_num
 		where r.id = #{id}
@@ -47,7 +47,7 @@
 	
 	<!-- select by storage -->
 	<select id="GetStorageList" resultType="refrigerator.model.JoinBean">
-		select r.id, r.ing_num, i.ing_category, i.ing_name, i.expiry, i.ing_icon, r.inputdate, r.ref_dday, r.ref_storage, r.ref_detail
+		select r.ref_num, r.id, r.ing_num, i.ing_category, i.ing_name, i.expiry, i.ing_icon, r.inputdate, r.ref_dday, r.ref_storage, r.ref_detail
 		from refrigerator r full outer join ingredient i
 		on r.ing_num = i.ing_num
 		where r.id = #{id} and r.ref_storage = #{storage}
@@ -56,29 +56,29 @@
 	
 	<!-- insert -->
 	<insert id="InsertRef">
-		insert into refrigerator(id,ing_num,inputdate,ref_dday,ref_storage)
-		values(#{id},#{ingnum},sysdate,#{refdday},#{refstorage})
+		insert into refrigerator(ref_num,id,ing_num,inputdate,ref_dday,ref_storage)
+		values(refseq.nextval,#{id},#{ingnum},sysdate,#{refdday},#{refstorage})
 	</insert>
 	
 	<!-- detail -->
 	<select id="GetRefDetail" resultType="refrigerator.model.JoinBean">
-		select r.id, r.ing_num, i.ing_category, i.ing_name, i.expiry, i.ing_icon, r.inputdate, r.ref_dday, r.ref_storage, r.ref_detail
+		select r.ref_num, r.ing_num, r.id, i.ing_category, i.ing_name, i.expiry, i.ing_icon, r.inputdate, r.ref_dday, r.ref_storage, r.ref_detail
 		from refrigerator r full outer join ingredient i
 		on r.ing_num = i.ing_num
-		where r.id = #{id} and r.ing_num = #{ingnum}
+		where r.ref_num = #{refnum} and r.id = #{id}
 	</select>
 	
 	<!-- update -->
 	<update id="UpdateRef">
 		update refrigerator set
 		ref_dday = #{refdday}, ref_storage = #{refstorage}, ref_detail=#{refdetail}
-		where id = #{id} and ing_num = #{ingnum}
+		where ref_num = #{refnum}
 	</update>
 	
 	<!-- delete -->
 	<delete id="DeleteRef">
 		delete from refrigerator
-		where id = #{id} and ing_num = #{ingnum}
+		where ref_num = #{refnum}
 	</delete>
 	
 </mapper>

@@ -28,13 +28,13 @@ public class RefDeleteController {
 	
 	/* 수정폼에서 삭제 */
 	@RequestMapping(value=command, method = RequestMethod.GET)
-	public String doAction(@RequestParam("ingnum") int ingnum, Model model, HttpSession session, HttpServletRequest request) throws SQLException {
+	public String doAction(@RequestParam("refnum") int refnum, Model model, HttpSession session, HttpServletRequest request) throws SQLException {
 		MemberBean loginInfo = (MemberBean)session.getAttribute("loginInfo");
 		String id = loginInfo.getId();
 		
 		Map<String,String> map = new HashMap<String,String>();
+		map.put("refnum", Integer.toString(refnum));
 		map.put("id", id);
-		map.put("ingnum", Integer.toString(ingnum));
 		
 		int cnt = -1;
 		cnt = refdao.deleteRef(map);
@@ -60,8 +60,8 @@ public class RefDeleteController {
 		for(int i=0;i<rowchk.length;i++) {
 			System.out.println("check: "+rowchk[i]);
 			Map<String,String> map = new HashMap<String,String>();
+			map.put("refnum", Integer.toString(rowchk[i]));
 			map.put("id", id);
-			map.put("ingnum", Integer.toString(rowchk[i]));
 			
 			cnt += refdao.deleteRef(map);
 		}

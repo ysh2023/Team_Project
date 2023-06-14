@@ -5,9 +5,9 @@
 
 <script>
 	/* 삭제 확인 */
-	function delConfirm(ingnum){
+	function delConfirm(refnum){
 		var msg = "해당 식재료를 냉장고에서 삭제하시겠습니까?";
-	    var url = "delete.ref?ingnum="+ingnum;
+	    var url = "delete.ref?refnum="+refnum;
 	    
 	    if(confirm(msg) == true){
 			location.href = url;
@@ -37,8 +37,7 @@
 	<div class="comment-form-wrap col-md-12 mx-auto" style="max-width: 800px; margin: auto;">
 	  <!-- 수정 폼 -->
   	  <form name="refDetail" action="update.ref" method="post" class="p-5 bg-light">
-  	    <input type="hidden" name="id" value="${loginInfo.id}">
-		<input type="hidden" name="ingnum" value="${joinbean.ingnum}">
+  	    <input type="hidden" name="refnum" value="${joinbean.refnum}">
 		<div class="row align-items-end">
   	    <div class="form-group col-md-6">
 		  <label>추가일</label>
@@ -74,7 +73,7 @@
       	<br>
       	<div class="form-group" align="center">
           <input type="submit" value="수정하기" class="btn py-3 px-4 btn-primary"> &nbsp;&nbsp;
-          <input type="button" value="삭제하기" class="btn py-3 px-4 btn-secondary" onClick="delConfirm(${joinbean.ingnum})">
+          <input type="button" value="삭제하기" class="btn py-3 px-4 btn-secondary" onClick="delConfirm(${joinbean.refnum})">
       	</div>
 	  </form>
 	</div>

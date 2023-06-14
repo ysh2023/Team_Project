@@ -161,10 +161,10 @@
 			<input type="button" value="추가하기" class="btn btn-primary" onclick="checkIng()" style="display:inline; position: absolute; right: 5%; margin-top:10px; font-size: 14pt;">
 	    </div>
 	    <div>
-	    	<a href="#" class="expand" onclick="expandAll()" style="display: show; font-size: 14pt;">
+	    	<a class="expand" onclick="expandAll()" style="display: show; font-size: 14pt; cursor: pointer;">
 	    		<i class="icon-sort-up"></i> &nbsp; 전체 펼치기
 	    	</a>
-	    	<a href="#" class="collapse" onclick="collapseAll()" style="display: none; font-size: 14pt;">
+	    	<a class="collapse" onclick="collapseAll()" style="display: none; font-size: 14pt; cursor: pointer;">
 				<i class="icon-sort-down"></i> &nbsp; 전체 접기
 			</a>
 	    </div>
@@ -174,11 +174,11 @@
 				<thead style="background-color: #89A621; height:30px;">
 					<tr class="text-center">
 						<th colspan="2">
-							<a href="#" class="expand" id="showCtg1" onclick="expandCtg(this)" style="display: show; font-size: 12pt; color: white;">
+							<a class="expand" id="showCtg1" onclick="expandCtg(this)" style="display: show; font-size: 12pt; color: white; cursor: pointer;">
 								<i class="icon-sort-up"></i>
 								&nbsp; <%=category[0]%>
 							</a>
-							<a href="#" class="collapse" id="hideCtg1" onclick="collapseCtg(this)" style="display: none; font-size: 12pt; color: white;">
+							<a class="collapse" id="hideCtg1" onclick="collapseCtg(this)" style="display: none; font-size: 12pt; color: white; cursor: pointer;">
 								<i class="icon-sort-down"></i>
 								&nbsp; <%=category[0]%>
 							</a>
@@ -214,11 +214,11 @@
 				<thead style="background-color: #89A621; height:30px;">
 					<tr class="text-center">
 						<th colspan="2">
-							<a href="#" class="expand" id="showCtg2" onclick="expandCtg(this)" style="font-size: 12pt; color: white;">
+							<a class="expand" id="showCtg2" onclick="expandCtg(this)" style="font-size: 12pt; color: white; cursor: pointer;">
 								<i class="icon-sort-up"></i>
 								&nbsp; <%=category[1]%>
 							</a>
-							<a href="#" class="collapse" id="hideCtg2" onclick="collapseCtg(this)" style="display: none; font-size: 12pt; color: white;">
+							<a class="collapse" id="hideCtg2" onclick="collapseCtg(this)" style="display: none; font-size: 12pt; color: white; cursor: pointer;">
 								<i class="icon-sort-down"></i>
 								&nbsp; <%=category[1]%>
 							</a>
@@ -254,11 +254,11 @@
 				<thead style="background-color: #89A621; height:30px;">
 					<tr class="text-center">
 						<th colspan="2">
-							<a href="#" class="expand" id="showCtg3" onclick="expandCtg(this)" style="display: show; font-size: 12pt; color: white;">
+							<a class="expand" id="showCtg3" onclick="expandCtg(this)" style="display: show; font-size: 12pt; color: white; cursor: pointer;">
 								<i class="icon-sort-up"></i>
 								&nbsp; <%=category[2]%>
 							</a>
-							<a href="#" class="collapse" id="hideCtg3" onclick="collapseCtg(this)" style="display: none; font-size: 12pt; color: white;">
+							<a class="collapse" id="hideCtg3" onclick="collapseCtg(this)" style="display: none; font-size: 12pt; color: white; cursor: pointer;">
 								<i class="icon-sort-down"></i>
 								&nbsp; <%=category[2]%>
 							</a>
@@ -294,11 +294,11 @@
 				<thead style="background-color: #89A621; height:30px;">
 					<tr class="text-center">
 						<th colspan="2">
-							<a href="#" class="expand" id="showCtg4" onclick="expandCtg(this)" style="display: show; font-size: 12pt; color: white;">
+							<a class="expand" id="showCtg4" onclick="expandCtg(this)" style="display: show; font-size: 12pt; color: white; cursor: pointer;">
 								<i class="icon-sort-up"></i>
 								&nbsp; <%=category[3]%>
 							</a>
-							<a href="#" class="collapse" id="hideCtg4" onclick="collapseCtg(this)" style="display: none; font-size: 12pt; color: white;">
+							<a class="collapse" id="hideCtg4" onclick="collapseCtg(this)" style="display: none; font-size: 12pt; color: white; cursor: pointer;">
 								<i class="icon-sort-down"></i>
 								&nbsp; <%=category[3]%>
 							</a>
@@ -334,11 +334,11 @@
 				<thead style="background-color: #89A621; height:30px;">
 					<tr class="text-center">
 						<th colspan="2">
-							<a href="#" class="expand" id="showCtg5" onclick="expandCtg(this)" style="display: show; font-size: 12pt; color: white;">
+							<a class="expand" id="showCtg5" onclick="expandCtg(this)" style="display: show; font-size: 12pt; color: white; cursor: pointer;">
 								<i class="icon-sort-up"></i>
 								&nbsp; <%=category[4]%>
 							</a>
-							<a href="#" class="collapse" id="hideCtg5" onclick="collapseCtg(this)" style="display: none; font-size: 12pt; color: white;">
+							<a class="collapse" id="hideCtg5" onclick="collapseCtg(this)" style="display: none; font-size: 12pt; color: white; cursor: pointer;">
 								<i class="icon-sort-down"></i>
 								&nbsp; <%=category[4]%>
 							</a>
@@ -374,11 +374,11 @@
 				<thead style="background-color: #89A621; height:30px;">
 					<tr class="text-center">
 						<th colspan="2">
-							<a href="#" class="expand" id="showCtg6" onclick="expandCtg(this)" style="display: show; font-size: 12pt; color: white;">
+							<a class="expand" id="showCtg6" onclick="expandCtg(this)" style="display: show; font-size: 12pt; color: white; cursor: pointer;">
 								<i class="icon-sort-up"></i>
 								&nbsp; <%=category[5]%>
 							</a>
-							<a href="#" class="collapse" id="hideCtg6" onclick="collapseCtg(this)" style="display: none; font-size: 12pt; color: white;">
+							<a class="collapse" id="hideCtg6" onclick="collapseCtg(this)" style="display: none; font-size: 12pt; color: white; cursor: pointer;">
 								<i class="icon-sort-down"></i>
 								&nbsp; <%=category[5]%>
 							</a>
@@ -414,11 +414,11 @@
 				<thead style="background-color: #89A621; height:30px;">
 					<tr class="text-center">
 						<th colspan="2">
-							<a href="#" class="expand" id="showCtg7" onclick="expandCtg(this)" style="display: show; font-size: 12pt; color: white;">
+							<a class="expand" id="showCtg7" onclick="expandCtg(this)" style="display: show; font-size: 12pt; color: white; cursor: pointer;">
 								<i class="icon-sort-up"></i>
 								&nbsp; <%=category[6]%>
 							</a>
-							<a href="#" class="collapse" id="hideCtg7" onclick="collapseCtg(this)" style="display: none; font-size: 12pt; color: white;">
+							<a class="collapse" id="hideCtg7" onclick="collapseCtg(this)" style="display: none; font-size: 12pt; color: white; cursor: pointer;">
 								<i class="icon-sort-down"></i>
 								&nbsp; <%=category[6]%>
 							</a>
