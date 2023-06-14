@@ -24,7 +24,9 @@ public class ProductDetailController {
 	public String doAction(@RequestParam("pdnum") int pdnum,Model model) {
 		
 		ProductBean product = pdao.getByNum(pdnum);
+		int pdstock = product.getPdstock();
 		model.addAttribute("product",product);
+		model.addAttribute("pdstock",pdstock);
 
 		return getPage;
 	}
