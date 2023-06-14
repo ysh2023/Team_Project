@@ -30,17 +30,25 @@ public class MypageDibsListController {
 
 	@RequestMapping(value = command, method = RequestMethod.GET)
 	public ModelAndView doAction(HttpSession session,
+			@RequestParam(value="pageNumber",required = false) String pageNumber,
 			HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		String user_id= ((MemberBean) session.getAttribute("loginInfo")).getId();	
 		
+		String url= request.getContextPath()+command;
 		
+		int totalCount=ddao.getTotalCount(user_id);
 		
+		String whatColumn=null;
+		String keyword=null;
 		
-		List<ProductBean> lists= ddao.getAllDibs(user_id);
+		Paging pageInfo= new Paging(pageNumber,"5",totalCount,url,whatColumn,keyword,null);
+
+		List<ProductBean> lists= ddao.getAllDibs(pageInfo,user_id);
 		
 		mav.addObject("lists", lists);
 		mav.addObject("user_id", user_id);
+		mav.addObject("pageInfo",pageInfo);
 		mav.setViewName(getPage);
 		return mav; 
 		

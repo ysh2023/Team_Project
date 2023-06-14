@@ -167,4 +167,8 @@ function kakaopost() {
       });
     }, false);
   </script>
-</div>
+  
+     
+<div style="margin-top: 100px;">
+<%@include file= "./../common/footer.jsp" %>
+</div> 

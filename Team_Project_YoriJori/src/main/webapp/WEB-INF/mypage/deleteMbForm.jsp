@@ -11,6 +11,11 @@
 <input type="submit" value="제출">
 
 </form>
+   
+<div style="margin-top: 1000px; margin-left: -800px;">
+<%@include file= "./../common/footer.jsp" %>
+</div> 
+
 
 </main>
 

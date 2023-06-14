@@ -49,6 +49,21 @@ margin-left:-250px;
 						    </c:if>
 						    </tbody>
 						  </table>
+						  
+				    		<div class="row mt-5">
+          <div class="col text-center">
+            <div class="block-27" style="margin-left: -600px;">
+            <ul>
+      		 ${pageInfo.pagingHtml}
+      		 </ul>
+            </div>
+          </div>
+        </div>
+   
+   
+<div style="margin-top: 100px; margin-left: -800px;">
+<%@include file= "./../common/footer.jsp" %>
+</div> 
 
 </main>
 

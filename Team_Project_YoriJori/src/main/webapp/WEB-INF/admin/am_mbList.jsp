@@ -40,7 +40,7 @@
                     <td>${i.age}</td>
                     <td>${i.area1}</td>
                     <td>${i.area2}</td>
-                    <td><a href="deleteMb.am?pdnum=${i.id}">삭제</a></td>
+                    <td><a href="deleteMb.am?id=${i.id}">삭제</a></td>
                   </tr>
                 </c:forEach>
          

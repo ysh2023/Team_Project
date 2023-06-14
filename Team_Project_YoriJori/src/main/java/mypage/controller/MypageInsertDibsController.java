@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,9 +30,12 @@ public class MypageInsertDibsController {
 	
 
 	@RequestMapping(value = command, method = RequestMethod.GET)
-	public String doAction(@RequestParam("pdnum") String pdnum,HttpSession session,HttpServletResponse response) {
+	public String doAction(@RequestParam("pdnum") String pdnum,HttpSession session,HttpServletResponse response,
+			@RequestParam("pageNumber") String pageNumber,Model model
+			) {
 		
 		MemberBean loginInfo = (MemberBean)session.getAttribute("loginInfo");
+		
 
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = null;
@@ -48,7 +52,7 @@ public class MypageInsertDibsController {
 		totalCount=ddao.getTotalCount(id);
 
 		
-		if(totalCount<=4) { //찜은 총 5개까지 가능
+		if(totalCount<=20) {
 		Map<String, String> map = new HashMap<String, String>();
 		
 		map.put("id", id);
@@ -57,6 +61,7 @@ public class MypageInsertDibsController {
 		
 		DibsBean dbean=ddao.getDibsByNum(map);
 		if(dbean==null) {
+			
 			ddao.insertDibs(map);
 		}else {
 			try {
@@ -79,7 +84,7 @@ public class MypageInsertDibsController {
 			}
 		}
 		
-		
+		model.addAttribute("pageNumber", pageNumber);
 		return getPage;
 		
 	}
