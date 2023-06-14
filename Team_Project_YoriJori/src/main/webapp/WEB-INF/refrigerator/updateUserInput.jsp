@@ -37,8 +37,7 @@
 	<div class="comment-form-wrap col-md-12 mx-auto" style="max-width: 800px; margin: auto;">
 	  <!-- 수정 폼 -->
   	  <form name="refDetail" action="update.ref" method="post" class="p-5 bg-light">
-  	    <input type="hidden" name="id" value="${loginInfo.id}">
-		<input type="hidden" name="ingnum" value="${joinbean.ingnum}">
+  	    <input type="hidden" name="refnum" value="${joinbean.refnum}">
 		<div class="row align-items-end">
 		<div class="form-group col-md-12">
 		  <label>추가일</label>

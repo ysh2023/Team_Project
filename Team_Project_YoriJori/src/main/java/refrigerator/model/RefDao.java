@@ -94,10 +94,10 @@ public class RefDao {
 		return joinbean;
 	}
 
-	public int updateRef(RefBean refbean) {
+	public int updateRef(JoinBean joinbean) {
 		int cnt = -1;
 		
-		cnt = sqlSessionTemplate.update(namespace+".UpdateRef",refbean);
+		cnt = sqlSessionTemplate.update(namespace+".UpdateRef",joinbean);
 		
 		return cnt;
 	}
