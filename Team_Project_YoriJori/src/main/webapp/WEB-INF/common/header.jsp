@@ -217,7 +217,10 @@ String resourcesPath = request.getContextPath() + "/resources";
 					</ul>
 					<!-- right nav -->
 					<ul class="navbar-nav ml-auto">
-						<li class="nav-item"><a href="list.ref" class="nav-link"> <img src="<%=resourcesPath%>/images/btn_circle.png" style="width: 18px; margin-right: 5px; margin-bottom: 2px;"> 나의 냉장고
+						<li class="nav-item"><a href="page.ref" class="nav-link">
+								<img src="<%=resourcesPath%>/images/btn_circle.png"
+								style="width: 18px; margin-right: 5px; margin-bottom: 2px;">
+								나의 냉장고
 						</a></li>
 						<li class="nav-item"><a href="bookmark.re" class="nav-link"> <img src="<%=resourcesPath%>/images/btn_circle.png" style="width: 18px; margin-right: 5px; margin-bottom: 2px;"> 북마크 레시피
 						</a></li>

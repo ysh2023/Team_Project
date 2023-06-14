@@ -29,5 +29,4 @@ private String namespace = "ingredient.model.Ingredient";
 		return ingbean;
 	}
 
-
 }
