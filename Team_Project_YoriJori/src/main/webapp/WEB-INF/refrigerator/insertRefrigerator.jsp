@@ -20,7 +20,6 @@
 	
 	/* 카테고리별 토글 */
 	function expandCtg(a){
-		alert(0);
 		var atagId = $(a).attr('id');
 		
 		if(atagId == "showCtg1"){
@@ -61,7 +60,6 @@
 	}
 	
 	function collapseCtg(a){
-		alert(1);
 		var atagId = $(a).attr('id');
 		
 		if(atagId == "hideCtg1"){
@@ -155,6 +153,11 @@
 				<option value="냉동" <c:if test="${storage eq 'freeze'}">selected</c:if>>냉동</option>
 				<option value="실온" <c:if test="${storage eq 'room'}">selected</c:if>>실온</option>
 			</select>
+			<div class="col-lg-2 text-center" style="height: 60px; position: absolute; right: 10%;">
+				<input type="checkbox" name="rowchk" value="${userIng.ingnum}" style="display: inline;">
+				<img src="<%=resourcesPath%>/images/icon/${userIng.ingicon}" style="width: 40px; display: inline;"> <br>
+				<b>${userIng.ingname}</b><br>
+			</div>	
 			<input type="button" value="추가하기" class="btn btn-primary" onclick="checkIng()" style="display:inline; position: absolute; right: 5%; margin-top:10px; font-size: 14pt;">
 	    </div>
 	    <div>
