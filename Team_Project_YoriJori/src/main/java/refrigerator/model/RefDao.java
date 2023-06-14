@@ -16,7 +16,7 @@ public class RefDao {
 	@Autowired
 	SqlSessionTemplate sqlSessionTemplate;
 	
-	/* ÀüÃ¼ Àç·á ¼ö */
+	/* ì „ì²´ ì¬ë£Œ ìˆ˜ */
 	public int getTotalCount(String id) {
 		int totalCnt = -1;
 		
@@ -25,7 +25,7 @@ public class RefDao {
 		return totalCnt;
 	}
 	
-	/* ³ÃÀåº¸°ü Àç·á ¼ö */
+	/* ëƒ‰ì¥ë³´ê´€ ì¬ë£Œ ìˆ˜ */
 	public int getRefCount(String id) {
 		int refCnt = -1;
 		
@@ -34,7 +34,7 @@ public class RefDao {
 		return refCnt;
 	}
 	
-	/* ³Ãµ¿º¸°ü Àç·á ¼ö */
+	/* ëƒ‰ë™ë³´ê´€ ì¬ë£Œ ìˆ˜ */
 	public int getFreezeCount(String id) {
 		int freezeCnt = -1;
 		
@@ -43,7 +43,7 @@ public class RefDao {
 		return freezeCnt;
 	}
 	
-	/* ½Ç¿Âº¸°ü Àç·á ¼ö */
+	/* ì‹¤ì˜¨ë³´ê´€ ì¬ë£Œ ìˆ˜ */
 	public int getRoomCount(String id) {
 		int roomCnt = -1;
 		
@@ -52,7 +52,7 @@ public class RefDao {
 		return roomCnt;
 	}
 	
-	/* ¼Òºñ±âÇÑ D-3 ÀÌÇÏ Àç·á ¼ö */
+	/* ì†Œë¹„ê¸°í•œ D-3 ì´í•˜ ì¬ë£Œ ìˆ˜ */
 	public int getDdayCount(String id) {
 		int ddayCnt = -1;
 		
@@ -61,7 +61,7 @@ public class RefDao {
 		return ddayCnt;
 	}
 	
-	/* ÀüÃ¼ ¸®½ºÆ® */
+	/* ì „ì²´ ë¦¬ìŠ¤íŠ¸ */
 	public List<RefBean> getUserRef(Map<String, String> listMap) {
 		List<RefBean> allList = new ArrayList<RefBean>();
 
@@ -70,7 +70,7 @@ public class RefDao {
 		return allList;
 	}
 	
-	/* º¸°üº° ¸®½ºÆ® */
+	/* ë³´ê´€ë³„ ë¦¬ìŠ¤íŠ¸ */
 	public List<RefBean> getListbyStorage(Map<String, String> storageMap) {
 		List<RefBean> storageList = new ArrayList<RefBean>();
 

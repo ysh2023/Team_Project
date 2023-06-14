@@ -55,8 +55,8 @@ public class RecipeDao {
 		return BookmarkList;
 	}
 	
-	public int deleteBookmark(MemberBean mb) {
-		int cnt = sqlSessionTemplate.delete(namespace+".DeleteBookmark", mb);
+	public int deleteBookmark(RecipeBookMarkBean RBMBean) {
+		int cnt = sqlSessionTemplate.delete(namespace+".DeleteBookmark", RBMBean);
 		return cnt;
 	}
 	
@@ -119,5 +119,20 @@ public class RecipeDao {
 		RowBounds rowBounds = new RowBounds(pageInfo.getOffset(), pageInfo.getLimit());
 		List<RecipeBean> recipeList = sqlSessionTemplate.selectList(namespace+".GetAllRecipeByBookMark", pageInfo, rowBounds);
 		return recipeList; 
+	}
+	public List<String> getIngredientByCategory(String keyword){
+		List<String> ingreList = sqlSessionTemplate.selectList(namespace+".GetIngredientByCategory", keyword);
+		return ingreList;
+	}
+	
+	public int getRecipeTotalCountByIngre(Map<String, String> map) {
+		int cnt = sqlSessionTemplate.selectOne(namespace+".GetRecipeTotalCountByIngre", map);
+		return cnt;
+	}
+	
+	public List<RecipeRecommendBean> getRecipeListByIngredient(Map<String, String> map,Paging2 pageInfo){
+		RowBounds rowBounds = new RowBounds(pageInfo.getOffset(), pageInfo.getLimit());
+		List<RecipeRecommendBean> recipeNumList = sqlSessionTemplate.selectList(namespace+".GetRecipeNumByIngredient", map,rowBounds);
+		return recipeNumList;
 	}
 }

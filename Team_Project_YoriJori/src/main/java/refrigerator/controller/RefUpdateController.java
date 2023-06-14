@@ -61,9 +61,9 @@ public class RefUpdateController {
 			int cnt = refdao.updateRef(refbean);
 			
 			if(cnt!=-1) {
-				System.out.println("update ¼º°ø");
-				request.setAttribute("msg", "ÇØ´ç ½ÄÀç·á Á¤º¸ ¼öÁ¤À» ¿Ï·áÇß½À´Ï´Ù.");
-				request.setAttribute("url", "/ex/page.ref");
+				System.out.println("update ì„±ê³µ");
+				request.setAttribute("msg", "í•´ë‹¹ ì‹ì¬ë£Œ ì •ë³´ ìˆ˜ì •ì„ ì™„ë£Œí–ˆìŠµë‹ˆë‹¤.");
+				request.setAttribute("url", "/ex/list.ref");
 			}
 			
 			model.addAttribute("loginInfo", loginInfo);

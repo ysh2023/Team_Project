@@ -51,13 +51,13 @@ public class RefInsertController {
 		
 		IngBean userIng = ingdao.getIngInfo(1);
 		
-		List<IngBean> ingList1 = ingdao.getIngbyCtg("°î·ù/Äá/°ß°ú·ù");
-		List<IngBean> ingList2 = ingdao.getIngbyCtg("°è¶õ/À¯Á¦Ç°");
-		List<IngBean> ingList3 = ingdao.getIngbyCtg("Ã¤¼Ò");
-		List<IngBean> ingList4 = ingdao.getIngbyCtg("°úÀÏ");
-		List<IngBean> ingList5 = ingdao.getIngbyCtg("Á¤À°/ÇØ»ê¹°");
-		List<IngBean> ingList6 = ingdao.getIngbyCtg("¸é/»§/¶±");
-		List<IngBean> ingList7 = ingdao.getIngbyCtg("¼Ò½º/¿ÀÀÏ");
+		List<IngBean> ingList1 = ingdao.getIngbyCtg("ê³¡ë¥˜/ì½©/ê²¬ê³¼ë¥˜");
+		List<IngBean> ingList2 = ingdao.getIngbyCtg("ê³„ë€/ìœ ì œí’ˆ");
+		List<IngBean> ingList3 = ingdao.getIngbyCtg("ì±„ì†Œ");
+		List<IngBean> ingList4 = ingdao.getIngbyCtg("ê³¼ì¼");
+		List<IngBean> ingList5 = ingdao.getIngbyCtg("ì •ìœ¡/í•´ì‚°ë¬¼");
+		List<IngBean> ingList6 = ingdao.getIngbyCtg("ë©´/ë¹µ/ë–¡");
+		List<IngBean> ingList7 = ingdao.getIngbyCtg("ì†ŒìŠ¤/ì˜¤ì¼");
 		
 		model.addAttribute("loginInfo", loginInfo);
 		model.addAttribute("storage", storage);
@@ -92,12 +92,12 @@ public class RefInsertController {
         	refbean.setRefstorage(refstorage);
         	
         	SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
-        	Date now = new Date();	//sysdate(Àç·á Ãß°¡ÀÏ)
+        	Date now = new Date();	//sysdate(ì¬ë£Œ ì¶”ê°€ì¼)
         	Calendar cal = Calendar.getInstance();
         	cal.setTime(now);
         	
         	IngBean ingbean = ingdao.getIngInfo(rowchk[i]);
-        	cal.add(Calendar.DATE, ingbean.getExpiry());		//ÇöÀç ³¯Â¥¿¡ ¼ÒºñÀÏ ´õÇÏ±â
+        	cal.add(Calendar.DATE, ingbean.getExpiry());		//í˜„ì¬ ë‚ ì§œì— ì†Œë¹„ì¼ ë”í•˜ê¸°
         	String refdday = simpleDate.format(cal.getTime());
         	
         	refbean.setRefdday(refdday);
@@ -106,11 +106,11 @@ public class RefInsertController {
 		}
         
         if(cnt!=-1) {
-        	System.out.println("³ÃÀå°í insert ¼º°ø");
-        	request.setAttribute("msg", "¼±ÅÃÇÏ½Å ½ÄÀç·á°¡ ³ÃÀå°í¿¡ Ãß°¡µÇ¾ú½À´Ï´Ù.");
-			request.setAttribute("url", "/ex/page.ref");
+        	System.out.println("ëƒ‰ì¥ê³  insert ì„±ê³µ");
+        	request.setAttribute("msg", "ì„ íƒí•˜ì‹  ì‹ì¬ë£Œê°€ ëƒ‰ì¥ê³ ì— ì¶”ê°€ë˜ì—ˆìŠµë‹ˆë‹¤.");
+			request.setAttribute("url", "/ex/list.ref");
         }else {
-        	System.out.println("³ÃÀå°í insert ½ÇÆĞ");
+        	System.out.println("ëƒ‰ì¥ê³  insert ì‹¤íŒ¨");
         }
 
 		model.addAttribute("loginInfo", loginInfo);

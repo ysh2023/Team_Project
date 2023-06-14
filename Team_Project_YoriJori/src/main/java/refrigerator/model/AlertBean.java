@@ -5,10 +5,10 @@ import java.util.Map;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 public class AlertBean {
-	private String msg;              //alert ¸Ş½ÃÁö
+	private String msg;              //alert ë©”ì‹œì§€
     private String url;          	 //redirect url
-    private RequestMethod method;   	 //HTTP ¿äÃ» ¸Ş¼­µå
-    private Map<String, Object> data;    //param µ¥ÀÌÅÍ
+    private RequestMethod method;   	 //HTTP ìš”ì²­ ë©”ì„œë“œ
+    private Map<String, Object> data;    //param ë°ì´í„°
     
 	public AlertBean(String msg, String url, RequestMethod method, Map<String, Object> data) {
 		super();
