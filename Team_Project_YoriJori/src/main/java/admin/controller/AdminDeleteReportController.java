@@ -7,31 +7,22 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import admin.model.AdminDao;
-import member.model.MemberDao;
 
 @Controller
-public class AdminMemberDeleteController {
+public class AdminDeleteReportController {
 	
+	private final String command = "/deleteReport.am";
+	private String getPage = "redirect:/mbReportList.am";
 	
-	private final String command = "/deleteMb.am";
-	private final String getPage = "redirect:mbList.am";
-	
-	
-	@Autowired
-	MemberDao mdao;
 	
 	@Autowired
 	AdminDao adao;
 
 	@RequestMapping(value = command, method = RequestMethod.GET)
 	public String doAction(@RequestParam("id") String id) {
-		
-		mdao.deleteMember(id);
-		
-
-		
-		
+		adao.deleteReport(id);
 		return getPage;
 	}
-}
 
+
+}

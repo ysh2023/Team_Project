@@ -33,7 +33,7 @@
                     <td>${i.comcontent}</td>
                     <td>${i.reasons}</td>
                     <td>${i.repDiscription}</td>
-                    <td><a href="deleteMb.am?pdnum=${i.id}">삭제</a></td>
+                    <td><a href="deleteComment.am?id=${i.id}&comNum=${i.comNum}">삭제</a></td>
                   </tr>
                 </c:forEach>
                 </tbody>

@@ -78,4 +78,23 @@ public class AdminDao {
 		return lists;
 	}
 
+	public int getCountReportById(String id) {
+		
+		int cnt=-1;
+		
+		cnt=sqlSessionTemplate.selectOne(namespace+".GetCountReportById",id);
+		
+		return cnt;
+	}
+
+
+	public void deleteReport(String id) {
+
+		sqlSessionTemplate.delete(namespace+".DeleteReport",id);
+	}
+
+	public void deleteComment(int comNum) {
+		sqlSessionTemplate.delete(namespace+".DeleteComment",comNum);
+	}
+
 }
