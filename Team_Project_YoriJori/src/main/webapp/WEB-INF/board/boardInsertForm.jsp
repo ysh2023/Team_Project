@@ -6,51 +6,7 @@
 <meta charset="UTF-8">
 <title>게시글 작성</title>
 <style>
-.drop-zone {
-	padding: 25px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	text-align: center;
-	font-family: "Quicksand", sans-serif;
-	font-weight: 500;
-	font-size: 20px;
-	cursor: pointer;
-	color: #cccccc;
-	border: 4px dashed #009578;
-	border-radius: 10px;
-}
 
-.drop-zone--over {
-	border-style: solid;
-}
-
-.drop-zone__input {
-	display: none;
-}
-
-.drop-zone__thumb {
-	width: 100%;
-	height: 100%;
-	border-radius: 10px;
-	overflow: hidden;
-	background-color: #cccccc;
-	background-size: cover;
-	position: relative;
-}
-
-.drop-zone__thumb::after {
-	content: attr(data-label);
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	width: 100%;
-	padding: 5px 0;
-	color: #ffffff;
-	/* background: rgba(0, 0, 0, 0.75); */
-	font-size: 14px;
-	text-align: center;
-}
 </style>
 </head>
 <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
@@ -79,7 +35,7 @@
 		var isCheck = true;
 		if ($('input[name=title]').val().length == 0) {
 			$('#titleMsg')
-					.html('<font size="2" color="red">요리제목을 입력하세요</font>');
+					.html('<font >요리제목을 입력하세요</font>');
 			isCheck = false;
 			$('input[name=title]').focus();
 		} else {
@@ -88,7 +44,7 @@
 
 		if ($('select[name=category]').val().length == 0) {
 			$('#categoryMsg').html(
-					'<font size="2" color="red">카테고리를 선택하세요</font>');
+					'<font>카테고리를 선택하세요</font>');
 			isCheck = false;
 			$('select[name=category]').focus();
 		} else {
@@ -97,7 +53,7 @@
 		
 		if(document.getElementById('selectIngName').childElementCount==0	){
 			$('#ingredientMsg').html(
-					'<font size="2" color="red">식재료를 추가해주세요</font>');
+					'<font >식재료를 추가해주세요</font>');
 			isCheck = false;
 		}
 
@@ -176,7 +132,7 @@
 					<div class="form-group">
 						<div class="row">
 							<div class="col-md-12">
-								<label for="title">* 요리명 <span id="titleMsg"></span></label><input type="text" name="title" class="form-control text-left px-3" placeholder="요리제목을 입력하세요">
+								<label for="title">* 요리명 <span class="err" id="titleMsg"></span></label><input type="text" name="title" class="form-control text-left px-3" placeholder="요리제목을 입력하세요">
 							</div>
 							<!-- <div class="col-md-6">
 								<input type="file" name="bod_image_upload">
@@ -196,7 +152,7 @@
 					<div class="form-group">
 						<div class="row">
 							<div class="col-md-6">
-								<label for="category">* 카테고리 <span id="categoryMsg"></span></label> <select name="category" class="form-control text-left px-3">
+								<label for="category">* 카테고리 <span class="err" id="categoryMsg"></span></label> <select name="category" class="form-control text-left px-3">
 									<option value="">카테고리를 선택해주세요
 										<c:forEach items="${categorys }" var="category">
 											<option>${category }
@@ -214,7 +170,7 @@
 							<div class="col-md-12">
 								<div class="row">
 									<div class="col-md-6">
-										<label for="inputIngName">* 식재료 <span id="ingredientMsg"></span>
+										<label for="inputIngName">* 식재료 <span class="err" id="ingredientMsg"></span>
 										</label> <input name="inputIngName" id="inputIngName" list="ingNameList" class="form-control " placeholder="검색 후 추가 목록에 없으면 작성 후 추가">
 										<datalist id="ingNameList">
 											<c:forEach items="${ingredients }" var="ingredient">

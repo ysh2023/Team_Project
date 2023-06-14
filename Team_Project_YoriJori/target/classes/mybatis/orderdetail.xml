@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="orderDetail.model.OrderDetail">
+
+	
+	<insert id="InsertOrderDetail">
+		insert into orderdetail(odt_num,odt_id,odt_ordnum,odt_pdnum,odt_qty,odt_price)
+		values(seqodt_num.nextval,#{odtid},#{odtordnum},#{odtpdnum},#{odtqty},#{odtprice})
+	</insert>
+
+	<select id="getByOrdnum" resultType="orderdetail.model.JoinBean">
+		select odt.odt_ordnum,p.pd_name, p.pd_image,p.pd_price,odt.odt_qty
+		from orderdetail odt full outer join product p
+		on odt.odt_pdnum = p.pd_num
+		where odt_ordnum = #{odtordnum}
+	</select>
+</mapper>

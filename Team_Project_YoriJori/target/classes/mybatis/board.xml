@@ -13,18 +13,24 @@
 			<when test="whatColumn=='ingredientCategory'">
 				where bod_num in(select bod_num from boardIngredient where ing_num in(select ing_num from ingredient where ing_category like #{keyword}))
 			</when>
+			<when test="whatColumn=='search'">
+			where bod_num in(select bod_num from boardIngredient where ing_num in(select ing_num from ingredient where ing_category like #{keyword})) or category like #{keyword} or tags like #{keyword} or title like #{keyword} order by bod_num 
+			</when>
 		</choose>
 		</if>
 	</select>
 	<select id="GetAllBoard" resultType="board.model.BoardBean">
-	select board.bod_num, title, servings, time, category, tags, id, bod_image <if test="id!=''">, rec</if> from board <if test="id!=''">full outer join (select count(*)as rec , bod_num from recommend where id='test' group by bod_num) sel on sel.bod_num = board.bod_num  </if>
+	select board.bod_num, title, servings, time, category, tags, id, bod_image <if test="id!=''">, rec</if> from board <if test="id!=''">full outer join (select count(*)as rec , bod_num from recommend where id=#{id} group by bod_num) sel on sel.bod_num = board.bod_num  </if>
 		<if test="keyword!='%All%'">
 		<choose>
 			<when test="whatColumn=='foodCategory'">
 				  where category like #{keyword} order by bod_num
 			</when>
 			<when test="whatColumn=='ingredientCategory'">
-				where bod_num in(select bod_num from boardIngredient where ing_num in(select ing_num from ingredient where ing_category like #{keyword}))
+				where <if test="id!=''">board.</if>bod_num in(select bod_num from boardIngredient where ing_num in(select ing_num from ingredient where ing_category like #{keyword}))
+			</when>
+			<when test="whatColumn=='search'">
+			where <if test="id!=''">board.</if>bod_num in(select bod_num from boardIngredient where ing_num in(select ing_num from ingredient where ing_category like #{keyword})) or category like #{keyword}  or tags like #{keyword} or title like #{keyword} order by bod_num
 			</when>
 		</choose>
 		</if>

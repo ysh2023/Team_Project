@@ -41,15 +41,10 @@ public class BoardMainController {
 		map.put("id", id);
 
 		int totalCount = bdao.getTotalCount(map);
-		System.out.println("totalCount : " + totalCount);
 		Paging pageInfo = new Paging(pageNumber, "12", totalCount, request.getContextPath() + command, whatColumn,
 				keyword, null);
 		List<BoardBean> list = bdao.getAllBoard(map, pageInfo);
-		for (BoardBean b : list) {
-			System.out.println(b.getTitle());
-			System.out.println(b.getBodNum());
-			System.out.println(b.getId());
-		}
+
 		model.addAttribute("boardList", bdao.getAllBoard(map, pageInfo));
 
 		String arr[] = { "All", "밥", "국", "찌개", "반찬", "라면", "기타" };

@@ -60,7 +60,7 @@
 				<div class="col-md-12">
 					<div class="carousel-testimony owl-carousel">
 						<c:forEach items="${topBoards }" var="topBoard" varStatus="status">
-							<div class="item" onclick="location.href='boardDetail.board?bodNum=${topBoard.bodNum}'" style="cursor: pointer; border: 1px solid gray; border-radius: 20px;">
+							<div class="item" onclick="location.href='boardDetail.board?bodNum=${topBoard.bodNum}'" style="cursor: pointer; border: 1px solid gray; border-radius: 20px; height: ">
 								<div class="testimony-wrap p-4 ">
 									<div>${status.index+1 }위</div>
 									<img src="<%=resourcesPath%>/images/${topBoard.bodImage==null ? 'noimage.png' : topBoard.bodImage}" alt="인기순위 이미지" style="height: 250px; width: 100%;">
@@ -154,7 +154,7 @@
 				<c:forEach items="${boardList }" var="board" varStatus="status">
 					<div class="col-md-6 col-lg-3 ftco-animate">
 						<div class="product">
-							<a href="boardDetail.board?bodNum=${board.bodNum}" class="img-prod"> <img class="img-thumbnail" src="<%=resourcesPath%>/images/${board.bodImage==null ? 'noimage.png' : board.bodImage}" alt="Colorlib Template" style="height: 250px; width: 100%;">
+							<a href="boardDetail.board?bodNum=${board.bodNum}" class="img-prod" style="justify-content: center; align-items: center; display: flex;"> <img class="img-thumbnail" src="<%=resourcesPath%>/images/${board.bodImage==null ? 'noimage.png' : board.bodImage}" alt="Colorlib Template" style="height: auto; width: 100%; ">
 								<div class="overlay"></div>
 							</a>
 							<div class="text py-3 pb-4 px-3 text-center">
@@ -170,7 +170,7 @@
 								<div class="bottom-area d-flex px-3">
 									<div class="m-auto d-flex">
 										<!-- 찜하기 -->
-										<span class="heart d-flex justify-content-center align-items-center "> <span><img alt="추천" id="recommend${board.bodNum }" align="right" width="40" height="40" src="<%=resourcesPath%>/images/${board.rec!='0'? 'mainrecommend2.png' : 'mainrecommend1.png' }" style="cursor: pointer;" onclick="recommendClick(${board.bodNum })"></span>
+										<span class="heart d-flex justify-content-center align-items-center "> <span><img alt="추천" id="recommend${board.bodNum }" align="right" width="40" height="40" src="<%=resourcesPath%>/images/${board.rec!='0'? 'mainrecommend2.png' : 'mainrecommend1.png' }" style="cursor: pointer;" onclick="recommendClick(${board.bodNum })"></span>P
 										</span>
 
 									</div>
@@ -178,6 +178,34 @@
 							</div>
 						</div>
 					</div>
+
+					<%-- <div class="col-md-6 col-lg-3 ftco-animate">
+						<div class="product">
+							<a href="boardDetail.board?bodNum=${board.bodNum}" class="img-prod"><img class="img-fluid" src="<%=resourcesPath%>/images/${board.bodImage==null ? 'noimage.png' : board.bodImage}" alt="Colorlib Template"> </a>
+							<div class="text py-3 pb-4 px-3 text-center">
+								<h3>
+									<a href="boardDetail.board?bodNum=${board.bodNum}">${board.title }</a>
+								</h3>
+								</h3>
+								<div class="d-flex">
+									<div class="pricing">
+										<p class="price">
+											<p class="price">${board.servings}인분sss</p>
+										<span class="mr-2 price-dc">${board.tags }</span>
+											<br />
+										</p>
+									</div>
+								</div>
+								<div class="bottom-area d-flex px-3">
+									<div class="m-auto d-flex">
+										<span  class="add-to-cart d-flex justify-content-center align-items-center text-center"> 
+										<span class="heart d-flex justify-content-center align-items-center "> <span><img alt="추천" id="recommend${board.bodNum }" align="right" width="40" height="40" src="<%=resourcesPath%>/images/${board.rec!='0'? 'mainrecommend2.png' : 'mainrecommend1.png' }" style="cursor: pointer;" onclick="recommendClick(${board.bodNum })"></span>
+										</span></span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div> --%>
 				</c:forEach>
 
 				<!--  -->

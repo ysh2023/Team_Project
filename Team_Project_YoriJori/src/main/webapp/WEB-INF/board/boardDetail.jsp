@@ -299,8 +299,8 @@
 						<span><img src="<%=resourcesPath%>/images/dotmenu.png" style="cursor: pointer; position: absolute;" onclick="menuTogle()"></span>
 						<div id="menu" style="z-index: 999; position: absolute; top: 24px; right: -24px; width: 80px; text-align: left; border: 0.25px solid gray; border-radius: 10px; background-color: white; display: none;">
 							<div style="display: flex; flex-flow: column;">
-								<button ${loginInfo == null ? 'disabled' : '' } style="cursor: pointer; text-align: center; border-radius: 10px 10px 0px 0px;" onclick="deleteHandle()">삭제</button>
-								<button ${loginInfo == null ? 'disabled' : '' } style="cursor: pointer; text-align: center; border-radius: 0px 0px 10px 10px;" onclick="updateHandle()">수정</button>
+								<button ${loginInfo.id != board.id ? 'disabled' : '' } style="cursor: pointer; text-align: center; border-radius: 10px 10px 0px 0px;" onclick="deleteHandle()">삭제</button>
+								<button ${loginInfo.id != board.id ? 'disabled' : '' } style="cursor: pointer; text-align: center; border-radius: 0px 0px 10px 10px;" onclick="updateHandle()">수정</button>
 							</div>
 						</div>
 					</div>
@@ -361,6 +361,7 @@
 				<div class="col-lg-12 ftco-animate">
 					<div class="row">
 						<c:forEach items="${boardContentList}" var="boardContent" varStatus="status">
+							<c:if test="${boardContent.bodContent != null or boardContent.image !=null }">
 							<div class="col-md-12 d-flex ftco-animate">
 								<div class="blog-entry align-self-stretch d-md-flex">
 									<span href="blog-single.html" class="block-20" style="background-image: url('<%=resourcesPath%>/images/${boardContent.image}');"> </span>
@@ -369,6 +370,7 @@
 									</div>
 								</div>
 							</div>
+							</c:if>
 						</c:forEach>
 					</div>
 					<div style="min-height: 40px;">

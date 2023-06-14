@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="basket.model.Basket">
+
+	<!-- insert -->
+	<insert id="InsertBasket">
+		insert into basket(bsk_num,bsk_id,bsk_pdnum,bsk_qty)
+		values(seqbsk_num.nextval,#{bskid},#{bskpdnum},#{bskqty})
+	</insert>
+	
+	<select id="getBasketList" resultType="basket.model.JoinBean">
+		select b.bsk_num,p.pd_name, p.pd_image,p.pd_price,b.bsk_qty
+		from basket b full outer join product p
+		on b.bsk_pdnum = p.pd_num
+		where bsk_id = #{bskid}
+	</select>
+	
+	<select id="getBasketNum" resultType="basket.model.BasketBean">
+		select bsk_pdnum from basket
+		where bsk_pdnum = #{pdnum}
+	</select>
+	
+	<select id="getBasketNullList" resultType="basket.model.BasketBean">
+		select * from basket 
+		where bsk_id = #{bskid} and bsk_pdnum = #{bskpdnum}
+	</select>
+	
+	<delete id="deleteNumBasket">
+		delete basket where bsk_num = #{bsknum}
+	</delete>
+	
+	<update id="updateBasket">
+		update basket
+		set bsk_qty = #{bskqty}
+		where bsk_num = #{bsknum}
+	</update>
+	
+	<delete id="deleteIdBasket">
+		delete basket where bsk_id = #{id}
+	</delete>
+	
+	<select id="getBasketListB" resultType="basket.model.BasketBean">
+		select * from basket
+		where bsk_id = #{bskid}
+	</select>
+	
+	<select id="getByNumBasket" resultType="basket.model.BasketBean">
+		select * from basket
+		where bsk_num = #{bsknum}
+	</select>
+
+</mapper>
