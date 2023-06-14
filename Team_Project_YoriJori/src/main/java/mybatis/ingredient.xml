@@ -4,7 +4,7 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="ingredient.model.Ingredient">
-	<!-- select list -->
+	<!-- select by ctg -->
 	<select id="GetIngbyCtg" resultType="ingredient.model.IngBean">
 		select * from ingredient
 		where ing_category = #{category}

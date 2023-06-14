@@ -22,7 +22,7 @@
     <div class="container">
     	<div class="col-md-7 heading-section ftco-animate text-center" style="margin:auto;">
           <span class="subheading">My refrigerator</span>
-	      <h2 class="mb-4">식재료 정보</h2>
+	      <h2 class="mb-4">식재료 수정하기</h2>
 		  <p></p>
 		</div>  
     </div>
@@ -39,17 +39,18 @@
   	  <form name="refDetail" action="update.ref" method="post" class="p-5 bg-light">
   	    <input type="hidden" name="id" value="${loginInfo.id}">
 		<input type="hidden" name="ingnum" value="${joinbean.ingnum}">
-  	    <div class="form-group">
-		  <label>카테고리</label>
-		  <h5 class="heading">${joinbean.ingcategory}</h5>
-      	</div>
-	  	<div class="form-group">
+		<div class="row align-items-end">
+  	    <div class="form-group col-md-6">
 		  <label>추가일</label>
 		  <fmt:parseDate var="inputdate" value="${joinbean.inputdate}" pattern="yyyy-MM-dd HH:mm:ss"/>
 		  <fmt:formatDate var="inputdate" value="${inputdate}" pattern="yyyy-MM-dd"/>
 		  <h5 class="heading">${inputdate}</h5>
       	</div>
-      	<div class="refdday">
+      	<div class="form-group col-md-6">
+		  <label>카테고리</label>
+		  <h5 class="heading">${joinbean.ingcategory}</h5>
+      	</div>
+      	<div class="form-group col-md-6">
           <label for="refdday">* 유통기한</label>
           <fmt:parseDate var="dday" value="${joinbean.refdday}" pattern="yyyy-MM-dd"/>
 		  <fmt:formatDate var="dday" value="${dday}" pattern="yyyy-MM-dd"/>
@@ -57,7 +58,7 @@
 		  <fmt:formatDate var="nowDate" value="${javaDate}" pattern="yyyy-MM-dd"/>
 		  <input type="date" class="form-control" id="refdday" name="refdday" value="${dday}" min="${nowDate}">
       	</div>
-      	<div class="form-group">
+      	<div class="form-group col-md-6">
           <label for="refstorage">* 보관</label>
           <select class="form-control" id="refstorage" name="refstorage">
 			<option value="냉장" <c:if test="${joinbean.refstorage eq '냉장'}">selected</c:if>>냉장</option>
@@ -65,9 +66,10 @@
 			<option value="실온" <c:if test="${joinbean.refstorage eq '실온'}">selected</c:if>>실온</option>
 		  </select>
       	</div>
-	  	<div class="form-group">
+	  	<div class="form-group col-md-12">
           <label for="refdetail">메모 (최대 33자 입력 가능)</label>
           <textarea class="form-control" name="refdetail" id="refdetail" cols="30" rows="3" maxlength="33">${joinbean.refdetail}</textarea>
+      	</div>
       	</div>
       	<br>
       	<div class="form-group" align="center">

@@ -24,7 +24,7 @@ import refrigerator.model.RefDao;
 public class RefUpdateController {
 	private final String command = "/update.ref";
 	private String getPage = "updateRefrigerator";
-	private String gotoPage = "redirect:/list.ref";
+	private String gotoPage = "redirect:/page.ref";
 	
 	@Autowired
 	IngDao ingdao;
@@ -47,7 +47,12 @@ public class RefUpdateController {
 		model.addAttribute("loginInfo", loginInfo);
 		model.addAttribute("joinbean", joinbean);
 		
-		return getPage;
+		if(ingnum == 1) {
+			return "updateUserInput";
+		}else {
+			return getPage;
+		}
+		
 	}
 	
 	@RequestMapping(value=command, method = RequestMethod.POST)

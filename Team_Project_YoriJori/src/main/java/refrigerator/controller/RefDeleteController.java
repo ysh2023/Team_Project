@@ -21,7 +21,7 @@ import refrigerator.model.RefDao;
 @Controller
 public class RefDeleteController {
 	private final String command = "/delete.ref";
-	private String gotoPage = "redirect:/list.ref";
+	private String gotoPage = "redirect:/page.ref";
 	
 	@Autowired
 	RefDao refdao;
