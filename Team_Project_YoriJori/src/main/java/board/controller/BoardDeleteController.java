@@ -19,7 +19,9 @@ public class BoardDeleteController {
 
 	@RequestMapping(value = command)
 	public String doAction(@RequestParam("bodNum") String bodNum, HttpSession session) {
+
 		int result = bdao.deleteBoardByBodNum(bodNum);
+
 		return page;
 	}
 }
