@@ -251,7 +251,7 @@
 								북마크 레시피
 						</a></li>
 						<li class="nav-item cta cta-colored"><a href="list.bsk"
-							class="nav-link"><span class="icon-shopping_cart"></span>[0]</a></li>
+							class="nav-link"><span class="icon-shopping_cart" style="color:#F2BC1B;">[0]</span></a></li>
 					</ul>
 				</div>
 			</div>

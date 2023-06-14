@@ -35,13 +35,13 @@ public class RefPageController {
 	public String doAction(@RequestParam(value="arrange",required=false) String arrange, HttpSession session, Model model) {
 		MemberBean loginInfo = (MemberBean)session.getAttribute("loginInfo");
 		
-		if(session.getAttribute("loginInfo") == null) {	//로그인안했으면
-			session.setAttribute("destination", "redirect:/list.ref");	//destination 속성설정
-			return gotoPage;	//로그인페이지로
+		if(session.getAttribute("loginInfo") == null) {	//로그인 안했으면
+			session.setAttribute("destination", "redirect:/page.ref");	//destination 속성 설정
+			return gotoPage;	//로그인 페이지로
 		}else {
 			
 			if(arrange == null) { //정렬
-				arrange = "i.ing_name";
+				arrange = "r.inputdate";	//기본정렬: 추가 날짜순
 			}
 			
 			int totalCnt = refdao.getTotalCount(loginInfo.getId());
@@ -73,7 +73,7 @@ public class RefPageController {
 
 			List<RefBean> freezeList = refdao.getListbyStorage(freezeMap); 
 			
-			/* 실온보관 리스트*/
+			/* 실온보관 리스트 */
 			Map<String,String> roomMap = new HashMap<String,String>();
 			roomMap.put("id", loginInfo.getId());
 			roomMap.put("storage","실온");
@@ -81,7 +81,7 @@ public class RefPageController {
 
 			List<RefBean> roomList = refdao.getListbyStorage(roomMap); 
 			
-			/* �庸�� �޸� */
+			/* 장보기 메모 */
 			List<MemoBean> userMemo = memodao.getUserMemo(loginInfo.getId());
 			
 			model.addAttribute("totalCnt",totalCnt);
@@ -99,7 +99,7 @@ public class RefPageController {
 			model.addAttribute("loginInfo", loginInfo);
 			model.addAttribute("userMemo", userMemo);
 			
-			return getPage;	//냉장고페이지로
+			return getPage;	//냉장고 페이지로
 		}
 		
 	}

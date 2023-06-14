@@ -32,8 +32,8 @@ public class MemoDeleteController {
 		cnt = memodao.deleteMemo(memonum);
 		
 		if(cnt!=-1) {
-			//System.out.println("delete ¼º°ø");
-			request.setAttribute("msg", "ÇØ´ç ¸Þ¸ð¸¦ »èÁ¦Çß½À´Ï´Ù.");
+			System.out.println("ë©”ëª¨ delete ì„±ê³µ");
+			request.setAttribute("msg", "í•´ë‹¹ ë©”ëª¨ë¥¼ ì‚­ì œí–ˆìŠµë‹ˆë‹¤.");
 			request.setAttribute("url", "/ex/page.ref");
 		}
 		
@@ -42,5 +42,3 @@ public class MemoDeleteController {
 	}
 	
 }
-	
-	

@@ -42,7 +42,7 @@ public class RefDeleteController {
 		if(cnt!=-1) {
 			//System.out.println("delete 성공");
 			request.setAttribute("msg", "해당 식재료를 냉장고에서 삭제했습니다.");
-			request.setAttribute("url", "/ex/list.ref");
+			request.setAttribute("url", "/ex/page.ref");
 		}
 		
 		model.addAttribute("loginInfo", loginInfo);
@@ -69,7 +69,7 @@ public class RefDeleteController {
 		if(cnt!=-1) {
 			System.out.println("냉장고 delete 성공");
 			request.setAttribute("msg", "선택하신 식재료가 삭제되었습니다.");
-			request.setAttribute("url", "/ex/list.ref");
+			request.setAttribute("url", "/ex/page.ref");
 		}else {
 			System.out.println("냉장고 delete 실패");
 		}

@@ -108,7 +108,7 @@ public class RefInsertController {
         if(cnt!=-1) {
         	System.out.println("냉장고 insert 성공");
         	request.setAttribute("msg", "선택하신 식재료가 냉장고에 추가되었습니다.");
-			request.setAttribute("url", "/ex/list.ref");
+			request.setAttribute("url", "/ex/page.ref");
         }else {
         	System.out.println("냉장고 insert 실패");
         }

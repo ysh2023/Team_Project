@@ -27,7 +27,7 @@ public class MemoUpdateController {
 	MemoDao memodao;
 	
 	@RequestMapping(value=command)
-	public String update(@RequestParam("memonum") int[] memonum_arr, Model model, HttpSession session,
+	public String update(@RequestParam(value="memonum",required = false) int[] memonum_arr, Model model, HttpSession session,
 						HttpServletRequest request, HttpServletResponse response) {
 			MemberBean loginInfo = (MemberBean)session.getAttribute("loginInfo");
 			String id = loginInfo.getId();
@@ -59,8 +59,8 @@ public class MemoUpdateController {
 			}
 			
 			if(cnt!=-1) {
-				System.out.println("¸Ş¸ğ update ¼º°ø");
-				request.setAttribute("msg", "¸Ş¸ğ ÀúÀåÀ» ¿Ï·áÇß½À´Ï´Ù.");
+				System.out.println("ë©”ëª¨ update ì„±ê³µ");
+				request.setAttribute("msg", "ë©”ëª¨ ì €ì¥ì„ ì™„ë£Œí–ˆìŠµë‹ˆë‹¤.");
 				request.setAttribute("url", "/ex/page.ref");
 			}
 			

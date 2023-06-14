@@ -65,7 +65,7 @@ public class RefUpdateController {
 			if(cnt!=-1) {
 				System.out.println("update 성공");
 				request.setAttribute("msg", "해당 식재료 정보 수정을 완료했습니다.");
-				request.setAttribute("url", "/ex/list.ref");
+				request.setAttribute("url", "/ex/page.ref");
 			}
 			
 			model.addAttribute("loginInfo", loginInfo);
