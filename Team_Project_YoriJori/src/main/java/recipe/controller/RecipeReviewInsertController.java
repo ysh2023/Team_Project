@@ -30,7 +30,7 @@ public class RecipeReviewInsertController {
 		int cnt = rdao.insertReview(reviewbean);
 		if(cnt>0) {
 			System.out.println("리뷰등록 성공");
-		}else {
+		}else { 
 			System.out.println("리뷰등록 실패");
 		}
 		return getPage;

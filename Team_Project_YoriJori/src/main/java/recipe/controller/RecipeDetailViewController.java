@@ -24,6 +24,7 @@ public class RecipeDetailViewController {
 	
 	@RequestMapping(value=command)
 	public String doAction(Model model,@RequestParam(value="recipenum") int recipenum) {
+		int cnt = rdao.updateReadCount(recipenum);
 		RecipeBean rbean = rdao.getRecipe(recipenum);
 		List<RecipeContentBean> recipeContentList = rdao.getRecipeContent(recipenum);
 		List<FoodBean> foodList = rdao.getFood(recipenum); 
@@ -35,6 +36,6 @@ public class RecipeDetailViewController {
 		model.addAttribute("foodList", foodList);
 		model.addAttribute("reviewList", reviewList);
 		model.addAttribute("SelectedRecipeCount", SelectedRecipeCount);
-		return getPage;
-	}
+		return getPage; 
+	}                    
 }

@@ -9,6 +9,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import basket.model.BasketBean;
 import utility.Paging;
 
 
@@ -48,5 +49,20 @@ private String namespace = "product.model.Product";
 		
 		return pd;
 	}
+
+
+	public int updatePqty(int odtpdnum, int odtqty) {
+		ProductBean pb = new ProductBean();
+		pb.setPdnum(odtpdnum);
+		pb.setPdstock(odtqty);
+		
+		int cnt = -1;
+		cnt = sqlSessionTemplate.update(namespace+".UpdateStock", pb);
+		System.out.println("update cnt: "+ cnt);
+		return cnt;
+	}
+
+
+
 
 }

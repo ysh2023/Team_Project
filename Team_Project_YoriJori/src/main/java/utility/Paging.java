@@ -280,7 +280,7 @@ public class Paging {
 						+ added_param + "'>" + i + "</a></li>" ;
 				
 			}
-		}
+		} 
 		
 		System.out.println("result:"+result); 
 		System.out.println();
@@ -290,8 +290,6 @@ public class Paging {
 			result += "<li><a href='" + url  
 					+ "?pageNumber=" + (this.endPage + 1 ) + "&pageSize=" + this.pageSize 
 					+ added_param + "'>다음</a></li>" ;
-			
-
 		}		
 		System.out.println("result2:"+result);
 		// result2 : <a href='/ex/list.ab?pageNumber=1&pageSize=2'>맨 처음</a>&nbsp;&nbsp;<a href='/ex/list.ab?pageNumber=3&pageSize=2&whatColumn=null&keyword=null'>이전</a>&nbsp;&nbsp;<font color='red'>4</font>&nbsp;&nbsp;<a href='/ex/list.ab?pageNumber=5&pageSize=2&whatColumn=null&keyword=null'>5</a>&nbsp;
@@ -300,5 +298,4 @@ public class Paging {
 	}	
 	
 }
-
 
