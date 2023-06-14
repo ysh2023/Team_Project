@@ -9,6 +9,15 @@ public class BoardBean {
 	private String tags;
 	private String id;
 	private String bodImage;
+	private String rec;
+
+	public String getRec() {
+		return rec;
+	}
+
+	public void setRec(String rec) {
+		this.rec = rec;
+	}
 
 	public int getBodNum() {
 		return bodNum;

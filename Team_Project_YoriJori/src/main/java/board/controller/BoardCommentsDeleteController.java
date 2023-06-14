@@ -29,11 +29,11 @@ public class BoardCommentsDeleteController {
 		System.out.println(bodNum);
 		if (result > 0) {
 			response.getWriter().append(
-					"<Script>alert('신고가 접수되었습니다');location.href='boardDetail.board?bodNum=" + bodNum + "'</Script>")
+					"<Script>alert('댓글이 삭제되었습니다');location.href='boardDetail.board?bodNum=" + bodNum + "'</Script>")
 					.flush();
 
 		} else {
-			response.getWriter().append("<Script>alert('신고접수 실패');history.back();</Script>").flush();
+			response.getWriter().append("<Script>alert('댓글 삭제 실패');history.back();</Script>").flush();
 
 		}
 	}

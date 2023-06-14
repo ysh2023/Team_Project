@@ -17,7 +17,7 @@
 		</if>
 	</select>
 	<select id="GetAllBoard" resultType="board.model.BoardBean">
-	select bod_num, title, servings, time, category, tags, id, bod_image from board
+	select board.bod_num, title, servings, time, category, tags, id, bod_image <if test="id!=''">, rec</if> from board <if test="id!=''">full outer join (select count(*)as rec , bod_num from recommend where id='test' group by bod_num) sel on sel.bod_num = board.bod_num  </if>
 		<if test="keyword!='%All%'">
 		<choose>
 			<when test="whatColumn=='foodCategory'">
