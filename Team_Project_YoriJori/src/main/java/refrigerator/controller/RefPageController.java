@@ -16,27 +16,32 @@ import org.springframework.web.bind.annotation.RequestParam;
 import member.model.MemberBean;
 import refrigerator.model.RefBean;
 import refrigerator.model.RefDao;
+import shopmemo.model.MemoBean;
+import shopmemo.model.MemoDao;
 
 @Controller
-public class RefListController {
-	private final String command = "/list.ref";
+public class RefPageController {
+	private final String command = "/page.ref";
 	private String getPage = "userRefrigerator";
 	private String gotoPage = "redirect:/login.mb";
 	
 	@Autowired
 	RefDao refdao;
 	
+	@Autowired
+	MemoDao memodao;
+	
 	@RequestMapping(value=command, method = RequestMethod.GET)
 	public String doAction(@RequestParam(value="arrange",required=false) String arrange, HttpSession session, Model model) {
 		MemberBean loginInfo = (MemberBean)session.getAttribute("loginInfo");
 		
 		if(session.getAttribute("loginInfo") == null) {	//로그인 안했으면
-			session.setAttribute("destination", "redirect:/list.ref");	//destination 속성 설정
+			session.setAttribute("destination", "redirect:/page.ref");	//destination 속성 설정
 			return gotoPage;	//로그인 페이지로
 		}else {
 			
 			if(arrange == null) { //정렬
-				arrange = "i.ing_name";
+				arrange = "r.inputdate";	//기본정렬: 추가 날짜순
 			}
 			
 			int totalCnt = refdao.getTotalCount(loginInfo.getId());
@@ -76,6 +81,9 @@ public class RefListController {
 
 			List<RefBean> roomList = refdao.getListbyStorage(roomMap); 
 			
+			/* 장보기 메모 */
+			List<MemoBean> userMemo = memodao.getUserMemo(loginInfo.getId());
+			
 			model.addAttribute("totalCnt",totalCnt);
 			model.addAttribute("refCnt",refCnt);
 			model.addAttribute("freezeCnt",freezeCnt);
@@ -89,6 +97,7 @@ public class RefListController {
 			model.addAttribute("roomList",roomList);
 			
 			model.addAttribute("loginInfo", loginInfo);
+			model.addAttribute("userMemo", userMemo);
 			
 			return getPage;	//냉장고 페이지로
 		}

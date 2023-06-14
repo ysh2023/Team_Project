@@ -29,7 +29,7 @@ import refrigerator.model.RefDao;
 public class RefInsertController {
 	private final String command = "/insert.ref";
 	private String getPage = "insertRefrigerator";
-	private String gotoPage = "redirect:/list.ref";
+	private String gotoPage = "redirect:/page.ref";
 	
 	@Autowired
 	IngDao ingdao;
@@ -47,7 +47,9 @@ public class RefInsertController {
 		Map<String,String> map = new HashMap<String,String>();
 		map.put("id", loginInfo.getId());
 		map.put("arrange", arrange);
-		List<RefBean> refList = refdao.getUserRef(map);
+		List<RefBean> allList = refdao.getUserRef(map);
+		
+		IngBean userIng = ingdao.getIngInfo(1);
 		
 		List<IngBean> ingList1 = ingdao.getIngbyCtg("곡류/콩/견과류");
 		List<IngBean> ingList2 = ingdao.getIngbyCtg("계란/유제품");
@@ -59,7 +61,9 @@ public class RefInsertController {
 		
 		model.addAttribute("loginInfo", loginInfo);
 		model.addAttribute("storage", storage);
-		model.addAttribute("refList", refList);
+		model.addAttribute("allList", allList);
+		
+		model.addAttribute("userIng", userIng);
 		
 		model.addAttribute("ingList1", ingList1);
 		model.addAttribute("ingList2", ingList2);
@@ -104,7 +108,7 @@ public class RefInsertController {
         if(cnt!=-1) {
         	System.out.println("냉장고 insert 성공");
         	request.setAttribute("msg", "선택하신 식재료가 냉장고에 추가되었습니다.");
-			request.setAttribute("url", "/ex/list.ref");
+			request.setAttribute("url", "/ex/page.ref");
         }else {
         	System.out.println("냉장고 insert 실패");
         }
