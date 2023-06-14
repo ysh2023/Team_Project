@@ -6,15 +6,15 @@
 
 <!-- main -->
 	<!-- slider -->
-    <section id="home-section" class="hero">
-		  <div class="home-slider owl-carousel">
+    <section id="home-section" class="hero" style="height: 650px;">
+		  <div class="home-slider owl-carousel" style="height: 500px;">
 		  <!-- first slide -->
-	      <div class="slider-item" style="background-image: url(<%=resourcesPath%>/images/bg_1.jpg);">
+	      <div class="slider-item" style="background-image: url(<%=resourcesPath%>/images/bg_1.jpg);" id="sizech">
 	      	<div class="overlay"></div>
 	        <div class="container">
 	          <div class="row slider-text" data-scrollax-parent="true">
 				<!-- text -->
-	            <div class="col-md-12 ftco-animate text-center" style="padding-top: 45px" >
+	            <div class="col-md-12 ftco-animate text-center" style="padding-top: 100px" >
 	              <h1 class="mb-2">We serve Fresh Vegestables &amp; Fruits</h1>
 	              <h2 class="subheading mb-4">We deliver organic vegetables &amp; fruits</h2>
 	              <p><a href="#" class="btn btn-primary">View Details</a></p>
@@ -23,11 +23,11 @@
 	        </div>
 	      </div>
 		  <!-- second slide -->
-	      <div class="slider-item" style="background-image: url(<%=resourcesPath%>/images/bg_2.jpg);">
+	      <div class="slider-item" style="background-image: url(<%=resourcesPath%>/images/bg_2.jpg);" id="sizech"> 
 	      	<div class="overlay"></div>
 	        <div class="container">
 	          <div class="row slider-text" data-scrollax-parent="true">
-	            <div class="col-sm-12 ftco-animate text-center" style="padding-top: 45px" >
+	            <div class="col-sm-12 ftco-animate text-center" style="padding-top: 100px" >
 	              <h1 class="mb-2">100% Fresh &amp; Organic Foods</h1>
 	              <h2 class="subheading mb-4">We deliver organic vegetables &amp; fruits</h2>
 	              <p><a href="#" class="btn btn-primary">View Details</a></p>
@@ -38,6 +38,7 @@
 	    </div>
     </section>
     <!-- END slider -->
+    
 
 	<!-- 1st section -->
     <section class="ftco-section">

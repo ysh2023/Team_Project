@@ -6,6 +6,9 @@ import java.util.List;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import order.model.OrderBean;
+import orderdetail.model.OrderDetailBean;
 import product.model.ProductBean;
 
 @Component("myAdminDao")
@@ -61,6 +64,18 @@ public class AdminDao {
 	public List<ProductBean> getAllMember() {
 		List<ProductBean> lists= new ArrayList<ProductBean>();
 		lists = sqlSessionTemplate.selectList(namespace+".GetAllMember"); 
+		return lists;
+	}
+
+	public List<OrderBean> getAllOrder() {
+		List<OrderBean> lists= new ArrayList<OrderBean>();
+		lists = sqlSessionTemplate.selectList(namespace+".GetAllOrder"); 
+		return lists;
+	}
+
+	public List<OrderDetailBean> getAllOrderDetail(String ordnum) {
+		List<OrderDetailBean> lists= new ArrayList<OrderDetailBean>();
+		lists = sqlSessionTemplate.selectList(namespace+".GetAllOrderDetail",ordnum); 
 		return lists;
 	}
 

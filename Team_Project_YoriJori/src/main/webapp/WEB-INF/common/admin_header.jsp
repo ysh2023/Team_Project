@@ -272,8 +272,8 @@
 			<li class="nav-heading">Pages</li>
 
 			<li class="nav-item"><a class="nav-link "
-				href="<%=request.getContextPath()%>/resources/html/users-profile.html">
-					<i class="bi bi-person"></i> <span>Profile</span>
+				href="ordList.am">
+					<i class="bi bi-person"></i> <span>주문리스트</span>
 			</a></li>
 			<!-- End Profile Page Nav -->
 

@@ -10,7 +10,6 @@
 <% String conPath = request.getContextPath(); %>
 <% String resourcesPath = request.getContextPath() + "/resources"; %>
 
-
 <!-- header.jsp -->
 <!DOCTYPE html>
 <html>
@@ -37,6 +36,12 @@
     <link rel="stylesheet" href="<%=resourcesPath%>/css/flaticon.css">
     <link rel="stylesheet" href="<%=resourcesPath%>/css/icomoon.css">
     <link rel="stylesheet" href="<%=resourcesPath%>/css/style.css">
+    
+    <style type="text/css">
+    	#sizech{
+    		height: 650px;
+    	}
+    </style>
     
     <!-- 아임포트 api 설정 -->
     <script
@@ -118,9 +123,10 @@
                          msg += '에러내용 : ' + rsp.error_msg;
                          alert(msg);
                      }
-  			    });//request pay
+  			    });//function
   			    
-  		});
+  		});//requestPay 클릭
+  		
   		
   	});
     </script>

@@ -36,6 +36,18 @@
 		order by id
 	</select>
 	
+	<select id="GetAllOrder" resultType="order.model.OrderBean">
+		select * from orders
+		order by ord_date desc
+	</select>
+	
+	<select id="GetAllOrderDetail" resultType="orderdetail.model.JoinBean">
+		select odt.odt_ordnum,p.pd_name, p.pd_image,p.pd_price,odt.odt_qty
+		from orderdetail odt full outer join product p
+		on odt.odt_pdnum = p.pd_num
+		where odt_ordnum = #{odtordnum}
+	</select>
+	
 
 
 </mapper>
