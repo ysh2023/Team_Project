@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import member.model.MemberBean;
 import recipe.model.RecipeBean;
 import recipe.model.RecipeDao;
 import utility.Paging;
@@ -29,11 +31,18 @@ public class RecipeListController {
 	public ModelAndView doAction(@RequestParam(value="pageNumber",required=false) String pageNumber, 
 								@RequestParam(value="keyword",required=false) String keyword,
 								@RequestParam(value="whatColumn",required=false) String whatColumn,
-								HttpServletRequest request) {
+								HttpServletRequest request,
+								HttpSession session) {
 		ModelAndView mav = new ModelAndView();
+		
 		Map<String, String> map = new HashMap<String, String>();
 			map.put("whatColumn", whatColumn);
 			map.put("keyword", "%"+keyword+"%");
+			String id = "";
+			if (session.getAttribute("loginInfo") != null) {
+				id = ((MemberBean) session.getAttribute("loginInfo")).getId();
+			}
+			map.put("id", id);
 		String url = request.getContextPath()+command;
 		
 		if("food_name".equals(whatColumn)) {
@@ -45,7 +54,8 @@ public class RecipeListController {
 			mav.addObject("pageInfo", pageInfo);
 			mav.setViewName(getPage);
 			
-		}else if("food_category".equals(whatColumn)){
+		}else if("foodcategory".equals(whatColumn)){
+			map.put("keyword", keyword);
 			int foodRecipeTotalCount = rdao.getFoodRecipeTotalCount(map);
 			System.out.println("레시피갯수"+foodRecipeTotalCount);
 			Paging2 pageInfo = new Paging2(pageNumber, "12", foodRecipeTotalCount, url, whatColumn, keyword, null);
@@ -77,7 +87,6 @@ public class RecipeListController {
 			System.out.println(totalCount);
 			System.out.println(keyword);
 			List<RecipeBean> recipeList = rdao.getAllRecipe(map,pageInfo);
-			System.out.println(recipeList.get(0).getRecipenum());
 			mav.addObject("recipeList", recipeList);
 			mav.addObject("pageInfo", pageInfo);
 			mav.setViewName(getPage);

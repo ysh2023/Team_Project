@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import member.model.MemberBean;
+import recipe.model.RecipeBookMarkBean;
 import recipe.model.RecipeDao;
 
 @Controller
@@ -19,10 +20,13 @@ public class RecipeBookMarkDeleteController {
 	RecipeDao rdao;
 	
 	@RequestMapping(value = command)
-	public String doAction(@RequestParam("recipenum") String recipenum , HttpSession session) { 
+	public String doAction(@RequestParam("recipenum") int recipenum , HttpSession session) { 
 		MemberBean mb = (MemberBean)session.getAttribute("loginInfo");
-		mb.setTel(recipenum);
-		int cnt = rdao.deleteBookmark(mb);
+		RecipeBookMarkBean RBMBean = new RecipeBookMarkBean();
+		//BMBean 만들었으니까 바꿔주기
+		RBMBean.setId(mb.getId());
+		RBMBean.setRecipenum(recipenum);
+		int cnt = rdao.deleteBookmark(RBMBean);
 		if(cnt>0) {
 			System.out.println("삭제성공");
 			

@@ -1,27 +1,16 @@
 package recipe.model;
 
-public class RecipeBean {
+import java.util.List;
+	//recipeBean으로도 에러가 안뜨는지 확인해보기
+public class RecipeRecommendBean {
 	private int recipenum;
 	private String recipename;
 	private String recipecategory;
 	private String servings;
 	private String cookimage;
 	private int readcount; 
-	private int rec;
+	private int cnt;
 	
-	
-	public int getRec() {
-		return rec;
-	}
-	public void setRec(int rec) {
-		this.rec = rec;
-	}
-	public int getReadcount() {
-		return readcount;
-	}
-	public void setReadcount(int readcount) {
-		this.readcount = readcount;
-	}
 	public int getRecipenum() {
 		return recipenum;
 	}
@@ -52,5 +41,19 @@ public class RecipeBean {
 	public void setCookimage(String cookimage) {
 		this.cookimage = cookimage;
 	}
+	public int getReadcount() {
+		return readcount;
+	}
+	public void setReadcount(int readcount) {
+		this.readcount = readcount;
+	}
+	public int getCnt() {
+		return cnt;
+	}
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
+	}
+	
+	
 	
 }

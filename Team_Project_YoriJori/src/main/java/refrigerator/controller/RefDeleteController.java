@@ -26,7 +26,7 @@ public class RefDeleteController {
 	@Autowired
 	RefDao refdao;
 	
-	/* ¼öÁ¤Æû¿¡¼­ »èÁ¦ */
+	/* ìˆ˜ì •í¼ì—ì„œ ì‚­ì œ */
 	@RequestMapping(value=command, method = RequestMethod.GET)
 	public String doAction(@RequestParam("ingnum") int ingnum, Model model, HttpSession session, HttpServletRequest request) throws SQLException {
 		MemberBean loginInfo = (MemberBean)session.getAttribute("loginInfo");
@@ -40,8 +40,8 @@ public class RefDeleteController {
 		cnt = refdao.deleteRef(map);
 		
 		if(cnt!=-1) {
-			//System.out.println("delete ¼º°ø");
-			request.setAttribute("msg", "ÇØ´ç ½ÄÀç·á¸¦ ³ÃÀå°í¿¡¼­ »èÁ¦Çß½À´Ï´Ù.");
+			//System.out.println("delete ì„±ê³µ");
+			request.setAttribute("msg", "í•´ë‹¹ ì‹ì¬ë£Œë¥¼ ëƒ‰ì¥ê³ ì—ì„œ ì‚­ì œí–ˆìŠµë‹ˆë‹¤.");
 			request.setAttribute("url", "/ex/list.ref");
 		}
 		
@@ -49,7 +49,7 @@ public class RefDeleteController {
 		return "alert";
 	}
 	
-	/* Ã¼Å©¹Ú½º ¼±ÅÃ »èÁ¦ */
+	/* ì²´í¬ë°•ìŠ¤ ì„ íƒ ì‚­ì œ */
 	@RequestMapping(value=command, method = RequestMethod.POST)
 	public String doAction(@RequestParam("rowchk") int[] rowchk, Model model, HttpSession session, HttpServletRequest request) {
 		
@@ -67,11 +67,11 @@ public class RefDeleteController {
 		}
 		
 		if(cnt!=-1) {
-			System.out.println("³ÃÀå°í delete ¼º°ø");
-			request.setAttribute("msg", "¼±ÅÃÇÏ½Å ½ÄÀç·á°¡ »èÁ¦µÇ¾ú½À´Ï´Ù.");
+			System.out.println("ëƒ‰ì¥ê³  delete ì„±ê³µ");
+			request.setAttribute("msg", "ì„ íƒí•˜ì‹  ì‹ì¬ë£Œê°€ ì‚­ì œë˜ì—ˆìŠµë‹ˆë‹¤.");
 			request.setAttribute("url", "/ex/list.ref");
 		}else {
-			System.out.println("³ÃÀå°í delete ½ÇÆĞ");
+			System.out.println("ëƒ‰ì¥ê³  delete ì‹¤íŒ¨");
 		}
 		
 		model.addAttribute("loginInfo", loginInfo);
