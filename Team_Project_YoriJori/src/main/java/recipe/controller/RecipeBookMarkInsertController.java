@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import member.model.MemberBean;
 import recipe.model.RecipeBookMarkBean;
@@ -16,30 +17,44 @@ import recipe.model.RecipeDao;
 @Controller
 public class RecipeBookMarkInsertController {
 	private final String command="/BookmarkInsert.re";
-	private final String getPage="redirect:/bookmark.re";
+	private final String getPage2="redirect:/detail.re";
 	
 	@Autowired
 	RecipeDao rdao;
 	
 	//recipeList에서 찜 버튼 눌렀을때 get
 	@RequestMapping(value=command, method=RequestMethod.GET)
-	public String doAction(HttpSession session,@RequestParam("recipenum") int recipenum,Model model) {
+	@ResponseBody
+	public String doAction(HttpSession session,@RequestParam("recipenum") int recipenum) {
 		if(session.getAttribute("loginInfo") == null) {
 			session.setAttribute("destination", "redirect:/list.re?recipenum="+recipenum); 
 			return "redirect:/login.mb";
 		}
+		
 		RecipeBookMarkBean BMBean = new RecipeBookMarkBean();
 		MemberBean mb = (MemberBean)session.getAttribute("loginInfo");
 		
 		BMBean.setId(mb.getId());
 		BMBean.setRecipenum(recipenum);
 		boolean flag = rdao.checkBookMark(BMBean);
+		
 		if(flag == false) {
-			rdao.insertBookMark(BMBean);
+			int result = rdao.insertBookMark(BMBean);
+			
+				if (result > 0) {
+					return "1";
+				} else {
+					return "-1";
+				}
+			
 		}else {
-			//model.addAttribute("msg", "중복");
+			int result = rdao.deleteBookmark(BMBean);
+			if (result > 0) {
+				return "0";
+			} else {
+				return "-1";
+			}
 		}
-		return getPage;
 	}
 	
 	//recipedetail에서 찜 버튼 눌렀을때 post
@@ -58,8 +73,9 @@ public class RecipeBookMarkInsertController {
 		if(flag == false) {
 			rdao.insertBookMark(BMBean);
 		}else {
-			//model.addAttribute("msg", "중복");
+			rdao.deleteBookmark(BMBean);
 		}
-		return getPage;
+		model.addAttribute("recipenum",recipenum);
+		return getPage2;
 	}
 }

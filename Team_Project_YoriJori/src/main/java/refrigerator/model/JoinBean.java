@@ -1,6 +1,7 @@
 package refrigerator.model;
 
 public class JoinBean {
+	private int refnum;
 	private String id;
 	private int ingnum;
 	private String ingcategory;
@@ -11,6 +12,13 @@ public class JoinBean {
 	private String refdday;
 	private String refstorage;
 	private String refdetail;
+	
+	public int getRefnum() {
+		return refnum;
+	}
+	public void setRefnum(int refnum) {
+		this.refnum = refnum;
+	}
 	
 	public String getId() {
 		return id;

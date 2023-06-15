@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import member.model.MemberBean;
 import utility.Paging;
+import utility.Paging2;
 
 @Component
 public class RecipeDao {
@@ -18,7 +19,7 @@ public class RecipeDao {
 	@Autowired
 	SqlSessionTemplate sqlSessionTemplate;
 	
-	public List<RecipeBean> getAllRecipe(Map<String, String> map,Paging pageInfo){
+	public List<RecipeBean> getAllRecipe(Map<String, String> map,Paging2 pageInfo){
 		RowBounds rowBounds = new RowBounds(pageInfo.getOffset(), pageInfo.getLimit());
 		List<RecipeBean> recipeList = sqlSessionTemplate.selectList(namespace+".GetAllRecipe",map,rowBounds);
 		return recipeList;
@@ -54,8 +55,8 @@ public class RecipeDao {
 		return BookmarkList;
 	}
 	
-	public int deleteBookmark(MemberBean mb) {
-		int cnt = sqlSessionTemplate.delete(namespace+".DeleteBookmark", mb);
+	public int deleteBookmark(RecipeBookMarkBean RBMBean) {
+		int cnt = sqlSessionTemplate.delete(namespace+".DeleteBookmark", RBMBean);
 		return cnt;
 	}
 	
@@ -83,5 +84,55 @@ public class RecipeDao {
 			flag = true;
 		}
 		return flag;
+	}
+	
+	public int getingrecipeTotalCount(Map<String, String> map) {
+		int cnt = sqlSessionTemplate.selectOne(namespace+".GetingrecipeTotalCount", map);
+		return cnt;
+	}
+	public List<RecipeBean> getAllRecipeByIngre(Map<String, String> map,Paging2 pageInfo){
+		RowBounds rowBounds = new RowBounds(pageInfo.getOffset(), pageInfo.getLimit());
+		List<RecipeBean> recipeList = sqlSessionTemplate.selectList(namespace+".GetAllRecipeByIngre",map,rowBounds);
+		return recipeList;
+	}
+	
+	public int getFoodRecipeTotalCount(Map<String, String> map) {
+		int cnt = sqlSessionTemplate.selectOne(namespace+".GetFoodRecipeTotalCount", map);
+		return cnt;
+	}
+	public List<RecipeBean> getAllRecipeByFoodCate(Map<String, String> map,Paging2 pageInfo){
+		RowBounds rowBounds = new RowBounds(pageInfo.getOffset(), pageInfo.getLimit());
+		List<RecipeBean> recipeList = sqlSessionTemplate.selectList(namespace+".GetAllRecipeByFoodCate",map,rowBounds);
+		return recipeList;
+	}
+	
+	public int updateReadCount(int recipenum) {
+		int cnt = sqlSessionTemplate.update(namespace+".UpdateReadCount", recipenum);
+		return cnt;
+	}
+	public List<RecipeBean> getAllRecipeByReadCount(Map<String, String> map,Paging2 pageInfo){
+		RowBounds rowBounds = new RowBounds(pageInfo.getOffset(), pageInfo.getLimit());
+		List<RecipeBean> recipeList = sqlSessionTemplate.selectList(namespace+".GetAllRecipeByReadCount", pageInfo, rowBounds);
+		return recipeList;
+	}
+	public List<RecipeBean> getAllRecipeByBookMark(Map<String, String> map,Paging2 pageInfo){
+		RowBounds rowBounds = new RowBounds(pageInfo.getOffset(), pageInfo.getLimit());
+		List<RecipeBean> recipeList = sqlSessionTemplate.selectList(namespace+".GetAllRecipeByBookMark", pageInfo, rowBounds);
+		return recipeList; 
+	}
+	public List<String> getIngredientByCategory(String keyword){
+		List<String> ingreList = sqlSessionTemplate.selectList(namespace+".GetIngredientByCategory", keyword);
+		return ingreList;
+	}
+	
+	public int getRecipeTotalCountByIngre(Map<String, String> map) {
+		int cnt = sqlSessionTemplate.selectOne(namespace+".GetRecipeTotalCountByIngre", map);
+		return cnt;
+	}
+	
+	public List<RecipeRecommendBean> getRecipeListByIngredient(Map<String, String> map,Paging2 pageInfo){
+		RowBounds rowBounds = new RowBounds(pageInfo.getOffset(), pageInfo.getLimit());
+		List<RecipeRecommendBean> recipeNumList = sqlSessionTemplate.selectList(namespace+".GetRecipeNumByIngredient", map,rowBounds);
+		return recipeNumList;
 	}
 }

@@ -5,14 +5,14 @@
   
   <mapper namespace="recipe.model.RecipeBean">
   	<select id="GetAllRecipe" resultType="recipe.model.RecipeBean">
-  		select * from recipe
+  		select recipe.recipe_num,recipe.recipe_name,recipe.recipe_category,recipe.servings,recipe.cook_image,recipe.readcount <if test="id!=''">, recipe.rec</if> from recipe <if test="id!=''">full outer join
+		(select count(*)as rec , recipe_num from bookmark where id=#{id} group by recipe_num) sel on sel.recipe_num = recipe.recipe_num</if>
   		<if test="whatColumn == 'recipename'">
   			where recipe_name like #{keyword}
   		</if>
   		<if test="whatColumn == 'recipecategory'">
   			where recipe_category like #{keyword}
   		</if>
-  		order by recipe_num
   	</select>
   	
   	<select id="GetTotalCount" resultType="int">
@@ -47,7 +47,7 @@
   	
   	<delete id="DeleteBookmark">
   		delete bookmark
-  		where id=#{id} and recipe_num=#{tel}
+  		where id=#{id} and recipe_num=#{recipenum}
   	</delete>
   	
   	<select id="GetReviewByRecipe" resultType="recipe.model.RecipeReviewBean">
@@ -57,7 +57,7 @@
   	
   	<insert id="InsertReview">
   		insert into review
-  		values(recipe_re_seq.nextval,#{review},#{id},#{recipenum}) 
+  		values(recipe_re_seq.nextval,#{review},#{id},sysdate,#{recipenum}) 
   	</insert>
   	
   	<select id="GetBookmarkCount" resultType="int">
@@ -78,5 +78,56 @@
   	<select id="CheckBookMark" resultType="int">
   		select count(*) from bookmark
   		where id=#{id} and recipe_num=#{recipenum}
+  	</select>
+  	
+  	<select id="GetingrecipeTotalCount" resultType="int">
+  		select count(*) from recipe join recipe_food food on recipe.recipe_num = food.recipe_num
+		where food_name like #{keyword}
+  	</select>
+  	<select id="GetAllRecipeByIngre" resultType="recipe.model.RecipeBean">
+  		select recipe.recipe_num,recipe.recipe_name,recipe.recipe_category,recipe.servings,recipe.cook_image,recipe.readcount from recipe join recipe_food food on recipe.recipe_num = food.recipe_num 
+		where food_name like #{keyword}
+		order by recipe_num
+  	</select>
+  	<select id="GetFoodRecipeTotalCount" resultType="int">
+  		select distinct count(*) from recipe_food where food_category=#{keyword}
+  	</select>
+  	<!-- 식재료 카테고리별 recipe가져오기 -->
+  	<select id="GetAllRecipeByFoodCate" resultType="recipe.model.RecipeBean">
+  		select distinct recipe.recipe_num,recipe.recipe_name,recipe.recipe_category,recipe.servings,recipe.cook_image,recipe.readcount from recipe join recipe_food
+		on recipe.recipe_num = recipe_food.recipe_num where food_category=#{keyword} order by recipe.recipe_num
+  	</select>
+  	<!-- 조회수 업데이트 -->
+  	<update id="UpdateReadCount">
+  		update recipe set readcount=readcount+1 where recipe_num=#{recipenum}
+  	</update>
+  	<!-- 조회수 순서대로 recipe가져오기 -->
+  	<select id="GetAllRecipeByReadCount" resultType="recipe.model.RecipeBean">
+  		select * from recipe
+  		order by readcount desc
+  	</select>
+  	<!-- bookmark번호로 recipe가져오기 -->
+  	<select id="GetAllRecipeByBookMark" resultType="recipe.model.RecipeBean">
+  		select recipe.recipe_num,recipe.recipe_name,recipe.recipe_category,recipe.servings,recipe.cook_image,recipe.readcount,bookmarknum
+		from recipe join (select recipe_num, count(*)as bookmarknum from bookmark group by recipe_num) mark on recipe.recipe_num = mark.recipe_num
+		order by bookmarknum desc
+  	</select>
+  	<!-- 식재료카테고리 통해서 식재료 이름 가져오기 -->
+  	<select id="GetIngredientByCategory" resultType="String">
+  		select ing_name from ingredient where ing_category = #{keyword}
+  	</select>
+  	<!-- 냉장고 식재료로 추천레시피 갯수 -->
+  	<select id="GetRecipeTotalCountByIngre" resultType="int">
+  		select count(cnt) from(select count(*) as cnt 
+  		from recipe join recipe_food on recipe.recipe_num = recipe_food.recipe_num 
+  		where REGEXP_LIKE(recipe_food.food_name,#{str}) 
+  		group by  recipe.recipe_num having count(*)>#{count})
+  	</select>
+  	
+  	<!-- 냉장고 식재료로 추천레시피 검색 -->
+  	<select id="GetRecipeNumByIngredient" resultType="recipe.model.RecipeRecommendBean">
+  		select recipe.recipe_num,recipe.recipe_name,recipe.recipe_category,recipe.servings,recipe.cook_image,recipe.readcount, count(*) as cnt 
+  		from recipe join recipe_food on recipe.recipe_num = recipe_food.recipe_num where REGEXP_LIKE(recipe_food.food_name,#{str}) 
+  		group by  recipe.recipe_num,recipe.recipe_num,recipe.recipe_name,recipe.recipe_category,recipe.servings,recipe.cook_image,recipe.readcount having count(*)>#{count}
   	</select>
   </mapper>

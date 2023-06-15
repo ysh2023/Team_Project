@@ -6,7 +6,22 @@ public class RecipeBean {
 	private String recipecategory;
 	private String servings;
 	private String cookimage;
+	private int readcount; 
+	private int rec;
 	
+	
+	public int getRec() {
+		return rec;
+	}
+	public void setRec(int rec) {
+		this.rec = rec;
+	}
+	public int getReadcount() {
+		return readcount;
+	}
+	public void setReadcount(int readcount) {
+		this.readcount = readcount;
+	}
 	public int getRecipenum() {
 		return recipenum;
 	}

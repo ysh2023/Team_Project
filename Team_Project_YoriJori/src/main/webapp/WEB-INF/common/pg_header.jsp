@@ -43,7 +43,7 @@
 <ul id="nav1">
  	
  	 <strong><li style="font-size: 30px">주문</li></strong> 
-   	<li><a href="#">주문목록</a></li>
+   	<li><a href="orderlist.mb">주문목록</a></li>
    	<li><a href="#">보유쿠폰</a></li>
    	
    	 <strong><li style="font-size: 30px">게시물</li></strong> 
@@ -59,6 +59,6 @@
  	<li><a href="deleteMb.mp">탈퇴하기</a></li>
    	
    
+   
 </ul>
 </aside>
-

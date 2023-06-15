@@ -1,3 +1,4 @@
+<%@page import="member.model.MemberBean"%>
 <script>
     var url = "${url}";
     var msg = "${msg}";
@@ -11,5 +12,6 @@
 </script>
 
 <%
-	session.getAttribute("loginInfo");
+	MemberBean loginInfo = (MemberBean)session.getAttribute("loginInfo");
+	session.setAttribute("loginInfo", loginInfo);
 %>

@@ -10,6 +10,7 @@
 <% String conPath = request.getContextPath(); %>
 <% String resourcesPath = request.getContextPath() + "/resources"; %>
 
+
 <!-- header.jsp -->
 <!DOCTYPE html>
 <html>
@@ -36,8 +37,111 @@
     <link rel="stylesheet" href="<%=resourcesPath%>/css/flaticon.css">
     <link rel="stylesheet" href="<%=resourcesPath%>/css/icomoon.css">
     <link rel="stylesheet" href="<%=resourcesPath%>/css/style.css">
+    
+    <!-- 아임포트 api 설정 -->
+    <script
+      type="text/javascript"
+      src="https://code.jquery.com/jquery-1.12.4.min.js"
+    ></script>
+    <!-- iamport.payment.js -->
+    <script
+      type="text/javascript"
+      src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"
+    ></script>
+   <script type="text/javascript" src="<%=resourcesPath%>/resources/js/jquery.js"></script>
+   <script>
+      var IMP = window.IMP;
+      IMP.init("imp78600063");
+ 
+      var today = new Date();   
+      var hours = today.getHours(); // 시
+      var minutes = today.getMinutes();  // 분
+      var seconds = today.getSeconds();  // 초
+      var milliseconds = today.getMilliseconds();
+      var makeMerchantUid = hours +  minutes + seconds + milliseconds;
+      
+      $(document).ready(function(){
+  		
+  		$('#requestPay').click(function(){
+  			if($('input[name=name]').val() == ""){
+  				alert("아이디를 입력해주세요.");
+  				$('input[name=name]').focus();
+  				return false;
+  			}
+  			if($('input[name=ordzipcode]').val() == ""){
+  				alert("우편번호를 입력해주세요.");
+  				$('input[name=ordzipcode]').focus();
+  				return false;
+  			}
+  			if($('input[name=ordaddr]').val() == ""){
+  				alert("주소를 입력해주세요.");
+  				$('input[name=ordaddr]').focus();
+  				return false;
+  			}
+  			if($('input[name=ordtel]').val() == ""){
+  				alert("전화번호를 입력해주세요.");
+  				$('input[name=ordtel]').focus();
+  				return false;
+  			}
+  			if($('input[name=ordemail]').val() == ""){
+  				alert("이메일을 입력해주세요.");
+  				$('input[name=ordemail]').focus();
+  				return false;
+  			}
+  		    IMP.request_pay({
+  		    	pg : 'html5_inicis',
+                pay_method: "card",
+                merchant_uid: "IMP"+makeMerchantUid, // 결제 고유 번호
+                name: '${ordpdname}', //상품명
+                amount: ${totalAmount}, //상품가격
+                buyer_email: document.getElementById('ordemail').value,
+                buyer_name: document.getElementById('ordname').value,
+                buyer_tel: document.getElementById('ordtel').value,
+                buyer_addr: document.getElementById('ordaddr').value,
+                buyer_postcode: document.getElementById('ordzipcode').value 
+  			    }, function (rsp) { // callback
+  			    	 if (rsp.success) {// 결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
+               		  var msg = '결제가 완료되었습니다.';
+               	        msg += '주문 번호 : ' + rsp.merchant_uid;
+               	        msg += '상품 이름 : ' + rsp.name;
+               	        msg += '결제 금액 : ' + rsp.paid_amount;
+               	        msg += '구매자 이메일 : ' + rsp.buyer_email;
+               	        msg += '구매자 이름 : ' + rsp.buyer_name;
+               	        msg += '구매자 번호 : ' + rsp.buyer_tel;
+               	        msg += '구매자 주소 : ' + rsp.buyer_addr;
+               	        msg += '구매자 우편번호 : ' + rsp.buyer_postcode;
+               	        alert(msg);
+                           location.href="orderinsert.ord?merchant_uid="+rsp.merchant_uid+"&name="+rsp.name+"&amount="+rsp.paid_amount+"&buyer_email="+rsp.buyer_email+
+                           		"&buyer_name="+rsp.buyer_name+"&buyer_tel="+rsp.buyer_tel+"&buyer_addr="+rsp.buyer_addr+"&buyer_postcode="+rsp.buyer_postcode;
+                     } else {
+                   	  var msg = '결제에 실패하였습니다.';
+                         msg += '에러내용 : ' + rsp.error_msg;
+                         alert(msg);
+                     }
+  			    });//request pay
+  			    
+  		});
+  		
+  	});
+    </script>
+    <!-- 아임포트 api 설정 끝-->
+    
   </head>
   
+<script type="text/javascript" src="<%=resourcesPath%>/js/jquery.js"></script>
+<script type="text/javascript">
+	function toggle(element){
+		console.log(element.checked);
+		if(element.checked){
+			document.search.action="main.board";
+		}else{
+			document.search.action="list.re";
+		}
+	}
+	$(document).ready(function(){ 
+		//alert(1);
+	});
+</script>
   <body class="goto-here">
   	<!-- header -->
 	<header>
@@ -89,9 +193,15 @@
 					</div>
 					<!-- search form  -->
 					<div class="col-md-auto">
-						<form action="list.re" class="search-form">
+						<form action="list.re" class="search-form" name="search">
 							<input type="hidden" value="recipename" name="whatColumn">
-							<input class="form-control me-2" type="search" placeholder="요리명 검색" aria-label="Search" style="margin-top: 10px;" name="keyword">
+							<div class="custom-control custom-switch">
+		  					<input type="checkbox" class="custom-control-input" id="customSwitch1" onclick="toggle(this)">
+		  					<label class="custom-control-label" for="customSwitch1"><span id="switchMessage">스위치 체크시 방구석쉐프 검색</span></label>
+							</div>
+							<div class="input-group mb-3">
+  							 <input type="search" class="form-control" placeholder="요리명 검색" aria-label="Example text with two button addons" name="keyword">
+							 </div>
 						</form>
 					</div>
 				</div>
@@ -111,7 +221,7 @@
 							class="nav-link dropdown-toggle" href="shop.prd?whatColumn=no&searchName=${searchName}" id="dropdown04"
 							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">장보기</a>
 							<div class="dropdown-menu" aria-labelledby="dropdown04">
-								<a class="dropdown-item" href="shop.prd?whatColumn=no">전체보기</a> <a
+                <a class="dropdown-item" href="shop.prd?whatColumn=no">전체보기</a> <a
 									class="dropdown-item" href="shop.prd?whatColumn=se&keyword=채소&searchName=${searchName}">채소</a>
 								<a class="dropdown-item"
 									href="shop.prd?whatColumn=se&keyword=과일&searchName=${searchName}">과일</a> <a
@@ -130,7 +240,7 @@
 					</ul>
 					<!-- right nav -->
 					<ul class="navbar-nav ml-auto">
-						<li class="nav-item"><a href="list.ref" class="nav-link">
+						<li class="nav-item"><a href="page.ref" class="nav-link">
 								<img src="<%=resourcesPath%>/images/btn_circle.png"
 								style="width: 18px; margin-right: 5px; margin-bottom: 2px;">
 								나의 냉장고
@@ -140,8 +250,8 @@
 								style="width: 18px; margin-right: 5px; margin-bottom: 2px;">
 								북마크 레시피
 						</a></li>
-						<li class="nav-item cta cta-colored"><a href="cart.html"
-							class="nav-link"><span class="icon-shopping_cart"></span>[0]</a></li>
+						<li class="nav-item cta cta-colored"><a href="list.bsk"
+							class="nav-link"><span class="icon-shopping_cart" style="color:#F2BC1B;">[0]</span></a></li>
 					</ul>
 				</div>
 			</div>
