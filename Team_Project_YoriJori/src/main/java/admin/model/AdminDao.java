@@ -6,6 +6,8 @@ import java.util.List;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import board.model.CommentReportBean;
 import product.model.ProductBean;
 
 @Component("myAdminDao")
@@ -62,6 +64,37 @@ public class AdminDao {
 		List<ProductBean> lists= new ArrayList<ProductBean>();
 		lists = sqlSessionTemplate.selectList(namespace+".GetAllMember"); 
 		return lists;
+	}
+
+	public List<CommentReportBean> getReportlist() {
+		List<CommentReportBean> lists= new ArrayList<CommentReportBean>();
+		lists = sqlSessionTemplate.selectList(namespace+".GetReportCount"); 
+		return lists;
+	}
+
+	public List<CommentReportBean> getAllReport(String id) {
+		List<CommentReportBean> lists= new ArrayList<CommentReportBean>();
+		lists = sqlSessionTemplate.selectList(namespace+".GetAllReport",id); 
+		return lists;
+	}
+
+	public int getCountReportById(String id) {
+		
+		int cnt=-1;
+		
+		cnt=sqlSessionTemplate.selectOne(namespace+".GetCountReportById",id);
+		
+		return cnt;
+	}
+
+
+	public void deleteReport(String id) {
+
+		sqlSessionTemplate.delete(namespace+".DeleteReport",id);
+	}
+
+	public void deleteComment(int comNum) {
+		sqlSessionTemplate.delete(namespace+".DeleteComment",comNum);
 	}
 
 }

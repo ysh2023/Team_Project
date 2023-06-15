@@ -22,20 +22,40 @@
 
 	<select id="GetByNum" resultType="product.model.ProductBean">
 		select * from product
-		where pd_num=#{pdnum}
+		where
+		pd_num=#{pdnum}
 	</select>
-	
+
 	<update id="UpdateProduct">
-	update product set pd_name=#{pdname},pd_category=#{pdcategory},pd_content=#{pdcontent},pd_stock=#{pdstock},
-	pd_price=#{pdprice},pd_image=#{pdimage}
-	where pd_num=#{pdnum}
+		update product set
+		pd_name=#{pdname},pd_category=#{pdcategory},pd_content=#{pdcontent},pd_stock=#{pdstock},
+		pd_price=#{pdprice},pd_image=#{pdimage}
+		where pd_num=#{pdnum}
 	</update>
-	
+
 	<select id="GetAllMember" resultType="member.model.MemberBean">
 		select * from member
-		order by id
+		order
+		by id
 	</select>
-	
+
+	<select id="GetReportCount" resultType="board.model.CommentReportBean">
+		select id,count(*) count from commentReport
+		group by id order by count(*) desc
+	</select>
+
+	<select id="GetAllReport"
+		resultType="board.model.CommentReportBean">
+		select * from comments natural join commentReport 
+		where id=#{id}
+	</select>
+
+	<delete id="DeleteReport">
+	delete from commentReport where id=#{id}
+	</delete>
+	<delete id="DeleteComment">
+	delete from comments where com_Num=#{comNum}
+	</delete>
 
 
 </mapper>

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class AdminMainController {
 	private final String command = "/main.am";
-	private String getPage = "am_main";
+	private final String getPage = "am_main";
 	
 
 	@RequestMapping(value = command, method = RequestMethod.GET)

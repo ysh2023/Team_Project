@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
 <%@include file= "./../common/admin_header.jsp" %>
 
 <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>상품테이블</h1>
+      <h1>멤버
+      테이블</h1>
 
     </div><!-- End Page Title -->
 
@@ -39,7 +40,7 @@
                     <td>${i.age}</td>
                     <td>${i.area1}</td>
                     <td>${i.area2}</td>
-                    <td><a href="deleteMb.am?pdnum=${i.id}">삭제</a></td>
+                    <td><a href="deleteMb.am?id=${i.id}">삭제</a></td>
                   </tr>
                 </c:forEach>
          

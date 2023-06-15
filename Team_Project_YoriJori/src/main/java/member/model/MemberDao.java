@@ -27,5 +27,23 @@ public class MemberDao {
 		return cnt;
 	}
 
+	public int updateMember(MemberBean mb) {
+		int cnt=-1;
+		
+		cnt=sqlSessionTemplate.update(namespace + ".UpdatetMember", mb);
+		
+		
+		return cnt;
+	}
+
+	public int deleteMember(String id) {
+		int cnt=-1;
+		
+		cnt=sqlSessionTemplate.delete(namespace + ".DeleteMember", id);
+		
+		return cnt;
+		
+	}
+
 
 }

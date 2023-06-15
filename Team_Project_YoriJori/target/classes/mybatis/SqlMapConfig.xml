@@ -17,10 +17,7 @@
 		<mapper resource="mybatis/ingredient.xml"/>
 		<mapper resource="mybatis/recipe.xml"/>
 		<mapper resource="mybatis/admin.xml"/>
-		<mapper resource="mybatis/order.xml"/>
-		<mapper resource="mybatis/basket.xml"/>
-		<mapper resource="mybatis/orderdetail.xml"/>
-		<mapper resource="mybatis/shopmemo.xml"/>
+	  <mapper resource="mybatis/mypage.xml"/>
 	</mappers>
 	
 </configuration>
