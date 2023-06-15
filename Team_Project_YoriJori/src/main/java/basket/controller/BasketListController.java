@@ -34,7 +34,7 @@ public class BasketListController {
 			try {
 				response.setContentType("text/html; charset=UTF-8");
 				PrintWriter out = response.getWriter();
-				out.println("<script>alert('·Î±×ÀÎ ÈÄ ÀÌ¿ë °¡´ÉÇÕ´Ï´Ù.'); location.href='login.mb';</script>");
+				out.println("<script>alert('ë¡œê·¸ì¸ í›„ ì´ìš© ê°€ëŠ¥í•©ë‹ˆë‹¤.'); location.href='login.mb';</script>");
 				out.flush();
 			} catch (IOException e) {
 				e.printStackTrace();

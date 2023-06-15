@@ -47,14 +47,14 @@ public class OrderInsertController {
 	OrderDetailDao odtdao;
 	   
 	@RequestMapping(value=command,method = RequestMethod.GET)
-	public String doAction(HttpSession session,@RequestParam("name") String name, //»óÇ° ÀÌ¸§
-			@RequestParam("merchant_uid") String merchantuid, //ÁÖ¹® ¹øÈ£
-			@RequestParam("amount") int amount,// °áÁ¦ °¡°İ
-			@RequestParam("buyer_email") String buyeremail, //±¸¸ÅÀÚ ÀÌ¸ŞÀÏ
-			@RequestParam("buyer_name") String buyername,//±¸¸ÅÀÚ ÀÌ¸§
-			@RequestParam("buyer_tel") String buyertel,//±¸¸ÅÀÚ ÀüÈ­¹øÈ£
-			@RequestParam("buyer_addr") String buyeraddr,//±¸¸ÅÀÚ ÁÖ¼Ò
-			@RequestParam("buyer_postcode") String buyerpostcode//±¸¸ÅÀÚ ¿ìÆí¹øÈ£
+	public String doAction(HttpSession session,@RequestParam("name") String name, //ìƒí’ˆ ì´ë¦„
+			@RequestParam("merchant_uid") String merchantuid, //ì£¼ë¬¸ ë²ˆí˜¸
+			@RequestParam("amount") int amount,// ê²°ì œ ê°€ê²©
+			@RequestParam("buyer_email") String buyeremail, //êµ¬ë§¤ì ì´ë©”ì¼
+			@RequestParam("buyer_name") String buyername,//êµ¬ë§¤ì ì´ë¦„
+			@RequestParam("buyer_tel") String buyertel,//êµ¬ë§¤ì ì „í™”ë²ˆí˜¸
+			@RequestParam("buyer_addr") String buyeraddr,//êµ¬ë§¤ì ì£¼ì†Œ
+			@RequestParam("buyer_postcode") String buyerpostcode//êµ¬ë§¤ì ìš°í¸ë²ˆí˜¸
 			) {
 		System.out.println("name:"+name);
 		System.out.println("merchantuid:"+merchantuid);
@@ -70,11 +70,11 @@ public class OrderInsertController {
 		ob.setOrdaddr(buyeraddr);
 		ob.setOrdzipcode(buyerpostcode);
 		ob.setOrdmemid(loginInfo.getId());
-		System.out.println("»ç¶÷ÀÌ¸§:"+ob.getOrdname());
+		System.out.println("ì‚¬ëŒì´ë¦„:"+ob.getOrdname());
 		int cnt = -1;
 		int cnt2 = -1;
 		cnt = odao.insertOrder(ob);
-		if(cnt > -1) {//°áÁ¦ db ¼º°ø½Ã
+		if(cnt > -1) {//ê²°ì œ db ì„±ê³µì‹œ
 			DetailList detail = (DetailList)session.getAttribute("detail");
 			Map<Integer,Integer> mapLists = detail.getAllorderLists();
 			Set<Integer> keylist = mapLists.keySet();
@@ -86,29 +86,17 @@ public class OrderInsertController {
 				odt.setOdtqty(mapLists.get(key));
 				odt.setOdtprice(amount);
 				cnt2 += odtdao.insertOrderDetail(odt);
-				//»óÇ° Àç°í¼ö·® °¨¼Ò
+				//ìƒí’ˆ ì¬ê³ ìˆ˜ëŸ‰ ê°ì†Œ
 				int stock_cnt = pdao.updatePqty(odt.getOdtpdnum(),odt.getOdtqty());
 			}
 			detail.deleteOrder();
-			bdao.deleteIdBasket(loginInfo.getId()); // Àå¹Ù±¸´Ï »èÁ¦
-			System.out.println("insertOrder ¼º°ø");
+			bdao.deleteIdBasket(loginInfo.getId()); // ì¥ë°”êµ¬ë‹ˆ ì‚­ì œ
+			System.out.println("insertOrder ì„±ê³µ");
 		}else {
-			System.out.println("insertOrder ½ÇÆĞ");
+			System.out.println("insertOrder ì‹¤íŒ¨");
 		}
 		
 		return getPage;  
 	}
-	/*
-	@RequestMapping(value=command,method = RequestMethod.POST)
-	public String doAction(
-			@RequestParam("name") String name,
-			@RequestParam("merchant_uid") int merchantuid,HttpSession session
-			) {
-		System.out.println("merchantuid:"+merchantuid);
-		System.out.println("name:"+name);
-		return getPage; 
-		
-	}
-	*/
 }
  

@@ -26,16 +26,16 @@ public class BasketDeleteController {
 	
 	@Autowired
 	BasketDao bdao;
-	
+	 
 	@RequestMapping(value=command)
 	public ModelAndView doAction(@RequestParam(value="bsknum") int bsknum,
 			Model model, HttpServletRequest request,HttpSession session,HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView();
 		int cnt = bdao.deleteBasket(bsknum);
 		if(cnt > 1) {
-			System.out.println("昏力己傍");
+			System.out.println("鞛ル皵甑媹 靷牅 靹标车");
 		}else {
-			System.out.println("昏力角菩");
+			System.out.println("鞛ル皵甑媹 靷牅 鞁ろ尐");
 		}
 		mav.setViewName(gotoPage);
 		return mav;
