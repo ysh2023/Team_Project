@@ -61,6 +61,13 @@ public class MypageInsertDibsController {
 		
 		DibsBean dbean=ddao.getDibsByNum(map);
 		if(dbean==null) {
+			try {
+				out = response.getWriter();
+				out.println("<script>alert('찜에 담았습니다');history.go(-1);</script>");
+				out.flush();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 			
 			ddao.insertDibs(map);
 		}else {

@@ -26,5 +26,9 @@ select count(*) from (select * from product
 		set pd_stock = pd_stock - #{pdstock}
 		where pd_num = #{pdnum}
 	</update>
+	
+<select id="GetAllProducts" resultType="product.model.ProductBean">
+select * from product
+</select>
 
 </mapper>
