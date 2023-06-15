@@ -33,9 +33,9 @@ public class BasketDeleteController {
 		ModelAndView mav = new ModelAndView();
 		int cnt = bdao.deleteBasket(bsknum);
 		if(cnt > 1) {
-			System.out.println("昏力己傍");
+			System.out.println("鞛ル皵甑媹 靷牅 靹标车");
 		}else {
-			System.out.println("昏力角菩");
+			System.out.println("鞛ル皵甑媹 靷牅 鞁ろ尐");
 		}
 		mav.setViewName(gotoPage);
 		return mav;

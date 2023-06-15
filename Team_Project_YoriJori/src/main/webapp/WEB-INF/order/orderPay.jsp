@@ -94,7 +94,7 @@
 		    						<span><fmt:formatNumber type="number" maxFractionDigits="3" value="${totalAmount}" />원</span>
 		    					</p>
 								</div>
-	          	</div>
+	          	</div> 
 	          	<div class="col-md-12">
 	          		<div class="cart-detail p-3 p-md-4">
 									<p>
