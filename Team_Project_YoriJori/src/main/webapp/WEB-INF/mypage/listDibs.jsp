@@ -10,13 +10,14 @@
 margin-left:-250px;
 }
 
+
 </style>
 
 
 <main id="main" class="main" >
 
 
-
+<div class="dibstb">
 	    			<table class="table" id="table">
 						    <thead >
 						      <tr >
@@ -49,7 +50,7 @@ margin-left:-250px;
 						    </c:if>
 						    </tbody>
 						  </table>
-						  
+						  <div>
 				    		<div class="row mt-5">
           <div class="col text-center">
             <div class="block-27" style="margin-left: -600px;">
