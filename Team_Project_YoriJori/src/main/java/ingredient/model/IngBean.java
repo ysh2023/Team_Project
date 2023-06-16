@@ -1,11 +1,32 @@
 package ingredient.model;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class IngBean {
 	private int ingnum;
 	private String ingcategory;
 	private String ingname;
 	private int expiry;
 	private String ingicon;
+	
+	private String origin;	//기존 파일명
+	private MultipartFile upload;	//업로드 파일
+	
+	public String getOrigin() {
+		return origin;
+	}
+	public void setOrigin(String origin) {
+		this.origin = origin;
+	}
+	public MultipartFile getUpload() {
+		return upload;
+	}
+	public void setUpload(MultipartFile upload) {
+		this.upload = upload;
+		
+		String fileName = upload.getOriginalFilename();
+		this.ingicon = fileName;
+	}
 	
 	public int getIngnum() {
 		return ingnum;
@@ -25,11 +46,9 @@ public class IngBean {
 	public void setIngname(String ingname) {
 		this.ingname = ingname;
 	}
-
 	public int getExpiry() {
 		return expiry;
 	}
-
 	public void setExpiry(int expiry) {
 		this.expiry = expiry;
 	}

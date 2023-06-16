@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import board.model.CommentReportBean;
+import ingredient.model.IngBean;
 import product.model.ProductBean;
 
 @Component("myAdminDao")
@@ -95,6 +96,42 @@ public class AdminDao {
 
 	public void deleteComment(int comNum) {
 		sqlSessionTemplate.delete(namespace+".DeleteComment",comNum);
+	}
+	
+	/* 식재료 */
+	public List<IngBean> getAllIng() {
+		List<IngBean> allList = sqlSessionTemplate.selectList(namespace+".GetAllIng"); 
+		return allList;
+	}
+
+	public IngBean getIngDetail(int ingnum) {
+		IngBean ingbean = sqlSessionTemplate.selectOne(namespace+".GetIngDetail",ingnum);
+		return ingbean;
+	}
+	
+	public int checkIng(String ingname) {
+		int dupl = sqlSessionTemplate.selectOne(namespace+".CheckIng",ingname);
+		return dupl;
+	}
+	
+	public int insertIng(IngBean ingbean) {
+		int cnt = sqlSessionTemplate.insert(namespace+".InsertIng", ingbean);
+		return cnt;
+	}
+
+	public int updateIng(IngBean ingbean) {
+		int cnt = sqlSessionTemplate.update(namespace+".UpdateIng", ingbean);
+		return cnt;
+	}
+	
+	public int checkRef(int ingnum) {
+		int used = sqlSessionTemplate.selectOne(namespace+".CheckRef",ingnum);
+		return used;
+	}
+	
+	public int deleteIng(int ingnum) {
+		int cnt = sqlSessionTemplate.delete(namespace+".DeleteIng", ingnum);
+		return cnt;
 	}
 
 }
