@@ -172,6 +172,8 @@
                		<li><a href="mbReportList.am">
                			<i class="bi bi-circle"></i><span>멤버 신고 리스트</span>
 					</a></li>
+					 <li><a href="mbStopList.am"> <i class="bi bi-circle"></i><span>멤버 정지 리스트</span>
+					</a></li>
             	</ul>
          	</li>
 			<li class="nav-heading">야금야금</li>
