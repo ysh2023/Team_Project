@@ -4,7 +4,13 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="admin.model.Admin">
-
+	<!-- 회원 -->
+	<select id="GetAllMember" resultType="member.model.MemberBean">
+		select * from member
+		order by id
+	</select>
+	
+	<!-- 상품 -->
 	<select id="GetAllProduct"
 		resultType="product.model.ProductBean">
 		select * from product
@@ -26,16 +32,46 @@
 	</select>
 	
 	<update id="UpdateProduct">
-	update product set pd_name=#{pdname},pd_category=#{pdcategory},pd_content=#{pdcontent},pd_stock=#{pdstock},
-	pd_price=#{pdprice},pd_image=#{pdimage}
-	where pd_num=#{pdnum}
+		update product set pd_name=#{pdname},pd_category=#{pdcategory},pd_content=#{pdcontent},pd_stock=#{pdstock},
+		pd_price=#{pdprice},pd_image=#{pdimage}
+		where pd_num=#{pdnum}
 	</update>
 	
-	<select id="GetAllMember" resultType="member.model.MemberBean">
-		select * from member
-		order by id
+	<!-- 식재료 -->
+	<select id="GetAllIng" resultType="ingredient.model.IngBean">
+		select * from ingredient
+		order by ing_num
 	</select>
 	
-
+	<select id="GetIngDetail" resultType="ingredient.model.IngBean">
+		select * from ingredient
+		where ing_num = #{ingnum}
+	</select>
+	
+	<select id="CheckIng" resultType="int">
+		select count(ing_num) from ingredient
+		where ing_name = #{ingname}
+	</select>
+	
+	<insert id="InsertIng">
+		insert into ingredient
+		values(ingseq.nextval,#{ingcategory},#{ingname},#{expiry},#{ingicon})
+	</insert>
+	
+	<update id="UpdateIng">
+		update ingredient set
+		ing_name=#{ingname}, ing_category=#{ingcategory},expiry=#{expiry},ing_icon=#{ingicon}
+		where ing_num = #{ingnum}
+	</update>
+	
+	<select id="CheckRef" resultType="int">
+		select count(ref_num) from refrigerator
+		where ing_num = #{ingnum}
+	</select>
+	
+	<delete id="DeleteIng">
+		delete ingredient
+		where ing_num = #{ingnum}
+	</delete>
 
 </mapper>

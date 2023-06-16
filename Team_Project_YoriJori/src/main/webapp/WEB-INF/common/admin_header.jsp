@@ -14,12 +14,12 @@
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-<title>Users / Profile - NiceAdmin Bootstrap Template</title>
+<title>Admin 야금야금</title>
 <meta content="" name="description">
 <meta content="" name="keywords">
 
 <!-- Favicons -->
-<link href="<%=request.getContextPath()%>/resources/img/favicon.png"
+<link href="<%=resourcesPath%>/images/simpleLogo.png"
 	rel="icon">
 <link
 	href="<%=request.getContextPath()%>/resources/img/apple-touch-icon.png"
@@ -33,29 +33,29 @@
 
 <!-- Vendor CSS Files -->
 <link
-	href="<%=request.getContextPath()%>/resources/vendor/bootstrap/css/bootstrap.min.css"
+	href="<%=resourcesPath%>/vendor/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
 <link
-	href="<%=request.getContextPath()%>/resources/vendor/bootstrap-icons/bootstrap-icons.css"
+	href="<%=resourcesPath%>/vendor/bootstrap-icons/bootstrap-icons.css"
 	rel="stylesheet">
 <link
-	href="<%=request.getContextPath()%>/resources/vendor/boxicons/css/boxicons.min.css"
+	href="<%=resourcesPath%>/vendor/boxicons/css/boxicons.min.css"
 	rel="stylesheet">
 <link
-	href="<%=request.getContextPath()%>/resources/vendor/quill/quill.snow.css"
+	href="<%=resourcesPath%>/vendor/quill/quill.snow.css"
 	rel="stylesheet">
 <link
-	href="<%=request.getContextPath()%>/resources/vendor/quill/quill.bubble.css"
+	href="<%=resourcesPath%>/vendor/quill/quill.bubble.css"
 	rel="stylesheet">
 <link
-	href="<%=request.getContextPath()%>/resources/vendor/remixicon/remixicon.css"
+	href="<%=resourcesPath%>/vendor/remixicon/remixicon.css"
 	rel="stylesheet">
 <link
-	href="<%=request.getContextPath()%>/resources/vendor/simple-datatables/style.css"
+	href="<%=resourcesPath%>/vendor/simple-datatables/style.css"
 	rel="stylesheet">
 
 <!-- Template Main CSS File -->
-<link href="<%=request.getContextPath()%>/resources/css/style_am.css"
+<link href="<%=resourcesPath%>/css/style_am.css"
 	rel="stylesheet">
 
 <!-- =======================================================
@@ -73,8 +73,8 @@
 		<!-- Logo -->
 		<div class="d-flex align-items-center justify-content-between">
 			<a href="main.am" class="logo d-flex align-items-center">
-				<img src="<%=request.getContextPath()%>/resources/images/simpleLogo.png" alt="">
-				<span class="d-none d-lg-block">관리자 페이지</span>
+				<img src="<%=resourcesPath%>/images/simpleLogo.png" alt="" style="margin-right:10px;">
+				<span class="d-none d-lg-block">Admin 야금야금</span>
 			</a>
 			<i class="bi bi-list toggle-sidebar-btn"></i>
 		</div>
@@ -104,7 +104,7 @@
 				<li class="nav-item dropdown pe-3">
 					 <!-- Profile Imag -->
 					<a	class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-						<img src="<%=request.getContextPath()%>/resources/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+						<img src="<%=resourcesPath%>/img/profile-img.jpg" alt="Profile" class="rounded-circle">
 						<span class="d-none d-md-block dropdown-toggle ps-2">관리자</span>
 					</a>
 					<!-- Profile Dropdown -->
@@ -157,36 +157,28 @@
 		<ul class="sidebar-nav" id="sidebar-nav">
 			<!-- 메인 화면 -->
 			<li class="nav-item"><a class="nav-link collapsed" href="main.am">
-				<i class="bi bi-grid"></i> <span>메인 페이지</span>
+				<i class="bi bi-grid"></i> <span>Dashboard</span>
 			</a></li>
 			<!-- 회원 관리 -->
-			<li class="nav-item">
-				<a class="nav-link collapsed" data-bs-target="#member-nav" data-bs-toggle="collapse" href="#">
-					<i class="bi bi-person-fill"></i><span>회원 관리</span>
-					<i class="bi bi-chevron-down ms-auto"></i>
-				</a>
-				<ul id="member-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
-					<li><a href="mbList.am">
-						<i class="bi bi-circle"></i><span>회원 목록</span>
+         	<li class="nav-item">
+            	<a class="nav-link collapsed" data-bs-target="#member-nav" data-bs-toggle="collapse" href="#">
+               		<i class="bi bi-person-fill"></i><span>회원 관리</span>
+               		<i class="bi bi-chevron-down ms-auto"></i>
+            	</a>
+            	<ul id="member-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+               		<li><a   href="mbList.am">
+                  		<i class="bi bi-circle"></i><span>회원 목록</span>
+               		</a></li>
+               		<li><a href="mbReportList.am">
+               			<i class="bi bi-circle"></i><span>멤버 신고 리스트</span>
 					</a></li>
-				</ul>
-			</li>
+            	</ul>
+         	</li>
 			<li class="nav-heading">야금야금</li>
 			<!-- 식재료 -->
-			<li class="nav-item">
-				<a class="nav-link collapsed" data-bs-target="#ing-nav" data-bs-toggle="collapse" href="#">
-					<i class="bi bi-egg"></i><span>식재료</span>
-					<i class="bi bi-chevron-down ms-auto"></i>
-				</a>
-				<ul id="ing-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
-					<li><a href="ingList.am">
-							<i class="bi bi-circle"></i><span>식재료 목록</span>
-					</a></li>
-					<li><a href="<%=request.getContextPath()%>/resources/html/tables-data.html">
-						<i class="bi bi-circle"></i><span>식재료 관리</span>
-					</a></li>
-				</ul>
-			</li>
+			<li class="nav-item"><a class="nav-link collapsed" href="ingList.am">
+				<i class="bi bi-egg"></i> <span>식재료 관리</span>
+			</a></li>
 			<!-- 게시판 관리 -->
 			<li class="nav-item">
 				<a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
@@ -196,7 +188,7 @@
 				<ul id="tables-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
 					<li>
 					<a href="<%=request.getContextPath()%>/resources/html/tables-general.html">
-							<i class="bi bi-circle"></i><span>신고 내역</span>
+							<i class="bi bi-circle"></i><span>사용자 게시글 관리</span>
 					</a></li>
 					<li><a href="<%=request.getContextPath()%>/resources/html/tables-data.html">
 						<i class="bi bi-circle"></i><span>Data Tables</span>
@@ -219,9 +211,8 @@
 				</ul>
 			</li>
 			<li class="nav-heading">Pages</li>
-			<li class="nav-item"><a class="nav-link collapsed"
-				href="<%=request.getContextPath()%>/resources/html/pages-contact.html">
-					<i class="ri ri-game-fill"></i> <span>야금야금 페이지</span>
+			<li class="nav-item"><a class="nav-link collapsed" href="main.jsp">
+				<i class="ri ri-game-fill"></i> <span>야금야금 페이지</span>
 			</a></li>
 		</ul>
 	</aside>
