@@ -29,6 +29,7 @@ public class BoardDetailController {
 
 	@RequestMapping(value = command)
 	public String doAction(Model model, @RequestParam(value = "bodNum") String bodNum, HttpSession session) {
+
 		BoardBean boardBean = bdao.getBoardByBodNum(bodNum);
 		List<BoardContentBean> boardContentList = bdao.getBoardContentByBodNum(bodNum);
 		List<BoardIngredientBean> boardIngredientList = bdao.getBoardIngredientByBodNum(bodNum);

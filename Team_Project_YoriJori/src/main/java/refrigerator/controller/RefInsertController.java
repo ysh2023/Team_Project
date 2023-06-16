@@ -20,51 +20,48 @@ import org.springframework.web.bind.annotation.RequestParam;
 import ingredient.model.IngBean;
 import ingredient.model.IngDao;
 import member.model.MemberBean;
-import refrigerator.model.JoinBean;
 import refrigerator.model.RefBean;
 import refrigerator.model.RefDao;
-
 
 @Controller
 public class RefInsertController {
 	private final String command = "/insert.ref";
 	private String getPage = "insertRefrigerator";
 	private String gotoPage = "redirect:/page.ref";
-	
+
 	@Autowired
 	IngDao ingdao;
-	
+
 	@Autowired
 	RefDao refdao;
-	
-	@RequestMapping(value=command, method = RequestMethod.GET)
-	public String doAction(@RequestParam(value="arrange", required=false) String arrange, 
-						@RequestParam(value="storage", required=false) String storage, 
-						Model model, HttpSession session) {
-		
-		MemberBean loginInfo = (MemberBean)session.getAttribute("loginInfo");
-		
-		Map<String,String> map = new HashMap<String,String>();
+
+	@RequestMapping(value = command, method = RequestMethod.GET)
+	public String doAction(@RequestParam(value = "arrange", required = false) String arrange,
+			@RequestParam(value = "storage", required = false) String storage, Model model, HttpSession session) {
+
+		MemberBean loginInfo = (MemberBean) session.getAttribute("loginInfo");
+
+		Map<String, String> map = new HashMap<String, String>();
 		map.put("id", loginInfo.getId());
 		map.put("arrange", arrange);
 		List<RefBean> allList = refdao.getUserRef(map);
-		
+
 		IngBean userIng = ingdao.getIngInfo(1);
-		
-		List<IngBean> ingList1 = ingdao.getIngbyCtg("∞Ó∑˘/ƒ·/∞ﬂ∞˙∑˘");
-		List<IngBean> ingList2 = ingdao.getIngbyCtg("∞Ë∂ı/¿Ø¡¶«∞");
-		List<IngBean> ingList3 = ingdao.getIngbyCtg("√§º“");
-		List<IngBean> ingList4 = ingdao.getIngbyCtg("∞˙¿œ");
-		List<IngBean> ingList5 = ingdao.getIngbyCtg("¡§¿∞/«ÿªÍπ∞");
-		List<IngBean> ingList6 = ingdao.getIngbyCtg("∏È/ªß/∂±");
-		List<IngBean> ingList7 = ingdao.getIngbyCtg("º“Ω∫/ø¿¿œ");
-		
+
+		List<IngBean> ingList1 = ingdao.getIngbyCtg("Í≥°Î•ò/ÏΩ©/Í≤¨Í≥ºÎ•ò");
+		List<IngBean> ingList2 = ingdao.getIngbyCtg("Í≥ÑÎûÄ/Ïú†Ï†úÌíà");
+		List<IngBean> ingList3 = ingdao.getIngbyCtg("Ï±ÑÏÜå");
+		List<IngBean> ingList4 = ingdao.getIngbyCtg("Í≥ºÏùº");
+		List<IngBean> ingList5 = ingdao.getIngbyCtg("Ï†ïÏú°/Ìï¥ÏÇ∞Î¨º");
+		List<IngBean> ingList6 = ingdao.getIngbyCtg("Î©¥/Îπµ/Îñ°");
+		List<IngBean> ingList7 = ingdao.getIngbyCtg("ÏÜåÏä§/Ïò§Ïùº");
+
 		model.addAttribute("loginInfo", loginInfo);
 		model.addAttribute("storage", storage);
 		model.addAttribute("allList", allList);
-		
+
 		model.addAttribute("userIng", userIng);
-		
+
 		model.addAttribute("ingList1", ingList1);
 		model.addAttribute("ingList2", ingList2);
 		model.addAttribute("ingList3", ingList3);
@@ -72,50 +69,49 @@ public class RefInsertController {
 		model.addAttribute("ingList5", ingList5);
 		model.addAttribute("ingList6", ingList6);
 		model.addAttribute("ingList7", ingList7);
-		
+
 		return getPage;
 	}
-	
-	@RequestMapping(value=command, method = RequestMethod.POST)
+
+	@RequestMapping(value = command, method = RequestMethod.POST)
 	public String insert(@RequestParam("rowchk") int[] rowchk, @RequestParam("refstorage") String refstorage,
-						Model model, HttpSession session, HttpServletRequest request) {
-		MemberBean loginInfo = (MemberBean)session.getAttribute("loginInfo");
+			Model model, HttpSession session, HttpServletRequest request) {
+		MemberBean loginInfo = (MemberBean) session.getAttribute("loginInfo");
 		String id = loginInfo.getId();
-		
+
 		int cnt = -1;
-		for(int i=0;i<rowchk.length;i++) {
-			System.out.println("check: "+rowchk[i]);
-			
+		for (int i = 0; i < rowchk.length; i++) {
+			System.out.println("check: " + rowchk[i]);
+
 			RefBean refbean = new RefBean();
-        	refbean.setId(id);
-        	refbean.setIngnum(rowchk[i]);
-        	refbean.setRefstorage(refstorage);
-        	
-        	SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
-        	Date now = new Date();	//sysdate(¿Á∑· √ﬂ∞°¿œ)
-        	Calendar cal = Calendar.getInstance();
-        	cal.setTime(now);
-        	
-        	IngBean ingbean = ingdao.getIngInfo(rowchk[i]);
-        	cal.add(Calendar.DATE, ingbean.getExpiry());		//«ˆ¿Á ≥Ø¬•ø° º“∫Ò¿œ ¥ı«œ±‚
-        	String refdday = simpleDate.format(cal.getTime());
-        	
-        	refbean.setRefdday(refdday);
-        	
-        	cnt += refdao.insertRef(refbean);
+			refbean.setId(id);
+			refbean.setIngnum(rowchk[i]);
+			refbean.setRefstorage(refstorage);
+
+			SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
+			Date now = new Date(); // sysdate(ÔøΩÔøΩÔøΩ ÔøΩﬂ∞ÔøΩÔøΩÔøΩ)
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(now);
+
+			IngBean ingbean = ingdao.getIngInfo(rowchk[i]);
+			cal.add(Calendar.DATE, ingbean.getExpiry()); // ÔøΩÔøΩÔøΩÔøΩ ÔøΩÔøΩ¬•ÔøΩÔøΩ ÔøΩ“∫ÔøΩÔøΩÔøΩ ÔøΩÔøΩÔøΩœ±ÔøΩ
+			String refdday = simpleDate.format(cal.getTime());
+
+			refbean.setRefdday(refdday);
+
+			cnt += refdao.insertRef(refbean);
 		}
-        
-        if(cnt!=-1) {
-        	System.out.println("≥√¿Â∞Ì insert º∫∞¯");
-        	request.setAttribute("msg", "º±≈√«œΩ≈ Ωƒ¿Á∑·∞° ≥√¿Â∞Ìø° √ﬂ∞°µ«æ˙Ω¿¥œ¥Ÿ.");
+
+		if (cnt != -1) {
+			System.out.println("ÎÉâÏû•Í≥† insert ÏÑ±Í≥µ");
+			request.setAttribute("msg", "ÏÑ†ÌÉùÌïòÏã† ÏãùÏû¨Î£åÍ∞Ä ÎÉâÏû•Í≥†Ïóê Ï∂îÍ∞ÄÎêòÏóàÏäµÎãàÎã§.");
 			request.setAttribute("url", "/ex/page.ref");
-        }else {
-        	System.out.println("≥√¿Â∞Ì insert Ω«∆–");
-        }
+		} else {
+			System.out.println("ÎÉâÏû•Í≥† insert Ïã§Ìå®");
+		}
 
 		model.addAttribute("loginInfo", loginInfo);
 		return "alert";
 	}
-	
-	
+
 }

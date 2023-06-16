@@ -32,6 +32,7 @@ public class BoardCommentsUpdateController {
 		int result = bdao.updateCommentByBodNum(commentsBean);
 		response.setContentType("text/html; charset=utf-8;");
 		model.addAttribute("commentsList", bdao.getCommentByBodNum(bodNum));
+		model.addAttribute("bodNum", bodNum);
 		if (result > 0) {
 			response.getWriter().append("<Script>alert('수정되었습니다');</Script>").flush();
 			return page;

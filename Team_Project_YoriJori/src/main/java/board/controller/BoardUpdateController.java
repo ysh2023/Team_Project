@@ -118,9 +118,16 @@ public class BoardUpdateController {
 					BoardContentBean boardContentBean = new BoardContentBean();
 					boardContentBean.setBodNum(boardFormBean.getBod_num());
 
-					String updateContentImage = boardFormBean.getImage()[i].equals("")
-							? boardFormBean.getPrev_image()[i] == null ? "" : boardFormBean.getPrev_image()[i]
-							: boardFormBean.getImage()[i];
+					String updateContentImage = "";
+					if (boardFormBean.getPrev_image().length > i) {
+
+						updateContentImage = boardFormBean.getImage()[i].equals("")
+								? boardFormBean.getPrev_image()[i] == null ? "" : boardFormBean.getPrev_image()[i]
+								: boardFormBean.getImage()[i];
+					} else {
+						updateContentImage = boardFormBean.getImage()[i];
+					}
+
 					boardContentBean.setImage(updateContentImage);
 					boardContentBean.setBodContent(
 							boardFormBean.getBod_content()[i] == null ? "" : boardFormBean.getBod_content()[i]);

@@ -131,8 +131,12 @@ String resourcesPath = request.getContextPath() + "/resources";
 	function setToggle(){
 		if(sessionStorage.getItem('search')=='true'){
 			search.customSwitch1.checked = true;
+			document.search.action="main.board";
+			document.search.whatColumn.value = 'search';
 		}else{		
 			search.customSwitch1.checked = false;
+			document.search.action="list.re";
+			document.search.whatColumn.value = 'recipename';
 		}
 	}
 

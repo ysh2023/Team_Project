@@ -25,11 +25,11 @@ public class BoardCommentsDeleteController {
 	public void doAction(@RequestParam("bodNum") String bodNum, @RequestParam("comNum") String comNum,
 			HttpServletResponse response, HttpSession session, Model model) throws IOException {
 		int result = bdao.deleteCommentByBodNum(comNum);
+		System.out.println(bodNum + "delete");
 		response.setContentType("text/html; charset=utf-8;");
-		System.out.println(bodNum);
 		if (result > 0) {
 			response.getWriter().append(
-					"<Script>alert('댓글이 삭제되었습니다');location.href='boardDetail.board?bodNum=" + bodNum + "'</Script>")
+					"<Script>alert('댓글이 삭제되었습니다');location.href='boardDetail.board?bodNum=" + bodNum + "';</Script>")
 					.flush();
 
 		} else {
