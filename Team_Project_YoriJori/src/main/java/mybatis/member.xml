@@ -24,5 +24,25 @@
 	<delete id="DeleteMember">
 		delete member where id=#{id}
 	</delete>
+	 <insert id="InsertStop">
+		insert into stopmb values(#{id},#{stopdate})
+	</insert>
+	
+	<select id="SearchStopById" resultType="member.model.StopBean">
+	select * from stopmb where id=#{id}
+	</select>
+	
+	<select id="GetAllStop" resultType="member.model.StopBean">
+	select * from stopMb
+	</select>
+	
+	<update id="UpdateStop">
+	update stopmb set stopdate=#{stopdate} where id=#{id}
+	</update>
+	
+	<delete id="DeleteStop">
+	delete stopmb where id=#{id}
+	</delete>
+	
 	
 </mapper>

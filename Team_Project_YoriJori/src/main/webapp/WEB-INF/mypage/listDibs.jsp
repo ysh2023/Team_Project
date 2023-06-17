@@ -70,7 +70,7 @@ height: 1000px;
    </div> 
 </main>
   
-<div>
+<div style="margin-top: 100px;">
 <%@include file= "./../common/footer.jsp" %>
 </div> 
 

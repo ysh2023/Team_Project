@@ -14,21 +14,27 @@ import org.springframework.web.servlet.ModelAndView;
 import admin.model.AdminDao;
 import board.model.BoardDao;
 import board.model.CommentReportBean;
+import member.model.MemberDao;
 
 @Controller
 public class AdminMemberReportListController {
 	
 	private final String command = 	"/mbReportList.am";
 	private String getPage = "am_mbreportList";
+
 	
 	@Autowired
 	AdminDao adao;
 	
 	
+	@Autowired
+	MemberDao mdao;
+	
 	@RequestMapping(value = command, method = RequestMethod.GET)
 	public ModelAndView doAction(Model model, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		List<CommentReportBean> lists = adao.getReportlist();
+		
 		
 		
 		mav.addObject("lists", lists);
