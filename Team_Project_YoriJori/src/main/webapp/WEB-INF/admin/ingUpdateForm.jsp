@@ -43,20 +43,20 @@
         });
 	}//ingCheck
 	
-	function duplCheck(){
+	function duplCheck(ingnum){
 		if(isCheck == false){
 			alert("중복 체크는 필수입니다.");
 			return false;
 		}else{
 			if(use == "available"){
-				var msg = "입력하신 식재료를 추가하시겠습니까?";
+				var msg = ingnum+"번 식재료를 수정하시겠습니까?";
 				if(confirm(msg) == true){
 					document.getElementById('insertForm').submit();
 				}else{
 					return false;
 				}
 			}else if(use == "duplicate"){
-				alert('중복 식재료명은 추가할 수 없습니다.');
+				alert('이미 있는 식재료명으로 수정 불가합니다.');
 				$('#ingname').select();
 				return false;
 			}
@@ -69,6 +69,14 @@
   <main id="main" class="main">
     <div class="pagetitle">
       <h1>식재료 관리</h1>
+      <nav style="margin-top: 10px;">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item">야금야금</li>
+          <li class="breadcrumb-item"><a href="ingList.am">식재료 관리</a></li>
+          <li class="breadcrumb-item active">수정하기</li>
+        </ol>
+      </nav>
     </div><br>
     <section class="section">
       <div class="row">
@@ -108,8 +116,8 @@
       	<!-- 식재료 수정 -->
       	<div class="col-lg-4" id="updateForm">
       	  <div class="card"><div class="card-body">
-            <h5 class="card-title" style="font-weight: bolder !important;">식재료 수정</h5>
-			<form class="row g-3" id="updateForm" enctype="multipart/form-data" action="updateIng.am" method="post" onSubmit="return duplCheck()">
+            <h5 class="card-title" style="font-weight: bolder !important;">식재료 수정하기</h5>
+			<form class="row g-3" id="updateForm" enctype="multipart/form-data" action="updateIng.am" method="post" onSubmit="return duplCheck(${ingbean.ingnum})">
 				<input type="hidden" name="ingnum" value="${ingbean.ingnum}">
                 <div class="col-md-12">
                   <label for="upload" class="form-label">아이콘</label>
