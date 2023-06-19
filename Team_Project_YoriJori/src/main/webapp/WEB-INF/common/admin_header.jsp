@@ -187,19 +187,10 @@ String resourcesPath = request.getContextPath() + "/resources";
 			</a></li>
 			<!-- 게시판 관리 -->
 			<li class="nav-item">
-				<a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
-					<i class="bi bi-layout-text-sidebar-reverse"></i><span>게시판</span>
-					<i class="bi bi-chevron-down ms-auto"></i>
+				<a class="nav-link collapsed" data-bs-target="#tables-nav" href="userBoard.am">
+					<i class="bi bi-layout-text-sidebar-reverse"></i><span>사용자 게시글 관리</span>
 				</a>
-				<ul id="tables-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
-					<li>
-					<a href="<%=request.getContextPath()%>/resources/html/tables-general.html">
-							<i class="bi bi-circle"></i><span>사용자 게시글 관리</span>
-					</a></li>
-					<li><a href="<%=request.getContextPath()%>/resources/html/tables-data.html">
-						<i class="bi bi-circle"></i><span>Data Tables</span>
-					</a></li>
-				</ul>
+
 			</li>
 			<li class="nav-heading">식재료 쇼핑몰</li>
 			<!-- 상품 관리 -->

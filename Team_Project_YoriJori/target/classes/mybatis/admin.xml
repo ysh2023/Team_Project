@@ -56,6 +56,7 @@
 	<delete id="DeleteComment">
 	delete from comments where com_Num=#{comNum}
 	</delete>
-
+	<select id="GetAllBoardAm" resultType="board.model.BoardBean">select board.bod_num, title, servings, time, category, tags, id, bod_image , rec from board full outer join (select count(*)as rec , bod_num from recommend group by bod_num) sel on sel.bod_num = board.bod_num order by bod_num </select>
+	<delete id="DeleteBoard">delete from board where bod_num = #{bodNum}</delete>
 
 </mapper>
