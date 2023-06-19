@@ -19,6 +19,7 @@
 		<mapper resource="mybatis/admin.xml"/>
 		<mapper resource="mybatis/shopmemo.xml"/>
     <mapper resource="mybatis/mypage.xml"/>
+    <mapper resource="mybatis/basket.xml"/>
 
 	</mappers>
 	
