@@ -1,7 +1,5 @@
 package member.model;
 
-import org.hibernate.validator.constraints.NotBlank;
-
 public class MemberBean {
 	private String id;
 	private String mname;
@@ -11,16 +9,16 @@ public class MemberBean {
 	private String area1;
 	private String area2;
 	private String email;
-
+	
+	private String inputdate;
 
 	public MemberBean() {
 		super();
 	}
 	
 
-
-	public MemberBean(String id, String mname, String pw, String tel, int age, String area1, String area2,
-			String email) {
+	public MemberBean(String id, String mname, String pw, String tel, int age, String area1, String area2, String email,
+			String inputdate) {
 		super();
 		this.id = id;
 		this.mname = mname;
@@ -30,11 +28,8 @@ public class MemberBean {
 		this.area1 = area1;
 		this.area2 = area2;
 		this.email = email;
+		this.inputdate = inputdate;
 	}
-
-
-
-
 
 
 	public String getEmail() {
@@ -42,8 +37,14 @@ public class MemberBean {
 	}
 
 
+	public String getInputdate() {
+		return inputdate;
+	}
 
 
+	public void setInputdate(String inputdate) {
+		this.inputdate = inputdate;
+	}
 
 
 	public void setEmail(String email) {

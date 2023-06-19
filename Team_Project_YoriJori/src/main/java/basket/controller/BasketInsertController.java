@@ -41,12 +41,12 @@ public class BasketInsertController {
 			Model model, HttpServletRequest request,HttpSession session,HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView();
 		ProductBean pb = pdao.getByNum(pdnum);
-		// Àå¹Ù±¸´Ï insert½Ã Àç°í¼ö·® Ã¼Å©
+		// ì¥ë°”êµ¬ë‹ˆ insertì‹œ ì¬ê³ ìˆ˜ëŸ‰ ì²´í¬
 		if(pb.getPdstock() < qty) {
 			try {
 				response.setContentType("text/html; charset=UTF-8");
 				PrintWriter out = response.getWriter();
-				out.println("<script>alert('±¸¸Å¼ö·®ÀÌ Àç°í¼ö·®º¸´Ù ¸¹½À´Ï´Ù.'); location.href='shop.prd?whatColumn=no&searchName=';</script>");
+				out.println("<script>alert('êµ¬ë§¤ìˆ˜ëŸ‰ì´ ì¬ê³ ìˆ˜ëŸ‰ë³´ë‹¤ ë§ìŠµë‹ˆë‹¤.'); location.href='shop.prd?whatColumn=no&searchName=';</script>");
 				out.flush();
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -55,10 +55,10 @@ public class BasketInsertController {
 		else {
 		MemberBean loginInfo = (MemberBean)session.getAttribute("loginInfo");
 		System.out.println("loginInfo:"+loginInfo);
-		if(session.getAttribute("loginInfo") == null) {	//·Î±×ÀÎ ¾ÈÇßÀ¸¸é
-			session.setAttribute("destination", "redirect:/shop.prd?whatColumn=no&searchName=");	//destination ¼Ó¼º ¼³Á¤
+		if(session.getAttribute("loginInfo") == null) {	//ë¡œê·¸ì¸ ì•ˆí–ˆìœ¼ë©´
+			session.setAttribute("destination", "redirect:/shop.prd?whatColumn=no&searchName=");	//destination ì†ì„± ì„¤ì •
 			mav.setViewName(gotologinPage);
-			return mav;	//·Î±×ÀÎ ÆäÀÌÁö·Î
+			return mav;	//ë¡œê·¸ì¸ í˜ì´ì§€ë¡œ
 		}else {
 			
 				BasketBean bb = new BasketBean();
@@ -71,16 +71,16 @@ public class BasketInsertController {
 					int cnt = -1;
 					cnt = bdao.insertBasket(bb);
 					if(cnt != -1) {
-						System.out.println("Àå¹Ù±¸´Ï insert ¼º°ø");
+						System.out.println("ì¥ë°”êµ¬ë‹ˆ insert ì„±ê³µ");
 					}else {
-						System.out.println("Àå¹Ù±¸´Ï insert ½ÇÆĞ");
+						System.out.println("ì¥ë°”êµ¬ë‹ˆ insert ì‹¤íŒ¨");
 					}
 					mav.setViewName(gotoPage);
 				}else{
 					try {
 						response.setContentType("text/html; charset=UTF-8");
 						PrintWriter out = response.getWriter();
-						out.println("<script>alert('ÀÌ¹Ì Àå¹Ù±¸´Ï¿¡ µî·ÏµÈ »óÇ°ÀÔ´Ï´Ù.'); location.href='shop.prd?whatColumn=no&searchName=';</script>");
+						out.println("<script>alert('ì´ë¯¸ ì¥ë°”êµ¬ë‹ˆì— ë“±ë¡ëœ ìƒí’ˆì…ë‹ˆë‹¤.'); location.href='shop.prd?whatColumn=no&searchName=';</script>");
 						out.flush();
 					} catch (IOException e) {
 						e.printStackTrace();

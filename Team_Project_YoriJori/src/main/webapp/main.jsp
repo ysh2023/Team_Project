@@ -449,7 +449,7 @@
               </div>
               <div class="item">
                 <div class="testimony-wrap p-4 pb-5">
-                  <div class="user-img mb-5" style="background-image: url(<%=resourcesPath%>/images/person_3.jpg)">
+                  <div class="user-img mb-5" style="background-image: url(<%=resourcesPath%>/images/person_3.jpg)">                                                                     
                     <span class="quote d-flex align-items-center justify-content-center">
                       <i class="icon-quote-left"></i>
                     </span>

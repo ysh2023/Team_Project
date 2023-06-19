@@ -24,7 +24,6 @@ import refrigerator.model.RefDao;
 public class RefUpdateController {
 	private final String command = "/update.ref";
 	private String getPage = "updateRefrigerator";
-	private String gotoPage = "redirect:/page.ref";
 	
 	@Autowired
 	IngDao ingdao;
@@ -32,14 +31,16 @@ public class RefUpdateController {
 	RefDao refdao;
 	
 	@RequestMapping(value=command, method = RequestMethod.GET)
-	public String doAction(@RequestParam("ingnum") int ingnum, Model model, HttpSession session) {
+	public String doAction(@RequestParam("refnum") int refnum, @RequestParam("ingnum") int ingnum,
+						Model model, HttpSession session) {
+		//System.out.println("refnum: "+refnum+" / ingnum: "+ingnum);
 		
 		MemberBean loginInfo = (MemberBean)session.getAttribute("loginInfo");
 		String id = loginInfo.getId();
 		
 		Map<String,String> map = new HashMap<String,String>();
+		map.put("refnum", Integer.toString(refnum));
 		map.put("id", id);
-		map.put("ingnum", Integer.toString(ingnum));
 		
 		JoinBean joinbean = new JoinBean();
 		joinbean = refdao.getRefDetail(map);
@@ -56,13 +57,14 @@ public class RefUpdateController {
 	}
 	
 	@RequestMapping(value=command, method = RequestMethod.POST)
-	public String update(@ModelAttribute("refbean") RefBean refbean, Model model, HttpSession session, HttpServletRequest request) {
+	public String update(@ModelAttribute("joinbean") JoinBean joinbean, Model model, HttpSession session, HttpServletRequest request) {
 			MemberBean loginInfo = (MemberBean)session.getAttribute("loginInfo");
-			int cnt = refdao.updateRef(refbean);
+			
+			int cnt = refdao.updateRef(joinbean);
 			
 			if(cnt!=-1) {
-				System.out.println("update ¼º°ø");
-				request.setAttribute("msg", "ÇØ´ç ½ÄÀç·á Á¤º¸ ¼öÁ¤À» ¿Ï·áÇß½À´Ï´Ù.");
+				System.out.println("update ì„±ê³µ");
+				request.setAttribute("msg", "í•´ë‹¹ ì‹ì¬ë£Œ ì •ë³´ ìˆ˜ì •ì„ ì™„ë£Œí–ˆìŠµë‹ˆë‹¤.");
 				request.setAttribute("url", "/ex/page.ref");
 			}
 			

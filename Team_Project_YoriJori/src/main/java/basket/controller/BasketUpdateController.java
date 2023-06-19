@@ -44,7 +44,7 @@ public class BasketUpdateController {
 			try {
 				response.setContentType("text/html; charset=UTF-8");
 				PrintWriter out = response.getWriter();
-				out.println("<script>alert('±¸¸Å¼ö·®ÀÌ Àç°í¼ö·®º¸´Ù ¸¹½À´Ï´Ù.'); location.href='list.bsk';</script>");
+				out.println("<script>alert('êµ¬ë§¤ìˆ˜ëŸ‰ì´ ì¬ê³ ìˆ˜ëŸ‰ë³´ë‹¤ ë§ìŠµë‹ˆë‹¤.'); location.href='list.bsk';</script>");
 				out.flush();
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -55,9 +55,9 @@ public class BasketUpdateController {
 			bb.setBskqty(qty);
 			int cnt = bdao.updateBasket(bb);
 			if(cnt > 1) {
-				System.out.println("»èÁ¦¼º°ø");
+				System.out.println("ì‚­ì œì„±ê³µ");
 			}else {
-				System.out.println("»èÁ¦½ÇÆĞ");
+				System.out.println("ì‚­ì œì‹¤íŒ¨");
 			}
 			mav.setViewName(gotoPage);
 		}

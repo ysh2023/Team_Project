@@ -180,8 +180,16 @@ String resourcesPath = request.getContextPath() + "/resources";
 						<%
 						} else {
 						%>
-						<a href="#" style="font-size: 11px; height: 12px; margin-top: 20px;">${loginInfo.mname}님 안녕하세요! </a> <a href="mypage.mb" style="font-size: 11px; height: 12px; margin-top: 20px; float: right;"> <img src="<%=resourcesPath%>/images/mypage.png" style="height: 33px;"> 마이페이지
-						</a> <a href="logout.mb" style="font-size: 11px; height: 12px; margin-top: 20px; margin-right: 15px; float: right;"> <img src="<%=resourcesPath%>/images/btn_logout.png" style="height: 33px;"> 로그아웃
+						<a href="#"
+							style="font-size: 11px; height: 12px; margin-top: 20px;">${loginInfo.mname}님
+							안녕하세요! </a> <a href="mypage.mp"
+							style="font-size: 11px; height: 12px; margin-top: 20px; float: right;">
+							<img src="<%=resourcesPath%>/images/mypage.png"
+							style="height: 33px;"> 마이페이지
+						</a> <a href="logout.mb"
+							style="font-size: 11px; height: 12px; margin-top: 20px; margin-right: 15px; float: right;">
+							<img src="<%=resourcesPath%>/images/btn_logout.png"
+							style="height: 33px;"> 로그아웃
 						</a>
 
 						<%
@@ -214,7 +222,18 @@ String resourcesPath = request.getContextPath() + "/resources";
 						<li class="nav-item active"><a href="<%=conPath%>/main.jsp" class="nav-link">Home</a></li>
 						<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="shop.prd?whatColumn=no&searchName=${searchName}" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">장보기</a>
 							<div class="dropdown-menu" aria-labelledby="dropdown04">
-								<a class="dropdown-item" href="shop.prd?whatColumn=no&searchName=${searchName}">전체보기</a> <a class="dropdown-item" href="shop.prd?whatColumn=se&keyword=채소&searchName=${searchName}">채소</a> <a class="dropdown-item" href="shop.prd?whatColumn=se&keyword=과일&searchName=${searchName}">과일</a> <a class="dropdown-item" href="shop.prd?whatColumn=se&keyword=쌀/견과&searchName=${searchName}">쌀/견과</a> <a class="dropdown-item" href="shop.prd?whatColumn=se&keyword=정육/계란류&searchName=${searchName}">정육/계란류</a> <a class="dropdown-item" href="shop.prd?whatColumn=se&keyword=우유/유제품&searchName=${searchName}">우유/유제품</a> <a class="dropdown-item" href="shop.prd?whatColumn=se&keyword=양념/오일&searchName=${searchName}">양념/오일</a>
+                <a class="dropdown-item" href="shop.prd?whatColumn=no">전체보기</a> <a
+									class="dropdown-item" href="shop.prd?whatColumn=se&keyword=채소&searchName=${searchName}">채소</a>
+								<a class="dropdown-item"
+									href="shop.prd?whatColumn=se&keyword=과일&searchName=${searchName}">과일</a> <a
+									class="dropdown-item"
+									href="shop.prd?whatColumn=se&keyword=쌀/견과&searchName=${searchName}">쌀/견과</a> <a
+									class="dropdown-item"
+									href="shop.prd?whatColumn=se&keyword=정육/계란류&searchName=${searchName}">정육/계란류</a> <a
+									class="dropdown-item"
+									href="shop.prd?whatColumn=se&keyword=우유/유제품&searchName=${searchName}">우유/유제품</a> <a
+									class="dropdown-item"
+									href="shop.prd?whatColumn=se&keyword=양념/오일&searchName=${searchName}">양념/오일</a>
 							</div></li>
 						<li class="nav-item"><a href="list.re" class="nav-link">레시피</a></li>
 						<li class="nav-item"><a href="main.board" class="nav-link">방구석 쉐프</a></li>
@@ -228,7 +247,8 @@ String resourcesPath = request.getContextPath() + "/resources";
 						</a></li>
 						<li class="nav-item"><a href="bookmark.re" class="nav-link"> <img src="<%=resourcesPath%>/images/btn_circle.png" style="width: 18px; margin-right: 5px; margin-bottom: 2px;"> 북마크 레시피
 						</a></li>
-						<li class="nav-item cta cta-colored"><a href="list.bsk" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a></li>
+						<li class="nav-item cta cta-colored"><a href="list.bsk"
+							class="nav-link"><span class="icon-shopping_cart" style="color:#F2BC1B;">[0]</span></a></li>
 					</ul>
 				</div>
 			</div>

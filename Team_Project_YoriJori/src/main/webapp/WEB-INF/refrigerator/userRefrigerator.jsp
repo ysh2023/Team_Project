@@ -98,10 +98,9 @@
 		for(i=0; i<rchk.length; i++){
 			if(rchk[i].checked){
 				flag = true;
-				confirm(msg);
 			}
 		}
-			
+		
 		if(flag==false){
 			alert("삭제할 재료의 체크박스를 선택하세요");
 			return;
@@ -262,8 +261,8 @@
 					  <c:if test="${allList != null}">
 					    <c:forEach var="list" items="${allList}">
 						  <div class="col-lg-2 text-center" style="height: 100px">
-						  	<input type="checkbox" name="rowchk" id="${list.refstorage}" value="${list.ingnum}" style="display: inline;">
-						  	<a href="update.ref?ingnum=${list.ingnum}">
+						  	<input type="checkbox" name="rowchk" id="${list.refstorage}" value="${list.refnum}" style="display: inline;">
+						  	<a href="update.ref?refnum=${list.refnum}&ingnum=${list.ingnum}">
 							  <img src="<%=resourcesPath%>/images/icon/${list.ingicon}" style="width: 40px; display: inline;"> <br>
 							  <!-- 보관 위치별 아이콘 색 -->
 							  <c:if test="${list.refstorage eq '냉장'}">
@@ -362,8 +361,8 @@
 					  <c:if test="${refList != null}">
 					    <c:forEach var="list" items="${refList}">
 						  <div class="col-lg-2 text-center" style="height: 100px">
-						    <input type="checkbox" name="rowchk" id="${list.refstorage}" value="${list.ingnum}" style="display: inline;">
-						  	<a href="update.ref?ingnum=${list.ingnum}">
+						    <input type="checkbox" name="rowchk" id="${list.refstorage}" value="${list.refnum}" style="display: inline;">
+						  	<a href="update.ref?refnum=${list.refnum}&ingnum=${list.ingnum}">
 						  	  <img src="<%=resourcesPath%>/images/icon/${list.ingicon}" style="width: 40px; display: inline;"> <br>
 						  	  <b>${list.ingname}</b>
 						  	</a><br>
@@ -430,7 +429,7 @@
 					      </a>
 					    </li>
 					    <li class="ftco-animate fadeInUp ftco-animated">
-					      <a href="insert.ref?arrange=${arrange}&storage=ref" style="background-color: #F2BC1B;">
+					      <a href="insert.ref?arrange=${arrange}&storage=freeze" style="background-color: #F2BC1B;">
 					        <span class="icon-add_circle" style="color: white;"></span>
 					      </a>
 					    </li>
@@ -445,8 +444,8 @@
                       <c:if test="${freezeList != null}">
 					    <c:forEach var="list" items="${freezeList}">
 					      <div class="col-lg-2 text-center" style="height: 100px">
-					        <input type="checkbox" name="rowchk" id="${list.refstorage}" value="${list.ingnum}" style="display: inline;">
-						  	<a href="update.ref?ingnum=${list.ingnum}">
+					        <input type="checkbox" name="rowchk" id="${list.refstorage}" value="${list.refnum}" style="display: inline;">
+						  	<a href="update.ref?refnum=${list.refnum}&ingnum=${list.ingnum}">
 						  	  <img src="<%=resourcesPath%>/images/icon/${list.ingicon}" style="width: 40px; display: inline;"> <br>
 						  	  <b>${list.ingname}</b>
 						  	</a><br>
@@ -513,7 +512,7 @@
 					      </a>
 					    </li>
 					    <li class="ftco-animate fadeInUp ftco-animated">
-					      <a href="insert.ref?arrange=${arrange}&storage=ref" style="background-color: #F2BC1B;">
+					      <a href="insert.ref?arrange=${arrange}&storage=room" style="background-color: #F2BC1B;">
 					        <span class="icon-add_circle" style="color: white;"></span>
 					      </a>
 					    </li>
@@ -528,8 +527,8 @@
                       <c:if test="${roomList != null}">
 					    <c:forEach var="list" items="${roomList}">
 					      <div class="col-lg-2 text-center" style="height: 100px">
-					        <input type="checkbox" name="rowchk" id="${list.refstorage}" value="${list.ingnum}" style="display: inline;">
-						  	<a href="update.ref?ingnum=${list.ingnum}">
+					        <input type="checkbox" name="rowchk" id="${list.refstorage}" value="${list.refnum}" style="display: inline;">
+						  	<a href="update.ref?refnum=${list.refnum}&ingnum=${list.ingnum}">
 						  	  <img src="<%=resourcesPath%>/images/icon/${list.ingicon}" style="width: 40px; display: inline;"> <br>
 						  	  <b>${list.ingname}</b>
 						  	</a><br>
@@ -583,7 +582,7 @@
                       		<i class="icon-close2" style="color:gray"></i>
                       	  </a>
                       	  <input type="checkbox" id="memonum" name="memonum" value="${list.memonum}" <c:if test="${list.memoflag eq 1}">checked</c:if>>
-                  	      &nbsp;<a href="shop.prd?keyword=&whatColumn=no&searchName=${list.memotask}">${list.memotask}</a>
+                  	      &nbsp;<a href="shop.prd?keyword=&whatColumn=no&searchName=${list.memotask}&ck=ys">${list.memotask}</a>
                         </div>
                         <div class="meta">${list.memocontent}</div>
                       </div>

@@ -47,7 +47,7 @@ public class OrderPayController {
 	@Autowired
 	ProductDao pdao;
 	 
-	//GetÀº BasketList¿¡¼­ ¿äÃ»À»ÇÏ°í
+	//Getì€ BasketListì—ì„œ ìš”ì²­ì„í•˜ê³ 
 	@RequestMapping(value=command,method = RequestMethod.GET)
 	public String doAction(@RequestParam("totalAmount") int totalAmount,Model model
 			,HttpSession session) {
@@ -59,7 +59,7 @@ public class OrderPayController {
 		for(int i=0;i<slist.size();i++) {
 			ordpdname += (slist.get(i).getPdname()+",");
 		}
-		// DetailList session ¼³Á¤
+		// DetailList session ì„¤ì •
 		DetailList detail = (DetailList)session.getAttribute("detail");
 		if(detail == null) {
 			detail = new DetailList();
@@ -71,7 +71,7 @@ public class OrderPayController {
 		session.setAttribute("detail", detail);
 		
 		ordpdname = ordpdname.replaceAll(",$", "");
-		//»óÇ°ÀÌ¸§ ³¡¿¡ , Á¦°Å
+		//ìƒí’ˆì´ë¦„ ëì— , ì œê±°
 		System.out.println("ordpdname1:"+ordpdname);
 		model.addAttribute("mb", mb);
 		model.addAttribute("ordpdname", ordpdname);
@@ -80,7 +80,7 @@ public class OrderPayController {
 		return getPage; 
 		
 	}
-	//Post´Â prdDetail¿¡¼­ ¿äÃ»À» ÇÑ´Ù.
+	//PostëŠ” prdDetailì—ì„œ ìš”ì²­ì„ í•œë‹¤.
 	@RequestMapping(value=command,method = RequestMethod.POST)
 	public ModelAndView doAction(
 			@RequestParam("pdname") String pdname,
@@ -91,12 +91,12 @@ public class OrderPayController {
 		ModelAndView mav = new ModelAndView();
 		MemberBean loginInfo = (MemberBean)session.getAttribute("loginInfo");
 		ProductBean pb = pdao.getByNum(pdnum);
-		//±¸¸ÅÇÏ±â ´­·¶À»½Ã Àç°í¼ö·® Ã¼Å©
+		//êµ¬ë§¤í•˜ê¸° ëˆŒë €ì„ì‹œ ì¬ê³ ìˆ˜ëŸ‰ ì²´í¬
 		if(pb.getPdstock() < qty) {
 			try {
 				response.setContentType("text/html; charset=UTF-8");
 				PrintWriter out = response.getWriter();
-				out.println("<script>alert('±¸¸Å¼ö·®ÀÌ Àç°í¼ö·®º¸´Ù ¸¹½À´Ï´Ù.'); location.href='shop.prd?whatColumn=no&searchName=';</script>");
+				out.println("<script>alert('êµ¬ë§¤ìˆ˜ëŸ‰ì´ ì¬ê³ ìˆ˜ëŸ‰ë³´ë‹¤ ë§ìŠµë‹ˆë‹¤.'); location.href='shop.prd?whatColumn=no&searchName=';</script>");
 				out.flush();
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -108,7 +108,7 @@ public class OrderPayController {
 				try {
 					response.setContentType("text/html; charset=UTF-8");
 					PrintWriter out = response.getWriter();
-					out.println("<script>alert('·Î±×ÀÎ ÈÄ ÀÌ¿ë °¡´ÉÇÕ´Ï´Ù.'); location.href='login.mb';</script>");
+					out.println("<script>alert('ë¡œê·¸ì¸ í›„ ì´ìš© ê°€ëŠ¥í•©ë‹ˆë‹¤.'); location.href='login.mb';</script>");
 					out.flush();
 				} catch (IOException e) {
 					e.printStackTrace();
@@ -121,7 +121,7 @@ public class OrderPayController {
 				List<JoinBean> slist = new ArrayList<JoinBean>();
 				slist.add(jb);
 				
-				// DetailList session ¼³Á¤
+				// DetailList session ì„¤ì •
 				DetailList detail = (DetailList)session.getAttribute("detail");
 				if(detail == null) {
 					detail = new DetailList();

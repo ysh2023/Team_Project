@@ -47,7 +47,7 @@ public class RefInsertController {
 		List<RefBean> allList = refdao.getUserRef(map);
 
 		IngBean userIng = ingdao.getIngInfo(1);
-
+		
 		List<IngBean> ingList1 = ingdao.getIngbyCtg("곡류/콩/견과류");
 		List<IngBean> ingList2 = ingdao.getIngbyCtg("계란/유제품");
 		List<IngBean> ingList3 = ingdao.getIngbyCtg("채소");
@@ -55,7 +55,7 @@ public class RefInsertController {
 		List<IngBean> ingList5 = ingdao.getIngbyCtg("정육/해산물");
 		List<IngBean> ingList6 = ingdao.getIngbyCtg("면/빵/떡");
 		List<IngBean> ingList7 = ingdao.getIngbyCtg("소스/오일");
-
+		
 		model.addAttribute("loginInfo", loginInfo);
 		model.addAttribute("storage", storage);
 		model.addAttribute("allList", allList);
@@ -84,31 +84,31 @@ public class RefInsertController {
 			System.out.println("check: " + rowchk[i]);
 
 			RefBean refbean = new RefBean();
-			refbean.setId(id);
-			refbean.setIngnum(rowchk[i]);
-			refbean.setRefstorage(refstorage);
-
-			SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
-			Date now = new Date(); // sysdate(��� �߰���)
-			Calendar cal = Calendar.getInstance();
-			cal.setTime(now);
-
-			IngBean ingbean = ingdao.getIngInfo(rowchk[i]);
-			cal.add(Calendar.DATE, ingbean.getExpiry()); // ���� ��¥�� �Һ��� ���ϱ�
-			String refdday = simpleDate.format(cal.getTime());
-
-			refbean.setRefdday(refdday);
-
-			cnt += refdao.insertRef(refbean);
+        	refbean.setId(id);
+        	refbean.setIngnum(rowchk[i]);
+        	refbean.setRefstorage(refstorage);
+        	
+        	SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
+        	Date now = new Date();	//sysdate(재료 추가일)
+        	Calendar cal = Calendar.getInstance();
+        	cal.setTime(now);
+        	
+        	IngBean ingbean = ingdao.getIngInfo(rowchk[i]);
+        	cal.add(Calendar.DATE, ingbean.getExpiry());		//현재 날짜에 소비일 더하기
+        	String refdday = simpleDate.format(cal.getTime());
+        	
+        	refbean.setRefdday(refdday);
+        	
+        	cnt += refdao.insertRef(refbean);
 		}
-
-		if (cnt != -1) {
-			System.out.println("냉장고 insert 성공");
-			request.setAttribute("msg", "선택하신 식재료가 냉장고에 추가되었습니다.");
+        
+        if(cnt!=-1) {
+        	System.out.println("냉장고 insert 성공");
+        	request.setAttribute("msg", "선택하신 식재료가 냉장고에 추가되었습니다.");
 			request.setAttribute("url", "/ex/page.ref");
-		} else {
-			System.out.println("냉장고 insert 실패");
-		}
+        }else {
+        	System.out.println("냉장고 insert 실패");
+        }
 
 		model.addAttribute("loginInfo", loginInfo);
 		return "alert";

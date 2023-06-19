@@ -35,13 +35,13 @@ public class RefPageController {
 	public String doAction(@RequestParam(value="arrange",required=false) String arrange, HttpSession session, Model model) {
 		MemberBean loginInfo = (MemberBean)session.getAttribute("loginInfo");
 		
-		if(session.getAttribute("loginInfo") == null) {	//·Î±×ÀÎ ¾ÈÇßÀ¸¸é
-			session.setAttribute("destination", "redirect:/page.ref");	//destination ¼Ó¼º ¼³Á¤
-			return gotoPage;	//·Î±×ÀÎ ÆäÀÌÁö·Î
+		if(session.getAttribute("loginInfo") == null) {	//ë¡œê·¸ì¸ ì•ˆí–ˆìœ¼ë©´
+			session.setAttribute("destination", "redirect:/page.ref");	//destination ì†ì„± ì„¤ì •
+			return gotoPage;	//ë¡œê·¸ì¸ í˜ì´ì§€ë¡œ
 		}else {
 			
-			if(arrange == null) { //Á¤·Ä
-				arrange = "r.inputdate";	//±âº»Á¤·Ä: Ãß°¡ ³¯Â¥¼ø
+			if(arrange == null) { //ì •ë ¬
+				arrange = "r.inputdate";	//ê¸°ë³¸ì •ë ¬: ì¶”ê°€ ë‚ ì§œìˆœ
 			}
 			
 			int totalCnt = refdao.getTotalCount(loginInfo.getId());
@@ -50,38 +50,38 @@ public class RefPageController {
 			int roomCnt = refdao.getRoomCount(loginInfo.getId());
 			int ddayCnt = refdao.getDdayCount(loginInfo.getId());
 			
-			/* ÀüÃ¼ ¸®½ºÆ® */
+			/* ì „ì²´ ë¦¬ìŠ¤íŠ¸ */
 			Map<String,String> listMap = new HashMap<String,String>();
 			listMap.put("id", loginInfo.getId());
 			listMap.put("arrange", arrange);
 
 			List<RefBean> allList = refdao.getUserRef(listMap);
 			
-			/* ³ÃÀåº¸°ü ¸®½ºÆ® */
+			/* ëƒ‰ì¥ë³´ê´€ ë¦¬ìŠ¤íŠ¸ */
 			Map<String,String> refMap = new HashMap<String,String>();
 			refMap.put("id", loginInfo.getId());
-			refMap.put("storage","³ÃÀå");
+			refMap.put("storage","ëƒ‰ì¥");
 			refMap.put("arrange", arrange);
 
 			List<RefBean> refList = refdao.getListbyStorage(refMap);
 			
-			/* ³Ãµ¿º¸°ü ¸®½ºÆ® */
+			/* ëƒ‰ë™ë³´ê´€ ë¦¬ìŠ¤íŠ¸ */
 			Map<String,String> freezeMap = new HashMap<String,String>();
 			freezeMap.put("id", loginInfo.getId());
-			freezeMap.put("storage","³Ãµ¿");
+			freezeMap.put("storage","ëƒ‰ë™");
 			freezeMap.put("arrange", arrange);
 
 			List<RefBean> freezeList = refdao.getListbyStorage(freezeMap); 
 			
-			/* ½Ç¿Âº¸°ü ¸®½ºÆ® */
+			/* ì‹¤ì˜¨ë³´ê´€ ë¦¬ìŠ¤íŠ¸ */
 			Map<String,String> roomMap = new HashMap<String,String>();
 			roomMap.put("id", loginInfo.getId());
-			roomMap.put("storage","½Ç¿Â");
+			roomMap.put("storage","ì‹¤ì˜¨");
 			roomMap.put("arrange", arrange);
 
 			List<RefBean> roomList = refdao.getListbyStorage(roomMap); 
 			
-			/* Àåº¸±â ¸Ş¸ğ */
+			/* ì¥ë³´ê¸° ë©”ëª¨ */
 			List<MemoBean> userMemo = memodao.getUserMemo(loginInfo.getId());
 			
 			model.addAttribute("totalCnt",totalCnt);
@@ -99,7 +99,7 @@ public class RefPageController {
 			model.addAttribute("loginInfo", loginInfo);
 			model.addAttribute("userMemo", userMemo);
 			
-			return getPage;	//³ÃÀå°í ÆäÀÌÁö·Î
+			return getPage;	//ëƒ‰ì¥ê³  í˜ì´ì§€ë¡œ
 		}
 		
 	}

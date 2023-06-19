@@ -8,14 +8,13 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-@Component
+@Component(value = "memo")
 public class MemoDao {
 	private String namespace = "shopmemo.model.ShopMemo";
 	
 	@Autowired
 	SqlSessionTemplate sqlSessionTemplate;
 	
-	/* 전체 리스트 */
 	public List<MemoBean> getUserMemo(String id) {
 		List<MemoBean> allList = new ArrayList<MemoBean>();
 

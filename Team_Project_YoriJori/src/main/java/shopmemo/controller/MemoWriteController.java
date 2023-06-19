@@ -36,20 +36,20 @@ public class MemoWriteController {
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = null;
 		
-		if(memobean.getMemotask() == "") {		//¸Ş¸ğ ´©¶ô
+		if(memobean.getMemotask() == "") {		//ë©”ëª¨ ëˆ„ë½
 			out = response.getWriter();
-			out.println("<script>alert('¸Ş¸ğ¸¦ ÀÛ¼ºÇÏ¼¼¿ä'); history.go(-1);</script>");
+			out.println("<script>alert('ë©”ëª¨ë¥¼ ì‘ì„±í•˜ì„¸ìš”'); history.go(-1);</script>");
 			out.flush();
 			return gotoPage;
 		}else {
 			int cnt = memodao.writeMemo(memobean);
 			
 			if(cnt!=-1) {
-	        	System.out.println("¸Ş¸ğ ¾²±â ¼º°ø");
-	        	request.setAttribute("msg", "ÀÛ¼ºÇÏ½Å ¸Ş¸ğ°¡ Ãß°¡µÇ¾ú½À´Ï´Ù.");
+	        	System.out.println("ë©”ëª¨ ì“°ê¸° ì„±ê³µ");
+	        	request.setAttribute("msg", "ì‘ì„±í•˜ì‹  ë©”ëª¨ê°€ ì¶”ê°€ë˜ì—ˆìŠµë‹ˆë‹¤.");
 				request.setAttribute("url", "/ex/page.ref");
 	        }else {
-	        	System.out.println("¸Ş¸ğ ¾²±â ½ÇÆĞ");
+	        	System.out.println("ë©”ëª¨ ì“°ê¸° ì‹¤íŒ¨");
 	        }
 		}
 	

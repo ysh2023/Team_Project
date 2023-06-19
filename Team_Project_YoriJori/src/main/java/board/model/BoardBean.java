@@ -83,4 +83,12 @@ public class BoardBean {
 		this.id = id;
 	}
 
+	public String getRec() {
+		return rec;
+	}
+
+	public void setRec(String rec) {
+		this.rec = rec;
+	}
+
 }

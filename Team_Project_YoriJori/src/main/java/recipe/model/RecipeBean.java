@@ -7,8 +7,15 @@ public class RecipeBean {
 	private String servings;
 	private String cookimage;
 	private int readcount; 
+	private int rec;
 	
 	
+	public int getRec() {
+		return rec;
+	}
+	public void setRec(int rec) {
+		this.rec = rec;
+	}
 	public int getReadcount() {
 		return readcount;
 	}

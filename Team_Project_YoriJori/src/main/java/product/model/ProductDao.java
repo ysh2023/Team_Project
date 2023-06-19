@@ -63,6 +63,15 @@ private String namespace = "product.model.Product";
 	}
 
 
+	public List<ProductBean> getAllProducts() {
+		List<ProductBean> lists= new ArrayList<ProductBean>();
+		
+		lists = sqlSessionTemplate.selectList(namespace+".GetAllProducts");
+		
+		return lists;
+	}
+
+
 
 
 }
