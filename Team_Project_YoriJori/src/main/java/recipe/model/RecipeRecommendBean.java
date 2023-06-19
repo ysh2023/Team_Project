@@ -10,7 +10,15 @@ public class RecipeRecommendBean {
 	private String cookimage;
 	private int readcount; 
 	private int cnt;
+	private int rec;
 	
+	
+	public int getRec() {
+		return rec;
+	}
+	public void setRec(int rec) {
+		this.rec = rec;
+	}
 	public int getRecipenum() {
 		return recipenum;
 	}
