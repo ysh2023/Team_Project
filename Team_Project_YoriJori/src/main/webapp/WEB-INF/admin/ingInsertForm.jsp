@@ -66,6 +66,14 @@
   <main id="main" class="main">
     <div class="pagetitle">
       <h1>식재료 관리</h1>
+      <nav style="margin-top: 10px;">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item">야금야금</li>
+          <li class="breadcrumb-item"><a href="ingList.am">식재료 관리</a></li>
+          <li class="breadcrumb-item active">추가하기</li>
+        </ol>
+      </nav>
     </div><br>
     <section class="section">
       <div class="row">
@@ -105,7 +113,7 @@
       	<!-- 식재료 추가 -->
       	<div class="col-lg-4" id="insertForm">
       	  <div class="card"><div class="card-body">
-            <h5 class="card-title" style="font-weight: bolder !important;">식재료 추가</h5>
+            <h5 class="card-title" style="font-weight: bolder !important;">식재료 추가하기</h5>
 			<form class="row g-3" id="insertForm" enctype="multipart/form-data" action="insertIng.am" method="post" onSubmit="return duplCheck()">
                 <div class="col-md-12">
                   <label for="upload" class="form-label">아이콘</label>

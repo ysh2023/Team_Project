@@ -155,6 +155,7 @@
 	<!-- ======= Sidebar ======= -->
 	<aside id="sidebar" class="sidebar">
 		<ul class="sidebar-nav" id="sidebar-nav">
+			<li class="nav-heading">Home</li>
 			<!-- 메인 화면 -->
 			<li class="nav-item"><a class="nav-link collapsed" href="main.am">
 				<i class="bi bi-grid"></i> <span>Dashboard</span>
