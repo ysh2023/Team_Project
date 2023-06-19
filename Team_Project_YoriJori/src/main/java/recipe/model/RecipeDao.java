@@ -112,12 +112,12 @@ public class RecipeDao {
 	}
 	public List<RecipeBean> getAllRecipeByReadCount(Map<String, String> map,Paging2 pageInfo){
 		RowBounds rowBounds = new RowBounds(pageInfo.getOffset(), pageInfo.getLimit());
-		List<RecipeBean> recipeList = sqlSessionTemplate.selectList(namespace+".GetAllRecipeByReadCount", pageInfo, rowBounds);
+		List<RecipeBean> recipeList = sqlSessionTemplate.selectList(namespace+".GetAllRecipeByReadCount", map, rowBounds);
 		return recipeList;
 	}
 	public List<RecipeBean> getAllRecipeByBookMark(Map<String, String> map,Paging2 pageInfo){
 		RowBounds rowBounds = new RowBounds(pageInfo.getOffset(), pageInfo.getLimit());
-		List<RecipeBean> recipeList = sqlSessionTemplate.selectList(namespace+".GetAllRecipeByBookMark", pageInfo, rowBounds);
+		List<RecipeBean> recipeList = sqlSessionTemplate.selectList(namespace+".GetAllRecipeByBookMark", map, rowBounds);
 		return recipeList; 
 	}
 	public List<String> getIngredientByCategory(String keyword){
@@ -134,5 +134,9 @@ public class RecipeDao {
 		RowBounds rowBounds = new RowBounds(pageInfo.getOffset(), pageInfo.getLimit());
 		List<RecipeRecommendBean> recipeNumList = sqlSessionTemplate.selectList(namespace+".GetRecipeNumByIngredient", map,rowBounds);
 		return recipeNumList;
+	}
+	public List<RecipeBean> getBookMarkRecipe(Map<String, String> map){
+		List<RecipeBean> BookMarkRecipeList = sqlSessionTemplate.selectList(namespace+".GetBookMarkRecipe", map);
+		return BookMarkRecipeList;
 	}
 }
