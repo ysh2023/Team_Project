@@ -3,6 +3,6 @@
 
 <%@include file= "./../common/pg_header.jsp" %>
 <main id="main" class="main" >
-<h1>마이페이지 메인</h1>
+<h1>${name}님의 마이페이지</h1>
 </main>
 
