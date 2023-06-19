@@ -11,12 +11,13 @@ public class OrderBean {
 	private String ordzipcode;
 	private String ordmemid;
 	private String orddate;
+	private String ordpaystate;
 	
 	public OrderBean() {
 		
 	}
 	public OrderBean(String ordnum, String ordpdname, int ordtotalpay, String ordemail, String ordname, String ordtel,
-			String ordaddr, String ordzipcode,String ordmemid,String orddate) {
+			String ordaddr, String ordzipcode,String ordmemid,String orddate,String ordpaystate) {
 		super();
 		this.ordnum = ordnum;
 		this.ordpdname = ordpdname;
@@ -28,6 +29,7 @@ public class OrderBean {
 		this.ordzipcode = ordzipcode;
 		this.ordmemid = ordmemid;
 		this.orddate = orddate;
+		this.ordpaystate = ordpaystate;
 	}
 	public String getOrdnum() {
 		return ordnum;
@@ -88,6 +90,12 @@ public class OrderBean {
 	}
 	public void setOrddate(String orddate) {
 		this.orddate = orddate;
+	}
+	public String getOrdpaystate() {
+		return ordpaystate;
+	}
+	public void setOrdpaystate(String ordpaystate) {
+		this.ordpaystate = ordpaystate;
 	}
 	
 	

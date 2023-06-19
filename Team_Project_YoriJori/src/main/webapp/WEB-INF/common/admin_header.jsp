@@ -208,6 +208,11 @@ String resourcesPath = request.getContextPath() + "/resources";
 					</a></li>
 				</ul>
 			</li>
+			<li class="nav-item">
+		         <a class="nav-link collapsed" href="orderlist.am">
+		             <i class="bi bi-cart4"></i> <span>주문 관리</span>
+		         </a>
+       		</li>
 			<li class="nav-heading">Pages</li>
 			<li class="nav-item"><a class="nav-link collapsed" href="main.jsp">
 				<i class="ri ri-game-fill"></i> <span>야금야금 페이지</span>

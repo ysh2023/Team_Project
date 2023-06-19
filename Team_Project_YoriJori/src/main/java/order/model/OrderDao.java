@@ -42,4 +42,13 @@ private String namespace = "order.model.Order";
 		lists = sqlSessionTemplate.selectList(namespace+".GetByIdOrder",id);
 		return lists;
 	}
+	
+	public int updatePaystate(String merchantuid) {
+		OrderBean ord = new OrderBean();
+		ord.setOrdnum(merchantuid);
+		ord.setOrdtel("환불 요청");
+		int cnt = 0;
+		cnt = sqlSessionTemplate.update(namespace+".RequestCancelpay",ord);
+		return cnt;
+	}
 }

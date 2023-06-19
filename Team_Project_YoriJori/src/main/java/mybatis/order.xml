@@ -20,5 +20,11 @@
 		where ord_memid = #{id}
 		order by ord_date desc
 	</select>
+	
+	<update id="RequestCancelpay">
+		update orders set ord_paystate = #{ordtel}
+		where ord_num = #{ordnum}
+	</update>
+	
 
 </mapper>
