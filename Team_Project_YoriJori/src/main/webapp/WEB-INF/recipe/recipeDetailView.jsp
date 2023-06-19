@@ -84,7 +84,7 @@
     				<div class="d-flex justify-content-center">
     					<ul>
 	    					<c:forEach items="${foodList}" var="food">
-	    						<li style="inline : block; float: left; margin-right: 40px"><a href="shop.prd?whatColumn=no&searchName=${food.foodname}">${food.foodname}</a>  ${food.foodamount}</li>
+	    						<li style="inline : block; float: left; margin-right: 40px"><a href="shop.prd?whatColumn=no&searchName=${food.foodname}&ck=ys">${food.foodname}</a>  ${food.foodamount}</li>
 	    					</c:forEach>
     					</ul>
     				</div>

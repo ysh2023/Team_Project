@@ -2,6 +2,7 @@ package member.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -35,13 +36,15 @@ public class MemberLoginController {
 
 	@RequestMapping(value = command, method = RequestMethod.POST)
 	public ModelAndView login(@RequestParam("id") String input_id, @RequestParam("password") String input_password,
-			HttpServletResponse response, HttpSession session) {
+			HttpServletResponse response, HttpSession session) throws ParseException {
 		ModelAndView mav = new ModelAndView();
 
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = null;
 
 		MemberBean mb = mdao.GetMemberById(input_id);
+		
+		
 		
 		
 		if(mb == null) { 
@@ -59,7 +62,7 @@ public class MemberLoginController {
 		}else { 
 			System.out.println("가입한 회원");
 			if (mb.getPw().equals(input_password)) {
-				//  α   
+				if(mdao.searchStopById(input_id)==false)  { //정지회원아닐때
 				session.setAttribute("loginInfo", mb);
 				
 				if(mb.getId().equals("admin")) {
@@ -75,6 +78,15 @@ public class MemberLoginController {
 					mav.setViewName(destination);
 				}
 
+			}}else{
+				try {
+					out = response.getWriter();
+					out.println("<script>alert('정지회원입니다.');history.go(-1);</script>");
+					out.flush();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				
 			}} else { 
 				
 				try {

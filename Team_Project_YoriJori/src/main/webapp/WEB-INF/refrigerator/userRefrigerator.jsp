@@ -582,7 +582,7 @@
                       		<i class="icon-close2" style="color:gray"></i>
                       	  </a>
                       	  <input type="checkbox" id="memonum" name="memonum" value="${list.memonum}" <c:if test="${list.memoflag eq 1}">checked</c:if>>
-                  	      &nbsp;<a href="shop.prd?keyword=&whatColumn=no&searchName=${list.memotask}">${list.memotask}</a>
+                  	      &nbsp;<a href="shop.prd?keyword=&whatColumn=no&searchName=${list.memotask}&ck=ys">${list.memotask}</a>
                         </div>
                         <div class="meta">${list.memocontent}</div>
                       </div>

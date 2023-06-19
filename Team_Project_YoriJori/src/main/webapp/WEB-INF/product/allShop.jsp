@@ -7,7 +7,38 @@
 
 
 <script>
+function delMemo(memonum){
+	var msg = "해당 메모를 삭제하시겠습니까?";
+    var url = "delete.memo?memonum="+memonum;
+    
+    if(confirm(msg) == true){
+		location.href = url;
+	}else{
+		return false;
+	}
+}
 
+/* 메모 작성폼 띄우기 */
+function showWriteForm(){
+	$('#writeform').show();
+}
+
+/* 메모 작성폼 submit */
+function hideWriteForm(){
+	var msg = "작성하신 메모를 추가하시겠습니까?";
+	if(confirm(msg) == true){
+		document.getElementById('writeForm').submit();
+		
+	}else{
+		return false;
+	}
+}
+
+/* 메모 수정 submit */
+function updateMemo(){
+	
+	document.getElementById('updateForm').submit();
+}
 $(document).ready(function(){	
 	const urlParams = new URL(location.href).searchParams;
 	const whatColumn = urlParams.get('whatColumn');
@@ -51,6 +82,24 @@ $(document).ready(function(){
 
 </script>
 
+<style>
+#floating{
+ position: fixed; 
+ margin-right: -800px;
+  right: 50%; 
+  top: 180px;
+  width:200px;
+ 
+}
+
+#writeform{
+ position: fixed; 
+ margin-right: -800px;
+  right: 50%; 
+  top: 500px;
+  width:200px;
+}
+</style>
 
 
 
@@ -82,11 +131,7 @@ $(document).ready(function(){
     					<li><a href="shop.prd?whatColumn=se&keyword=양념/오일&searchName= "  id="le7">양념/오일</a></li>
     				</ul>
     			</div>
-    			</div>
-    		</div>
-    		<center>
-    			<div>
-						<form action="shop.prd" class="search-form">
+    			<form action="shop.prd" class="search-form">
 							<input type="hidden" value="${keyword}" name="keyword">
 								<input type="hidden" value="${whatColumn}" name="whatColumn">
 							<input  type="search" placeholder="상품명 입력하세요" aria-label="Search"  name="searchName"
@@ -95,11 +140,15 @@ $(document).ready(function(){
 						</form>
 					</div>
 			</center>
+			
+			
+			
     		
     		<div class="row">
   
 				<c:forEach var="i" items="${lists}">  		
     			<div class="col-md-6 col-lg-3 ftco-animate">
+    			
     				<div class="product">
     					<a href="prdDetail.prd?pdnum=${i.pdnum}" class="img-prod"><img class="img-fluid" src="<%=resourcesPath%>/img_pd/${i.pdimage}" alt="Colorlib Template">
     					</a>
@@ -112,13 +161,10 @@ $(document).ready(function(){
 	    					</div>
 	    					<div class="bottom-area d-flex px-3">
 	    						<div class="m-auto d-flex">
-	    							<a href="#" class="add-to-cart d-flex justify-content-center align-items-center text-center">
-	    								<span><i class="ion-ios-menu"></i></span>
-	    							</a>
-	    							<a href="insert.bsk?pdnum=${i.pdnum }&qty=1" class="buy-now d-flex justify-content-center align-items-center mx-1">
+	    							<a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
 	    								<span><i class="ion-ios-cart"></i></span>
 	    							</a>
-	    							<a href="#" class="heart d-flex justify-content-center align-items-center ">
+	    							<a href="insertDibs.mp?pdnum=${i.pdnum}&pageNumber=${pageInfo.pageNumber}" class="heart d-flex justify-content-center align-items-center ">
 	    								<span><i class="ion-ios-heart"></i></span>
 	    							</a>
     							</div>
@@ -141,5 +187,72 @@ $(document).ready(function(){
         </div>
     
     </section>
+    
+            <!-- 장보기 메모 -->
+          	  <div class="bg-light" style="min-height: 300px; max-height: 900px;"  id="floating" >
+          	    <div style="text-align: center; padding-top: 20px; padding-bottom: 15px;">
+          	  	  <i class="icon-sticky-note" style="color:#F2BC1B;"></i> &nbsp; <b>장보기 메모</b>
+          	    </div>
+          	    
+          	    <form id="updateForm" action="update.memo" method="post">
+          	      <!-- 메모 리스트 -->  
+          	      <c:forEach var="list" items="${userMemo}">
+          	        <div class="block-21 mb-2 d-flex">
+          	  	      <div class="text" style="margin: auto;">
+                        <div style="padding-top: 10px;">
+                      	  <span style="cursor: pointer;" onClick="delMemo(${list.memonum})" >
+                      		<i class="icon-close2" style="color:gray"></i>
+                      	  </span>
+                      	  <input type="checkbox" id="memonum" name="memonum" value="${list.memonum}" <c:if test="${list.memoflag eq 1}">checked</c:if>>
+                  	      &nbsp;<a href="shop.prd?keyword=&whatColumn=no&searchName=${list.memotask}&ck=ys">${list.memotask}</a>
+                        </div>
+                        <div class="meta">${list.memocontent}</div>
+                      </div>
+                    </div>
+                  </c:forEach>
+                </form>
+                  
+                <!-- 메모 버튼 -->
+                <div style="text-align: center; padding-top: 20px; padding-bottom: 15px;">
+          	  	  <span style="cursor: pointer;" onclick="showWriteForm()">
+          	  	    <i class="icon-add_circle" style="color:gray; font-size: 10pt;">&nbsp;쓰기</i>
+          	  	  </span>
+          	  	  &nbsp;&nbsp;&nbsp;
+          	  	  <span style="cursor: pointer;" onclick="updateMemo()">
+          	  	    <i class="icon-save2" style="color:gray; font-size: 10pt;">&nbsp;저장</i>
+          	  	  </span>
+          	    </div>
+              </div>
+            </div>
+            <!-- 메모 작성 폼 -->
+            <div class="sidebar-box ftxo-animate fadeInUp ftco-animated" id="writeform" style="display: none;">
+          	  <div class="bg-light" style="min-height: 300px; position:relative;">
+          	    <div style="text-align: center; padding-top: 20px; padding-bottom: 15px;">
+          	  	  <i class="icon-sticky-note" style="color:#F2BC1B;"></i> &nbsp; <b>메모 쓰기</b>
+          	    </div>
+          	    <form id="writeForm" action="write.memo" method="post">
+          	      <input type="hidden" name="id" value="${loginInfo.id}">
+          	      <div class="block-21 mb-2 d-flex">
+          	        <div class="form-group" style="margin-left: 20px; margin-right: 20px;">
+          	          <label>* 메모</label>
+          	  	      <input class="form-control" type="text" name="memotask" maxlength="13" style="height: 30px; font-size: 11pt;">
+          	  	    </div>
+                  </div>
+                  <div>
+                    <div class="form-group" style="margin-left: 20px; margin-right: 20px;">
+          	          <label>상세 메모</label>
+          	  	      <textarea class="form-control" name="memocontent" cols="2" rows="2" maxlength="33" placeholder="최대 33자 입력 가능" style="font-size: 11pt;"></textarea>
+          	  	    </div>
+                  </div>
+                </form>
+                <div style="position:absolute; right:10%; bottom: 20px;">
+          	  	  <a href="#" onclick="hideWriteForm()">
+          	  	    <i class="icon-add_circle" style="color:gray; padding-left: 15px; font-size: 10pt;">&nbsp;추가하기</i>
+          	  	  </a>
+          	    </div>
+              </div>
+              
+             </div>
 
 <%@include file= "./../common/footer.jsp" %>
+    			
