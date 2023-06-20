@@ -1,33 +1,47 @@
 package recipe.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import member.model.MemberBean;
+import recipe.model.RecipeBean;
 import recipe.model.RecipeBookMarkBean;
 import recipe.model.RecipeDao;
 
 @Controller
 public class RecipeBookMarkDeleteController {
 	private final String command="/deleteBookmark.re";
-	private final String getPage="redirect:/bookmark.re";
+	private final String getPage="recipeBookMark";
 	
 	@Autowired
 	RecipeDao rdao;
 	
 	@RequestMapping(value = command)
-	public String doAction(@RequestParam("recipenum") int recipenum , HttpSession session) { 
+	public String doAction(@RequestParam("recipenum") int recipenum , HttpSession session, Model model) { 
 		MemberBean mb = (MemberBean)session.getAttribute("loginInfo");
 		RecipeBookMarkBean RBMBean = new RecipeBookMarkBean();
-		//BMBean 만들었으니까 바꿔주기
 		RBMBean.setId(mb.getId());
 		RBMBean.setRecipenum(recipenum);
 		int cnt = rdao.deleteBookmark(RBMBean);
+		
 		if(cnt>0) {
+			List<Integer> BookmarkList = rdao.getBookmarkById(mb.getId());
+			List<RecipeBean> BookmarkRecipeList = new ArrayList<RecipeBean>();
+			for(int i : BookmarkList) {
+				RecipeBean rbean = rdao.getRecipe(i);
+				BookmarkRecipeList.add(rbean);
+			}
+			
+			model.addAttribute("BookmarkRecipeList", BookmarkRecipeList);
+			model.addAttribute("member", mb);
 			System.out.println("삭제성공");
 			
 		}else {

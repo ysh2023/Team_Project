@@ -31,7 +31,7 @@ public class MypageInsertDibsController {
 
 	@RequestMapping(value = command, method = RequestMethod.GET)
 	public String doAction(@RequestParam("pdnum") String pdnum,HttpSession session,HttpServletResponse response,
-			@RequestParam("pageNumber") String pageNumber,Model model
+			@RequestParam(value = "pageNumber",required = false) String pageNumber,Model model
 			) {
 		
 		MemberBean loginInfo = (MemberBean)session.getAttribute("loginInfo");

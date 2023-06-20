@@ -56,6 +56,10 @@
 	<delete id="DeleteComment">
 	delete from comments where com_Num=#{comNum}
 	</delete>
+
+	<!-- 사용자 게시글 -->
+	<select id="GetAllBoardAm" resultType="board.model.BoardBean">select board.bod_num, title, servings, time, category, tags, id, bod_image , rec from board full outer join (select count(*)as rec , bod_num from recommend group by bod_num) sel on sel.bod_num = board.bod_num order by bod_num </select>
+	<delete id="DeleteBoard">delete from board where bod_num = #{bodNum}</delete>
 	
 	<!-- 식재료 -->
 	<select id="GetAllIng" resultType="ingredient.model.IngBean">
@@ -94,6 +98,22 @@
 		where ing_num = #{ingnum}
 	</delete>
 	
+	<select id="GetAllOrder" resultType="order.model.OrderBean">
+		select * from orders
+		order by ord_date desc
+	</select>
+	
+	<select id="GetAllOrderDetail" resultType="orderdetail.model.JoinBean">
+		select odt.odt_ordnum,p.pd_name, p.pd_image,p.pd_price,odt.odt_qty
+		from orderdetail odt full outer join product p
+		on odt.odt_pdnum = p.pd_num
+		where odt_ordnum = #{odtordnum}
+	</select>
+	
+	<update id="ApproveCancelpay">
+		update orders set ord_paystate = #{ordtel}
+		where ord_num = #{ordnum}
+	</update>
 
 
 </mapper>

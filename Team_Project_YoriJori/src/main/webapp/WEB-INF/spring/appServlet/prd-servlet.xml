@@ -20,5 +20,9 @@
 	<context:component-scan base-package="refrigerator"/>
 	<context:component-scan base-package="ingredient"/>
 	<context:component-scan base-package="member"/>	
+	<context:component-scan base-package="mypage"/>	
+	<context:component-scan base-package="order"/>
+	<context:component-scan base-package="orderdetail"/>
+	<context:component-scan base-package="basket"/>
 
 </beans>
