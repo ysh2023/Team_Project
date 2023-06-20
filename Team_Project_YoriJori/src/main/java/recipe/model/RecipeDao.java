@@ -139,4 +139,11 @@ public class RecipeDao {
 		List<RecipeBean> BookMarkRecipeList = sqlSessionTemplate.selectList(namespace+".GetBookMarkRecipe", map);
 		return BookMarkRecipeList;
 	}
+	public void deleteReview(int reviewnum) {
+		sqlSessionTemplate.delete(namespace+".DeleteReview", reviewnum);
+	}
+	public int UpdateReview(Map<String, String>map) {
+		int cnt = sqlSessionTemplate.update(namespace+".UpdateReview", map);
+		return cnt;
+	}
 }

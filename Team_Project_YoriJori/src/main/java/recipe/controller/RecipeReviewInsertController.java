@@ -33,12 +33,11 @@ public class RecipeReviewInsertController {
 		reviewbean.setId(((MemberBean)session.getAttribute("loginInfo")).getId());
 		reviewbean.setRecipenum(recipenum);
 		reviewbean.setReview(review);
-		//System.out.println("recipenum:"+recipenum);
-		//System.out.println("review:"+review);
 		int cnt = rdao.insertReview(reviewbean);
 		List<RecipeReviewBean> reviewList = rdao.getReviewbyRecipe(reviewbean.getRecipenum());
 		if(cnt>0) {
 			model.addAttribute("reviewList",reviewList);
+			model.addAttribute("id",((MemberBean)session.getAttribute("loginInfo")).getId());
 			System.out.println("리뷰등록 성공");
 		}else { 
 			System.out.println("리뷰등록 실패");

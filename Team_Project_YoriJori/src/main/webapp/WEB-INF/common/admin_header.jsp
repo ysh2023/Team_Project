@@ -166,6 +166,7 @@ String resourcesPath = request.getContextPath() + "/resources";
 				</a>
 
 			</li>
+			
 			<li class="nav-heading">식재료 쇼핑몰</li>
 			<!-- 상품 관리 -->
 			<li class="nav-item">

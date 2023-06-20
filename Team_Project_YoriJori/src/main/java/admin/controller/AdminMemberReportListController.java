@@ -15,6 +15,8 @@ import admin.model.AdminDao;
 import board.model.BoardDao;
 import board.model.CommentReportBean;
 import member.model.MemberDao;
+import recipe.controller.RecipeReviewReportController;
+import recipe.model.RecipeReviewReportBean;
 
 @Controller
 public class AdminMemberReportListController {
@@ -34,10 +36,11 @@ public class AdminMemberReportListController {
 	public ModelAndView doAction(Model model, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		List<CommentReportBean> lists = adao.getReportlist();
-		
+		List<RecipeReviewReportBean> recipelist = adao.getRecipeReportlist();
 		
 		
 		mav.addObject("lists", lists);
+		mav.addObject("recipelist", recipelist);
 		mav.setViewName(getPage);
 		
 		return mav; 

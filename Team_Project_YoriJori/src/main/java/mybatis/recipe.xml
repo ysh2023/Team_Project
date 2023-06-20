@@ -72,7 +72,7 @@
   	
   	<insert id="InsertReport">
   		insert into review_report
-  		values(recipe_report_seq.nextval,#{reportcontent},#{reviewnum})
+  		values(recipe_report_seq.nextval,#{reportcontent},#{reviewnum},#{reportreason},#{id})
   	</insert>
   	
   	<select id="CheckBookMark" resultType="int">
@@ -142,4 +142,10 @@
   			and recipe_category =#{keyword}
   		</if>
   	</select>
+  	<delete id="DeleteReview">
+  		delete from review where review_num=#{reveiwnum}
+  	</delete>
+  	<update id="UpdateReview">
+  		update review set review=#{review} where review_num=#{reviewnum}
+  	</update>
   </mapper>

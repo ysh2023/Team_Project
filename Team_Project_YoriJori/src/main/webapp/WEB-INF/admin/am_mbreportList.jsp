@@ -53,6 +53,32 @@
                     <td><a href="deleteReport.am?id=${i.id}">내역삭제</a></td>
                   </tr>
                 </c:forEach>
+          		
+          		<c:forEach var="i" items="${recipelist}">
+                 <tr>
+                    <th scope="row">${i.id}</th>
+                    <td>${i.count}</td>
+                   
+                    <td><a href="detailReport.am?id=${i.id}">상세보기</a></td>
+                    
+                 	 <td>
+                 	   <form action="stopMember.am">
+                 	  <input type="hidden" value="${i.id}" name="id">
+                 	    <input type="hidden" value="ys" name="check">
+                 	 <select id="stopdate" name="stopdate">
+                    <option value="7">7일</option>
+                    <option value="10">10일</option>
+                    <option value="30">30일</option>
+                    <option value="60">60일</option>
+                    </select>
+                    <input type="submit" value="정지">
+                     </form>
+                   
+                    </td>
+                    <td><a href="deleteMb.am?id=${i.id}">강제탈퇴</a></td>
+                    <td><a href="deleteReveiwReport.am?id=${i.id}">내역삭제</a></td>
+                  </tr>
+                </c:forEach>
           
         
                 </tbody>
