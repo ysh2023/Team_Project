@@ -31,7 +31,7 @@ public class MypageInsertDibsController {
 
 	@RequestMapping(value = command, method = RequestMethod.GET)
 	public String doAction(@RequestParam("pdnum") String pdnum,HttpSession session,HttpServletResponse response,
-			@RequestParam(value = "pageNumber",required = false) String pageNumber,Model model
+			@RequestParam(value = "pageNumber",required = false) String pageNumber,Model model,@RequestParam(value = "ck",required = false) String ck 
 			) {
 		
 		MemberBean loginInfo = (MemberBean)session.getAttribute("loginInfo");
@@ -41,7 +41,12 @@ public class MypageInsertDibsController {
 		PrintWriter out = null;
 		
 		if(session.getAttribute("loginInfo") == null) {	
+			if(ck==null) {
 			session.setAttribute("destination", "redirect:/shop.prd?whatColumn=no");	
+			}
+			else {
+				session.setAttribute("destination", "redirect:/");
+			}
 			return "redirect:/login.mb";
 		}else {
 		

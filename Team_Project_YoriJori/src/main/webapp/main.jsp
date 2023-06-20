@@ -170,7 +170,7 @@
 	    							<a href="insert.bsk?pdnum=${i.pdnum }&qty=1" class="buy-now d-flex justify-content-center align-items-center mx-1">
 	    								<span><i class="ion-ios-cart"></i></span>
 	    							</a>
-	    							<a href="insertDibs.mp?pdnum=${i.pdnum}" class="heart d-flex justify-content-center align-items-center ">
+	    							<a href="insertDibs.mp?pdnum=${i.pdnum}&ck=ys" class="heart d-flex justify-content-center align-items-center ">
 	    								<span><i class="ion-ios-heart"></i></span>
 	    							</a>
     							</div>
