@@ -38,6 +38,18 @@
 		order
 		by id
 	</select>
+	
+	<select id="CountAllMember" resultType="int">
+		select count(id) from member
+	</select>
+	
+	
+	<select id="CountRegister" resultType="int">
+		<![CDATA[
+			select count(id) from member
+  			where inputdate >= to_date(#{start}, 'YYYY-MM-DD') and inputdate <= to_date(#{end}, 'YYYY-MM-DD')
+  		]]> 
+	</select>
 
 	<select id="GetReportCount" resultType="board.model.CommentReportBean">
 		select id,count(*) count from commentReport
@@ -97,6 +109,20 @@
 		delete ingredient
 		where ing_num = #{ingnum}
 	</delete>
+	
+	<select id="CountOrder" resultType="int">
+		<![CDATA[
+			select count(ord_num) from orders
+			where ord_date >= to_date(#{start}, 'YYYY-MM-DD') and ord_date <= to_date(#{end}, 'YYYY-MM-DD')
+		]]> 
+	</select>
+	
+	<select id="GetSales" resultType="int">
+		<![CDATA[
+			select sum(ord_totalpay) from orders
+			where ord_date >= to_date(#{start}, 'YYYY-MM-DD') and ord_date <= to_date(#{end}, 'YYYY-MM-DD')
+		]]> 
+	</select>
 	
 	<select id="GetAllOrder" resultType="order.model.OrderBean">
 		select * from orders

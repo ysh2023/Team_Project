@@ -39,16 +39,15 @@
                 </div>
 
                 <div class="card-body">
-                  <h5 class="card-title" style="font-weight: bold !important;">판매량 <span>| Today</span></h5>
+                  <h5 class="card-title" style="font-weight: bold !important;">주문량 <span>| 이번달</span></h5>
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                       <i class="bi bi-cart"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>145</h6>
-                      <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
-
+                      <h6>${ordernum}건</h6>
+                      
                     </div>
                   </div>
                 </div>
@@ -74,16 +73,16 @@
                 </div>
 
                 <div class="card-body">
-                  <h5 class="card-title" style="font-weight: bold !important;">매출 <span>| This Month</span></h5>
+                  <h5 class="card-title" style="font-weight: bold !important;">매출 <span>| 이번달</span></h5>
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                      <i class="bi bi-currency-dollar"></i>
+                      <i class="bx bx-money"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>$3,264</h6>
-                      <span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">increase</span>
-
+                      <fmt:formatNumber type="number" maxFractionDigits="3" value="${sales*10}" var="totalsales" />
+                      <h6>${totalsales}</h6>
+                      
                     </div>
                   </div>
                 </div>
@@ -110,16 +109,14 @@
                 </div>
 
                 <div class="card-body">
-                  <h5 class="card-title" style="font-weight: bold !important;">가입자 수 <span>| This Year</span></h5>
+                  <h5 class="card-title" style="font-weight: bold !important;">총 가입자 수</h5>
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                       <i class="bi bi-people"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>1244</h6>
-                      <span class="text-danger small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">decrease</span>
-
+                      <h6>${totalMember*10}명</h6>
                     </div>
                   </div>
 
@@ -131,7 +128,7 @@
             <div class="col-lg-12">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title" style="font-weight: bold !important;">가입자 추이 &nbsp;<span>| 상반기</span></h5>
+              <h5 class="card-title" style="font-weight: bold !important;">가입자 추이 &nbsp;<span>| 2023년 상반기</span></h5>
 
               <!-- Line Chart -->
               <canvas id="lineChart" style="max-height: 400px; display: block; box-sizing: border-box; height: 239px; width: 479px;" width="959" height="479"></canvas>
@@ -143,7 +140,7 @@
                       labels: ['1월', '2월', '3월', '4월', '5월', '6월'],
                       datasets: [{
                         label: 'Line Chart',
-                        data: [65, 59, 80, 81, 56, 55, 40],
+                        data: [${jan*10}, ${feb*10}, ${mar*10}, ${apr*10}, ${may*10}, ${june*10}],
                         fill: false,
                         borderColor: 'rgb(75, 192, 192)',
                         tension: 0.1
@@ -301,38 +298,17 @@
             </div>
 
             <div class="card-body pb-0">
-              <h5 class="card-title" style="font-weight: bold !important;">사용자 게시판 <span>| Today</span></h5>
+              <h5 class="card-title" style="font-weight: bold !important;">사용자 게시판 <span>| 최신글</span></h5>
 
               <div class="news">
-                <div class="post-item clearfix">
-                  <img src="assets/img/news-1.jpg" alt="">
-                  <h4><a href="#">Nihil blanditiis at in nihil autem</a></h4>
-                  <p>Sit recusandae non aspernatur laboriosam. Quia enim eligendi sed ut harum...</p>
-                </div>
-
-                <div class="post-item clearfix">
-                  <img src="assets/img/news-2.jpg" alt="">
-                  <h4><a href="#">Quidem autem et impedit</a></h4>
-                  <p>Illo nemo neque maiores vitae officiis cum eum turos elan dries werona nande...</p>
-                </div>
-
-                <div class="post-item clearfix">
-                  <img src="assets/img/news-3.jpg" alt="">
-                  <h4><a href="#">Id quia et et ut maxime similique occaecati ut</a></h4>
-                  <p>Fugiat voluptas vero eaque accusantium eos. Consequuntur sed ipsam et totam...</p>
-                </div>
-
-                <div class="post-item clearfix">
-                  <img src="assets/img/news-4.jpg" alt="">
-                  <h4><a href="#">Laborum corporis quo dara net para</a></h4>
-                  <p>Qui enim quia optio. Eligendi aut asperiores enim repellendusvel rerum cuder...</p>
-                </div>
-
-                <div class="post-item clearfix">
-                  <img src="assets/img/news-5.jpg" alt="">
-                  <h4><a href="#">Et dolores corrupti quae illo quod dolor</a></h4>
-                  <p>Odit ut eveniet modi reiciendis. Atque cupiditate libero beatae dignissimos eius...</p>
-                </div>
+                <c:forEach var="board" items="${boardlist}">
+	                <div class="post-item clearfix">
+	                  <img src="<%=resourcesPath%>/images/${board.bodImage != '' ? board.bodImage : 'noimage.png' }" width="60" height="60">
+	                  <h4><a href="#">${board.title}</a></h4>
+	                  <p>${board.tags}</p>
+	                </div>
+				</c:forEach>
+                
 
               </div><!-- End sidebar recent posts-->
 

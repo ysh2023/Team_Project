@@ -2,6 +2,7 @@ package admin.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,6 +67,17 @@ public class AdminDao {
 		List<ProductBean> lists = new ArrayList<ProductBean>();
 		lists = sqlSessionTemplate.selectList(namespace + ".GetAllMember");
 		return lists;
+	}
+	
+	public int getMemberCount() {
+		int totalMember = sqlSessionTemplate.selectOne(namespace+".CountAllMember");
+		return totalMember;
+	}
+	
+	
+	public int getRegisterCount(Map<String, String> map) {
+		int monthRegister = sqlSessionTemplate.selectOne(namespace+".CountRegister", map);
+		return monthRegister;
 	}
 
 	public List<CommentReportBean> getReportlist() {
@@ -143,6 +155,16 @@ public class AdminDao {
 		int cnt = -1;
 		cnt = sqlSessionTemplate.delete(namespace + ".DeleteBoard", bodNum);
 		return cnt;
+	}
+	
+	public int getOrderCount(Map<String, String> map) {
+		int ordernum = sqlSessionTemplate.selectOne(namespace+".CountOrder", map);
+		return ordernum;
+	}
+	
+	public int getOrderSales(Map<String, String> map) {
+		int sales = sqlSessionTemplate.selectOne(namespace+".GetSales", map);
+		return sales;
 	}
 	
 	public List<OrderBean> getAllOrder() {
