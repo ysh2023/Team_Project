@@ -13,14 +13,14 @@
 				<fmt:parseDate value="${comment.createAt }" var="pdate" pattern="yyyy-MM-dd HH:mm:ss.S" />
 				<fmt:formatDate value="${pdate }" pattern="yyyy년 MM월 dd일 hh:mm" />
 			</div>
-			<p>${comment.comContent }</p>
+			<p id="comment${status.index+1 }">${comment.comContent }</p>
 			<p>
 				<span class="reply" id="reply${status.index+1 }" onclick="replyHandle(${status.index+1})" style="cursor: pointer;">댓글 달기</span>
-				<c:if test="${loginInfo.id == comment.id }">
-					<span onclick="location.href='deleteComments.board?bodNum=${bodNum}&comNum=${comment.comNum}'" style="cursor: pointer;">삭제</span>
-					<span id="updateComment${status.index+1 }" onclick="updateHandle(${status.index+1})" style="cursor: pointer;">수정</span>
-				</c:if>
-				<span onclick="commentReport(${comment.comNum })" style="cursor: pointer;">신고하기</span>
+											<c:if test="${loginInfo.id == comment.id }">
+												<span class="reply" id="deleteComment${status.index+1 }" onclick="deleteComment(${comment.comNum})" style="cursor: pointer; margin-left: 5px;">삭제</span>
+												<span class="reply" id="updateComment${status.index+1 }" onclick="handleUpdateComment(${status.index+1})" style="cursor: pointer; margin-left: 5px;">수정</span>
+											</c:if>
+											<span class="reply btn-primary" onclick="commentReport(${comment.comNum })" style="cursor: pointer; margin-left: 5px;">신고하기</span>
 			</p>
 		</div>
 	</li>
@@ -36,7 +36,7 @@
 	<li style="display: none;" id="updateForm${status.index+1 }" class="px-5 py-4 ">
 		<div class="form-group">
 			<label for="message">수정할 답글을 입력</label>
-			<textarea name="UcomContent${comment.comNum}" id="message" cols="30" rows="5" class="form-control" style="resize: none;"></textarea>
+			<textarea name="UcomContent${comment.comNum}" id="Umessage${status.index+1 }" cols="30" rows="5" class="form-control" style="resize: none;"></textarea>
 		</div>
 		<div class="form-group">
 			<input type="button" onclick="updateComments(${comment.comNum})" value="수정하기" class="btn py-3 px-4 btn-primary">

@@ -20,35 +20,32 @@ import org.springframework.web.bind.annotation.RequestParam;
 import ingredient.model.IngBean;
 import ingredient.model.IngDao;
 import member.model.MemberBean;
-import refrigerator.model.JoinBean;
 import refrigerator.model.RefBean;
 import refrigerator.model.RefDao;
-
 
 @Controller
 public class RefInsertController {
 	private final String command = "/insert.ref";
 	private String getPage = "insertRefrigerator";
 	private String gotoPage = "redirect:/page.ref";
-	
+
 	@Autowired
 	IngDao ingdao;
-	
+
 	@Autowired
 	RefDao refdao;
-	
-	@RequestMapping(value=command, method = RequestMethod.GET)
-	public String doAction(@RequestParam(value="arrange", required=false) String arrange, 
-						@RequestParam(value="storage", required=false) String storage, 
-						Model model, HttpSession session) {
-		
-		MemberBean loginInfo = (MemberBean)session.getAttribute("loginInfo");
-		
-		Map<String,String> map = new HashMap<String,String>();
+
+	@RequestMapping(value = command, method = RequestMethod.GET)
+	public String doAction(@RequestParam(value = "arrange", required = false) String arrange,
+			@RequestParam(value = "storage", required = false) String storage, Model model, HttpSession session) {
+
+		MemberBean loginInfo = (MemberBean) session.getAttribute("loginInfo");
+
+		Map<String, String> map = new HashMap<String, String>();
 		map.put("id", loginInfo.getId());
 		map.put("arrange", arrange);
 		List<RefBean> allList = refdao.getUserRef(map);
-		
+
 		IngBean userIng = ingdao.getIngInfo(1);
 		
 		List<IngBean> ingList1 = ingdao.getIngbyCtg("곡류/콩/견과류");
@@ -63,9 +60,9 @@ public class RefInsertController {
 		model.addAttribute("loginInfo", loginInfo);
 		model.addAttribute("storage", storage);
 		model.addAttribute("allList", allList);
-		
+
 		model.addAttribute("userIng", userIng);
-		
+
 		model.addAttribute("ingList1", ingList1);
 		model.addAttribute("ingList2", ingList2);
 		model.addAttribute("ingList3", ingList3);
@@ -77,17 +74,17 @@ public class RefInsertController {
 		
 		return getPage;
 	}
-	
-	@RequestMapping(value=command, method = RequestMethod.POST)
+
+	@RequestMapping(value = command, method = RequestMethod.POST)
 	public String insert(@RequestParam("rowchk") int[] rowchk, @RequestParam("refstorage") String refstorage,
-						Model model, HttpSession session, HttpServletRequest request) {
-		MemberBean loginInfo = (MemberBean)session.getAttribute("loginInfo");
+			Model model, HttpSession session, HttpServletRequest request) {
+		MemberBean loginInfo = (MemberBean) session.getAttribute("loginInfo");
 		String id = loginInfo.getId();
-		
+
 		int cnt = -1;
-		for(int i=0;i<rowchk.length;i++) {
-			System.out.println("check: "+rowchk[i]);
-			
+		for (int i = 0; i < rowchk.length; i++) {
+			System.out.println("check: " + rowchk[i]);
+
 			RefBean refbean = new RefBean();
         	refbean.setId(id);
         	refbean.setIngnum(rowchk[i]);
@@ -118,6 +115,5 @@ public class RefInsertController {
 		model.addAttribute("loginInfo", loginInfo);
 		return "alert";
 	}
-	
-	
+
 }
