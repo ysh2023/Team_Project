@@ -19,10 +19,15 @@ public class AdminDeleteCommentController {
 	
 
 	@RequestMapping(value = command, method = RequestMethod.GET)
-	public String doAction(@RequestParam("id") String id,@RequestParam("comNum") int comNum ) {
+	public String doAction(@RequestParam("id") String id,@RequestParam(value="comNum", required = false) String comNum,@RequestParam(value="reviewnum", required = false) String reviewnum ) {
 		
-		adao.deleteComment(comNum);
-		
+		if(comNum!=null) {
+			System.out.println("colnum이 넘어옴");
+			 adao.deleteComment(comNum);
+		}else {
+			System.out.println("reviewnum넘어옴");
+			adao.deleteReview(reviewnum);
+		}
 		
 		
 		return getPage+"?id="+id;

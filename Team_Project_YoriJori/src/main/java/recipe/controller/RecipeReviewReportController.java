@@ -1,36 +1,60 @@
 package recipe.controller;
 
+import java.io.IOException; 
+
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import member.model.MemberBean;
 import recipe.model.RecipeDao;
 import recipe.model.RecipeReviewReportBean;
 
 @Controller
 public class RecipeReviewReportController {
 	private final String command="/report.re";
-	private final String getPage="RecipeReviewReportForm";
 
 	
 	@Autowired
 	RecipeDao rdao;
 	
-	@RequestMapping(value=command, method=RequestMethod.GET)
-	public String doAction(@RequestParam ("reviewnum") int reviewnum , @RequestParam ("recipenum") int recipenum) {
-		return getPage;
-	}
-	@RequestMapping(value=command, method=RequestMethod.POST)
-	public String doAction2(RecipeReviewReportBean reportBean,@RequestParam("recipenum") int recipenum) {
+	@RequestMapping(value=command)
+	public void doAction(@RequestParam ("reviewnum") String reviewnum , 
+							@RequestParam ("reportreason") String reportreason,
+							@RequestParam("reportcontent") String reportcontent,
+							HttpSession session,
+							HttpServletResponse response) {
+		MemberBean mb = (MemberBean)session.getAttribute("loginInfo");
+		RecipeReviewReportBean reportBean = new RecipeReviewReportBean();
+		reportBean.setReviewnum(Integer.parseInt(reviewnum));
+		reportBean.setReportreason(reportreason);
+		reportBean.setReportcontent(reportcontent);
+		reportBean.setId(mb.getId());
+		System.out.println("revienum:"+reviewnum);
+		System.out.println("reportreason:"+reportreason);
+		System.out.println("reportcontent:"+reportcontent);
+		System.out.println("id:"+mb.getId());
+		
 		int cnt =rdao.insertReport(reportBean);
 		if(cnt>0) {
-			System.out.println("신고 성공");
+			try {
+				response.getWriter().append("신고가 접수되었습니다.").flush();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}else {
-			System.out.println("신고 실패");
+			try {
+				response.getWriter().append("신고를 실패했습니다.").flush();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
-		return "redirect:/detail.re?recipenum="+recipenum;
+		
 	}
+	
 	
 }

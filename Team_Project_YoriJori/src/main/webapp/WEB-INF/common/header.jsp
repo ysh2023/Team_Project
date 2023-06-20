@@ -37,6 +37,12 @@
     <link rel="stylesheet" href="<%=resourcesPath%>/css/icomoon.css">
     <link rel="stylesheet" href="<%=resourcesPath%>/css/style.css">
     
+<style type="text/css">
+	ul{
+		style="color: #FFCC66;"
+	}
+</style>
+    
     <!-- 아임포트 api 설정 -->
     <script
       type="text/javascript"
@@ -141,6 +147,7 @@
 		//alert(1);
 	});
 </script>
+
   <body class="goto-here">
   	<!-- header -->
 	<header>
@@ -207,20 +214,23 @@
 			</div>
 		</nav>
 		<!-- navigation -->
-		<nav
-			class="bg-primary navbar navbar-expand-lg navbar-dark ftco_navbar ftco-navbar-light"
-			id="ftco-navbar" style="height: 50px">
+		
+		
+		
+		
+		  <nav class="d-flex flex-wrap bg-primary navbar-expand-lg navbar-primary ftco_navbar ftco-navbar-light" style="background-color: #AFD458;">
 			<div class="container">
-				<div class="collapse navbar-collapse" id="ftco-nav">
 					<!-- left nav -->
-					<ul class="navbar-nav mr-auto">
-						<li class="nav-item active"><a href="<%=conPath%>/main.jsp"
-							class="nav-link">Home</a></li>
+					<div class="row">
+					<div class="col-md-8">
+					<ul class="nav me-auto justify-content-start" style="align-items: center; display: flex; justify-content: center;">
+						<li class="nav-item active" ><a href="<%=conPath%>/main.jsp"
+							class="nav-link " style="color:#ffffff;">Home</a></li>
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" href="shop.prd?whatColumn=no&searchName=${searchName}" id="dropdown04"
-							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">장보기</a>
+							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:#ffffff;">장보기</a>
 							<div class="dropdown-menu" aria-labelledby="dropdown04">
-                <a class="dropdown-item" href="shop.prd?whatColumn=no">전체보기</a> <a
+                <a class="dropdown-item " href="shop.prd?whatColumn=no" >전체보기</a> <a
 									class="dropdown-item" href="shop.prd?whatColumn=se&keyword=채소&searchName=${searchName}">채소</a>
 								<a class="dropdown-item"
 									href="shop.prd?whatColumn=se&keyword=과일&searchName=${searchName}">과일</a> <a
@@ -233,18 +243,20 @@
 									class="dropdown-item"
 									href="shop.prd?whatColumn=se&keyword=양념/오일&searchName=${searchName}">양념/오일</a>
 							</div></li>
-						<li class="nav-item"><a href="list.re" class="nav-link">레시피</a></li>
-						<li class="nav-item"><a href="main.board" class="nav-link">방구석
+						<li class="nav-item"><a href="list.re" class="nav-link" style="color:#ffffff;">레시피</a></li>
+						<li class="nav-item"><a href="main.board" class="nav-link" style="color:#ffffff;">방구석
 								쉐프</a></li>
 					</ul>
+					</div>
 					<!-- right nav -->
-					<ul class="navbar-nav ml-auto">
-						<li class="nav-item"><a href="page.ref" class="nav-link">
+					<div class="col-md-auto">
+					<ul class="nav me-auto" style="align-items: center; display: flex; justify-content: center;" >
+						<li class="nav-item"><a href="page.ref" class="nav-link" style="color:#ffffff;">
 								<img src="<%=resourcesPath%>/images/btn_circle.png"
 								style="width: 18px; margin-right: 5px; margin-bottom: 2px;">
 								나의 냉장고
 						</a></li>
-						<li class="nav-item"><a href="bookmark.re" class="nav-link">
+						<li class="nav-item"><a href="bookmark.re" class="nav-link" style="color:#ffffff;">
 								<img src="<%=resourcesPath%>/images/btn_circle.png"
 								style="width: 18px; margin-right: 5px; margin-bottom: 2px;">
 								북마크 레시피
@@ -252,8 +264,9 @@
 						<li class="nav-item cta cta-colored"><a href="list.bsk"
 							class="nav-link"><span class="icon-shopping_cart" style="color:#F2BC1B;">[0]</span></a></li>
 					</ul>
+					</div>
+					</div>
 				</div>
-			</div>
 		</nav>
 	</header>
     <!-- END header -->

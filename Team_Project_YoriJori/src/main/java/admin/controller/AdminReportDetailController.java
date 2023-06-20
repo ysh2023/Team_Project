@@ -13,6 +13,7 @@ import admin.model.AdminDao;
 import board.model.CommentReportBean;
 import member.model.MemberDao;
 import member.model.StopBean;
+import recipe.model.RecipeReviewReportBean;
 
 @Controller
 public class AdminReportDetailController {
@@ -31,9 +32,10 @@ public class AdminReportDetailController {
 			
 		//id를 넘겨서 그간 신고내역을 불러옴
 		List<CommentReportBean> lists=adao.getAllReport(id);
-
+		List<RecipeReviewReportBean> recipeList = adao.getAllRecipeReport(id);
 		
 		model.addAttribute("lists",lists);
+		model.addAttribute("recipeList",recipeList);
 		
 		return getPage;
 	}

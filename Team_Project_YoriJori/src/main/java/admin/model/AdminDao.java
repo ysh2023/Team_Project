@@ -11,6 +11,8 @@ import board.model.BoardBean;
 import board.model.CommentReportBean;
 import ingredient.model.IngBean;
 import product.model.ProductBean;
+import recipe.model.RecipeReviewBean;
+import recipe.model.RecipeReviewReportBean;
 
 @Component("myAdminDao")
 public class AdminDao {
@@ -71,13 +73,22 @@ public class AdminDao {
 		lists = sqlSessionTemplate.selectList(namespace + ".GetReportCount");
 		return lists;
 	}
-
+	public List<RecipeReviewReportBean> getRecipeReportlist(){
+		List<RecipeReviewReportBean> list = sqlSessionTemplate.selectList(namespace+".GetRecipeReportlist");
+		return list;
+	}
+	
 	public List<CommentReportBean> getAllReport(String id) {
 		List<CommentReportBean> lists = new ArrayList<CommentReportBean>();
 		lists = sqlSessionTemplate.selectList(namespace + ".GetAllReport", id);
 		return lists;
 	}
-
+	
+	public List<RecipeReviewReportBean> getAllRecipeReport(String id){
+		List<RecipeReviewReportBean> list = sqlSessionTemplate.selectList(namespace+".GetAllRecipeReport", id);
+		return list;
+	}
+	
 	public int getCountReportById(String id) {
 
 		int cnt = -1;
@@ -91,11 +102,17 @@ public class AdminDao {
 
 		sqlSessionTemplate.delete(namespace + ".DeleteReport", id);
 	}
-
-	public void deleteComment(int comNum) {
+	
+	public void deleteReviewReport(String id) {
+		sqlSessionTemplate.delete(namespace+".DeleteReviewReport", id);
+	}
+	public void deleteComment(String comNum) {
 		sqlSessionTemplate.delete(namespace + ".DeleteComment", comNum);
 	}
-
+	public void deleteReview(String reviewnum) {
+		sqlSessionTemplate.delete(namespace+".DeleteReview",reviewnum);
+	}
+	
 	/* 식재료 */
 	public List<IngBean> getAllIng() {
 		List<IngBean> allList = sqlSessionTemplate.selectList(namespace + ".GetAllIng");
@@ -142,5 +159,5 @@ public class AdminDao {
 		cnt = sqlSessionTemplate.delete(namespace + ".DeleteBoard", bodNum);
 		return cnt;
 	}
-
+	
 }

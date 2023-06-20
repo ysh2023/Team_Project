@@ -48,11 +48,14 @@ public class RecipeDetailViewController {
 			session.setAttribute("recipeReadCount"+String.valueOf(recipenum), recipenum);
 		}
 		RecipeBean rbean = rdao.getRecipe(recipenum);
+		MemberBean mb =  (MemberBean)session.getAttribute("loginInfo");
 		List<RecipeContentBean> recipeContentList = rdao.getRecipeContent(recipenum);
 		List<FoodBean> foodList = rdao.getFood(recipenum); 
 		List<RecipeReviewBean> reviewList = rdao.getReviewbyRecipe(recipenum);
 		int SelectedRecipeCount = rdao.getBookmarkCount(recipenum);
-		
+		if(mb != null) {
+			model.addAttribute("id", mb.getId());
+		}
 		model.addAttribute("msg", msg);
 		model.addAttribute("recipe", rbean);
 		model.addAttribute("recipeContentList", recipeContentList);
