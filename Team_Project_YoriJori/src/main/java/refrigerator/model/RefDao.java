@@ -61,6 +61,15 @@ public class RefDao {
 		return ddayCnt;
 	}
 	
+	/* 소비기한 D-3 이하 재료 리스트 */
+	public List<JoinBean> getDdayIngList(String id) {
+		List<JoinBean> ddayList = new ArrayList<JoinBean>();
+		
+		ddayList = sqlSessionTemplate.selectList(namespace+".GetDdayIng", id);
+		
+		return ddayList;
+	}
+	
 	/* 전체 리스트 */
 	public List<RefBean> getUserRef(Map<String, String> listMap) {
 		List<RefBean> allList = new ArrayList<RefBean>();

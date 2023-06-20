@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import member.model.MemberBean;
+import refrigerator.model.JoinBean;
 import refrigerator.model.RefBean;
 import refrigerator.model.RefDao;
 import shopmemo.model.MemoBean;
@@ -40,6 +41,8 @@ public class RefPageController {
 			session.setAttribute("destination", "redirect:/page.ref");	//destination 속성 설정
 			return gotoPage;	//로그인 페이지로
 		}else {
+			List<JoinBean> ddayList = refdao.getDdayIngList(loginInfo.getId());
+			model.addAttribute("ddayList", ddayList);
 			
 			if(arrange == null) { //정렬
 				arrange = "r.inputdate";	//기본정렬: 추가 날짜순
