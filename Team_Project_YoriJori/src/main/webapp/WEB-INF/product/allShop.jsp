@@ -179,7 +179,7 @@ $(document).ready(function(){
 	    				</div>
 	    				<div class="bottom-area d-flex px-3">
 	    					<div class="m-auto d-flex">
-	    						<a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
+	    						<a href="insert.bsk?pdnum=${i.pdnum }&qty=1" class="buy-now d-flex justify-content-center align-items-center mx-1">
 	    						<span><i class="ion-ios-cart"></i></span>
 	    						</a>
 	    						<a href="insertDibs.mp?pdnum=${i.pdnum}&pageNumber=${pageInfo.pageNumber}" class="heart d-flex justify-content-center align-items-center ">

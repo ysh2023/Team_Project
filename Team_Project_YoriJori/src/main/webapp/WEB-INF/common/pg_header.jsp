@@ -44,7 +44,6 @@
  	
  	 <strong><li style="font-size: 30px">주문</li></strong> 
    	<li><a href="orderlist.mp">주문목록</a></li>
-   	<li><a href="#">보유쿠폰</a></li>
    	
    	 <strong><li style="font-size: 30px">게시물</li></strong> 
    	<li><a href="#">내가 쓴 게시물</a></li>

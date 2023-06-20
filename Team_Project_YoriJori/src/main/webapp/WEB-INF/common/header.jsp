@@ -174,7 +174,7 @@
 						%>
 						<a href="#"
 							style="font-size: 11px; height: 12px; margin-top: 20px;">${loginInfo.mname}님
-							안녕하세요! </a> <a href="mypage.mp"
+							안녕하세요! </a> <a href="orderlist.mp"
 							style="font-size: 11px; height: 12px; margin-top: 20px; float: right;">
 							<img src="<%=resourcesPath%>/images/mypage.png"
 							style="height: 33px;"> 마이페이지
