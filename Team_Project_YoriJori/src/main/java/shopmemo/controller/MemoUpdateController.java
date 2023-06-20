@@ -27,10 +27,16 @@ public class MemoUpdateController {
 	MemoDao memodao;
 	
 	@RequestMapping(value=command)
-	public String update(@RequestParam(value="memonum",required = false) int[] memonum_arr, Model model, HttpSession session,
-						HttpServletRequest request, HttpServletResponse response) {
+	public String update(@RequestParam(value="memonum",required = false) int[] memonum_arr,
+						@RequestParam(value="myscroll",required=false) String myscroll,
+						@RequestParam(value="destination",required=false) String destination,
+						Model model, HttpSession session, HttpServletRequest request, HttpServletResponse response) {
 			MemberBean loginInfo = (MemberBean)session.getAttribute("loginInfo");
 			String id = loginInfo.getId();
+			
+			if(myscroll != null) {
+				model.addAttribute("modelscroll", myscroll);
+			}
 			
 			int cnt = -1;
 			boolean flag = false;
@@ -61,7 +67,12 @@ public class MemoUpdateController {
 			if(cnt!=-1) {
 				System.out.println("메모 update 성공");
 				request.setAttribute("msg", "메모 저장을 완료했습니다.");
-				request.setAttribute("url", "/ex/page.ref");
+				
+				if(destination.equals("ref")) {
+	        		request.setAttribute("url", "/ex/page.ref?myscroll="+myscroll);
+	        	}else if(destination.equals("prd")) {
+	        		request.setAttribute("url", "/ex/shop.prd?myscroll="+myscroll);
+	        	}
 			}
 			
 			model.addAttribute("loginInfo", loginInfo);

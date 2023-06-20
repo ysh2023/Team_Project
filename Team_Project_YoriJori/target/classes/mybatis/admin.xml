@@ -64,7 +64,7 @@
 	<!-- 식재료 -->
 	<select id="GetAllIng" resultType="ingredient.model.IngBean">
 		select * from ingredient
-		order by ing_num
+		order by ing_num desc
 	</select>
 	
 	<select id="GetIngDetail" resultType="ingredient.model.IngBean">
@@ -98,6 +98,22 @@
 		where ing_num = #{ingnum}
 	</delete>
 	
+	<select id="GetAllOrder" resultType="order.model.OrderBean">
+		select * from orders
+		order by ord_date desc
+	</select>
+	
+	<select id="GetAllOrderDetail" resultType="orderdetail.model.JoinBean">
+		select odt.odt_ordnum,p.pd_name, p.pd_image,p.pd_price,odt.odt_qty
+		from orderdetail odt full outer join product p
+		on odt.odt_pdnum = p.pd_num
+		where odt_ordnum = #{odtordnum}
+	</select>
+	
+	<update id="ApproveCancelpay">
+		update orders set ord_paystate = #{ordtel}
+		where ord_num = #{ordnum}
+	</update>
 
 
 </mapper>

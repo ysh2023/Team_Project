@@ -58,6 +58,7 @@ public class RefInsertController {
 		List<IngBean> ingList5 = ingdao.getIngbyCtg("정육/해산물");
 		List<IngBean> ingList6 = ingdao.getIngbyCtg("면/빵/떡");
 		List<IngBean> ingList7 = ingdao.getIngbyCtg("소스/오일");
+		List<IngBean> ingList8 = ingdao.getIngbyCtg("기타");
 		
 		model.addAttribute("loginInfo", loginInfo);
 		model.addAttribute("storage", storage);
@@ -72,6 +73,7 @@ public class RefInsertController {
 		model.addAttribute("ingList5", ingList5);
 		model.addAttribute("ingList6", ingList6);
 		model.addAttribute("ingList7", ingList7);
+		model.addAttribute("ingList8", ingList8);
 		
 		return getPage;
 	}

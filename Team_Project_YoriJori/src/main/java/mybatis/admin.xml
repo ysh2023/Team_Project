@@ -64,7 +64,7 @@
 	<!-- 식재료 -->
 	<select id="GetAllIng" resultType="ingredient.model.IngBean">
 		select * from ingredient
-		order by ing_num
+		order by ing_num desc
 	</select>
 	
 	<select id="GetIngDetail" resultType="ingredient.model.IngBean">
