@@ -5,7 +5,7 @@
 <main id="main" class="main">
 
 <%
-String cateArr[]= {"채소","과일","쌀/견과","정육/계란류","우유/유제품","양념/오일"};
+String cateArr[]= {"채소","과일","쌀/견과","정육/계란류","우유/유제품","수산물/건해산","양념/오일"};
 %>
 
       <div class="pagetitle">
