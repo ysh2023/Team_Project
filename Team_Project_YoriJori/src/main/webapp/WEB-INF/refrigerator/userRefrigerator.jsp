@@ -196,6 +196,11 @@
 		document.getElementById('updateForm').submit();
 	}
 	
+	/* 소비기한 임박 식재료 추천 레시피 */
+	function recipe(){
+		document.getElementById('recipeForm').submit();
+	}
+	
 </script>
 
 <!-- 냉장고 통계 -->
@@ -206,6 +211,14 @@
           <span class="subheading" style="padding-top:20px;">My refrigerator</span>
 	      <h2 class="mb-4">나의 냉장고</h2>
 		  <p style="color: black;">현재 ${loginInfo.mname}님이 보유한 <b>${totalCnt}개</b>의 식재료를 한 눈에 확인할 수 있어요.</p>
+		  <input class="btn btn-primary" type="button" value="소비기한 임박 식재료가 포함된 추천 레시피 보기" onclick="recipe()">
+		  <div style="display:none;">
+		  	<form id="recipeForm" action="Recommend.re">
+		  	  <c:forEach var="dday" items="${ddayList}">
+			    <input type="text" name="ingredient" value="${dday.ingname}">
+			  </c:forEach>
+			</form>
+		  </div>
 		</div>  
     	<div class="row justify-content-center py-5">
     		<div class="col-md-10"><div class="row">
