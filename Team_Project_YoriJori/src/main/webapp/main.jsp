@@ -145,7 +145,7 @@
           <div class="col-md-12 heading-section text-center ftco-animate">
           	<span class="subheading">Featured Products</span>
             <h2 class="mb-4">상품</h2>
-            <p>완전 신선합니다 둘러보세요</p>
+       <p><a href="shop.prd?whatColumn=no" class="btn btn-primary">shop now</a></p>
           </div>
         </div>   		
     	</div>
