@@ -47,7 +47,7 @@
       type="text/javascript"
       src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"
     ></script>
-   <script type="text/javascript" src="<%=resourcesPath%>/js/jquery.js"></script>
+   <script type="text/javascript" src="<%=resourcesPath%>/resources/js/jquery.js"></script>
    <script>
       var IMP = window.IMP;
       IMP.init("imp78600063");
@@ -151,7 +151,7 @@
 					<div class="col">
 						<!-- 메인 로고 -->
 						
-						<a class="navbar-brand" href="<%=conPath%>/main.jsp"> <img
+						<a class="navbar-brand" href="/ex"> <img
 							src="<%=resourcesPath%>/images/logo.png" style="height: 60px;">
 						</a>
 						<!-- login -->
@@ -214,7 +214,7 @@
 				<div class="collapse navbar-collapse" id="ftco-nav">
 					<!-- left nav -->
 					<ul class="navbar-nav mr-auto">
-						<li class="nav-item active"><a href="<%=conPath%>/main.jsp"
+						<li class="nav-item active"><a href="/ex"
 							class="nav-link">Home</a></li>
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" href="shop.prd?whatColumn=no&searchName=${searchName}" id="dropdown04"
