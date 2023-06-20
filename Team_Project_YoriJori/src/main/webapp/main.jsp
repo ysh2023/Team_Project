@@ -162,7 +162,7 @@
     						<h3><a href="prdDetail.prd?pdnum=${i.pdnum}">${i.pdname}</a></h3>
     						<div class="d-flex">
     							<div class="pricing">
-		    						<p class="price">${i.pdprice}</p>
+		    						<p class="price"> <fmt:formatNumber value="${i.pdprice }" /></p>
 		    					</div>
 	    					</div>
 	    					<div class="bottom-area d-flex px-3">

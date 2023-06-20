@@ -33,6 +33,8 @@ public class AdminMainController {
 
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = null;
+	
+	
 		
 		if((MemberBean)session.getAttribute("loginInfo")!=null) {
 			String id=((MemberBean)session.getAttribute("loginInfo")).getId();
@@ -113,7 +115,7 @@ public class AdminMainController {
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-				return "./../../main";
+				return "/ex";
 			}
 		}
 		else {

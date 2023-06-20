@@ -1,3 +1,4 @@
+<%@page import="member.model.MemberBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<!-- common -->
@@ -236,6 +237,16 @@
 						<li class="nav-item"><a href="list.re" class="nav-link">레시피</a></li>
 						<li class="nav-item"><a href="main.board" class="nav-link">방구석
 								쉐프</a></li>
+					<% 	
+					
+					if((MemberBean)session.getAttribute("loginInfo")!=null) {
+					    String id=((MemberBean)session.getAttribute("loginInfo")).getId();
+						if(id.equals("admin")){%>
+						<li class="nav-item"><a href="main.am" class="nav-link">관리자페이지</a></li>
+						<%
+						}
+					}
+						%>
 					</ul>
 					<!-- right nav -->
 					<ul class="navbar-nav ml-auto">
