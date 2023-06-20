@@ -73,4 +73,6 @@
 	<select id="GetRecommend" resultType="board.model.RecommendBean" >select * from recommend where bod_num = #{bodNum} and id = #{id}</select>
 	<insert id="InsertRecommend">insert into recommend values(rec_seq.nextval, #{bodNum}, #{id})</insert>
 	<delete id="DeleteRecommend">delete from recommend where bod_num = #{bodNum} and id = #{id}</delete>
+	<select id="GetRefRecommendTotalCount" resultType="int">select count(*) from board join boardIngredient on board.bod_num = boardIngredient.bod_num where REGEXP_LIKE(boardIngredient.big_name,#{str}) </select>
+	<select id="GetRefRecommendBoard" resultType="board.model.BoardBean">select sel.bod_num, title, servings, time, category, tags, id, bod_image, rec from (select board.bod_num, title, servings, time, category, tags, id, bod_image, rec from board full outer join (select count(*)as rec , bod_num from recommend where id = #{id} group by bod_num) sel on sel.bod_num = board.bod_num) sel join boardIngredient on sel.bod_num = boardIngredient.bod_num where REGEXP_LIKE(boardIngredient.big_name,#{str})</select>
 </mapper> 

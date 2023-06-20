@@ -16,6 +16,19 @@
 			} 
 		}else{
 			if(comNum==0){
+				if($("textarea[name=RcomContent]").val().length==0){					
+					alert("댓글을 입력해주세요");
+					$("textarea[name=RcomContent]").focus();
+					return;
+				}
+			}else if(comNum!=0){
+				if($("textarea[name=RcomContent"+comNum+"]").val().length==0){
+					alert("댓글을 입력해주세요");
+					$("textarea[name=RcomContent"+comNum+"]").focus();
+					return;
+				}
+			}
+			if(comNum==0){
 				$.ajax({
 					url : 'insertComments.board',
 					data : ({
@@ -26,6 +39,7 @@
 					success : function(data){
 						$('.comment-list').html($.trim(data));
 						$("textarea[name=RcomContent]").val('');
+						$('#commentCount').text(Number($('#commentCount').text())+1);
 					},
 					error : function(data){
 						alert("댓글달기 실패");
@@ -52,7 +66,7 @@
 		}
 	}
 	
-	function updateComments(comNum) {
+	function updateComments(comNum) {			
 		$.ajax({
 			url : 'updateComments.board',
 			data : ({
@@ -68,6 +82,26 @@
 				alert("답글달기 실패");
 			}
 		});
+	}
+	
+	function deleteComment(comNum){
+		var isDelete = confirm('댓글을 삭제하시겠습니까?');
+		if(isDelete){	
+			$.ajax({
+				url: 'deleteComments.board',
+				data : ({
+					bodNum : ${board.bodNum},
+					comNum : comNum
+				}),
+				success : function(data){
+					$('.comment-list').html($.trim(data));
+					$('#commentCount').text(Number($('#commentCount').text())-1);
+				},
+				error : function(){
+					alert("댓글 삭제 에러입니다");
+				}
+			});
+		}
 	}
 	
 	
@@ -101,7 +135,7 @@
 		}
 	}
 	
-	function updateComment(index){
+	function handleUpdateComment(index){
 		
 		RisOpen = false;
 		$('#replyForm'+RprevIndex).hide();
@@ -295,16 +329,22 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-6 mb-5 ftco-animate">
-					<a href="images/product-1.jpg" class="image-popup"><img src="<%=resourcesPath%>/images/${board.bodImage}" class="img-fluid" alt="요리 대표 이미지"></a>
+					<a href="images/product-1.jpg" class="image-popup">
+						<img src="<%=resourcesPath%>/images/${board.bodImage}" class="img-fluid" alt="요리 대표 이미지">
+					</a>
 				</div>
 				<div class="col-lg-6 product-details pl-md-5 ftco-animate">
 					<h1>${board.title}</h1>
 					<div style="position: absolute; right: 20px; top: 20px;">
 						<span><img src="<%=resourcesPath%>/images/dotmenu.png" style="cursor: pointer; position: absolute;" onclick="menuTogle()"></span>
 						<div id="menu" style="z-index: 999; position: absolute; top: 24px; right: -24px; width: 80px; text-align: left; border: 0.25px solid gray; border-radius: 10px; background-color: white; display: none;">
-							<div style="display: flex; flex-flow: column; ">
-								<button ${loginInfo.id != board.id ? 'disabled' : '' } style="cursor: pointer; text-align: center; border-radius: 10px 10px 0px 0px; ${loginInfo.id != board.id ? 'color:gray;' : '' }" onclick="deleteHandle()"><b >삭제</b></button>
-								<button ${loginInfo.id != board.id ? 'disabled' : '' } style="cursor: pointer; text-align: center; border-radius: 0px 0px 10px 10px;  ${loginInfo.id != board.id ? 'color:gray;' : '' }" onclick="updateHandle()"><b>수정</b></button>
+							<div style="display: flex; flex-flow: column;">
+								<button ${loginInfo.id != board.id ? 'disabled' : '' } style="cursor: pointer; text-align: center; border-radius: 10px 10px 0px 0px; ${loginInfo.id != board.id ? 'color:gray;' : '' }" onclick="deleteHandle()">
+									<b>삭제</b>
+								</button>
+								<button ${loginInfo.id != board.id ? 'disabled' : '' } style="cursor: pointer; text-align: center; border-radius: 0px 0px 10px 10px;  ${loginInfo.id != board.id ? 'color:gray;' : '' }" onclick="updateHandle()">
+									<b>수정</b>
+								</button>
 							</div>
 						</div>
 					</div>
@@ -315,7 +355,7 @@
 								<td>
 									<p class="price">
 										<span>요리분류</span>
-									
+
 									</p>
 								</td>
 								<td>
@@ -348,9 +388,12 @@
 					</p>
 
 					<c:forEach items="${boardIngredientList}" var="boardIngredient" varStatus="status">
-						<p>
-							<a href="shop.prd?whatColumn=no&searchName=${boardIngredient.bigName}">${boardIngredient.bigName }</a>-${ boardIngredient.bigAmount}
-						</p>
+
+						<li style="inline: block; float: left; margin-right: 40px">
+							<a href="shop.prd?whatColumn=no&searchName=${boardIngredient.bigName}">${boardIngredient.bigName }</a>
+							-${ boardIngredient.bigAmount}
+						</li>
+
 					</c:forEach>
 				</div>
 			</div>
@@ -367,14 +410,14 @@
 					<div class="row">
 						<c:forEach items="${boardContentList}" var="boardContent" varStatus="status">
 							<c:if test="${boardContent.bodContent != null or boardContent.image !=null }">
-							<div class="col-md-12 d-flex ftco-animate">
-								<div class="blog-entry align-self-stretch d-md-flex">
-									<span href="blog-single.html" class="block-20" style="background-image: url('<%=resourcesPath%>/images/${boardContent.image}');"> </span>
-									<div class="text d-block pl-md-4">
-										<h3 class="heading">${boardContent.bodContent}</h3>
+								<div class="col-md-12 d-flex ftco-animate">
+									<div class="blog-entry align-self-stretch d-md-flex">
+										<span href="blog-single.html" class="block-20" style="background-image: url('<%=resourcesPath%>/images/${boardContent.image}');"> </span>
+										<div class="text d-block pl-md-4">
+											<h3 class="heading">${boardContent.bodContent}</h3>
+										</div>
 									</div>
 								</div>
-							</div>
 							</c:if>
 						</c:forEach>
 					</div>
@@ -394,7 +437,9 @@
 			<div class="row">
 				<div class="col-md-12 ftco-animate">
 					<div class="">
-						<h3>${fn:length(commentsList) }댓글</h3>
+						<h3>
+							<span id="commentCount">${fn:length(commentsList) }</span>댓글
+						</h3>
 						<div class="comment-form-wrap pt-2">
 							<h3 class="">댓글 남기기</h3>
 							<!-- 댓글 폼  -->
@@ -412,7 +457,7 @@
 						<hr>
 
 						<!-- 댓글 목록 -->
-						<ul class="comment-list">
+						<ul class="comment-list" id="comment-list">
 
 							<c:forEach items="${ commentsList}" var="comment" varStatus="status">
 								<li class="comment" style="margin-left: ${comment.refLevel * 80}px;">
@@ -430,10 +475,10 @@
 										<p>
 											<span class="reply" id="reply${status.index+1 }" onclick="replyHandle(${status.index+1})" style="cursor: pointer;">댓글 달기</span>
 											<c:if test="${loginInfo.id == comment.id }">
-												<span onclick="location.href='deleteComments.board?bodNum=${board.bodNum}&comNum=${comment.comNum}'" style="cursor: pointer;">삭제</span>
-												<span id="updateComment${status.index+1 }" onclick="updateComment(${status.index+1})" style="cursor: pointer;">수정</span>
+												<span class="reply" id="deleteComment${status.index+1 }" onclick="deleteComment(${comment.comNum})" style="cursor: pointer; margin-left: 5px;">삭제</span>
+												<span class="reply" id="updateComment${status.index+1 }" onclick="handleUpdateComment(${status.index+1})" style="cursor: pointer; margin-left: 5px;">수정</span>
 											</c:if>
-											<span onclick="commentReport(${comment.comNum })" style="cursor: pointer;">신고하기</span>
+											<span class="reply btn-primary" onclick="commentReport(${comment.comNum })" style="cursor: pointer; margin-left: 5px;">신고하기</span>
 										</p>
 									</div>
 								</li>
@@ -465,13 +510,14 @@
 		</div>
 	</section>
 
-	<div id="reportScreen" style="background-color: rgba(90, 90, 90, 0.5); width: 100%; height: 100%; position: fixed; top: 0px; left: 0px; display: none; z-index: 999" onclick="modalClose(event)">
-		<div id="popup" style="background-color: white; min-width: 400px; min-height: 300px; padding: 20px; position: absolute; top: calc(50% - 150px); left: calc(50% - 200px);" onclick="">
+
+	<div id="reportScreen" style="background-color: rgba(90, 90, 90, 0.5); width: 100%; height: 100%; position: fixed; top: 0px; left: 0px; display: none; z-index: 999;" onclick="modalClose(event)">
+		<div id="popup" style="background-color: white; min-width: 400px; min-height: 300px; padding: 20px; position: absolute; top: calc(50% - 150px); left: calc(50% - 200px); border-radius: 10px;" onclick="">
 			<Div align="right">
 				<span onclick="$('#reportScreen').fadeOut();" style="cursor: pointer;"><font color="gray" size="5">X</font></span>
 			</Div>
 			<div>
-				<input class="form-controll" type="hidden" name="comNum"> <select class="form-control" aria-label="Default select example" name="reasons">
+				<input class="form-control" type="hidden" name="comNum"> <select class="form-control" aria-label="Default select example" name="reasons">
 					<option>욕설
 					<option>비하
 					<option>음란
@@ -479,8 +525,8 @@
 					<option>기타
 				</select>
 			</div>
-			<div>
-				<textarea name="repDiscription" rows="6" class="w-100" style="resize: none;" placeholder="내용을 적어주세요"></textarea>
+			<div class="pt-2 pb-2">
+				<textarea name="repDiscription" rows="6" class="form-control w-100" style="resize: none;" placeholder="내용을 적어주세요"></textarea>
 			</div>
 			<input class="btn btn-primary w-100" type="button" value="신고하기" onclick="loingCheck()">
 
@@ -488,11 +534,14 @@
 	</div>
 </body>
 <%@include file="../common/footer.jsp"%>
-<a target="_blank" href="https://icons8.com/icon/2744/%EC%97%84%EC%A7%80-%EC%B2%99">추천</a> icon by
+<a target="_blank" href="https://icons8.com/icon/2744/%EC%97%84%EC%A7%80-%EC%B2%99">추천</a>
+icon by
 <a target="_blank" href="https://icons8.com">Icons8</a>
-<a target="_blank" href="https://icons8.com/icon/10271/%EC%97%84%EC%A7%80-%EC%B2%99">추천</a> icon by
+<a target="_blank" href="https://icons8.com/icon/10271/%EC%97%84%EC%A7%80-%EC%B2%99">추천</a>
+icon by
 <a target="_blank" href="https://icons8.com">Icons8</a>
-<a target="_blank" href="https://icons8.com/icon/84119/%EB%A9%94%EB%89%B4-2">메뉴 2</a> icon by
+<a target="_blank" href="https://icons8.com/icon/84119/%EB%A9%94%EB%89%B4-2">메뉴 2</a>
+icon by
 <a target="_blank" href="https://icons8.com">Icons8</a>
 </html>
 

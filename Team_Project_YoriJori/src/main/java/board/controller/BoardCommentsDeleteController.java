@@ -16,24 +16,26 @@ import board.model.BoardDao;
 @Controller
 public class BoardCommentsDeleteController {
 	private final String command = "deleteComments.board";
-	private final String page = "redirect:/boardDetail.board";
+	private String page = "commentsUpdate";
 
 	@Autowired
 	BoardDao bdao;
 
 	@RequestMapping(value = command)
-	public void doAction(@RequestParam("bodNum") String bodNum, @RequestParam("comNum") String comNum,
+	public String doAction(@RequestParam("bodNum") String bodNum, @RequestParam("comNum") String comNum,
 			HttpServletResponse response, HttpSession session, Model model) throws IOException {
-		int result = bdao.deleteCommentByBodNum(comNum);
-		System.out.println(bodNum + "delete");
+		int result = bdao.deleteCommentByComNum(comNum);
 		response.setContentType("text/html; charset=utf-8;");
+		model.addAttribute("commentsList", bdao.getCommentByBodNum(bodNum));
+		model.addAttribute("bodNum", bodNum);
+
 		if (result > 0) {
-			response.getWriter().append(
-					"<Script>alert('댓글이 삭제되었습니다');location.href='boardDetail.board?bodNum=" + bodNum + "';</Script>")
-					.flush();
+			response.getWriter().append("<Script>alert('댓글이 삭제되었습니다');</Script>").flush();
+			return page;
 
 		} else {
-			response.getWriter().append("<Script>alert('댓글 삭제 실패');history.back();</Script>").flush();
+			response.getWriter().append("<Script>alert('댓글 삭제 실패');</Script>").flush();
+			return page;
 
 		}
 	}
