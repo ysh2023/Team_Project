@@ -57,6 +57,11 @@
 			$('#showCtg7').next().show();       
 			$('#showCtg7').parent().parent().parent().next().show();
 		}
+		if(atagId == "showCtg8"){
+			$('#showCtg8').hide();
+			$('#showCtg8').next().show();       
+			$('#showCtg8').parent().parent().parent().next().show();
+		}
 	}
 	
 	function collapseCtg(a){
@@ -97,7 +102,11 @@
 			$('#hideCtg7').prev().show();
 			$('#hideCtg7').parent().parent().parent().next().hide();
 		}
-		
+		if(atagId == "hideCtg8"){
+			$('#hideCtg8').hide();
+			$('#hideCtg8').prev().show();
+			$('#hideCtg8').parent().parent().parent().next().hide();
+		}
 	}
 
 	
@@ -128,7 +137,7 @@
 	
 </script>
 
-<% String[] category = {"곡류/콩/견과류","계란/유제품","채소","과일","정육/해산물","면/빵/떡","소스/오일"}; %>
+<% String[] category = {"곡류/콩/견과류","계란/유제품","채소","과일","정육/해산물","면/빵/떡","소스/오일","기타"}; %>
 
 <!-- title -->
 <section class="ftco-section ftco-counter img" id="section-counter" style="background-image: url(<%=resourcesPath%>/images/bg_3.jpg);">
@@ -430,6 +439,46 @@
 						<td style="width: 600px; text-align: center; font-size: 11pt;">
 							<div class="row" align="center" style="margin-left:20px; margin-right:20px;">
 							<c:forEach var="list" items="${ingList7}" varStatus="status">
+								<div class="col-lg-1 text-center" style="height: 100px;">
+						  			<input type="checkbox" name="rowchk" value="${list.ingnum}" style="display: inline;">
+						  			<img src="<%=resourcesPath%>/images/icon/${list.ingicon}" style="width: 40px; display: inline;"> <br>
+						  	  		<!-- 사용자 냉장고와 비교해 있는 식재료면 아이콘 표시 -->
+						  	  		<c:set var="flag" value="false"/>
+						  			<c:forEach var="user" items="${allList}">
+						  				<c:if test="${not flag}">
+						  					<c:if test="${user.ingnum eq list.ingnum}">
+						  						<i class="icon-check-circle"></i>
+						  						<c:set var="flag" value="true"/>
+						  					</c:if>
+						  				</c:if>
+						  			</c:forEach>
+						  	  		<b>${list.ingname}</b><br>
+						  		</div>
+							</c:forEach>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+				<!-- 기타 -->
+				<thead style="background-color: #89A621; height:30px;">
+					<tr class="text-center">
+						<th colspan="2">
+							<a class="expand" id="showCtg8" onclick="expandCtg(this)" style="display: show; font-size: 12pt; color: white; cursor: pointer;">
+								<i class="icon-sort-up"></i>
+								&nbsp; <%=category[7]%>
+							</a>
+							<a class="collapse" id="hideCtg8" onclick="collapseCtg(this)" style="display: none; font-size: 12pt; color: white; cursor: pointer;">
+								<i class="icon-sort-down"></i>
+								&nbsp; <%=category[7]%>
+							</a>
+						</th>
+					</tr>
+				</thead>
+				<tbody style="display:none">
+					<tr class="text-center">
+						<td style="width: 600px; text-align: center; font-size: 11pt;">
+							<div class="row" align="center" style="margin-left:20px; margin-right:20px;">
+							<c:forEach var="list" items="${ingList8}" varStatus="status">
 								<div class="col-lg-1 text-center" style="height: 100px;">
 						  			<input type="checkbox" name="rowchk" value="${list.ingnum}" style="display: inline;">
 						  			<img src="<%=resourcesPath%>/images/icon/${list.ingicon}" style="width: 40px; display: inline;"> <br>

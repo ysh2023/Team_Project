@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import member.model.MemberBean;
@@ -21,7 +20,6 @@ import shopmemo.model.MemoDao;
 
 @Controller
 public class RefPageController {
-	private final String command = "/page.ref";
 	private String getPage = "userRefrigerator";
 	private String gotoPage = "redirect:/login.mb";
 	
@@ -31,8 +29,10 @@ public class RefPageController {
 	@Autowired
 	MemoDao memodao;
 	
-	@RequestMapping(value=command, method = RequestMethod.GET)
-	public String doAction(@RequestParam(value="arrange",required=false) String arrange, HttpSession session, Model model) {
+	@RequestMapping(value="/page.ref")
+	public String allList(@RequestParam(value="arrange",required=false) String arrange,
+						@RequestParam(value="myscroll",required=false) String myscroll,
+						HttpSession session, Model model) {
 		MemberBean loginInfo = (MemberBean)session.getAttribute("loginInfo");
 		
 		if(session.getAttribute("loginInfo") == null) {	//로그인 안했으면
@@ -49,6 +49,11 @@ public class RefPageController {
 			int freezeCnt = refdao.getFreezeCount(loginInfo.getId());
 			int roomCnt = refdao.getRoomCount(loginInfo.getId());
 			int ddayCnt = refdao.getDdayCount(loginInfo.getId());
+			
+			//System.out.println("scroll: "+myscroll);
+			if(myscroll != null) {
+				model.addAttribute("modelscroll", myscroll);
+			}
 			
 			/* 전체 리스트 */
 			Map<String,String> listMap = new HashMap<String,String>();

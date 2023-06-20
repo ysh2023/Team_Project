@@ -23,9 +23,7 @@
 				}
             }
         });
-		
-		
-	}//ingCheck
+	}//refCheck
 	
 </script>
 
