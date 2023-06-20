@@ -230,7 +230,9 @@
 									class="dropdown-item"
 									href="shop.prd?whatColumn=se&keyword=정육/계란류&searchName=${searchName}">정육/계란류</a> <a
 									class="dropdown-item"
-									href="shop.prd?whatColumn=se&keyword=우유/유제품&searchName=${searchName}">우유/유제품</a> <a
+									href="shop.prd?whatColumn=se&keyword=우유/유제품&searchName=${searchName}">우유/유제품</a> 
+									<a class="dropdown-item"
+									href="shop.prd?whatColumn=se&keyword=수산물/건해산&searchName=${searchName}">수산물/건해산</a> <a
 									class="dropdown-item"
 									href="shop.prd?whatColumn=se&keyword=양념/오일&searchName=${searchName}">양념/오일</a>
 							</div></li>

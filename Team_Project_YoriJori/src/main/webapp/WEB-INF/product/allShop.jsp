@@ -155,7 +155,9 @@ $(document).ready(function(){
     	  <li><a href="shop.prd?whatColumn=se&keyword=쌀/견과&searchName= "  id="le4">쌀/견과</a></li>
     	  <li><a href="shop.prd?whatColumn=se&keyword=정육/계란류&searchName= "  id="le5">정육/계란류</a></li>
     	  <li><a href="shop.prd?whatColumn=se&keyword=우유/유제품&searchName= "  id="le6">우유/유제품</a></li>
+    	  <li><a href="shop.prd?whatColumn=se&keyword=수산물/건해산&searchName= "  id="le6">수산물/건해산</a></li>
     	  <li><a href="shop.prd?whatColumn=se&keyword=양념/오일&searchName= "  id="le7">양념/오일</a></li>
+    	  
     	</ul>
     	<!-- 상품 검색 -->
     	<form action="shop.prd" class="search-form">
