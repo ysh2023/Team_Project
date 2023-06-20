@@ -43,8 +43,9 @@ public class ProductListController {
 			@RequestParam(value = "whatColumn", required = false) String whatColumn,
 			@RequestParam(value = "pageNumber", required = false) String pageNumber,
 			@RequestParam(value = "searchName", required = false) String searchName,
-			@RequestParam(value = "ck", required = false) String ck, HttpSession session, Model model,
-			HttpServletRequest request) {
+			@RequestParam(value = "ck", required = false) String ck,
+			@RequestParam(value="myscroll",required=false) String myscroll,
+			HttpSession session, Model model,HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 
 		System.out.print("serachName:" + searchName);
@@ -52,6 +53,10 @@ public class ProductListController {
 		  
 		  if(session.getAttribute("loginInfo")!=null) {
 			  MemberBean loginInfo = (MemberBean)session.getAttribute("loginInfo");
+			  
+			  if(myscroll != null) {
+					model.addAttribute("modelscroll", myscroll);
+				}
 		
 		  
 		  List<MemoBean> userMemo = memodao.getUserMemo(loginInfo.getId());
@@ -80,8 +85,8 @@ public class ProductListController {
 		if (ck != null) { // 다른 창에서 검색해서 들어올때
 			for (int i = 0; i < prolists.size(); i++) {
 
-				System.out.println(
-						prolists.get(i).getPdname() + "포함?" + searchName.contains(prolists.get(i).getPdname()));
+				/*System.out.println(
+						prolists.get(i).getPdname() + "포함?" + searchName.contains(prolists.get(i).getPdname()));*/
 				if (searchName.contains(prolists.get(i).getPdname()) == true) { // 포함되어있는냐? ex)다진마늘=> 마늘 contain
 					ProductBean pb = new ProductBean();
 

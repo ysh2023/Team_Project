@@ -20,5 +20,16 @@
 		where ord_memid = #{id}
 		order by ord_date desc
 	</select>
+	
+	<update id="RequestCancelpay">
+		update orders set ord_paystate = #{ordtel}
+		where ord_num = #{ordnum}
+	</update>
+	
+	<select id="GetTotalCount" resultType="int">
+		select count(*) from orders
+		where ord_memid=#{id}
+
+	</select>
 
 </mapper>

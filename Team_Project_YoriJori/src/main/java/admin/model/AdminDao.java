@@ -2,6 +2,7 @@ package admin.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,9 @@ import org.springframework.stereotype.Component;
 import board.model.BoardBean;
 import board.model.CommentReportBean;
 import ingredient.model.IngBean;
+import order.model.GroupBean;
+import order.model.OrderBean;
+import orderdetail.model.OrderDetailBean;
 import product.model.ProductBean;
 
 @Component("myAdminDao")
@@ -64,6 +68,17 @@ public class AdminDao {
 		List<ProductBean> lists = new ArrayList<ProductBean>();
 		lists = sqlSessionTemplate.selectList(namespace + ".GetAllMember");
 		return lists;
+	}
+	
+	public int getMemberCount() {
+		int totalMember = sqlSessionTemplate.selectOne(namespace+".CountAllMember");
+		return totalMember;
+	}
+	
+	
+	public int getRegisterCount(Map<String, String> map) {
+		int monthRegister = sqlSessionTemplate.selectOne(namespace+".CountRegister", map);
+		return monthRegister;
 	}
 
 	public List<CommentReportBean> getReportlist() {
@@ -140,6 +155,43 @@ public class AdminDao {
 	public int deleteBoard(String bodNum) {
 		int cnt = -1;
 		cnt = sqlSessionTemplate.delete(namespace + ".DeleteBoard", bodNum);
+		return cnt;
+	}
+	
+	public int getOrderCount(Map<String, String> map) {
+		int ordernum = sqlSessionTemplate.selectOne(namespace+".CountOrder", map);
+		return ordernum;
+	}
+	
+	public int getOrderSales(Map<String, String> map) {
+		int sales = sqlSessionTemplate.selectOne(namespace+".GetSales", map);
+		return sales;
+	}
+	
+	public List<GroupBean> getTopSeller() {
+		List<GroupBean> lists = new ArrayList<GroupBean>();
+		lists = sqlSessionTemplate.selectList(namespace+".TopSeller");
+		return lists;
+	}
+	
+	public List<OrderBean> getAllOrder() {
+		List<OrderBean> lists= new ArrayList<OrderBean>();
+		lists = sqlSessionTemplate.selectList(namespace+".GetAllOrder"); 
+		return lists;
+	}
+
+	public List<OrderDetailBean> getAllOrderDetail(String ordnum) {
+		List<OrderDetailBean> lists= new ArrayList<OrderDetailBean>();
+		lists = sqlSessionTemplate.selectList(namespace+".GetAllOrderDetail",ordnum); 
+		return lists;
+	}
+	
+	public int ApproveCancelpay(String merchantuid) {
+		OrderBean ord = new OrderBean();
+		ord.setOrdnum(merchantuid);
+		ord.setOrdtel("환불 승인");
+		int cnt = 0;
+		cnt = sqlSessionTemplate.update(namespace+".ApproveCancelpay",ord);
 		return cnt;
 	}
 

@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@include file= "./../common/header.jsp" %>
 
-<script type="text/javascript" src="<%=request.getContextPath()%>resoutces/js/jquery.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>resources/js/jquery.js"></script>
 <script type="text/javascript">
 	$(function(){
 		if('${msg}' == 'noid'){
@@ -21,6 +21,34 @@
 		
 	});
 	
+	
+	function goReview(){
+		
+		if (`${loginInfo.id}` == '') {
+			if (confirm('로그인 필요')) {
+				location.href = 'login.mb';
+			} 
+		}else{
+		
+			$.ajax({
+					type : 'Get',
+					url:'insertReview.re',
+					data: ({
+							recipenum : ${recipe.recipenum},
+							review : $("textarea[name=review]").val()
+						}),
+					success:function(data){
+						alert($.trim(data));
+						$('.comment-list').html($.trim(data));
+						$('textarea[name=review]').val('');
+					},
+					error:function( request, status, error){
+						alert('댓글달기실패');
+						alert("status : " + request.status + ", message : " + request.responseText + ", error : " + error);
+					}
+			});
+		}
+	}
 </script>
 
 <section class="ftco-section">
@@ -92,20 +120,17 @@
 <section class="ftco-section ftco-degree-bg">
 <div class="container">
         <div class="row">
+        
           <div class="col-lg-12 ftco-animate">
-  <div class="pt-5 mt-5">
+  			<div class="pt-5 mt-5">
               <h3 class="mb-5">등록된 리뷰 갯수 : ${reviewList.size()}</h3>
+              
               <ul class="comment-list">
-	              <!--  댓글 반복(댓글 list) 댓글 0개일때 보여줄 문구  -->
-	              <c:if test="${empty reviewList}">
-	              	 <li class="comment"> 등록된 리뷰가 없습니다.</li>
-	              </c:if>
-	              <c:if test="${not empty reviewList}">
 		              <c:forEach var="review" items="${reviewList}">
 		                <li class="comment">
 		                  <div class="vcard bio">
 		                  <!-- 괜찮은 이미지 넣기 -->
-		                    <img src="<%=resourcesPath%>/images/user_img.jpg" alt="Image placeholder">
+		                    <img src="<%=request.getContextPath()%>/resources/images/user_img.jpg" alt="Image placeholder">
 		                  </div>
 		                  <div class="comment-body">
 		                    <h3>${review.id}</h3>
@@ -116,32 +141,24 @@
 		                  </div>
 		                </li>
 		              </c:forEach>
-	              </c:if>
 	          </ul>
               <!-- END comment-list -->
               
               <div class="comment-form-wrap pt-5">
                 <h3 class="mb-5">리뷰를 남겨주세요.</h3>
-                <form action="insertReview.re" class="p-5 bg-light">
-                  <div class="form-group">
-                    <input type="hidden" class="form-control" name="id" value="${loginInfo.id}">
-                    <input type="hidden" class="form-control" name="recipenum" value="${recipe.recipenum}">
-                  </div>
-
                   <div class="form-group">
                     <label for="message">리뷰</label>
                     <textarea name="review" id="message" cols="30" rows="10" class="form-control"></textarea>
                   </div>
                   <div class="form-group">
-                    <input type="submit" value="리뷰 남기기" class="btn py-3 px-4 btn-primary">
+                    <input type="button" value="리뷰 남기기" class="btn py-3 px-4 btn-primary" onclick="goReview()">
                   </div>
-
-                </form>
               </div>
             </div>
             </div>
-            </div>
-            </div>
+            
+    	</div>
+	</div>
 </section>
 
 <%@include file= "./../common/footer.jsp" %>

@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import member.model.MemberBean;
 import shopmemo.model.MemoBean;
@@ -28,10 +29,17 @@ public class MemoWriteController {
 	MemoDao memodao;
 	
 	@RequestMapping(value=command, method = RequestMethod.POST)
-	public String doAction(@ModelAttribute("memobean") MemoBean memobean, Model model, HttpSession session,
+	public String doAction(@RequestParam(value="myscroll",required=false) String myscroll,
+						@RequestParam(value="destination",required=false) String destination,
+						@ModelAttribute("memobean") MemoBean memobean, Model model, HttpSession session,
 						HttpServletRequest request, HttpServletResponse response) throws IOException {
 		
 		MemberBean loginInfo = (MemberBean)session.getAttribute("loginInfo");
+		
+		//System.out.println("memo scroll: "+myscroll);
+		if(myscroll != null) {
+			model.addAttribute("modelscroll", myscroll);
+		}
 		
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = null;
@@ -47,7 +55,13 @@ public class MemoWriteController {
 			if(cnt!=-1) {
 	        	System.out.println("메모 쓰기 성공");
 	        	request.setAttribute("msg", "작성하신 메모가 추가되었습니다.");
-				request.setAttribute("url", "/ex/page.ref");
+	        	
+	        	if(destination.equals("ref")) {
+	        		request.setAttribute("url", "/ex/page.ref?myscroll="+myscroll);
+	        	}else if(destination.equals("prd")) {
+	        		request.setAttribute("url", "/ex/shop.prd?myscroll="+myscroll);
+	        	}
+				
 	        }else {
 	        	System.out.println("메모 쓰기 실패");
 	        }

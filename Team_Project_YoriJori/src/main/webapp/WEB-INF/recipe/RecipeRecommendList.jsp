@@ -22,21 +22,37 @@
     	<div class="row justify-content-center">
     		<div class="col-md-12 mb-5 text-center">
 		    	<a class="navbar-brand" style="margin-bottom: 20px">식재료</a>
-			    <ul class="product-category">
-			    <c:forEach var="ingredient" items="${ingreList}">
-			    	<li><a href="list.re?whatColumn=food_name&keyword=${ingredient}">${ingredient}</a></li>
-			    </c:forEach>
-			    </ul>
+			    	<form action="list.re" method="post">
+			    	<div class="row">
+			    	<div class="col-md-4 ">
+			    		<input type="submit" class="btn btn-outline-primary" value="레시피 검색">
+			    		</div>
+			    		<input type="hidden" name="whatColumn" value="food_name">
+			    		<div class="col-md-8 justify-content-start">
+			    		<c:forEach var="ingredient" items="${ingreList}">
+				    		<div class="form-check form-check-inline">
+							<input class="form-check-input" type="checkbox" value="${ingredient}" id="flexCheckDefault" name="keyword">
+							<label class="form-check-label" for="flexCheckDefault">
+							 ${ingredient}
+							</label>
+							</div>
+			    		</c:forEach>
+			    		</div>
+			    		</div>
+			    		<div>
+			    		</div>
+			    	</form>
     		</div>
     	</div>	
     		
-    	<div class="row justify-content-center">
     		<c:if test="${empty recipeList}">
+    		<div class="row justify-content-center">
          		<div class="col-md-7 heading-section ftco-animate text-center">
 	            	<h2 class="mb-4">검색되는 레시피가 없습니다.</h2>
           		</div>
     		</c:if>
     		<c:if test="${!empty recipeList}">
+    		<div class="row justify-content-start">
 	    		<c:forEach items="${recipeList}" var="recipe">
 		   			<div class="col-md-6 col-lg-3 ftco-animate">
 		    			<div class="product">
@@ -63,16 +79,16 @@
 		    			</div>
 		    		</div>
     		</c:forEach>
-    	</div>
-    	<div class="row mt-5">
-          <div class="col text-center">
-            <div class="block-27">
-            <ul>
-              ${pageInfo.pagingHtml}
-              </ul>
-            </div>
-          </div>
-        </div>
+	    	</div>
+	    	<div class="row mt-5">
+	          <div class="col text-center">
+	            <div class="block-27">
+	            <ul>
+	              ${pageInfo.pagingHtml}
+	              </ul>
+	            </div>
+	          </div>
+	        </div>
         </c:if>
         
     	</div>

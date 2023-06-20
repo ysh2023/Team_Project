@@ -13,7 +13,7 @@
 		<property name="prefix" value="/WEB-INF/order/"></property>
 		<property name="suffix" value=".jsp"></property>
 	</bean>
-
+	<context:component-scan base-package="shopmemo"/>
 	<context:component-scan base-package="order"/>
 	<context:component-scan base-package="basket"/>
 	<context:component-scan base-package="product"/>

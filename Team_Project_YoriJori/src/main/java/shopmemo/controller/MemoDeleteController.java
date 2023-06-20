@@ -24,9 +24,17 @@ public class MemoDeleteController {
 	MemoDao memodao;
 	
 	@RequestMapping(value=command, method = RequestMethod.GET)
-	public String doAction(@RequestParam("memonum") int memonum, Model model, HttpSession session, HttpServletRequest request) throws SQLException {
+	public String doAction(@RequestParam("memonum") int memonum,
+					@RequestParam(value="myscroll",required=false) String myscroll,
+					@RequestParam(value="destination",required=false) String destination,
+					Model model, HttpSession session, HttpServletRequest request) throws SQLException {
 		MemberBean loginInfo = (MemberBean)session.getAttribute("loginInfo");
 		String id = loginInfo.getId();
+		
+		//System.out.println("memo scroll: "+myscroll);
+		if(myscroll != null) {
+			model.addAttribute("modelscroll", myscroll);
+		}
 		
 		int cnt = -1;
 		cnt = memodao.deleteMemo(memonum);
@@ -34,7 +42,12 @@ public class MemoDeleteController {
 		if(cnt!=-1) {
 			System.out.println("메모 delete 성공");
 			request.setAttribute("msg", "해당 메모를 삭제했습니다.");
-			request.setAttribute("url", "/ex/page.ref");
+			
+			if(destination.equals("ref")) {
+        		request.setAttribute("url", "/ex/page.ref?myscroll="+myscroll);
+        	}else if(destination.equals("prd")) {
+        		request.setAttribute("url", "/ex/shop.prd?myscroll="+myscroll);
+        	}
 		}
 		
 		model.addAttribute("loginInfo", loginInfo);

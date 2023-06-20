@@ -1,10 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
-<!-- common -->
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@page import="member.model.MemberBean"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+	<!-- common -->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <%
 String conPath = request.getContextPath();
@@ -166,8 +167,9 @@ String resourcesPath = request.getContextPath() + "/resources";
 				<div class="row justify-content-md-center">
 					<div class="col">
 						<!-- 메인 로고 -->
-
-						<a class="navbar-brand" href="<%=conPath%>/main.jsp"> <img src="<%=resourcesPath%>/images/logo.png" style="height: 60px;">
+						
+						<a class="navbar-brand" href="/ex"> <img
+							src="<%=resourcesPath%>/images/logo.png" style="height: 60px;">
 						</a>
 						<!-- login -->
 						<%
@@ -182,7 +184,7 @@ String resourcesPath = request.getContextPath() + "/resources";
 						%>
 						<a href="#"
 							style="font-size: 11px; height: 12px; margin-top: 20px;">${loginInfo.mname}님
-							안녕하세요! </a> <a href="mypage.mp"
+							안녕하세요! </a> <a href="orderlist.mp"
 							style="font-size: 11px; height: 12px; margin-top: 20px; float: right;">
 							<img src="<%=resourcesPath%>/images/mypage.png"
 							style="height: 33px;"> 마이페이지
@@ -219,8 +221,11 @@ String resourcesPath = request.getContextPath() + "/resources";
 				<div class="collapse navbar-collapse" id="ftco-nav">
 					<!-- left nav -->
 					<ul class="navbar-nav mr-auto">
-						<li class="nav-item active"><a href="<%=conPath%>/main.jsp" class="nav-link">Home</a></li>
-						<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="shop.prd?whatColumn=no&searchName=${searchName}" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">장보기</a>
+						<li class="nav-item active"><a href="/ex"
+							class="nav-link">Home</a></li>
+						<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle" href="shop.prd?whatColumn=no&searchName=${searchName}" id="dropdown04"
+							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">장보기</a>
 							<div class="dropdown-menu" aria-labelledby="dropdown04">
                 <a class="dropdown-item" href="shop.prd?whatColumn=no">전체보기</a> <a
 									class="dropdown-item" href="shop.prd?whatColumn=se&keyword=채소&searchName=${searchName}">채소</a>
@@ -231,12 +236,25 @@ String resourcesPath = request.getContextPath() + "/resources";
 									class="dropdown-item"
 									href="shop.prd?whatColumn=se&keyword=정육/계란류&searchName=${searchName}">정육/계란류</a> <a
 									class="dropdown-item"
-									href="shop.prd?whatColumn=se&keyword=우유/유제품&searchName=${searchName}">우유/유제품</a> <a
+									href="shop.prd?whatColumn=se&keyword=우유/유제품&searchName=${searchName}">우유/유제품</a> 
+									<a class="dropdown-item"
+									href="shop.prd?whatColumn=se&keyword=수산물/건해산&searchName=${searchName}">수산물/건해산</a> <a
 									class="dropdown-item"
 									href="shop.prd?whatColumn=se&keyword=양념/오일&searchName=${searchName}">양념/오일</a>
 							</div></li>
 						<li class="nav-item"><a href="list.re" class="nav-link">레시피</a></li>
-						<li class="nav-item"><a href="main.board" class="nav-link">방구석 쉐프</a></li>
+						<li class="nav-item"><a href="main.board" class="nav-link">방구석
+								쉐프</a></li>
+					<% 	
+					
+					if((MemberBean)session.getAttribute("loginInfo")!=null) {
+					    String id=((MemberBean)session.getAttribute("loginInfo")).getId();
+						if(id.equals("admin")){%>
+						<li class="nav-item"><a href="main.am" class="nav-link">관리자페이지</a></li>
+						<%
+						}
+					}
+						%>
 					</ul>
 					<!-- right nav -->
 					<ul class="navbar-nav ml-auto">

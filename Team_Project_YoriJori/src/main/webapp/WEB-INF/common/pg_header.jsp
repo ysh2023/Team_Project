@@ -46,17 +46,12 @@
 </style>
 </head>
 <aside id="sidebar" class="sidebar">
-	<ul id="nav1">
-
-		<strong><li style="font-size: 30px">주문</li></strong>
-		<li>
-			<a href="orderlist.mb">주문목록</a>
-		</li>
-		<li>
-			<a href="#">보유쿠폰</a>
-		</li>
-
-		<strong><li style="font-size: 30px">게시물</li></strong>
+<ul id="nav1">
+ 	
+ 	 <strong><li style="font-size: 30px">주문</li></strong> 
+   	<li><a href="orderlist.mp">주문목록</a></li>
+   	
+   	 <strong><li style="font-size: 30px">게시물</li></strong> 
 		<li>
 			<a href="myBoard.mp">내가 쓴 게시물</a>
 		</li>
@@ -66,24 +61,16 @@
 		<li>
 			<a href="myRecommend.mp">내가 추천한 글</a>
 		</li>
-
-		<strong><li style="font-size: 30px">찜</li></strong>
-		<li>
-			<a href="listDibs.mp">찜한 상품</a>
-		</li>
-
-
-		<strong>
-			<li style="font-size: 30px">개인정보</li>
-		</strong>
-		<li>
-			<a href="updateMb.mp">수정하기</a>
-		</li>
-		<li>
-			<a href="deleteMb.mp">탈퇴하기</a>
-		</li>
-
-
-
-	</ul>
+   	
+   	<strong><li style="font-size: 30px">찜</li></strong> 
+   	<li><a href="listDibs.mp">찜한 상품</a></li>
+   	  
+      
+ 	<strong>  <li style="font-size: 30px">개인정보</li></strong> 
+ 	<li><a href="updateMb.mp">수정하기</a></li>
+ 	<li><a href="deleteMb.mp">탈퇴하기</a></li>
+   	
+   
+   
+</ul>
 </aside>

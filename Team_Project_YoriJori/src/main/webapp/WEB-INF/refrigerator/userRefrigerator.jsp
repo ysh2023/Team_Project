@@ -16,6 +16,39 @@
 </style>
 
 <script type="text/javascript">
+
+	$(document).ready(function () {
+	    var modelscroll = "${modelscroll}";
+	    if(modelscroll != null){
+	    	window.scrollTo(0,modelscroll);
+	    }
+	});
+
+	var height;
+	$(window).scroll(function () {
+		height = $(document).scrollTop();
+		console.log(height);
+	});
+	
+	function sortIng(){
+		var myScroll = document.createElement("input");
+		myScroll.type = "hidden";
+		myScroll.name = "myscroll";
+		myScroll.value = height;
+		
+		document.getElementById('sortForm').appendChild(myScroll);
+		document.getElementById('sortForm').submit();
+	}
+	
+	function ref_sortIng(){
+		var myScroll = document.createElement("input");
+		myScroll.type = "hidden";
+		myScroll.name = "myscroll";
+		myScroll.value = height;
+		
+		document.getElementById('ref_sortForm').appendChild(myScroll);
+		document.getElementById('ref_sortForm').submit();
+	}
 	
 	/* 전체 선택 */
 	function allCheck(obj){	//obj=allcheck
@@ -117,7 +150,7 @@
 	/* 메모 삭제 확인 */
 	function delMemo(memonum){
 		var msg = "해당 메모를 삭제하시겠습니까?";
-	    var url = "delete.memo?memonum="+memonum;
+	    var url = "delete.memo?memonum="+memonum+"&myscroll="+height+"&destination=ref";
 	    
 	    if(confirm(msg) == true){
 			location.href = url;
@@ -131,8 +164,19 @@
 		$('#writeform').show();
 	}
 	
-	/* 메모 작성폼 submit */
+	/* 메모 작성폼 숨기기 */
 	function hideWriteForm(){
+		$('#writeform').hide();
+	}
+	
+	/* 메모 작성폼 submit */
+	function submitWriteForm(){
+		var myScroll = document.createElement("input");
+		myScroll.type = "hidden";
+		myScroll.name = "myscroll";
+		myScroll.value = height;
+		document.getElementById('writeForm').appendChild(myScroll);
+		
 		var msg = "작성하신 메모를 추가하시겠습니까?";
 		if(confirm(msg) == true){
 			document.getElementById('writeForm').submit();
@@ -143,20 +187,40 @@
 	
 	/* 메모 수정 submit */
 	function updateMemo(){
+		var myScroll = document.createElement("input");
+		myScroll.type = "hidden";
+		myScroll.name = "myscroll";
+		myScroll.value = height;
+		document.getElementById('updateForm').appendChild(myScroll);
 		
 		document.getElementById('updateForm').submit();
+	}
+	
+	/* 소비기한 임박 식재료 추천 레시피 */
+	function recipe(){
+		document.getElementById('recipeForm').submit();
 	}
 	
 </script>
 
 <!-- 냉장고 통계 -->
 <section class="ftco-section ftco-counter img" id="section-counter" style="background-image: url(<%=resourcesPath%>/images/bg_3.jpg);">
-    <div class="container">
+    <div class="container" style="background-color: white; background-color: rgba( 255, 255, 255, 0.5 );">
     	<!-- title -->
     	<div class="col-md-7 heading-section ftco-animate text-center" style="margin:auto;">
-          <span class="subheading">My refrigerator</span>
+          <span class="subheading" style="padding-top:20px;">My refrigerator</span>
 	      <h2 class="mb-4">나의 냉장고</h2>
-		  <p>현재 ${loginInfo.mname}님이 보유한 <b>${totalCnt}개</b>의 식재료를 한 눈에 확인할 수 있어요.</p>
+		  <p style="color: black;">현재 ${loginInfo.mname}님이 보유한 <b>${totalCnt}개</b>의 식재료를 한 눈에 확인할 수 있어요.</p>
+		  <input class="btn btn-primary" type="button" value="소비기한 임박 식재료가 포함된 추천 레시피 보기" onclick="recipe()">
+		  <div style="display:none;">
+		  	<form id="recipeForm" action="Recommend.re">
+		  	  <c:forEach var="dday" items="${ddayList}">
+			    <input type="text" name="ingredient" 
+			    <c:if test="${dday.ingname eq '사용자 작성'}">value="${dday.refdetail}"</c:if>
+			    <c:if test="${dday.ingname != '사용자 작성'}">value="${dday.ingname}"</c:if>>
+			  </c:forEach>
+			</form>
+		  </div>
 		</div>  
     	<div class="row justify-content-center py-5">
     		<div class="col-md-10"><div class="row">
@@ -194,7 +258,7 @@
         <div class="row">
           <!-- 냉장고 리스트 -->
           <div class="col-md-9">
-            <div class="text text-center" style="margin-bottom: 50px;">
+            <div class="text text-center" style="margin-bottom: 20px;">
             	<a class="button" href="#all">전체보기</a> &nbsp;
             	<i class="icon-navigate_next"></i> &nbsp;
 	            <a class="button" href="#ref">냉장고</a> &nbsp;
@@ -202,6 +266,15 @@
 	        	<a class="button" href="#freeze">냉동고</a> &nbsp;
 	        	<i class="icon-navigate_next"></i> &nbsp;
 	        	<a class="button" href="#room">실온보관</a>
+            </div>
+            <div class="text text-center" style="margin-bottom: 40px;">
+              <form id="sortForm" action="page.ref">
+                <select class="form-control" id="arrange" name="arrange" onchange="sortIng()" style="width:150px; height: 40px; font-size:11pt; text-align:center; margin:auto;">
+                  <option value="i.ing_name" <c:if test="${arrange eq 'i.ing_name'}">selected</c:if>>이름순 정렬</option>
+                  <option value="r.ref_dday" <c:if test="${arrange eq 'r.ref_dday'}">selected</c:if>>소비기한순 정렬</option>
+                  <option value="r.inputdate" <c:if test="${arrange eq 'r.inputdate'}">selected</c:if>>추가일순 정렬</option>
+                </select>
+              </form>
             </div>
             <div id="owl-banner" class="carousel-testimony owl-carousel">
               <!-- 전체보기(allList) -->
@@ -215,15 +288,18 @@
                     <p class="name">전체</p>
                     <span class="position">show all</span>
                   </div>
-                  <!-- select, check, button -->
-                  <div style="margin: 40px; margin-bottom:0px; height: 80px; display:flex; align-items: center;">
-                    <form method="get">
-                  	  <select name="arrange" onchange="this.form.submit()">
-                  		<option value="i.ing_name" <c:if test="${arrange eq 'i.ing_name'}">selected</c:if>>이름순 정렬</option>
-                  		<option value="r.ref_dday" <c:if test="${arrange eq 'r.ref_dday'}">selected</c:if>>소비기한순 정렬</option>
-                  		<option value="r.inputdate" <c:if test="${arrange eq 'r.inputdate'}">selected</c:if>>추가일순 정렬</option>
-                  	  </select>
-                  	</form>
+                  <!-- check, button -->
+                  <div style="margin:20px; margin-bottom:40px; height: 60px; display:flex; align-items: center;">
+                    <!-- 보관별 선택 -->
+                    <span>
+                  		<input type="checkbox" id="allcheck" name="allcheck" onClick="allCheck(this)"> 전체 선택 &nbsp;&nbsp;
+                  		<input type="checkbox" id="refcheck" name="refcheck" onClick="refCheck(this)">
+                  			<i class="icon-leaf" style="color:#7cde6a;"></i> 냉장보관 &nbsp;&nbsp;
+                  		<input type="checkbox" id="freezecheck" name="freezecheck" onClick="freezeCheck(this)">
+							<i class="icon-snowflake-o" style="color:#99c2f7;"></i> 냉동보관 &nbsp;&nbsp;
+						<input type="checkbox" id="roomcheck" name="roomcheck" onClick="roomCheck(this)">
+							<i class="icon-inbox" style="color:#786248;"></i> 실온보관 &nbsp;&nbsp;
+					</span>
                   	<!-- 삭제, 추가 button -->
                   	<ul class="ftco-footer-social list-unstyled" style="display:inline; position: absolute; right: 5%">
 					    <li class="ftco-animate fadeInUp ftco-animated">
@@ -238,20 +314,7 @@
 					    </li>
 					</ul>
                   </div>
-                  <!-- 보관별 선택 -->
-                  <div style="margin: 20px; margin-top: 0px; height: 40px; display:flex; align-items: center;">
-                  	<span style="padding-left:20px;">
-                  		<input type="checkbox" id="allcheck" name="allcheck" onClick="allCheck(this)"> 전체 선택 &nbsp;&nbsp;
-                  		<input type="checkbox" id="refcheck" name="refcheck" onClick="refCheck(this)">
-                  			<i class="icon-leaf" style="color:#7cde6a;"></i> 냉장보관 &nbsp;&nbsp;
-                  		<input type="checkbox" id="freezecheck" name="freezecheck" onClick="freezeCheck(this)">
-							<i class="icon-snowflake-o" style="color:#99c2f7;"></i> 냉동보관 &nbsp;&nbsp;
-						<input type="checkbox" id="roomcheck" name="roomcheck" onClick="roomCheck(this)">
-							<i class="icon-inbox" style="color:#786248;"></i> 실온보관 &nbsp;&nbsp;
-					</span>
-					<span style="display:inline; position: absolute; right: 5%">
-					</span>
-                  </div>
+                  
                   <!-- 식재료 리스트 -->
                   <form id="all_list" name="all_list" action="delete.ref" method="post">
                     <div class="row" align="center">
@@ -324,16 +387,9 @@
                     <p class="name">냉장고</p>
                     <span class="position">refrigerator</span>
                   </div>
-                  <!-- select, check, button -->
-                  <div style="margin: 40px; height: 60px; display:flex; align-items: center;">
-                    <form method="get" style="display: inline;">
-                  	  <select name="arrange" onchange="this.form.submit()">
-                  		<option value="i.ing_name" <c:if test="${arrange eq 'i.ing_name'}">selected</c:if>>이름순 정렬</option>
-                  		<option value="r.ref_dday" <c:if test="${arrange eq 'r.ref_dday'}">selected</c:if>>소비기한순 정렬</option>
-                  		<option value="r.inputdate" <c:if test="${arrange eq 'r.inputdate'}">selected</c:if>>추가일순 정렬</option>
-                  	  </select>
-                  	</form>
-                  	&nbsp;&nbsp;&nbsp;
+                  <!-- check, button -->
+                  <div style="margin:20px; margin-bottom:40px; height: 60px; display:flex; align-items: center;">
+                    
                   	<!-- Check all -->
                   	<span>
                   		<input type="checkbox" id="refcheck" name="refcheck" onClick="refCheck(this)"> 전체 선택
@@ -407,16 +463,9 @@
                     <p class="name">냉동고</p>
                     <span class="position">freezer</span>
                   </div>
-                  <!-- select, check, button -->
-                  <div style="margin: 40px; height: 60px; display:flex; align-items: center;">
-                    <form method="get" style="display: inline;">
-                  	  <select name="arrange" onchange="this.form.submit()">
-                  		<option value="i.ing_name" <c:if test="${arrange eq 'i.ing_name'}">selected</c:if>>이름순 정렬</option>
-                  		<option value="r.ref_dday" <c:if test="${arrange eq 'r.ref_dday'}">selected</c:if>>소비기한순 정렬</option>
-                  		<option value="r.inputdate" <c:if test="${arrange eq 'r.inputdate'}">selected</c:if>>추가일순 정렬</option>
-                  	  </select>
-                  	</form>
-                  	&nbsp;&nbsp;&nbsp;
+                  <!-- check, button -->
+                  <div style="margin:20px; margin-bottom:40px; height: 60px; display:flex; align-items: center;">
+                    
                   	<!-- Check all -->
                   	<span>
                   		<input type="checkbox" id="freezecheck" name="freezecheck" onClick="freezeCheck(this)"> 전체 선택
@@ -490,16 +539,9 @@
                     <p class="name">실온 보관</p>
                     <span class="position">room temperature</span>
                   </div>
-                  <!-- select, check, button -->
-                  <div style="margin: 40px; height: 60px; display:flex; align-items: center;">
-                    <form method="get" style="display: inline;">
-                  	  <select name="arrange" onchange="this.form.submit()">
-                  		<option value="i.ing_name" <c:if test="${arrange eq 'i.ing_name'}">selected</c:if>>이름순 정렬</option>
-                  		<option value="r.ref_dday" <c:if test="${arrange eq 'r.ref_dday'}">selected</c:if>>소비기한순 정렬</option>
-                  		<option value="r.inputdate" <c:if test="${arrange eq 'r.inputdate'}">selected</c:if>>추가일순 정렬</option>
-                  	  </select>
-                  	</form>
-                  	&nbsp;&nbsp;&nbsp;
+                  <!-- check, button -->
+                  <div style="margin:20px; margin-bottom:40px; height: 60px; display:flex; align-items: center;">
+                    
                   	<!-- Check all -->
                   	<span>
                   		<input type="checkbox" id="roomcheck" name="roomcheck" onClick="roomCheck(this)"> 전체 선택
@@ -573,14 +615,15 @@
           	    </div>
           	    
           	    <form id="updateForm" action="update.memo" method="post">
+          	      <input type="hidden" name="destination" value="ref">
           	      <!-- 메모 리스트 -->  
           	      <c:forEach var="list" items="${userMemo}">
           	        <div class="block-21 mb-2 d-flex">
           	  	      <div class="text" style="margin: auto;">
                         <div style="padding-top: 10px;">
-                      	  <a href="#" onClick="delMemo(${list.memonum})" >
+                      	  <span onClick="delMemo(${list.memonum})" style="cursor: pointer;">
                       		<i class="icon-close2" style="color:gray"></i>
-                      	  </a>
+                      	  </span>
                       	  <input type="checkbox" id="memonum" name="memonum" value="${list.memonum}" <c:if test="${list.memoflag eq 1}">checked</c:if>>
                   	      &nbsp;<a href="shop.prd?keyword=&whatColumn=no&searchName=${list.memotask}&ck=ys">${list.memotask}</a>
                         </div>
@@ -589,12 +632,11 @@
                     </div>
                   </c:forEach>
                 </form>
-                  
                 <!-- 메모 버튼 -->
                 <div style="text-align: center; padding-top: 20px; padding-bottom: 15px;">
-          	  	  <a href="#" onclick="showWriteForm()">
+          	  	  <span href="#" onclick="showWriteForm()" style="cursor: pointer;">
           	  	    <i class="icon-add_circle" style="color:gray; font-size: 10pt;">&nbsp;쓰기</i>
-          	  	  </a>
+          	  	  </span>
           	  	  &nbsp;&nbsp;&nbsp;
           	  	  <a href="#" onclick="updateMemo()">
           	  	    <i class="icon-save2" style="color:gray; font-size: 10pt;">&nbsp;저장</i>
@@ -609,11 +651,12 @@
           	  	  <i class="icon-sticky-note" style="color:#F2BC1B;"></i> &nbsp; <b>메모 쓰기</b>
           	    </div>
           	    <form id="writeForm" action="write.memo" method="post">
+          	      <input type="hidden" name="destination" value="ref">
           	      <input type="hidden" name="id" value="${loginInfo.id}">
           	      <div class="block-21 mb-2 d-flex">
           	        <div class="form-group" style="margin-left: 20px; margin-right: 20px;">
           	          <label>* 메모</label>
-          	  	      <input class="form-control" type="text" name="memotask" maxlength="13" style="height: 30px; font-size: 11pt;">
+          	  	      <input class="form-control" type="text" name="memotask" maxlength="13" style="height: 30px; font-size: 11pt;" required>
           	  	    </div>
                   </div>
                   <div>
@@ -623,10 +666,15 @@
           	  	    </div>
                   </div>
                 </form>
-                <div style="position:absolute; right:10%; bottom: 20px;">
-          	  	  <a href="#" onclick="hideWriteForm()">
-          	  	    <i class="icon-add_circle" style="color:gray; padding-left: 15px; font-size: 10pt;">&nbsp;추가하기</i>
-          	  	  </a>
+                <!-- 메모 버튼 -->
+                <div style="text-align: center; padding-top: 20px; padding-bottom: 15px;">
+          	  	  <span href="#" onclick="hideWriteForm()" style="cursor: pointer;">
+          	  	    <i class="icon-close" style="color:gray; font-size: 10pt;">&nbsp;닫기</i>
+          	  	  </span>
+          	  	  &nbsp;&nbsp;&nbsp;
+          	  	  <span onclick="submitWriteForm()" style="cursor: pointer;">
+          	  	    <i class="icon-add_circle" style="color:gray; font-size: 10pt;">&nbsp;추가하기</i>
+          	  	  </span>
           	    </div>
               </div>
             </div>

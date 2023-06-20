@@ -113,34 +113,7 @@ String resourcesPath = request.getContextPath() + "/resources";
 					</a>
 					<!-- Profile Dropdown -->
 					<ul	class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-						<li class="dropdown-header">
-							<h6>관리자</h6> <span>야금야금 관리자</span>
-						</li>
-						<li>
-							<hr class="dropdown-divider">
-						</li>
-						<li>
-							<a class="dropdown-item d-flex align-items-center" href="<%=request.getContextPath()%>/resources/html/users-profile.html">
-								<i class="bi bi-person"></i> <span>My Profile</span>
-							</a>
-						</li>
-						<li>
-							<hr class="dropdown-divider">
-						</li>
-						<li><a class="dropdown-item d-flex align-items-center"
-							href="<%=request.getContextPath()%>/resources/html/users-profile.html">
-								<i class="bi bi-gear"></i> <span>Account Settings</span>
-						</a></li>
-						<li>
-							<hr class="dropdown-divider">
-						</li>
-						<li><a class="dropdown-item d-flex align-items-center"
-							href="<%=request.getContextPath()%>/resources/html/pages-faq.html">
-								<i class="bi bi-question-circle"></i> <span>Need Help?</span>
-						</a></li>
-						<li>
-							<hr class="dropdown-divider">
-						</li>
+
 						<li>
 							<a class="dropdown-item d-flex align-items-center" href="logout.mb">
 								<i class="bi bi-box-arrow-right"></i> <span>SignOut</span>
@@ -208,8 +181,13 @@ String resourcesPath = request.getContextPath() + "/resources";
 					</a></li>
 				</ul>
 			</li>
+			<li class="nav-item">
+		         <a class="nav-link collapsed" href="orderlist.am">
+		             <i class="bi bi-cart4"></i> <span>주문 관리</span>
+		         </a>
+       		</li>
 			<li class="nav-heading">Pages</li>
-			<li class="nav-item"><a class="nav-link collapsed" href="main.jsp">
+			<li class="nav-item"><a class="nav-link collapsed" href="/ex">
 				<i class="ri ri-game-fill"></i> <span>야금야금 페이지</span>
 			</a></li>
 		</ul>

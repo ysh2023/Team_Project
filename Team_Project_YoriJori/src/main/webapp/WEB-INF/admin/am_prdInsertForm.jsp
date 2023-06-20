@@ -35,6 +35,7 @@
                       <option value="쌀/견과">쌀/견과</option>
                       <option value="정육/계란류">정육/계란류</option>
                       <option value="우유/유제품">우유/유제품</option>
+                      <option value="수산물/건해산">수산물/건해산</option>
                       <option value="양념/오일">양념/오일</option>
                     </select>
                   </div>
