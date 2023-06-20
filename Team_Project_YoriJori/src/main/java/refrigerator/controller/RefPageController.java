@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +33,7 @@ public class RefPageController {
 	@RequestMapping(value="/page.ref")
 	public String allList(@RequestParam(value="arrange",required=false) String arrange,
 						@RequestParam(value="myscroll",required=false) String myscroll,
-						HttpSession session, Model model) {
+						Model model, HttpSession session, HttpServletRequest request) {
 		MemberBean loginInfo = (MemberBean)session.getAttribute("loginInfo");
 		
 		if(session.getAttribute("loginInfo") == null) {	//로그인 안했으면
@@ -105,6 +106,7 @@ public class RefPageController {
 			model.addAttribute("userMemo", userMemo);
 			
 			return getPage;	//냉장고 페이지로
+			
 		}
 		
 	}

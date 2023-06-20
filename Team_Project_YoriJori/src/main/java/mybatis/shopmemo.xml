@@ -7,7 +7,7 @@
 	<!-- select all -->
 	<select id="GetUserMemo" resultType="shopmemo.model.MemoBean">
 		select memo_num, id, memo_task, memo_flag, memo_content
-		from shopmemo
+		from shopmemo where id = #{id}
 		order by memo_num
 	</select>
 	

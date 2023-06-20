@@ -30,44 +30,24 @@
 		console.log(height);
 	});
 	
-	function sortAll(){
+	function sortIng(){
 		var myScroll = document.createElement("input");
 		myScroll.type = "hidden";
 		myScroll.name = "myscroll";
 		myScroll.value = height;
-		document.getElementById('all_sortForm').appendChild(myScroll);
 		
-		document.getElementById('all_sortForm').submit();
+		document.getElementById('sortForm').appendChild(myScroll);
+		document.getElementById('sortForm').submit();
 	}
 	
-	function sortRef(){
+	function ref_sortIng(){
 		var myScroll = document.createElement("input");
 		myScroll.type = "hidden";
 		myScroll.name = "myscroll";
 		myScroll.value = height;
+		
 		document.getElementById('ref_sortForm').appendChild(myScroll);
-		
 		document.getElementById('ref_sortForm').submit();
-	}
-	
-	function sortFreeze(){
-		var myScroll = document.createElement("input");
-		myScroll.type = "hidden";
-		myScroll.name = "myscroll";
-		myScroll.value = height;
-		document.getElementById('freeze_sortForm').appendChild(myScroll);
-		
-		document.getElementById('freeze_sortForm').submit();
-	}
-	
-	function sortRoom(){
-		var myScroll = document.createElement("input");
-		myScroll.type = "hidden";
-		myScroll.name = "myscroll";
-		myScroll.value = height;
-		document.getElementById('room_sortForm').appendChild(myScroll);
-		
-		document.getElementById('room_sortForm').submit();
 	}
 	
 	/* 전체 선택 */
@@ -263,7 +243,7 @@
         <div class="row">
           <!-- 냉장고 리스트 -->
           <div class="col-md-9">
-            <div class="text text-center" style="margin-bottom: 50px;">
+            <div class="text text-center" style="margin-bottom: 20px;">
             	<a class="button" href="#all">전체보기</a> &nbsp;
             	<i class="icon-navigate_next"></i> &nbsp;
 	            <a class="button" href="#ref">냉장고</a> &nbsp;
@@ -271,6 +251,15 @@
 	        	<a class="button" href="#freeze">냉동고</a> &nbsp;
 	        	<i class="icon-navigate_next"></i> &nbsp;
 	        	<a class="button" href="#room">실온보관</a>
+            </div>
+            <div class="text text-center" style="margin-bottom: 40px;">
+              <form id="sortForm" action="page.ref">
+                <select class="form-control" id="arrange" name="arrange" onchange="sortIng()" style="width:150px; height: 40px; font-size:11pt; text-align:center; margin:auto;">
+                  <option value="i.ing_name" <c:if test="${arrange eq 'i.ing_name'}">selected</c:if>>이름순 정렬</option>
+                  <option value="r.ref_dday" <c:if test="${arrange eq 'r.ref_dday'}">selected</c:if>>소비기한순 정렬</option>
+                  <option value="r.inputdate" <c:if test="${arrange eq 'r.inputdate'}">selected</c:if>>추가일순 정렬</option>
+                </select>
+              </form>
             </div>
             <div id="owl-banner" class="carousel-testimony owl-carousel">
               <!-- 전체보기(allList) -->
@@ -284,15 +273,18 @@
                     <p class="name">전체</p>
                     <span class="position">show all</span>
                   </div>
-                  <!-- select, check, button -->
-                  <div style="margin: 40px; margin-bottom:0px; height: 80px; display:flex; align-items: center;">
-                    <form id="all_sortForm" action="page.ref">
-                  	  <select id="all_arrange" name="arrange" onchange="sortAll()">
-                  		<option value="i.ing_name" <c:if test="${arrange eq 'i.ing_name'}">selected</c:if>>이름순 정렬</option>
-                  		<option value="r.ref_dday" <c:if test="${arrange eq 'r.ref_dday'}">selected</c:if>>소비기한순 정렬</option>
-                  		<option value="r.inputdate" <c:if test="${arrange eq 'r.inputdate'}">selected</c:if>>추가일순 정렬</option>
-                  	  </select>
-                  	</form>
+                  <!-- check, button -->
+                  <div style="margin:20px; margin-bottom:40px; height: 60px; display:flex; align-items: center;">
+                    <!-- 보관별 선택 -->
+                    <span>
+                  		<input type="checkbox" id="allcheck" name="allcheck" onClick="allCheck(this)"> 전체 선택 &nbsp;&nbsp;
+                  		<input type="checkbox" id="refcheck" name="refcheck" onClick="refCheck(this)">
+                  			<i class="icon-leaf" style="color:#7cde6a;"></i> 냉장보관 &nbsp;&nbsp;
+                  		<input type="checkbox" id="freezecheck" name="freezecheck" onClick="freezeCheck(this)">
+							<i class="icon-snowflake-o" style="color:#99c2f7;"></i> 냉동보관 &nbsp;&nbsp;
+						<input type="checkbox" id="roomcheck" name="roomcheck" onClick="roomCheck(this)">
+							<i class="icon-inbox" style="color:#786248;"></i> 실온보관 &nbsp;&nbsp;
+					</span>
                   	<!-- 삭제, 추가 button -->
                   	<ul class="ftco-footer-social list-unstyled" style="display:inline; position: absolute; right: 5%">
 					    <li class="ftco-animate fadeInUp ftco-animated">
@@ -307,20 +299,7 @@
 					    </li>
 					</ul>
                   </div>
-                  <!-- 보관별 선택 -->
-                  <div style="margin: 20px; margin-top: 0px; height: 40px; display:flex; align-items: center;">
-                  	<span style="padding-left:20px;">
-                  		<input type="checkbox" id="allcheck" name="allcheck" onClick="allCheck(this)"> 전체 선택 &nbsp;&nbsp;
-                  		<input type="checkbox" id="refcheck" name="refcheck" onClick="refCheck(this)">
-                  			<i class="icon-leaf" style="color:#7cde6a;"></i> 냉장보관 &nbsp;&nbsp;
-                  		<input type="checkbox" id="freezecheck" name="freezecheck" onClick="freezeCheck(this)">
-							<i class="icon-snowflake-o" style="color:#99c2f7;"></i> 냉동보관 &nbsp;&nbsp;
-						<input type="checkbox" id="roomcheck" name="roomcheck" onClick="roomCheck(this)">
-							<i class="icon-inbox" style="color:#786248;"></i> 실온보관 &nbsp;&nbsp;
-					</span>
-					<span style="display:inline; position: absolute; right: 5%">
-					</span>
-                  </div>
+                  
                   <!-- 식재료 리스트 -->
                   <form id="all_list" name="all_list" action="delete.ref" method="post">
                     <div class="row" align="center">
@@ -393,16 +372,9 @@
                     <p class="name">냉장고</p>
                     <span class="position">refrigerator</span>
                   </div>
-                  <!-- select, check, button -->
-                  <div style="margin: 40px; height: 60px; display:flex; align-items: center;">
-                    <form id="ref_sortForm" action="page.ref#ref">
-                      <select id="ref_arrange" name="arrange" onchange="sortRef()">
-                  		<option value="i.ing_name" <c:if test="${arrange eq 'i.ing_name'}">selected</c:if>>이름순 정렬</option>
-                  		<option value="r.ref_dday" <c:if test="${arrange eq 'r.ref_dday'}">selected</c:if>>소비기한순 정렬</option>
-                  		<option value="r.inputdate" <c:if test="${arrange eq 'r.inputdate'}">selected</c:if>>추가일순 정렬</option>
-                  	  </select>
-                  	</form>
-                  	&nbsp;&nbsp;&nbsp;
+                  <!-- check, button -->
+                  <div style="margin:20px; margin-bottom:40px; height: 60px; display:flex; align-items: center;">
+                    
                   	<!-- Check all -->
                   	<span>
                   		<input type="checkbox" id="refcheck" name="refcheck" onClick="refCheck(this)"> 전체 선택
@@ -476,17 +448,9 @@
                     <p class="name">냉동고</p>
                     <span class="position">freezer</span>
                   </div>
-                  <!-- select, check, button -->
-                  <div style="margin: 40px; height: 60px; display:flex; align-items: center;">
-                    <form id="freeze_sortForm" action="page.ref">
-                      <input type="hidden" name="slide" value="#freeze">
-                  	  <select id="freeze_arrange" name="arrange" onchange="sortFreeze()">
-                  		<option value="i.ing_name" <c:if test="${arrange eq 'i.ing_name'}">selected</c:if>>이름순 정렬</option>
-                  		<option value="r.ref_dday" <c:if test="${arrange eq 'r.ref_dday'}">selected</c:if>>소비기한순 정렬</option>
-                  		<option value="r.inputdate" <c:if test="${arrange eq 'r.inputdate'}">selected</c:if>>추가일순 정렬</option>
-                  	  </select>
-                  	</form>
-                  	&nbsp;&nbsp;&nbsp;
+                  <!-- check, button -->
+                  <div style="margin:20px; margin-bottom:40px; height: 60px; display:flex; align-items: center;">
+                    
                   	<!-- Check all -->
                   	<span>
                   		<input type="checkbox" id="freezecheck" name="freezecheck" onClick="freezeCheck(this)"> 전체 선택
@@ -560,17 +524,9 @@
                     <p class="name">실온 보관</p>
                     <span class="position">room temperature</span>
                   </div>
-                  <!-- select, check, button -->
-                  <div style="margin: 40px; height: 60px; display:flex; align-items: center;">
-                    <form id="room_sortForm" action="page.ref">
-                      <input type="hidden" name="slide" value="#room">
-                  	  <select id="room_arrange" name="arrange" onchange="sortRoom()">
-                  		<option value="i.ing_name" <c:if test="${arrange eq 'i.ing_name'}">selected</c:if>>이름순 정렬</option>
-                  		<option value="r.ref_dday" <c:if test="${arrange eq 'r.ref_dday'}">selected</c:if>>소비기한순 정렬</option>
-                  		<option value="r.inputdate" <c:if test="${arrange eq 'r.inputdate'}">selected</c:if>>추가일순 정렬</option>
-                  	  </select>
-                  	</form>
-                  	&nbsp;&nbsp;&nbsp;
+                  <!-- check, button -->
+                  <div style="margin:20px; margin-bottom:40px; height: 60px; display:flex; align-items: center;">
+                    
                   	<!-- Check all -->
                   	<span>
                   		<input type="checkbox" id="roomcheck" name="roomcheck" onClick="roomCheck(this)"> 전체 선택
