@@ -36,6 +36,12 @@ public class RecipeRecommendController {
 		ModelAndView mav = new ModelAndView();
 		//List<String>을 넘기기 위해 Bean을 만들어서 입력받은 값을 List로 가져옴
 		String[] ingreList = request.getParameterValues("ingredient");
+		String[] refdday = request.getParameterValues("refdday");
+		for(int i=0; i<refdday.length; i++) {
+			System.out.println("refdday: "+i);
+		}
+		mav.addObject("refdday", refdday);
+		
 		if(session.getAttribute("ingreList")==null) {
 			session.setAttribute("ingreList", ingreList);
 		}

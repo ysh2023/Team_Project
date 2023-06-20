@@ -114,9 +114,9 @@ public class BoardDao {
 		return cnt;
 	}
 
-	public int deleteCommentByBodNum(String comNum) {
+	public int deleteCommentByComNum(String comNum) {
 		int cnt = -1;
-		cnt = sessionTemplate.insert(namespace + ".DeleteComment", comNum);
+		cnt = sessionTemplate.delete(namespace + ".DeleteComment", comNum);
 		return cnt;
 
 	}
@@ -191,5 +191,17 @@ public class BoardDao {
 		int cnt = -1;
 		cnt = sessionTemplate.update(namespace + ".DeleteBoardContent", bod_num);
 		return cnt;
+	}
+
+	public int getRefRecommendTotalCount(Map<String, String> map) {
+		int cnt = -1;
+		cnt = sessionTemplate.selectOne(namespace + ".GetRefRecommendTotalCount", map);
+		return cnt;
+	}
+
+	public List<BoardBean> getRefRecommendBoard(Map<String, String> map, Paging pageInfo) {
+		RowBounds rowBounds = new RowBounds(pageInfo.getOffset(), pageInfo.getLimit());
+		List<BoardBean> list = sessionTemplate.selectList(namespace + ".GetRefRecommendBoard", map, rowBounds);
+		return list;
 	}
 }

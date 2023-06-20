@@ -1,3 +1,4 @@
+<%@page import="member.model.MemberBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<!-- common -->
@@ -6,55 +7,47 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<% String conPath = request.getContextPath(); %>
-<% String resourcesPath = request.getContextPath() + "/resources"; %>
+<%
+String conPath = request.getContextPath();
+%>
+<%
+String resourcesPath = request.getContextPath() + "/resources";
+%>
 
 
 <!-- header.jsp -->
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>야금야금</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css" />
-	
-	<!-- BootStrap -->
-    <link rel="stylesheet" href="<%=resourcesPath%>/css/open-iconic-bootstrap.min.css">
-    <link rel="stylesheet" href="<%=resourcesPath%>/css/animate.css">
-    <link rel="stylesheet" href="<%=resourcesPath%>/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="<%=resourcesPath%>/css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="<%=resourcesPath%>/css/magnific-popup.css">
-    <link rel="stylesheet" href="<%=resourcesPath%>/css/aos.css">
-    <link rel="stylesheet" href="<%=resourcesPath%>/css/ionicons.min.css">
-    <link rel="stylesheet" href="<%=resourcesPath%>/css/bootstrap-datepicker.css">
-    <link rel="stylesheet" href="<%=resourcesPath%>/css/jquery.timepicker.css">
-    <link rel="stylesheet" href="<%=resourcesPath%>/css/flaticon.css">
-    <link rel="stylesheet" href="<%=resourcesPath%>/css/icomoon.css">
-    <link rel="stylesheet" href="<%=resourcesPath%>/css/style.css">
-    
-<style type="text/css">
-	ul{
-		style="color: #FFCC66;"
-	}
-</style>
-    
-    <!-- 아임포트 api 설정 -->
-    <script
-      type="text/javascript"
-      src="https://code.jquery.com/jquery-1.12.4.min.js"
-    ></script>
-    <!-- iamport.payment.js -->
-    <script
-      type="text/javascript"
-      src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"
-    ></script>
-   <script type="text/javascript" src="<%=resourcesPath%>/js/jquery.js"></script>
-   <script>
+<head>
+<title>야금야금</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css" />
+
+<!-- BootStrap -->
+<link rel="stylesheet" href="<%=resourcesPath%>/css/open-iconic-bootstrap.min.css">
+<link rel="stylesheet" href="<%=resourcesPath%>/css/animate.css">
+<link rel="stylesheet" href="<%=resourcesPath%>/css/owl.carousel.min.css">
+<link rel="stylesheet" href="<%=resourcesPath%>/css/owl.theme.default.min.css">
+<link rel="stylesheet" href="<%=resourcesPath%>/css/magnific-popup.css">
+<link rel="stylesheet" href="<%=resourcesPath%>/css/aos.css">
+<link rel="stylesheet" href="<%=resourcesPath%>/css/ionicons.min.css">
+<link rel="stylesheet" href="<%=resourcesPath%>/css/bootstrap-datepicker.css">
+<link rel="stylesheet" href="<%=resourcesPath%>/css/jquery.timepicker.css">
+<link rel="stylesheet" href="<%=resourcesPath%>/css/flaticon.css">
+<link rel="stylesheet" href="<%=resourcesPath%>/css/icomoon.css">
+<link rel="stylesheet" href="<%=resourcesPath%>/css/style.css">
+
+<!-- 아임포트 api 설정 -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<!-- iamport.payment.js -->
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+<script type="text/javascript" src="<%=resourcesPath%>/resources/js/jquery.js"></script>
+<script>
       var IMP = window.IMP;
       IMP.init("imp78600063");
  
@@ -129,27 +122,44 @@
   		
   	});
     </script>
-    <!-- 아임포트 api 설정 끝-->
-    
-  </head>
-  
+<!-- 아임포트 api 설정 끝-->
+
+</head>
+
 <script type="text/javascript" src="<%=resourcesPath%>/js/jquery.js"></script>
 <script type="text/javascript">
+
+	function setToggle(){
+		if(sessionStorage.getItem('search')=='true'){
+			search.customSwitch1.checked = true;
+			document.search.action="main.board";
+			document.search.whatColumn.value = 'search';
+		}else{		
+			search.customSwitch1.checked = false;
+			document.search.action="list.re";
+			document.search.whatColumn.value = 'recipename';
+		}
+	}
+
 	function toggle(element){
 		console.log(element.checked);
 		if(element.checked){
+			sessionStorage.setItem('search',element.checked);
 			document.search.action="main.board";
+			document.search.whatColumn.value = 'search';
 		}else{
+			sessionStorage.setItem('search',element.checked);
 			document.search.action="list.re";
+			document.search.whatColumn.value = 'recipename';
 		}
+	
 	}
 	$(document).ready(function(){ 
 		//alert(1);
 	});
 </script>
-
-  <body class="goto-here">
-  	<!-- header -->
+<body class="goto-here" onload="setToggle()">
+	<!-- header -->
 	<header>
 		<!-- top -->
 		<nav id="ftco-navbar">
@@ -158,22 +168,15 @@
 					<div class="col">
 						<!-- 메인 로고 -->
 						
-						<a class="navbar-brand" href="<%=conPath%>/main.jsp"> <img
+						<a class="navbar-brand" href="/ex"> <img
 							src="<%=resourcesPath%>/images/logo.png" style="height: 60px;">
 						</a>
 						<!-- login -->
-						<% if(session.getAttribute("loginInfo") == null)
-						{//로그인이 안된 상태라면?
-							%>
-						<a href="login.mb"
-							style="font-size: 11px; height: 12px; margin-top: 20px; float: right;">
-							<img src="<%=resourcesPath%>/images/btn_login.png"
-							style="height: 33px;"> 로그인
-						</a>
-						<a href="insert.mb"
-							style="font-size: 11px; height: 12px; margin-top: 20px; margin-right: 15px; float: right;">
-							<img src="<%=resourcesPath%>/images/btn_register.png"
-							style="height: 33px;"> 회원가입
+						<%
+						if (session.getAttribute("loginInfo") == null) {//로그인이 안된 상태라면?
+						%>
+						<a href="login.mb" style="font-size: 11px; height: 12px; margin-top: 20px; float: right;"> <img src="<%=resourcesPath%>/images/btn_login.png" style="height: 33px;"> 로그인
+						</a> <a href="insert.mb" style="font-size: 11px; height: 12px; margin-top: 20px; margin-right: 15px; float: right;"> <img src="<%=resourcesPath%>/images/btn_register.png" style="height: 33px;"> 회원가입
 						</a>
 
 						<%
@@ -181,7 +184,7 @@
 						%>
 						<a href="#"
 							style="font-size: 11px; height: 12px; margin-top: 20px;">${loginInfo.mname}님
-							안녕하세요! </a> <a href="mypage.mp"
+							안녕하세요! </a> <a href="orderlist.mp"
 							style="font-size: 11px; height: 12px; margin-top: 20px; float: right;">
 							<img src="<%=resourcesPath%>/images/mypage.png"
 							style="height: 33px;"> 마이페이지
@@ -202,12 +205,11 @@
 						<form action="list.re" class="search-form" name="search">
 							<input type="hidden" value="recipename" name="whatColumn">
 							<div class="custom-control custom-switch">
-		  					<input type="checkbox" class="custom-control-input" id="customSwitch1" onclick="toggle(this)">
-		  					<label class="custom-control-label" for="customSwitch1"><span id="switchMessage">스위치 체크시 방구석쉐프 검색</span></label>
+								<input type="checkbox" class="custom-control-input" id="customSwitch1" name="customSwitch1" onclick="toggle(this)"> <label class="custom-control-label" for="customSwitch1"><span id="switchMessage">스위치 체크시 방구석쉐프 검색</span></label>
 							</div>
 							<div class="input-group mb-3">
-  							 <input type="search" class="form-control" placeholder="요리명 검색" aria-label="Example text with two button addons" name="keyword">
-							 </div>
+								<input type="search" class="form-control" placeholder="요리명 검색" aria-label="Example text with two button addons" name="keyword">
+							</div>
 						</form>
 					</div>
 				</div>
@@ -239,13 +241,25 @@
 									class="dropdown-item"
 									href="shop.prd?whatColumn=se&keyword=정육/계란류&searchName=${searchName}">정육/계란류</a> <a
 									class="dropdown-item"
-									href="shop.prd?whatColumn=se&keyword=우유/유제품&searchName=${searchName}">우유/유제품</a> <a
+									href="shop.prd?whatColumn=se&keyword=우유/유제품&searchName=${searchName}">우유/유제품</a> 
+									<a class="dropdown-item"
+									href="shop.prd?whatColumn=se&keyword=수산물/건해산&searchName=${searchName}">수산물/건해산</a> <a
 									class="dropdown-item"
 									href="shop.prd?whatColumn=se&keyword=양념/오일&searchName=${searchName}">양념/오일</a>
 							</div></li>
 						<li class="nav-item"><a href="list.re" class="nav-link" style="color:#ffffff;">레시피</a></li>
 						<li class="nav-item"><a href="main.board" class="nav-link" style="color:#ffffff;">방구석
 								쉐프</a></li>
+					<% 	
+					
+					if((MemberBean)session.getAttribute("loginInfo")!=null) {
+					    String id=((MemberBean)session.getAttribute("loginInfo")).getId();
+						if(id.equals("admin")){%>
+						<li class="nav-item"><a href="main.am" class="nav-link">관리자페이지</a></li>
+						<%
+						}
+					}
+						%>
 					</ul>
 					</div>
 					<!-- right nav -->
@@ -269,8 +283,4 @@
 				</div>
 		</nav>
 	</header>
-    <!-- END header -->
-    
-    
-		      
-	
+	<!-- END header -->

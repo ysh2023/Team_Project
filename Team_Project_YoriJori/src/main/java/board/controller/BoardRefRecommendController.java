@@ -1,0 +1,84 @@
+package board.controller;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import board.model.BoardDao;
+import member.model.MemberBean;
+import utility.Paging;
+
+@Controller
+public class BoardRefRecommendController {
+	private final String command = "/refRecommend.board";
+	private String page = "boardSearchRef";
+
+	@Autowired
+	BoardDao bdao;
+
+	@RequestMapping(command)
+	public String doAction(Model model, @RequestParam(value = "whatColumn", required = false) String whatColumn,
+			@RequestParam(value = "keyword", required = false) String keyword,
+			@RequestParam(value = "pageNumber", required = false) String pageNumber, HttpServletRequest request,
+			HttpSession session, String ingredient, HttpServletResponse response) {
+		Map<String, String> map = new HashMap<String, String>();
+		String id = "";
+		if (session.getAttribute("loginInfo") != null) {
+			id = ((MemberBean) session.getAttribute("loginInfo")).getId();
+		}
+		if (ingredient != null) {
+
+			String[] ingreList = ingredient.split(",");
+			for (String a : ingreList) {
+				System.out.println(a);
+			}
+			if (ingredient.split(",") == null) {
+
+			} else {
+
+			}
+			int ingredientCount = ingreList.length;
+			// 식재료를 count만큼 가진 recipe를 얻기위한 count
+			String count = String.valueOf(ingredientCount);
+			String str = "";
+			// 넘어온 식재료List를 sql에 맞게 변형
+			for (int i = 0; i < ingreList.length; i++) {
+				if (i == ingreList.length - 1) {
+					str += ingreList[i];
+				} else {
+					str += ingreList[i] + "|";
+				}
+			}
+			System.out.println(str);
+			map.put("str", str);
+			map.put("count", count);
+			map.put("id", id);
+			int totalCount = bdao.getRefRecommendTotalCount(map);
+			Paging pageInfo = new Paging(pageNumber, "12", totalCount, request.getContextPath() + command, null, null,
+					null);
+			model.addAttribute("boardList", bdao.getRefRecommendBoard(map, pageInfo));
+			model.addAttribute("ingreList", ingreList);
+			model.addAttribute("pageInfo", pageInfo);
+			return page;
+		} else {
+			try {
+				response.getWriter().append("<script>alert('식재료를 하나이상 선택해주세요');location.back();</script>").flush();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return null;
+		}
+
+	}
+}

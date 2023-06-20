@@ -4,10 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
+
+import utility.Paging;
 
 @Component()
 public class OrderDao {
@@ -37,9 +40,25 @@ private String namespace = "order.model.Order";
 	}
 
 
-	public List<OrderBean> getByIdOrder(String id) {
+	public List<OrderBean> getByIdOrder(String id, Paging pageInfo) {
 		List<OrderBean> lists = new ArrayList<OrderBean>();
-		lists = sqlSessionTemplate.selectList(namespace+".GetByIdOrder",id);
+		RowBounds rowBounds = new RowBounds(pageInfo.getOffset(), pageInfo.getLimit());
+		lists = sqlSessionTemplate.selectList(namespace+".GetByIdOrder",id,rowBounds);
 		return lists;
+	}
+	
+	public int updatePaystate(String merchantuid) {
+		OrderBean ord = new OrderBean();
+		ord.setOrdnum(merchantuid);
+		ord.setOrdtel("환불 요청");
+		int cnt = 0;
+		cnt = sqlSessionTemplate.update(namespace+".RequestCancelpay",ord);
+		return cnt;
+	}
+
+
+	public int getTotalCount(String id) {
+		int count= sqlSessionTemplate.selectOne(namespace+".GetTotalCount",id);
+		return count;
 	}
 }

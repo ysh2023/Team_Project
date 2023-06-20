@@ -11,6 +11,14 @@ public class BoardBean {
 	private String bodImage;
 	private String rec;
 
+	public String getRec() {
+		return rec;
+	}
+
+	public void setRec(String rec) {
+		this.rec = rec;
+	}
+
 	public int getBodNum() {
 		return bodNum;
 	}
@@ -73,14 +81,6 @@ public class BoardBean {
 
 	public void setId(String id) {
 		this.id = id;
-	}
-
-	public String getRec() {
-		return rec;
-	}
-
-	public void setRec(String rec) {
-		this.rec = rec;
 	}
 
 }

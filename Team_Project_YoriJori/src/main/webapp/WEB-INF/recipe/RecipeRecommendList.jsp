@@ -1,3 +1,5 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
@@ -29,14 +31,29 @@
 			    		</div>
 			    		<input type="hidden" name="whatColumn" value="food_name">
 			    		<div class="col-md-8 justify-content-start">
-			    		<c:forEach var="ingredient" items="${ingreList}">
+			    		<% String[] ingreList = (String[])request.getAttribute("ingreList");
+			    		   String[] refdday = (String[])request.getAttribute("refdday");
+			    		for(int i=0; i<ingreList.length; i++){ %>
 				    		<div class="form-check form-check-inline">
-							<input class="form-check-input" type="checkbox" value="${ingredient}" id="flexCheckDefault" name="keyword">
+							<input class="form-check-input" type="checkbox" value="<%=ingreList[i]%>" id="flexCheckDefault" name="keyword">
 							<label class="form-check-label" for="flexCheckDefault">
-							 ${ingredient}
+							 <% Date now = new Date();
+								SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+								Date parsedday = sdf.parse(refdday[i]);
+								long result = (now.getTime() - parsedday.getTime());
+								long dday = result / (24*60*60*1000) -1;
+								
+								if(dday==0){
+							 %>
+							 <span style="color: red !important;">D-day</span>
+							 <%}else if(dday>-3){%>
+								 <span style="color: red !important;">D<%=dday%></span>
+							 <%}else{ %>D<%=dday%><%} %>
+							 <%=ingreList[i]%>
 							</label>
 							</div>
-			    		</c:forEach>
+						  
+			    		<%} %>
 			    		</div>
 			    		</div>
 			    		<div>

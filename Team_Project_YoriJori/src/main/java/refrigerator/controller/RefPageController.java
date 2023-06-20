@@ -4,16 +4,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import member.model.MemberBean;
+import refrigerator.model.JoinBean;
 import refrigerator.model.RefBean;
 import refrigerator.model.RefDao;
 import shopmemo.model.MemoBean;
@@ -21,7 +22,6 @@ import shopmemo.model.MemoDao;
 
 @Controller
 public class RefPageController {
-	private final String command = "/page.ref";
 	private String getPage = "userRefrigerator";
 	private String gotoPage = "redirect:/login.mb";
 	
@@ -31,14 +31,18 @@ public class RefPageController {
 	@Autowired
 	MemoDao memodao;
 	
-	@RequestMapping(value=command, method = RequestMethod.GET)
-	public String doAction(@RequestParam(value="arrange",required=false) String arrange, HttpSession session, Model model) {
+	@RequestMapping(value="/page.ref")
+	public String allList(@RequestParam(value="arrange",required=false) String arrange,
+						@RequestParam(value="myscroll",required=false) String myscroll,
+						Model model, HttpSession session, HttpServletRequest request) {
 		MemberBean loginInfo = (MemberBean)session.getAttribute("loginInfo");
 		
 		if(session.getAttribute("loginInfo") == null) {	//로그인 안했으면
 			session.setAttribute("destination", "redirect:/page.ref");	//destination 속성 설정
 			return gotoPage;	//로그인 페이지로
 		}else {
+			List<JoinBean> ddayList = refdao.getDdayIngList(loginInfo.getId());
+			model.addAttribute("ddayList", ddayList);
 			
 			if(arrange == null) { //정렬
 				arrange = "r.inputdate";	//기본정렬: 추가 날짜순
@@ -49,6 +53,11 @@ public class RefPageController {
 			int freezeCnt = refdao.getFreezeCount(loginInfo.getId());
 			int roomCnt = refdao.getRoomCount(loginInfo.getId());
 			int ddayCnt = refdao.getDdayCount(loginInfo.getId());
+			
+			//System.out.println("scroll: "+myscroll);
+			if(myscroll != null) {
+				model.addAttribute("modelscroll", myscroll);
+			}
 			
 			/* 전체 리스트 */
 			Map<String,String> listMap = new HashMap<String,String>();
@@ -100,6 +109,7 @@ public class RefPageController {
 			model.addAttribute("userMemo", userMemo);
 			
 			return getPage;	//냉장고 페이지로
+			
 		}
 		
 	}

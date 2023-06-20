@@ -36,6 +36,16 @@
 		]]> 
 	</select>
 	
+	<!-- dday list -->
+	<select id="GetDdayIng" resultType="refrigerator.model.JoinBean">
+		<![CDATA[
+			select r.ref_num, r.id, r.ing_num, i.ing_category, i.ing_name, i.expiry, i.ing_icon, r.inputdate, r.ref_dday, r.ref_storage, r.ref_detail
+			from refrigerator r full outer join ingredient i
+			on r.ing_num = i.ing_num
+			where r.id = #{id} and trunc((ref_dday - sysdate)+1)<=3
+		]]> 
+	</select>
+	
 	<!-- select all -->
 	<select id="GetUserRef" resultType="refrigerator.model.JoinBean">
 		select r.ref_num, r.id, r.ing_num, i.ing_category, i.ing_name, i.expiry, i.ing_icon, r.inputdate, r.ref_dday, r.ref_storage, r.ref_detail

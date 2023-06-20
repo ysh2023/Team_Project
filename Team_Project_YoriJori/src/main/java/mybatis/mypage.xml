@@ -33,5 +33,12 @@ on pd.pd_num= dib.dibs_pdnum and dibs_id=#{user_id}
 	delete dibs where dibs_id=#{id} and dibs_pdnum=#{pdnum}
 	</delete>
 
-
+	<select id="GetAllMyBoard" resultType="board.model.BoardBean">
+select board.bod_num, title, servings, time, category, tags, id, bod_image , rec from board full outer join (select count(*)as rec , bod_num from recommend  group by bod_num) sel on sel.bod_num = board.bod_num where id=#{id} order by board.bod_num
+</select>
+<delete id="DeleteMyBoard">delete from board where bod_num = #{bodNum}</delete>
+<select id="GetAllMyComment" resultType="board.model.CommentsBean">select * from comments where id = #{id} order by com_num</select>
+<delete id="DeleteMyComment">delete from comments where com_num = #{comNum} and id = #{id}</delete>
+<select id="GetAllMyRecommend" resultType="board.model.BoardBean">select board.bod_num, title, servings,time, category, tags, board.id, bod_image, rec_num as rec from board inner join (select * from recommend where id = #{id}) sel on board.bod_num = sel.bod_num order by board.bod_num</select>
+<delete id="DeleteMyRecommend">delete from recommend where rec_num = #{recNum}</delete>
 </mapper>

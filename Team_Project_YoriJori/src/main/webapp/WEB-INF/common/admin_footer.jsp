@@ -34,7 +34,7 @@
 		src="<%=request.getContextPath()%>/resources/vendor/simple-datatables/simple-datatables.js"></script>
 	<script
 		src="<%=request.getContextPath()%>/resources/vendor/tinymce/tinymce.min.js"></script>
-	<script
+ <script
 		src="<%=request.getContextPath()%>/resources/vendor/php-email-form/validate.js"></script>
 
 	<!-- Template Main JS File -->

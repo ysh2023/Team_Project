@@ -6,7 +6,6 @@ public class MemoBean {
 	private int memonum;
 	private String id;
 	
-	@NotBlank(message="메모를 입력하세요")
 	private String memotask;
 	
 	private int memoflag;
