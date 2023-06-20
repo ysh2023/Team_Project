@@ -26,5 +26,10 @@
 		where ord_num = #{ordnum}
 	</update>
 	
+	<select id="GetTotalCount" resultType="int">
+		select count(*) from orders
+		where ord_memid=#{id}
+
+	</select>
 
 </mapper>
