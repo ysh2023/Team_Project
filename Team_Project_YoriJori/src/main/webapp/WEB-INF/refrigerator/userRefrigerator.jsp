@@ -215,7 +215,9 @@
 		  <div style="display:none;">
 		  	<form id="recipeForm" action="Recommend.re">
 		  	  <c:forEach var="dday" items="${ddayList}">
-			    <input type="text" name="ingredient" value="${dday.ingname}">
+			    <input type="text" name="ingredient" 
+			    <c:if test="${dday.ingname eq '사용자 작성'}">value="${dday.refdetail}"</c:if>
+			    <c:if test="${dday.ingname != '사용자 작성'}">value="${dday.ingname}"</c:if>>
 			  </c:forEach>
 			</form>
 		  </div>
