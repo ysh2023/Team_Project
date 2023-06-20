@@ -3,6 +3,7 @@ package admin.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import admin.model.AdminDao;
 import member.model.MemberBean;
+import order.model.GroupBean;
+import order.model.OrderBean;
 
 @Controller
 public class AdminMainController {
@@ -89,6 +92,13 @@ public class AdminMainController {
 				int sales = adao.getOrderSales(mapSales);
 				model.addAttribute("sales",sales);
 				
+				/* 최근 주문 */
+				List<OrderBean> orderlist = adao.getAllOrder(); 
+				model.addAttribute("orderlist", orderlist);
+				
+				/* 판매량 많은 상품 상위 5개 */
+				List<GroupBean> topseller = adao.getTopSeller();
+				model.addAttribute("topseller", topseller);
 				
 				
 				/* 사용자 게시판 */

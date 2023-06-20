@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import board.model.BoardBean;
 import board.model.CommentReportBean;
 import ingredient.model.IngBean;
+import order.model.GroupBean;
 import order.model.OrderBean;
 import orderdetail.model.OrderDetailBean;
 import product.model.ProductBean;
@@ -165,6 +166,12 @@ public class AdminDao {
 	public int getOrderSales(Map<String, String> map) {
 		int sales = sqlSessionTemplate.selectOne(namespace+".GetSales", map);
 		return sales;
+	}
+	
+	public List<GroupBean> getTopSeller() {
+		List<GroupBean> lists = new ArrayList<GroupBean>();
+		lists = sqlSessionTemplate.selectList(namespace+".TopSeller");
+		return lists;
 	}
 	
 	public List<OrderBean> getAllOrder() {

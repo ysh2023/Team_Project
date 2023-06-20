@@ -124,6 +124,15 @@
 		]]> 
 	</select>
 	
+	<select id="TopSeller" resultType="order.model.GroupBean">
+		<![CDATA[
+		select rownum as ranknum, ord_pdname, sellnum from (
+			select ord_pdname, count(ord_num) as sellnum from orders
+			group by ord_pdname order by count(ord_num) desc
+		) where rownum <= 5
+	  ]]> 
+	</select>
+	
 	<select id="GetAllOrder" resultType="order.model.OrderBean">
 		select * from orders
 		order by ord_date desc
