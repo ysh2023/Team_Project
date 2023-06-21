@@ -22,7 +22,7 @@ import member.model.MemberDao;
 public class MemberLoginController {
 	private final String command = "/login.mb";
 	private String getPage = "loginForm";
-	private String gotoPage = "./../../main";
+	private String gotoPage = "redirect:/";
 	
 	@Autowired
 	MemberDao mdao;

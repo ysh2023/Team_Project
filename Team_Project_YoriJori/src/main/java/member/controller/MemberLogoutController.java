@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class MemberLogoutController {
 	private final String command = "/logout.mb";
-	private String getPage = "./../../main";
+	private String getPage = "redirect:/";
 
 
 	@RequestMapping(value = command, method = RequestMethod.GET)
