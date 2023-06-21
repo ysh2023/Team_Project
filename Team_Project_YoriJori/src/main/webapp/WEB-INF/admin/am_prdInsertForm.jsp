@@ -6,6 +6,12 @@
 
       <div class="pagetitle">
       <h1>상품 추가하기</h1>
+      <nav style="margin-top: 10px;">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">식재료 쇼핑몰</li>
+          <li class="breadcrumb-item active">상품 추가</li>
+        </ol>
+      </nav>
     </div>
 
     <section class="section">

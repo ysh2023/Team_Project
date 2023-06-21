@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import admin.model.AdminDao;
+import board.model.BoardBean;
 import member.model.MemberBean;
 import order.model.GroupBean;
 import order.model.OrderBean;
@@ -103,8 +104,9 @@ public class AdminMainController {
 				model.addAttribute("topseller", topseller);
 				
 				
-				/* 사용자 게시판 */
-				model.addAttribute("boardlist", adao.getAllBoardAm());
+				/* 사용자 게시판 상위 5개 */
+				List<BoardBean> boardlist = adao.getRecentBoard();
+				model.addAttribute("boardlist", boardlist);
 				
 				return getPage;
 			}else {
