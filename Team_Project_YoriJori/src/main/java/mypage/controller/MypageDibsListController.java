@@ -42,13 +42,11 @@ public class MypageDibsListController {
 		String whatColumn=null;
 		String keyword=null;
 		
-		Paging pageInfo= new Paging(pageNumber,"7",totalCount,url,whatColumn,keyword,null);
 
-		List<ProductBean> lists= ddao.getAllDibs(pageInfo,user_id);
+		List<ProductBean> lists= ddao.getAllDibs(user_id);
 		
 		mav.addObject("lists", lists);
 		mav.addObject("user_id", user_id);
-		mav.addObject("pageInfo",pageInfo);
 		mav.setViewName(getPage);
 		return mav; 
 		
