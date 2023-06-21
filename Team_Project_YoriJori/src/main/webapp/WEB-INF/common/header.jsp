@@ -94,7 +94,7 @@ String resourcesPath = request.getContextPath() + "/resources";
                 pay_method: "card",
                 merchant_uid: "IMP"+makeMerchantUid, // 결제 고유 번호
                 name: '${ordpdname}', //상품명
-                amount: ${totalAmount}, //상품가격
+                amount: ${totalAmount+Baesong}, //상품가격
                 buyer_email: document.getElementById('ordemail').value,
                 buyer_name: document.getElementById('ordname').value,
                 buyer_tel: document.getElementById('ordtel').value,
