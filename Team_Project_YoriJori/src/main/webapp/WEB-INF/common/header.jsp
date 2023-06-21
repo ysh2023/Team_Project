@@ -190,7 +190,7 @@ String resourcesPath = request.getContextPath() + "/resources";
 							안녕하세요! </a> <a href="orderlist.mp"
 							style="font-size: 11px; height: 12px; margin-top: 20px; float: right;">
 							<img src="<%=resourcesPath%>/images/mypage.png"
-							style="height: 33px;"> 마이페이지
+							style="height: 33px;"> 내정보
 						</a> <a href="logout.mb"
 							style="font-size: 11px; height: 12px; margin-top: 20px; margin-right: 15px; float: right;">
 							<img src="<%=resourcesPath%>/images/btn_logout.png"
