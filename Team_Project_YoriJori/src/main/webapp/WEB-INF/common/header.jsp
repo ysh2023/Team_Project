@@ -14,7 +14,6 @@ String conPath = request.getContextPath();
 String resourcesPath = request.getContextPath() + "/resources";
 %>
 
-
 <!-- header.jsp -->
 <!DOCTYPE html>
 <html>
@@ -275,8 +274,8 @@ String resourcesPath = request.getContextPath() + "/resources";
 								style="width: 18px; margin-right: 5px; margin-bottom: 2px;">
 								북마크 레시피
 						</a></li>
-						<li class="nav-item cta cta-colored"><a href="list.bsk"
-							class="nav-link"><span class="icon-shopping_cart" style="color:#F2BC1B;">[0]</span></a></li>
+						<li class="nav-item"><a href="list.bsk"
+							class="nav-link"><span class="icon-shopping_cart" style="color:#F2BC1B;"></span></a></li>
 					</ul>
 					</div>
 					</div>

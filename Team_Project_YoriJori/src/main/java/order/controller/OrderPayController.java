@@ -49,8 +49,10 @@ public class OrderPayController {
 	 
 	//Get은 BasketList에서 요청을하고
 	@RequestMapping(value=command,method = RequestMethod.GET)
-	public String doAction(@RequestParam("totalAmount") int totalAmount,Model model
-			,HttpSession session) {
+	public String doAction(@RequestParam("totalAmount") int totalAmount,
+			@RequestParam("Baesong") int Baesong,
+			Model model,
+			HttpSession session) {
 		MemberBean loginInfo = (MemberBean)session.getAttribute("loginInfo");
 		List<JoinBean> slist = bdao.getBasketList(loginInfo.getId());
 		MemberBean mb = mdao.GetMemberById(loginInfo.getId());
@@ -73,6 +75,7 @@ public class OrderPayController {
 		ordpdname = ordpdname.replaceAll(",$", "");
 		//상품이름 끝에 , 제거
 		System.out.println("ordpdname1:"+ordpdname);
+		model.addAttribute("Baesong", Baesong);
 		model.addAttribute("mb", mb);
 		model.addAttribute("ordpdname", ordpdname);
 		model.addAttribute("slist", slist);
@@ -129,9 +132,18 @@ public class OrderPayController {
 					detail.addOrder(pdnum,qty);
 				session.setAttribute("detail", detail);
 				int totalAmount = (pdprice*qty);
+				
+				//배송비 추가
+				int Baesong = 0; 
+				if(totalAmount >= 50000) { 
+					Baesong = 0;
+				}else {
+					Baesong = 3000;
+				}
 				System.out.println("ordpdname2:"+pdname);
 				MemberBean mb = mdao.GetMemberById(loginInfo.getId());
 				mav.addObject("mb", mb);
+				mav.addObject("Baesong", Baesong);
 				mav.addObject("ordpdname", pdname);
 				mav.addObject("slist", slist);
 				mav.addObject("qty", qty);

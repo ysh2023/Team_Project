@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import basket.model.BasketDao;
 import member.model.MemberBean;
 import member.model.MemberDao;
 
@@ -25,6 +26,9 @@ public class MemberLoginController {
 	
 	@Autowired
 	MemberDao mdao;
+	
+	@Autowired
+	BasketDao bdao;
 
 	@RequestMapping(value = command, method = RequestMethod.GET)
 	public String doAction(HttpSession session) {
@@ -100,7 +104,6 @@ public class MemberLoginController {
 				mav.setViewName(getPage);
 			}
 		}
-
 		return mav;
 	}
 }

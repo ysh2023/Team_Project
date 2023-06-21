@@ -90,5 +90,10 @@ private String namespace = "basket.model.Basket";
 		return bb3;
 	}
 
+	public int BasketCount(String id) {
+		int count= sqlSessionTemplate.selectOne(namespace+".getBasketCount",id);
+		return count;
+	}
+
 	
 }
