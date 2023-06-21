@@ -96,34 +96,7 @@ public class RecipeListController {
 		return mav;
 	}
 	
-	@RequestMapping(value=command, method = RequestMethod.POST)
-	public ModelAndView doAction(@RequestParam(value="pageNumber",required=false) String pageNumber,@RequestParam(value="whatColumn") String whatColumn,HttpServletRequest request) {
-		String[] ingredient = request.getParameterValues("keyword");
-		
-		ModelAndView mav = new ModelAndView();
-		int ingredientCount = ingredient.length;
-		String count ="1";
-		String str = "";
-		//넘어온 식재료List를 sql에 맞게 변형
-		for(int i=0;i<ingredientCount;i++) {
-			if(i==ingredientCount-1) {
-				str += ingredient[i];
-			}else {
-				str += ingredient[i]+"|";
-			}
-		}
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("str", str);
-		map.put("count", count);
-		int recipeTotalCount = rdao.getRecipeTotalCountByIngre(map);
-		String url = request.getContextPath()+"/Recommend.re";
-		Paging2 pageInfo = new Paging2(pageNumber, "12",recipeTotalCount, url, null, null, null);
-		List<RecipeRecommendBean> recipeList = rdao.getRecipeListByIngredient(map,pageInfo);
-		mav.addObject("pageInfo", pageInfo);
-		mav.addObject("recipeList", recipeList);
-		mav.setViewName(getPage);
-		return mav;
-	}
+	
 	
 	
 }

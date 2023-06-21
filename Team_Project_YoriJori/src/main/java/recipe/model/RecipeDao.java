@@ -130,9 +130,9 @@ public class RecipeDao {
 		return cnt;
 	}
 	
-	public List<RecipeRecommendBean> getRecipeListByIngredient(Map<String, String> map,Paging2 pageInfo){
+	public List<RecipeBean> getRecipeListByIngredient(Map<String, String> map,Paging2 pageInfo){
 		RowBounds rowBounds = new RowBounds(pageInfo.getOffset(), pageInfo.getLimit());
-		List<RecipeRecommendBean> recipeNumList = sqlSessionTemplate.selectList(namespace+".GetRecipeNumByIngredient", map,rowBounds);
+		List<RecipeBean> recipeNumList = sqlSessionTemplate.selectList(namespace+".GetRecipeNumByIngredient", map,rowBounds);
 		return recipeNumList;
 	}
 	public List<RecipeBean> getBookMarkRecipe(Map<String, String> map){
