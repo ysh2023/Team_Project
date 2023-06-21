@@ -245,7 +245,9 @@
 	}
 
 	function deleteHandle(){
-		location.href='boardDelete.board?bodNum=' + ${board.bodNum};		
+		if(confirm('삭제하시겠습니까?')){			
+			location.href='boardDelete.board?bodNum=' + ${board.bodNum};		
+		}
 	}
 </script>
 <body>
@@ -329,8 +331,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-6 mb-5 ftco-animate">
-					<a href="images/product-1.jpg" class="image-popup">
-						<img src="<%=resourcesPath%>/images/${board.bodImage}" class="img-fluid" alt="요리 대표 이미지">
+					<a href="images/product-1.jpg" class="image-popup"> <img src="<%=resourcesPath%>/images/${board.bodImage}" class="img-fluid" alt="요리 대표 이미지">
 					</a>
 				</div>
 				<div class="col-lg-6 product-details pl-md-5 ftco-animate">
@@ -389,10 +390,7 @@
 
 					<c:forEach items="${boardIngredientList}" var="boardIngredient" varStatus="status">
 
-						<li style="inline: block; float: left; margin-right: 40px">
-							<a href="shop.prd?whatColumn=no&searchName=${boardIngredient.bigName}">${boardIngredient.bigName }</a>
-							-${ boardIngredient.bigAmount}
-						</li>
+						<li style="inline: block; float: left; margin-right: 40px"><a href="shop.prd?whatColumn=no&searchName=${boardIngredient.bigName}">${boardIngredient.bigName }</a> -${ boardIngredient.bigAmount}</li>
 
 					</c:forEach>
 				</div>
@@ -534,14 +532,11 @@
 	</div>
 </body>
 <%@include file="../common/footer.jsp"%>
-<a target="_blank" href="https://icons8.com/icon/2744/%EC%97%84%EC%A7%80-%EC%B2%99">추천</a>
-icon by
+<a target="_blank" href="https://icons8.com/icon/2744/%EC%97%84%EC%A7%80-%EC%B2%99">추천</a> icon by
 <a target="_blank" href="https://icons8.com">Icons8</a>
-<a target="_blank" href="https://icons8.com/icon/10271/%EC%97%84%EC%A7%80-%EC%B2%99">추천</a>
-icon by
+<a target="_blank" href="https://icons8.com/icon/10271/%EC%97%84%EC%A7%80-%EC%B2%99">추천</a> icon by
 <a target="_blank" href="https://icons8.com">Icons8</a>
-<a target="_blank" href="https://icons8.com/icon/84119/%EB%A9%94%EB%89%B4-2">메뉴 2</a>
-icon by
+<a target="_blank" href="https://icons8.com/icon/84119/%EB%A9%94%EB%89%B4-2">메뉴 2</a> icon by
 <a target="_blank" href="https://icons8.com">Icons8</a>
 </html>
 
