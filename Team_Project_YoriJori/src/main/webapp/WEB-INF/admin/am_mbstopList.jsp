@@ -6,8 +6,14 @@
 <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>정지리스트</h1>
-
+      <h1>정지 회원 목록</h1>
+	  <nav style="margin-top: 10px;">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">Home</li>
+          <li class="breadcrumb-item">회원 관리</li>
+          <li class="breadcrumb-item active">정지 회원 목록</li>
+        </ol>
+      </nav>
     </div><!-- End Page Title -->
 
     <section class="section">

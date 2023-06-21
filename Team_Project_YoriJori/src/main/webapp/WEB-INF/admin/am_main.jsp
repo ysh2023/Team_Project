@@ -1,3 +1,4 @@
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file= "./../common/admin_header.jsp" %>
@@ -24,20 +25,6 @@
             <!-- Sales Card -->
             <div class="col-xxl-4 col-md-6">
               <div class="card info-card sales-card">
-
-                <div class="filter">
-                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                    <li class="dropdown-header text-start">
-                      <h6>Filter</h6>
-                    </li>
-
-                    <li><a class="dropdown-item" href="#">Today</a></li>
-                    <li><a class="dropdown-item" href="#">This Month</a></li>
-                    <li><a class="dropdown-item" href="#">This Year</a></li>
-                  </ul>
-                </div>
-
                 <div class="card-body">
                   <h5 class="card-title" style="font-weight: bold !important;">주문량 <span>| 이번 달</span></h5>
 
@@ -58,20 +45,6 @@
             <!-- Revenue Card -->
             <div class="col-xxl-4 col-md-6">
               <div class="card info-card revenue-card">
-
-                <div class="filter">
-                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                    <li class="dropdown-header text-start">
-                      <h6>Filter</h6>
-                    </li>
-
-                    <li><a class="dropdown-item" href="#">Today</a></li>
-                    <li><a class="dropdown-item" href="#">This Month</a></li>
-                    <li><a class="dropdown-item" href="#">This Year</a></li>
-                  </ul>
-                </div>
-
                 <div class="card-body">
                   <h5 class="card-title" style="font-weight: bold !important;">매출 <span>| 이번 달</span></h5>
 
@@ -92,22 +65,7 @@
 
             <!-- Customers Card -->
             <div class="col-xxl-4 col-xl-12">
-
               <div class="card info-card customers-card">
-
-                <div class="filter">
-                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                    <li class="dropdown-header text-start">
-                      <h6>Filter</h6>
-                    </li>
-
-                    <li><a class="dropdown-item" href="#">Today</a></li>
-                    <li><a class="dropdown-item" href="#">This Month</a></li>
-                    <li><a class="dropdown-item" href="#">This Year</a></li>
-                  </ul>
-                </div>
-
                 <div class="card-body">
                   <h5 class="card-title" style="font-weight: bold !important;">총 가입자 수</h5>
 
@@ -222,9 +180,9 @@
           <!-- News & Updates Traffic -->
           <div class="card">
            <div class="card-body pb-0">
-              <h5 class="card-title" style="font-weight: bold !important;">사용자 게시판</h5>
+              <h5 class="card-title" style="font-weight: bold !important;">사용자 게시판 <span>| 최신글 5개</span></h5>
 
-              <div class="news">
+              <div class="news" style="margin-bottom: 20px;">
                 <c:forEach var="board" items="${boardlist}">
 	                <div class="post-item clearfix">
 	                  <img src="<%=resourcesPath%>/images/${board.bodImage != '' ? board.bodImage : 'noimage.png' }" width="60" height="60">

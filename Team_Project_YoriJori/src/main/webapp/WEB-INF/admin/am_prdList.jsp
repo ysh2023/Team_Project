@@ -5,8 +5,13 @@
 <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>상품테이블</h1>
-
+      <h1>상품 목록</h1>
+	  <nav style="margin-top: 10px;">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">식재료 쇼핑몰</li>
+          <li class="breadcrumb-item active">상품 목록</li>
+        </ol>
+      </nav>
     </div><!-- End Page Title -->
 
     <section class="section">

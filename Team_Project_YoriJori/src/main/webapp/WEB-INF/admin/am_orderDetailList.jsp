@@ -6,6 +6,13 @@
 
     <div class="pagetitle">
       <h1>주문 목록</h1>
+      <nav style="margin-top: 10px;">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">식재료 쇼핑몰</li>
+          <li class="breadcrumb-item">주문 목록</li>
+          <li class="breadcrumb-item active">주문 상세보기</li>
+        </ol>
+      </nav>
 
     </div><!-- End Page Title -->
 
