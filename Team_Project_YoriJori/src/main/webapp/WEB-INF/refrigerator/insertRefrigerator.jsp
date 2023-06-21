@@ -176,6 +176,7 @@
 	    	<a class="collapse" onclick="collapseAll()" style="display: none; font-size: 14pt; cursor: pointer;">
 				<i class="icon-sort-down"></i> &nbsp; 전체 접기
 			</a>
+			(검색: 전체 펼치기 > ctrl+f)
 	    </div>
 		<div class="cart-list">
 			<table class="table">
