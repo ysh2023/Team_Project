@@ -42,7 +42,7 @@ public class MypageDibsListController {
 		String whatColumn=null;
 		String keyword=null;
 		
-		Paging pageInfo= new Paging(pageNumber,"5",totalCount,url,whatColumn,keyword,null);
+		Paging pageInfo= new Paging(pageNumber,"7",totalCount,url,whatColumn,keyword,null);
 
 		List<ProductBean> lists= ddao.getAllDibs(pageInfo,user_id);
 		
