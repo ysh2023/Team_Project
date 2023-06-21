@@ -170,7 +170,7 @@ String resourcesPath = request.getContextPath() + "/resources";
 				<div class="row justify-content-md-center">
 					<div class="col">
 						<!-- 메인 로고 -->
-						
+
 						<a class="navbar-brand" href="/ex"> <img
 							src="<%=resourcesPath%>/images/logo.png" style="height: 60px;">
 						</a>
@@ -229,7 +229,7 @@ String resourcesPath = request.getContextPath() + "/resources";
 					<div class="row">
 					<div class="col-md-8">
 					<ul class="nav me-auto justify-content-start" style="align-items: center; display: flex; justify-content: center;">
-						<li class="nav-item active" ><a href="<%=conPath%>/main.jsp"
+						<li class="nav-item active" ><a href="/ex"
 							class="nav-link " style="color:#ffffff;">Home</a></li>
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" href="shop.prd?whatColumn=no&searchName=${searchName}" id="dropdown04"
@@ -258,7 +258,7 @@ String resourcesPath = request.getContextPath() + "/resources";
 					if((MemberBean)session.getAttribute("loginInfo")!=null) {
 					    String id=((MemberBean)session.getAttribute("loginInfo")).getId();
 						if(id.equals("admin")){%>
-						<li class="nav-item"><a href="main.am" class="nav-link">관리자페이지</a></li>
+						<li class="nav-item"><a href="main.am" class="nav-link" style="color:#ffffff;">관리자페이지</a></li>
 						<%
 						}
 					}
