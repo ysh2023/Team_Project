@@ -97,9 +97,12 @@ $(document).ready(function(){
 			}else if(keyword=="우유/유제품"){
 				document.getElementById('le6').style.backgroundColor = ' #89A621';
 				document.getElementById('le6').style.color = 'yellow';
-			}else{
+			}else if(keyword=="수산물/건해산"){
 				document.getElementById('le7').style.backgroundColor = ' #89A621';
 				document.getElementById('le7').style.color = 'yellow';
+			}else{
+				document.getElementById('le8').style.backgroundColor = ' #89A621';
+				document.getElementById('le8').style.color = 'yellow';
 			}
 		}
 	
@@ -155,8 +158,8 @@ $(document).ready(function(){
     	  <li><a href="shop.prd?whatColumn=se&keyword=쌀/견과&searchName= "  id="le4">쌀/견과</a></li>
     	  <li><a href="shop.prd?whatColumn=se&keyword=정육/계란류&searchName= "  id="le5">정육/계란류</a></li>
     	  <li><a href="shop.prd?whatColumn=se&keyword=우유/유제품&searchName= "  id="le6">우유/유제품</a></li>
-    	  <li><a href="shop.prd?whatColumn=se&keyword=수산물/건해산&searchName= "  id="le6">수산물/건해산</a></li>
-    	  <li><a href="shop.prd?whatColumn=se&keyword=양념/오일&searchName= "  id="le7">양념/오일</a></li>
+    	  <li><a href="shop.prd?whatColumn=se&keyword=수산물/건해산&searchName= "  id="le7">수산물/건해산</a></li>
+    	  <li><a href="shop.prd?whatColumn=se&keyword=양념/오일&searchName= "  id="le8">양념/오일</a></li>
     	  
     	</ul>
     	<!-- 상품 검색 -->

@@ -164,6 +164,11 @@ public class AdminDao {
 		return cnt;
 	}
 
+	public List<BoardBean> getRecentBoard(){
+		List<BoardBean> list = sqlSessionTemplate.selectList(namespace+".RecentBoard");
+		return list;
+	}
+	
 	public List<BoardBean> getAllBoardAm() {
 		List<BoardBean> list = sqlSessionTemplate.selectList(namespace + ".GetAllBoardAm");
 		return list;
