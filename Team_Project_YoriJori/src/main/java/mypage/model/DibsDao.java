@@ -31,10 +31,9 @@ private String namespace ="mypage.model.Mypage";
 
 
 
-	public List<ProductBean> getAllDibs(Paging pageInfo, String user_id) {
+	public List<ProductBean> getAllDibs(String user_id) {
 		List<ProductBean> lists= new ArrayList<ProductBean>();
-		RowBounds rowBounds = new RowBounds(pageInfo.getOffset(), pageInfo.getLimit());
-		lists = sqlSessionTemplate.selectList(namespace+".GetAllDibs",user_id,rowBounds);
+		lists = sqlSessionTemplate.selectList(namespace+".GetAllDibs",user_id);
 		
 		return lists;
 	}

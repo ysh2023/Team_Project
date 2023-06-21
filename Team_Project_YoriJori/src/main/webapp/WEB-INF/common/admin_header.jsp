@@ -148,9 +148,9 @@ String resourcesPath = request.getContextPath() + "/resources";
                   		<i class="bi bi-circle"></i><span>회원 목록</span>
                		</a></li>
                		<li><a href="mbReportList.am">
-               			<i class="bi bi-circle"></i><span>멤버 신고 리스트</span>
+               			<i class="bi bi-circle"></i><span>회원 신고 내역</span>
 					</a></li>
-					 <li><a href="mbStopList.am"> <i class="bi bi-circle"></i><span>멤버 정지 리스트</span>
+					 <li><a href="mbStopList.am"> <i class="bi bi-circle"></i><span>정지 회원 목록</span>
 					</a></li>
             	</ul>
          	</li>
@@ -183,10 +183,23 @@ String resourcesPath = request.getContextPath() + "/resources";
 				</ul>
 			</li>
 			<li class="nav-item">
+				<a class="nav-link collapsed" data-bs-target="#order-nav" data-bs-toggle="collapse" href="#">
+					<i class="bi bi-cart4"></i><span>주문 관리</span><i class="bi bi-chevron-down ms-auto"></i>
+				</a>
+				<ul id="order-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+					<li><a href="orderlist.am">
+						<i class="bi bi-circle"></i><span>주문 목록</span>
+					</a></li>
+					<li><a href="ordercancel.am">
+						<i class="bi bi-circle"></i><span>환불 목록</span>
+					</a></li>
+				</ul>
+			</li>
+<!-- 			<li class="nav-item">
 		         <a class="nav-link collapsed" href="orderlist.am">
 		             <i class="bi bi-cart4"></i> <span>주문 관리</span>
 		         </a>
-       		</li>
+       		</li> -->
 			<li class="nav-heading">Pages</li>
 			<li class="nav-item"><a class="nav-link collapsed" href="/ex">
 				<i class="ri ri-game-fill"></i> <span>야금야금 페이지</span>

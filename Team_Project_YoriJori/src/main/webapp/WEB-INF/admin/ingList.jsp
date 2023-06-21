@@ -32,12 +32,11 @@
       <h1>식재료 관리</h1>
       <nav style="margin-top: 10px;">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
           <li class="breadcrumb-item">야금야금</li>
           <li class="breadcrumb-item active">식재료 리스트</li>
         </ol>
       </nav>
-    </div><br>
+    </div>
     <section class="section">
       <div class="row">
         <!-- 식재료 리스트 -->

@@ -164,6 +164,11 @@ public class AdminDao {
 		return cnt;
 	}
 
+	public List<BoardBean> getRecentBoard(){
+		List<BoardBean> list = sqlSessionTemplate.selectList(namespace+".RecentBoard");
+		return list;
+	}
+	
 	public List<BoardBean> getAllBoardAm() {
 		List<BoardBean> list = sqlSessionTemplate.selectList(namespace + ".GetAllBoardAm");
 		return list;
@@ -210,6 +215,13 @@ public class AdminDao {
 		int cnt = 0;
 		cnt = sqlSessionTemplate.update(namespace+".ApproveCancelpay",ord);
 		return cnt;
+	}
+
+	public List<OrderBean> getOrderCancelList() {
+		String paystate = "환불 요청";
+		List<OrderBean> lists= new ArrayList<OrderBean>();
+		lists = sqlSessionTemplate.selectList(namespace+".getOrderCancel",paystate); 
+		return lists;
 	}
 
 }

@@ -1,3 +1,5 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file= "../common/header.jsp" %>
@@ -205,6 +207,10 @@
 		}
 	}
 	
+	function board(){
+		document.getElementById('boardForm').submit();
+	}
+	
 </script>
 
 <!-- 냉장고 통계 -->
@@ -215,9 +221,19 @@
           <span class="subheading" style="padding-top:20px;">My refrigerator</span>
 	      <h2 class="mb-4">나의 냉장고</h2>
 		  <p style="color: black;">현재 ${loginInfo.mname}님이 보유한 <b>${totalCnt}개</b>의 식재료를 한 눈에 확인할 수 있어요.</p>
-		  <input class="btn btn-primary" type="button" value="냉장고 속 식재료가 포함된 추천 레시피 보기" onclick="recipe()">
+		  <input class="btn btn-primary" type="button" value="냉장고 속 식재료가 포함된 추천 레시피 보기" onclick="recipe()" style="background-color: #F2BC1B; color: black; ">
+		  &nbsp;
+		  <input class="btn btn-secondary" type="button" value="냉장고 속 식재료가 포함된 회원 레시피 보기" onclick="board()">
 		  <div style="display:none;">
 		  	<form id="recipeForm" action="Recommend.re">
+		  	  <c:forEach var="list" items="${allList}">
+			    <input type="text" name="ingredient" 
+			    <c:if test="${list.ingname eq '사용자 작성'}">value="${list.refdetail}"</c:if>
+			    <c:if test="${list.ingname != '사용자 작성'}">value="${list.ingname}"</c:if>>
+			    <input type="text" name="refdday" value="${list.refdday}">
+			  </c:forEach>
+			</form>
+			<form id="boardForm" action="refRecommend.board">
 		  	  <c:forEach var="list" items="${allList}">
 			    <input type="text" name="ingredient" 
 			    <c:if test="${list.ingname eq '사용자 작성'}">value="${list.refdetail}"</c:if>
@@ -350,29 +366,35 @@
 							  </c:if>
 							  </a><br>
 						  	<!-- 소비기한 디데이 계산 -->
-						  	<jsp:useBean id="javaDate" class="java.util.Date" />
-							<fmt:formatDate var="nowDate" value="${javaDate}" pattern="yyyyMMdd"/>
-							<fmt:parseDate var="refdday" value="${list.refdday}" pattern="yyyy-MM-dd"/>
-							<fmt:formatDate var="refdday" value="${refdday}" pattern="yyyyMMdd"/>
+						  	<c:set var="refdday" value="${list.refdday}"/>
+						  	<%	Date now = new Date();
+								SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+								String refdday = (String)pageContext.getAttribute("refdday");
+								Date expiry = sdf.parse(refdday);
+								
+								long result = (now.getTime() - expiry.getTime());
+								long dday = result/(24*60*60*1000);
+								pageContext.setAttribute("dday",dday);
+							%>
 							<!-- 소비기한 임박 알림 아이콘 & 디데이 표시 -->
-							<c:if test="${(refdday - nowDate) > 7}">
-								<b style="color: gray">D-${refdday - nowDate}</b>
+							<c:if test="${dday < -7}">
+								<b style="color: gray">D${dday}</b>
 							</c:if>
-							<c:if test="${3<(refdday - nowDate) && (refdday - nowDate)<=7}">
+							<c:if test="${-3> dday && dday >=-7}">
 							  <i class="icon-warning" style="color:orange;"></i>
-							  <b style="color: orange">D-${refdday - nowDate}</b>
+							  <b style="color: orange">D${dday}</b>
 							</c:if>
-							<c:if test="${0<(refdday - nowDate) && (refdday - nowDate)<=3}">
+							<c:if test="${0> dday && dday >=-3}">
 							  <i class="icon-warning" style="color:red;"></i>
-							  <b style="color: red">D-${refdday - nowDate}</b>
+							  <b style="color: red">D${dday}</b>
 							</c:if>
-							<c:if test="${(refdday - nowDate) eq 0}">
+							<c:if test="${dday eq 0}">
 								<i class="icon-warning" style="color:red;"></i>
 								<b style="color: red">D-Day</b>
 							</c:if>
-							<c:if test="${(refdday - nowDate) < 0}">
+							<c:if test="${dday > 0}">
 								<i class="icon-warning" style="color:red;"></i>
-								<b style="color: red">D+${nowDate - refdday}</b>
+								<b style="color: red">D+${dday}</b>
 							</c:if>
 						  </div>
 					    </c:forEach>
@@ -428,27 +450,35 @@
 						  	  <b>${list.ingname}</b>
 						  	</a><br>
 						  	<!-- 소비기한 디데이 계산 -->
-						  	<fmt:parseDate var="refdday" value="${list.refdday}" pattern="yyyy-MM-dd"/>
-							<fmt:formatDate var="refdday" value="${refdday}" pattern="yyyyMMdd"/>
+						  	<c:set var="refdday" value="${list.refdday}"/>
+						  	<%	Date now = new Date();
+								SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+								String refdday = (String)pageContext.getAttribute("refdday");
+								Date expiry = sdf.parse(refdday);
+								
+								long result = (now.getTime() - expiry.getTime());
+								long dday = result/(24*60*60*1000);
+								pageContext.setAttribute("dday",dday);
+							%>
 							<!-- 소비기한 임박 알림 아이콘 & 디데이 표시 -->
-							<c:if test="${(refdday - nowDate) > 7}">
-								<b style="color: gray">D-${refdday - nowDate}</b>
+							<c:if test="${dday < -7}">
+								<b style="color: gray">D${dday}</b>
 							</c:if>
-							<c:if test="${3<(refdday - nowDate) && (refdday - nowDate)<=7}">
+							<c:if test="${-3> dday && dday >=-7}">
 							  <i class="icon-warning" style="color:orange;"></i>
-							  <b style="color: orange">D-${refdday - nowDate}</b>
+							  <b style="color: orange">D${dday}</b>
 							</c:if>
-							<c:if test="${0<(refdday - nowDate) && (refdday - nowDate)<=3}">
+							<c:if test="${0> dday && dday >=-3}">
 							  <i class="icon-warning" style="color:red;"></i>
-							  <b style="color: red">D-${refdday - nowDate}</b>
+							  <b style="color: red">D${dday}</b>
 							</c:if>
-							<c:if test="${(refdday - nowDate) eq 0}">
+							<c:if test="${dday eq 0}">
 								<i class="icon-warning" style="color:red;"></i>
 								<b style="color: red">D-Day</b>
 							</c:if>
-							<c:if test="${(refdday - nowDate) < 0}">
+							<c:if test="${dday > 0}">
 								<i class="icon-warning" style="color:red;"></i>
-								<b style="color: red">D+${nowDate - refdday}</b>
+								<b style="color: red">D+${dday}</b>
 							</c:if>
 						  </div>
 					    </c:forEach>
@@ -504,27 +534,35 @@
 						  	  <b>${list.ingname}</b>
 						  	</a><br>
 						  	<!-- 소비기한 디데이 계산 -->
-							<fmt:parseDate var="refdday" value="${list.refdday}" pattern="yyyy-MM-dd"/>
-							<fmt:formatDate var="refdday" value="${refdday}" pattern="yyyyMMdd"/>
+						  	<c:set var="refdday" value="${list.refdday}"/>
+						  	<%	Date now = new Date();
+								SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+								String refdday = (String)pageContext.getAttribute("refdday");
+								Date expiry = sdf.parse(refdday);
+								
+								long result = (now.getTime() - expiry.getTime());
+								long dday = result/(24*60*60*1000);
+								pageContext.setAttribute("dday",dday);
+							%>
 							<!-- 소비기한 임박 알림 아이콘 & 디데이 표시 -->
-							<c:if test="${(refdday - nowDate) > 7}">
-								<b style="color: gray">D-${refdday - nowDate}</b>
+							<c:if test="${dday < -7}">
+								<b style="color: gray">D${dday}</b>
 							</c:if>
-							<c:if test="${3<(refdday - nowDate) && (refdday - nowDate)<=7}">
+							<c:if test="${-3> dday && dday >=-7}">
 							  <i class="icon-warning" style="color:orange;"></i>
-							  <b style="color: orange">D-${refdday - nowDate}</b>
+							  <b style="color: orange">D${dday}</b>
 							</c:if>
-							<c:if test="${0<(refdday - nowDate) && (refdday - nowDate)<=3}">
+							<c:if test="${0> dday && dday >=-3}">
 							  <i class="icon-warning" style="color:red;"></i>
-							  <b style="color: red">D-${refdday - nowDate}</b>
+							  <b style="color: red">D${dday}</b>
 							</c:if>
-							<c:if test="${(refdday - nowDate) eq 0}">
+							<c:if test="${dday eq 0}">
 								<i class="icon-warning" style="color:red;"></i>
 								<b style="color: red">D-Day</b>
 							</c:if>
-							<c:if test="${(refdday - nowDate) < 0}">
+							<c:if test="${dday > 0}">
 								<i class="icon-warning" style="color:red;"></i>
-								<b style="color: red">D+${nowDate - refdday}</b>
+								<b style="color: red">D+${dday}</b>
 							</c:if>
 						  </div>
 					    </c:forEach>
@@ -580,27 +618,35 @@
 						  	  <b>${list.ingname}</b>
 						  	</a><br>
 						  	<!-- 소비기한 디데이 계산 -->
-							<fmt:parseDate var="refdday" value="${list.refdday}" pattern="yyyy-MM-dd"/>
-							<fmt:formatDate var="refdday" value="${refdday}" pattern="yyyyMMdd"/>
+						  	<c:set var="refdday" value="${list.refdday}"/>
+						  	<%	Date now = new Date();
+								SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+								String refdday = (String)pageContext.getAttribute("refdday");
+								Date expiry = sdf.parse(refdday);
+								
+								long result = (now.getTime() - expiry.getTime());
+								long dday = result/(24*60*60*1000);
+								pageContext.setAttribute("dday",dday);
+							%>
 							<!-- 소비기한 임박 알림 아이콘 & 디데이 표시 -->
-							<c:if test="${(refdday - nowDate) > 7}">
-								<b style="color: gray">D-${refdday - nowDate}</b>
+							<c:if test="${dday < -7}">
+								<b style="color: gray">D${dday}</b>
 							</c:if>
-							<c:if test="${3<(refdday - nowDate) && (refdday - nowDate)<=7}">
+							<c:if test="${-3> dday && dday >=-7}">
 							  <i class="icon-warning" style="color:orange;"></i>
-							  <b style="color: orange">D-${refdday - nowDate}</b>
+							  <b style="color: orange">D${dday}</b>
 							</c:if>
-							<c:if test="${0<(refdday - nowDate) && (refdday - nowDate)<=3}">
+							<c:if test="${0> dday && dday >=-3}">
 							  <i class="icon-warning" style="color:red;"></i>
-							  <b style="color: red">D-${refdday - nowDate}</b>
+							  <b style="color: red">D${dday}</b>
 							</c:if>
-							<c:if test="${(refdday - nowDate) eq 0}">
+							<c:if test="${dday eq 0}">
 								<i class="icon-warning" style="color:red;"></i>
 								<b style="color: red">D-Day</b>
 							</c:if>
-							<c:if test="${(refdday - nowDate) < 0}">
+							<c:if test="${dday > 0}">
 								<i class="icon-warning" style="color:red;"></i>
-								<b style="color: red">D+${nowDate - refdday}</b>
+								<b style="color: red">D+${dday}</b>
 							</c:if>
 						  </div>
 					    </c:forEach>

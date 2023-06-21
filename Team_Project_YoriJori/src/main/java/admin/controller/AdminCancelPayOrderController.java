@@ -22,7 +22,7 @@ import orderdetail.model.OrderDetailDao;
 @Controller
 public class AdminCancelPayOrderController {
 	private final String command="/adminCancelPayOrd.am";
-	private String page = "redirect:/orderlist.am";
+	private String page = "redirect:/ordercancel.am";
 	@Autowired
 	@Qualifier("myAdminDao")
 	AdminDao adao;
@@ -37,7 +37,7 @@ public class AdminCancelPayOrderController {
 		if(result>0) {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
-			out.println("<script>alert('환불승인되었습니다.'); location.href='orderlist.am';</script>");
+			out.println("<script>alert('환불승인되었습니다.'); location.href='ordercancel.am';</script>");
 			out.flush();
 			mav.setViewName(page);
 		}

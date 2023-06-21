@@ -1,3 +1,5 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@include file="../common/header.jsp"%>
 <!DOCTYPE html>
@@ -44,16 +46,49 @@
 	<!-- 게시글 카테고리 영역 -->
 	<section class="ftco-section  ftco-no-pt ftco-no-pb">
 		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-center pt-2">
+					<h6>냉장고 식재료 검색</h6>
+				</div>
+			</div>
 			<div class="row justify-content-center" id="categorys">
 				<div class="col-md-10 mb-5 text-center">
-					<ul class="product-category">
-						<c:forEach items="${ingreList}" var="ingredient">
-							<li>
-								<input type="checkbox" value="${ingredient }">${ingredient }
-							</li>
-						</c:forEach>
+					<form action="refRecommend.board" method="post">
+						<div class="row pt-2">
+							<div class="col-md-10">
 
-					</ul>
+								<ul class="product-category">
+
+									<c:forEach items="${ arr}" var="ingredient" varStatus="status">
+										<div class="form-check form-check-inline">
+											
+											<input type="hidden" value="${refdday[status.index] }" name="refdday">
+											<input type="hidden" value="${arr[status.index] }" name="arr">
+											 <input class="form-check-input" type="checkbox" value="${ingredient }" id="flexCheckDefault" name="ingredient" checked> <label class="form-check-label" for="flexCheckDefault"> <c:set value="<%=new Date()%>" var="now" /> <fmt:parseDate pattern="yyyy-MM-dd" value="${refdday[status.index] }" var="parsedday" /> <c:set value="${now.getTime() - parsedday.getTime()}" var="result" /> <c:set value="${result/(24*60*60*1000) -1 }" var="dday" /> <c:choose>
+													
+													<c:when test="${dday==0 }">
+														<span style="color: red !important;">D-day</span>
+													</c:when>
+													<c:when test="${dday>-3 }">
+														<span style="color: red !important;">D<fmt:parseNumber value="${dday }" integerOnly="true"/></span>
+													</c:when>
+													<c:otherwise>
+														D<fmt:parseNumber value="${dday }" integerOnly="true"/>
+													</c:otherwise>
+												</c:choose> ${ingredient }
+											</label>
+											
+										</div>
+									</c:forEach>
+
+
+								</ul>
+							</div>
+							<Div class="col-md-2">
+								<input type="submit" value="검색" class="btn btn-primary py-2 px-3">
+							</Div>
+						</div>
+					</form>
 				</div>
 			</div>
 		</div>
@@ -63,14 +98,15 @@
 	<section class="ftco-section  ftco-no-pt">
 		<div class="container">
 			<div class="row">
-
-
-
+				<div class="col-md-12 text-center">
+				<c:if test="${fn:length(boardList)==0 }">
+					<h3>일치하는 레시피가 없습니다</h3>
+				</c:if>
+				</div>
 				<c:forEach items="${boardList }" var="board" varStatus="status">
 					<div class="col-md-6 col-lg-3 ftco-animate">
 						<div class="product">
-							<a href="boardDetail.board?bodNum=${board.bodNum}" class="img-prod" style="justify-content: center; align-items: center; display: flex;">
-								<img class="img-thumbnail" src="<%=resourcesPath%>/images/${board.bodImage==null ? 'noimage.png' : board.bodImage}" alt="Colorlib Template" style="height: 250px; width: 100%; object-fit: cover;">
+							<a href="boardDetail.board?bodNum=${board.bodNum}" class="img-prod" style="justify-content: center; align-items: center; display: flex;"> <img class="img-thumbnail" src="<%=resourcesPath%>/images/${board.bodImage==null ? 'noimage.png' : board.bodImage}" alt="Colorlib Template" style="height: 250px; width: 100%; object-fit: cover;">
 
 							</a>
 							<div class="text py-3 pb-4 px-3 text-center">
@@ -113,11 +149,9 @@
 
 </body>
 <%@include file="../common/footer.jsp"%>
-<a target="_blank" href="https://icons8.com/icon/2744/%EC%97%84%EC%A7%80-%EC%B2%99">추천</a>
-icon by
+<a target="_blank" href="https://icons8.com/icon/2744/%EC%97%84%EC%A7%80-%EC%B2%99">추천</a> icon by
 <a target="_blank" href="https://icons8.com">Icons8</a>
 <br>
-<a target="_blank" href="https://icons8.com/icon/10271/%EC%97%84%EC%A7%80-%EC%B2%99">엄지 척</a>
-icon by
+<a target="_blank" href="https://icons8.com/icon/10271/%EC%97%84%EC%A7%80-%EC%B2%99">엄지 척</a> icon by
 <a target="_blank" href="https://icons8.com">Icons8</a>
 </html>

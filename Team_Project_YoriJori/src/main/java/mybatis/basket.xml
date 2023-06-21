@@ -51,5 +51,11 @@
 		select * from basket
 		where bsk_num = #{bsknum}
 	</select>
+	
+	<select id="getBasketCount" resultType="int">
+		select count(*) from basket
+		where bsk_id=#{id}
+
+	</select>
 
 </mapper>

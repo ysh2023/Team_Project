@@ -34,6 +34,7 @@ public class BoardMainController {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("whatColumn", whatColumn);
 		map.put("keyword", "%" + keyword + "%");
+		map.put("category", keyword);
 		String id = "";
 		if (session.getAttribute("loginInfo") != null) {
 			id = ((MemberBean) session.getAttribute("loginInfo")).getId();
@@ -50,8 +51,11 @@ public class BoardMainController {
 		String arr[] = { "All", "밥", "국", "찌개", "반찬", "라면", "기타" };
 
 //		model.addAttribute("categorys", bdao.getAllCategory());
+		List<String> ingredientCategory = bdao.getIngredientCategory();
+		ingredientCategory.remove(0);
+		ingredientCategory.add("그외 식재료");
 		model.addAttribute("foodCategorys", arr);
-		model.addAttribute("ingredientCategorys", bdao.getIngredientCategory());
+		model.addAttribute("ingredientCategorys", ingredientCategory);
 		model.addAttribute("selectCategory", keyword == null ? "All" : keyword);
 		model.addAttribute("topBoards", bdao.getTopBoard());
 		model.addAttribute("pageInfo", pageInfo);
