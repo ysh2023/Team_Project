@@ -1,7 +1,9 @@
 package recipe.controller;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 
@@ -35,11 +37,15 @@ public class RecipeBookMarkDeleteController {
 		if(cnt>0) {
 			List<Integer> BookmarkList = rdao.getBookmarkById(mb.getId());
 			List<RecipeBean> BookmarkRecipeList = new ArrayList<RecipeBean>();
+			List<String> foodcategory = new ArrayList<String>();
 			for(int i : BookmarkList) {
 				RecipeBean rbean = rdao.getRecipe(i);
 				BookmarkRecipeList.add(rbean);
+				foodcategory.add(rbean.getRecipecategory());
 			}
-			
+			Set<String> distintList = new HashSet<String>(foodcategory);
+			List<String> category = new ArrayList<String>(distintList);
+			session.setAttribute("category", category);
 			model.addAttribute("BookmarkRecipeList", BookmarkRecipeList);
 			model.addAttribute("member", mb);
 			System.out.println("삭제성공");

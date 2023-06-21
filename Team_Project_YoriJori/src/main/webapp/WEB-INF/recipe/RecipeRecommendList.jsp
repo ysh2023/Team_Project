@@ -24,36 +24,34 @@
     	<div class="row justify-content-center">
     		<div class="col-md-12 mb-5 text-center">
 		    	<a class="navbar-brand" style="margin-bottom: 20px">식재료</a>
-			    	<form action="list.re" method="post">
+			    	<form action="Recommend.re" method="post">
 			    	<div class="row">
-			    	<div class="col-md-4 ">
-			    		<input type="submit" class="btn btn-outline-primary" value="레시피 검색">
-			    		</div>
+			    	
 			    		<input type="hidden" name="whatColumn" value="food_name">
 			    		<div class="col-md-8 justify-content-start">
-			    		<% String[] ingreList = (String[])request.getAttribute("ingreList");
-			    		   String[] refdday = (String[])request.getAttribute("refdday");
-			    		for(int i=0; i<ingreList.length; i++){ %>
-				    		<div class="form-check form-check-inline">
-							<input class="form-check-input" type="checkbox" value="<%=ingreList[i]%>" id="flexCheckDefault" name="keyword">
+			    		<c:forEach var="ingredient" items="${ingreList}" varStatus="status">
+			    			<div class="form-check form-check-inline">
+			    			<input type="hidden" value="${ingredient}" name="ingreList">
+			    			<input type="hidden" value="${day[status.index]}" name="day">
+							<input class="form-check-input" type="checkbox" value="${ingredient}" id="flexCheckDefault" name="keyword">
 							<label class="form-check-label" for="flexCheckDefault">
-							 <% Date now = new Date();
-								SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-								Date parsedday = sdf.parse(refdday[i]);
-								long result = (now.getTime() - parsedday.getTime());
-								long dday = result / (24*60*60*1000) -1;
-								
-								if(dday==0){
-							 %>
-							 <span style="color: red !important;">D-day</span>
-							 <%}else if(dday>-3){%>
-								 <span style="color: red !important;">D<%=dday%></span>
-							 <%}else{ %>D<%=dday%><%} %>
-							 <%=ingreList[i]%>
+							<c:choose>
+								<c:when test="${day[status.index] == 0}">
+									<span style="color: red !important;">D-day</span>
+								</c:when>
+								<c:when test="${day[status.index] >-3}">
+									<span style="color: red !important;">D${day[status.index]}</span>
+								</c:when>
+								<c:otherwise>
+									D${day[status.index]}${ingredient}
+								</c:otherwise>
+							</c:choose>
 							</label>
 							</div>
-						  
-			    		<%} %>
+			    		</c:forEach>
+			    		</div>
+			    		<div class="col-md-4 ">
+			    		<input type="submit" class="btn btn-outline-primary" value="레시피 검색">
 			    		</div>
 			    		</div>
 			    		<div>

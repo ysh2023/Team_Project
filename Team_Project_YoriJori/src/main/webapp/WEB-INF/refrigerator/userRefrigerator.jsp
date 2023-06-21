@@ -198,7 +198,11 @@
 	
 	/* 냉장고 식재료 추천 레시피 */
 	function recipe(){
-		document.getElementById('recipeForm').submit();
+		if(${totalCnt == 0}){
+			alert('식재료를 하나라도 등록해야 합니다.');
+		}else{
+			document.getElementById('recipeForm').submit();
+		}
 	}
 	
 </script>

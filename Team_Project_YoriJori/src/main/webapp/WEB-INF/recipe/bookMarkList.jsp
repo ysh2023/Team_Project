@@ -16,7 +16,7 @@ function deleteClick(recipenum){
 			$('.table').html($.trim(data));
 		},
 		error:function( request, status, error){
-			alert('댓글달기실패');
+			alert('찜 삭제 실패');
 			alert("status : " + request.status + ", message : " + request.responseText + ", error : " + error);
 		}
 });

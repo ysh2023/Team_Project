@@ -227,7 +227,6 @@ function updateReview(reviewnum,recipenum){
 			<div class="col-lg-12 ftco-animate">
 				<div class="pt-5 mt-5">
 					<h3 class="mb-5">등록된 리뷰 갯수 : ${reviewList.size()}</h3>
-
 					<ul class="comment-list">
 						<c:forEach var="review" items="${reviewList}" varStatus="status">
 							<li class="comment">

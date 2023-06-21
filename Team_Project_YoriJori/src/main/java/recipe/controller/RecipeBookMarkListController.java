@@ -65,7 +65,17 @@ public class RecipeBookMarkListController {
 			map.put("keyword", keyword);
 			map.put("whatColumn", "recipe_category");
 		}
+		
 		List<RecipeBean> BookmarkRecipeList = rdao.getBookMarkRecipe(map);
+		List<Integer> BookmarkList = rdao.getBookmarkById(mb.getId());
+		List<String> foodcategory = new ArrayList<String>();
+		for(int i : BookmarkList) {
+			RecipeBean rbean = rdao.getRecipe(i);
+			foodcategory.add(rbean.getRecipecategory());
+		}
+		Set<String> distintList = new HashSet<String>(foodcategory);
+		List<String> category = new ArrayList<String>(distintList);
+		session.setAttribute("category", category);
 		model.addAttribute("BookmarkRecipeList", BookmarkRecipeList);
 		
 		return getPage2;

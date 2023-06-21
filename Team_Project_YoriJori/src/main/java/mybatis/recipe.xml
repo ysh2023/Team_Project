@@ -120,18 +120,15 @@
   	</select>
   	<!-- 냉장고 식재료로 추천레시피 갯수 -->
   	<select id="GetRecipeTotalCountByIngre" resultType="int">
-  		select count(cnt) from(select count(*) as cnt 
-  		from recipe join recipe_food on recipe.recipe_num = recipe_food.recipe_num 
-  		where REGEXP_LIKE(recipe_food.food_name,#{str}) 
-  		group by  recipe.recipe_num having count(*)>#{count})
+  		select distinct count(*) as cnt from recipe join recipe_food on recipe.recipe_num = recipe_food.recipe_num 
+		where REGEXP_LIKE(recipe_food.food_name,#{str})
   	</select>
   	
   	<!-- 냉장고 식재료로 추천레시피 검색 -->
-  	<select id="GetRecipeNumByIngredient" resultType="recipe.model.RecipeRecommendBean">
-	  	select recipe.recipe_num,recipe.recipe_name,recipe.recipe_category,recipe.servings,recipe.cook_image,recipe.readcount<if test="id!=''">, sel.rec</if>,count(*) as cnt 
-		from recipe <if test="id!=''"> full outer join (select count(*)as rec , recipe_num from bookmark where id='moon' group by recipe_num) sel on sel.recipe_num = recipe.recipe_num</if>
+  	<select id="GetRecipeNumByIngredient" resultType="recipe.model.RecipeBean">
+	  	select distinct recipe.recipe_num,recipe.recipe_name,recipe.recipe_category,recipe.servings,recipe.cook_image,recipe.readcount <if test="id!=''">, sel.rec</if>
+		from recipe <if test="id!=''"> full outer join (select count(*)as rec , recipe_num from bookmark where id=#{id} group by recipe_num) sel on sel.recipe_num = recipe.recipe_num</if>
 		join recipe_food on recipe.recipe_num = recipe_food.recipe_num where REGEXP_LIKE(recipe_food.food_name,#{str}) 
-		group by  recipe.recipe_num,recipe.recipe_name,recipe.recipe_category,recipe.servings,recipe.cook_image,recipe.readcount,sel.rec having count(*)>#{count}
 		order by recipe_num
   	</select>
   	

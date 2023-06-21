@@ -17,6 +17,7 @@ public class RecipeReviewDeleteController {
 	
 	@RequestMapping(value=command)
 	public String doAction(@RequestParam("reviewnum") int reviewnum,@RequestParam("recipenum") String recipenum) {
+		//System.out.println("리뷰 삭제에서 recipenum"+recipenum);
 		rdao.deleteReview(reviewnum);
 		return "redirect:/detail.re?recipenum="+recipenum;	
 	}
