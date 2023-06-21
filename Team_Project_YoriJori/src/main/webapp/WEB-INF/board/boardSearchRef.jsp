@@ -59,7 +59,7 @@
 								SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 								Date parsedday = sdf.parse(refdday[i]);
 								long result = (now.getTime() - parsedday.getTime());
-								long dday = result / (24*60*60*1000) -1;
+								long dday = result / (24*60*60*1000);
 								
 								if(dday==0){
 							 %>
