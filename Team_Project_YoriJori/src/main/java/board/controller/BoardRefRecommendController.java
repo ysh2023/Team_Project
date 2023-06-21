@@ -38,6 +38,11 @@ public class BoardRefRecommendController {
 		}
 		if (ingredient != null) {
 
+			String[] refdday = request.getParameterValues("refdday");
+			if(refdday != null) {
+				model.addAttribute("refdday", refdday);
+			}
+			
 			String[] ingreList = ingredient.split(",");
 			for (String a : ingreList) {
 				System.out.println(a);

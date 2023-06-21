@@ -35,7 +35,7 @@
 			    		   String[] refdday = (String[])request.getAttribute("refdday");
 			    		for(int i=0; i<ingreList.length; i++){ %>
 				    		<div class="form-check form-check-inline">
-							<input class="form-check-input" type="checkbox" value="<%=ingreList[i]%>" id="flexCheckDefault" name="keyword">
+							<input class="form-check-input" type="checkbox" value="<%=ingreList[i]%>" id="flexCheckDefault" name="keyword" checked>
 							<label class="form-check-label" for="flexCheckDefault">
 							 <% Date now = new Date();
 								SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
