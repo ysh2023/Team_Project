@@ -13,7 +13,11 @@ String conPath = request.getContextPath();
 <%
 String resourcesPath = request.getContextPath() + "/resources";
 %>
-
+<style>
+	#main-image{
+		height: 650px;
+	}
+</style>
 <!-- header.jsp -->
 <!DOCTYPE html>
 <html>
