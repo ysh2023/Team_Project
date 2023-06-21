@@ -1,42 +1,34 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 
-<%@include file= "./../common/pg_header.jsp" %>
+<%@include file="./../common/pg_header.jsp"%>
+<html>
+<body>
+	<main id="main" class="main">
+		<div class="pagetitle">
+			<h1>주문 목록</h1>
 
+		</div>
+		<!-- End Page Title -->
 
-<style>
-#table{
-
-margin-left:-200px;
-}
-
-#ta{
-height: 1000px;
-}
-
-
-
-
-</style>
-
-
-<main id="main" class="main" >
-<div id="ta">
-
-	    			<table class="table" id="table">
-						    <thead >
-						      <tr >
-						          <th scope="col">주문번호</th>
-							      <th scope="col">상품명</th>
-							      <th scope="col">주문자 이름</th>
-							      <th scope="col">결제 금액</th>
-							      <th scope="col">주문 날짜</th>
-							      <th scope="col">거래 상태</th>
-						   
-						      </tr>
-						    </thead>
-						    <tbody>
-						    <c:if test="${empty slist}">
+		<section class="section">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="card">
+						<div class="card-body">
+							<table class="table datatable">
+								<thead>
+									<tr>
+ 										  <th scope="col">주문번호</th>
+									      <th scope="col">상품명</th>
+									      <th scope="col">주문자 이름</th>
+									      <th scope="col">결제 금액</th>
+									      <th scope="col">주문 날짜</th>
+									      <th scope="col">거래 상태</th>									
+									</tr>
+								</thead>
+								<tbody>
+									 <c:if test="${empty slist}">
 						    	 <tr class="text-center">
 						    	 	<td colspan="6">
 						    	 		주문 목록이 없습니다.
@@ -64,29 +56,24 @@ height: 1000px;
 								      </td>
 						        
 						      </tr>
-							</c:forEach>
-						    </c:if>
-						    </tbody>
-						  </table>
-						  
-						  
-				    		<div class="row mt-5">
-          <div class="col text-center">
-            <div class="block-27" style="margin-left: -300px;">
-            <ul>
-      		 ${pageInfo.pagingHtml}
-      		 </ul>
-            </div>
-          </div>
-        </div>
-     
-   </div> 
-</main>
-  
-<div style="margin-top: 100px;">
-<%@include file= "./../common/footer.jsp" %>
-</div> 
+								</c:forEach>
+						    	</c:if>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
 
 
-    
+	</main>
+</body>
+
+<script src="<%=request.getContextPath()%>/resources/vendor/simple-datatables/simple-datatables.js"></script>
+<script src="<%=request.getContextPath()%>/resources/vendor/tinymce/tinymce.min.js"></script>
+
+<!-- Template Main JS File -->
+<script src="<%=request.getContextPath()%>/resources/js/main_am.js"></script>
+</html>
     

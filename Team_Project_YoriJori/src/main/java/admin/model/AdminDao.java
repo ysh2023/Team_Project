@@ -212,4 +212,11 @@ public class AdminDao {
 		return cnt;
 	}
 
+	public List<OrderBean> getOrderCancelList() {
+		String paystate = "환불 요청";
+		List<OrderBean> lists= new ArrayList<OrderBean>();
+		lists = sqlSessionTemplate.selectList(namespace+".getOrderCancel",paystate); 
+		return lists;
+	}
+
 }

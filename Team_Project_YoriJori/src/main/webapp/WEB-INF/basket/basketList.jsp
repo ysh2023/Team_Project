@@ -70,40 +70,6 @@
     			</div>
     		</div>
      		<div class="row justify-content-end">
-    			<div class="col-lg-4 mt-5 cart-wrap ftco-animate">
-    				<div class="cart-total mb-3">
-    					<h3>Coupon Code</h3>
-    					<p>Enter your coupon code if you have one</p>
-  						<form action="#" class="info">
-	              <div class="form-group">
-	              	<label for="">Coupon code</label>
-	                <input type="text" class="form-control text-left px-3" placeholder="">
-	              </div>
-	            </form>
-    				</div>
-    				<p><a href="checkout.html" class="btn btn-primary py-3 px-4">Apply Coupon</a></p>
-    			</div>
-    			<div class="col-lg-4 mt-5 cart-wrap ftco-animate">
-    				<div class="cart-total mb-3">
-    					<h3>Estimate shipping and tax</h3>
-    					<p>Enter your destination to get a shipping estimate</p>
-  						<form action="#" class="info">
-	              <div class="form-group">
-	              	<label for="">Country</label>
-	                <input type="text" class="form-control text-left px-3" placeholder="">
-	              </div>
-	              <div class="form-group">
-	              	<label for="country">State/Province</label>
-	                <input type="text" class="form-control text-left px-3" placeholder="">
-	              </div>
-	              <div class="form-group">
-	              	<label for="country">Zip/Postal Code</label>
-	                <input type="text" class="form-control text-left px-3" placeholder="">
-	              </div>
-	            </form>
-    				</div>
-    				<p><a href="checkout.html" class="btn btn-primary py-3 px-4">Estimate</a></p>
-    			</div>
     			<div class="col-lg-4 mt-5 cart-wrap ftco-animate" style="float: right;">
     				<div class="cart-total mb-3">
     					<h3>장바구니 결제금액</h3>
@@ -113,7 +79,7 @@
     					</p>
     					<p class="d-flex">
     						<span>배송비</span>
-    						<span>무료</span>
+    						<span><fmt:formatNumber type="number" maxFractionDigits="3" value="${Baesong }" />원</span>
     					</p>
     					<p class="d-flex">
     						<span>할인가격</span>
@@ -122,10 +88,10 @@
     					<hr>
     					<p class="d-flex total-price">
     						<span>결제 금액</span>
-    						<span><fmt:formatNumber type="number" maxFractionDigits="3" value="${totalAmount}" />원</span>
+    						<span><fmt:formatNumber type="number" maxFractionDigits="3" value="${totalAmount+Baesong}" />원</span>
     					</p>
     				</div>
-    				<p><a href="orderpay.ord?totalAmount=${totalAmount}" class="btn btn-primary py-3 px-4">주문하기</a></p>
+    				<p><a href="orderpay.ord?totalAmount=${totalAmount}&Baesong=${Baesong}" class="btn btn-primary py-3 px-4">주문하기</a></p>
     			</div>
     		</div>
 			</div>

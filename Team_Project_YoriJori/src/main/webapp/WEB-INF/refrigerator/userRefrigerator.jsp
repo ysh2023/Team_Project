@@ -201,6 +201,10 @@
 		document.getElementById('recipeForm').submit();
 	}
 	
+	function board(){
+		document.getElementById('boardForm').submit();
+	}
+	
 </script>
 
 <!-- 냉장고 통계 -->
@@ -212,8 +216,17 @@
 	      <h2 class="mb-4">나의 냉장고</h2>
 		  <p style="color: black;">현재 ${loginInfo.mname}님이 보유한 <b>${totalCnt}개</b>의 식재료를 한 눈에 확인할 수 있어요.</p>
 		  <input class="btn btn-primary" type="button" value="냉장고 속 식재료가 포함된 추천 레시피 보기" onclick="recipe()">
+		  <input class="btn btn-secondary" type="button" value="냉장고 속 식재료가 포함된 회원 레시피 보기" onclick="board()">
 		  <div style="display:none;">
 		  	<form id="recipeForm" action="Recommend.re">
+		  	  <c:forEach var="list" items="${allList}">
+			    <input type="text" name="ingredient" 
+			    <c:if test="${list.ingname eq '사용자 작성'}">value="${list.refdetail}"</c:if>
+			    <c:if test="${list.ingname != '사용자 작성'}">value="${list.ingname}"</c:if>>
+			    <input type="text" name="refdday" value="${list.refdday}">
+			  </c:forEach>
+			</form>
+			<form id="boardForm" action="refRecommend.board">
 		  	  <c:forEach var="list" items="${allList}">
 			    <input type="text" name="ingredient" 
 			    <c:if test="${list.ingname eq '사용자 작성'}">value="${list.refdetail}"</c:if>

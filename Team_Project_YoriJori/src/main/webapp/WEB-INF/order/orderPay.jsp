@@ -82,7 +82,7 @@
 		    					</p>
 		    					<p class="d-flex">
 		    						<span>배송비</span>
-		    						<span>무료</span>
+		    						<span><fmt:formatNumber type="number" maxFractionDigits="3" value="${Baesong }" />원</span>
 		    					</p>
 		    					<p class="d-flex">
 		    						<span>할인가격</span>
@@ -91,7 +91,7 @@
 		    					<hr>
 		    					<p class="d-flex total-price">
 		    						<span>Total</span>
-		    						<span><fmt:formatNumber type="number" maxFractionDigits="3" value="${totalAmount}" />원</span>
+		    						<span><fmt:formatNumber type="number" maxFractionDigits="3" value="${totalAmount+Baesong}" />원</span>
 		    					</p>
 								</div>
 	          	</div>
