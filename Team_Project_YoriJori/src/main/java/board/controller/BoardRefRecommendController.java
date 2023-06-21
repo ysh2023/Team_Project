@@ -30,7 +30,8 @@ public class BoardRefRecommendController {
 	public String doAction(Model model, @RequestParam(value = "whatColumn", required = false) String whatColumn,
 			@RequestParam(value = "keyword", required = false) String keyword,
 			@RequestParam(value = "pageNumber", required = false) String pageNumber, HttpServletRequest request,
-			HttpSession session, String ingredient, HttpServletResponse response) {
+			HttpSession session, String ingredient, String[] arr, HttpServletResponse response) {
+		response.setContentType("text/html; charset=utf-8");
 		Map<String, String> map = new HashMap<String, String>();
 		String id = "";
 		if (session.getAttribute("loginInfo") != null) {
@@ -44,6 +45,9 @@ public class BoardRefRecommendController {
 			}
 			
 			String[] ingreList = ingredient.split(",");
+			if (arr == null) {
+				arr = ingreList;
+			}
 			for (String a : ingreList) {
 				System.out.println(a);
 			}
@@ -64,7 +68,7 @@ public class BoardRefRecommendController {
 					str += ingreList[i] + "|";
 				}
 			}
-			System.out.println(str);
+
 			map.put("str", str);
 			map.put("count", count);
 			map.put("id", id);
@@ -74,10 +78,11 @@ public class BoardRefRecommendController {
 			model.addAttribute("boardList", bdao.getRefRecommendBoard(map, pageInfo));
 			model.addAttribute("ingreList", ingreList);
 			model.addAttribute("pageInfo", pageInfo);
+			model.addAttribute("arr", arr);
 			return page;
 		} else {
 			try {
-				response.getWriter().append("<script>alert('식재료를 하나이상 선택해주세요');location.back();</script>").flush();
+				response.getWriter().append("<script>alert('식재료를 하나이상 선택해주세요');history.back();</script>").flush();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
