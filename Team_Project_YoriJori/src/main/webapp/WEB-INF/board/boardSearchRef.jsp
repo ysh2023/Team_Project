@@ -44,16 +44,30 @@
 	<!-- 게시글 카테고리 영역 -->
 	<section class="ftco-section  ftco-no-pt ftco-no-pb">
 		<div class="container">
+			<div class="row justify-content-center pt-3">
+				<div class="col-md-12 text-center">
+					<h6>냉장고 식재료 검색</h6>
+				</div>
+			</div>
 			<div class="row justify-content-center" id="categorys">
-				<div class="col-md-10 mb-5 text-center">
-					<ul class="product-category">
-						<c:forEach items="${ingreList}" var="ingredient">
-							<li>
-								<input type="checkbox" value="${ingredient }">${ingredient }
-							</li>
-						</c:forEach>
 
-					</ul>
+				<div class="col-md-10 mb-5 text-center">
+					<form action="refRecommend.board" method="post">
+						<div class="row pt-3">
+							<div class="col-md-10">
+								<ul class="product-category ">
+									<c:forEach items="${arr}" var="ingredient" varStatus="status">
+										<input type="hidden" value="${ingredient }" name="arr">
+										<li><input type="checkbox" value="${ingredient }" name="ingredient" id="ingre${status.index }"><label style="margin-left: 5px; margin-right: 15px;" for="ingre${status.index }">${ingredient }</label></li>
+									</c:forEach>
+
+								</ul>
+							</div>
+							<Div class="col-md-2">
+								<input type="submit" value="검색" class="btn btn-primary py-2 px-3">
+							</Div>
+						</div>
+					</form>
 				</div>
 			</div>
 		</div>
@@ -65,12 +79,15 @@
 			<div class="row">
 
 
-
+				<c:if test="${fn:length(boardList )==0 }">
+					<div class="col-md-12 text-center">
+						<h3>일치하는 검색 결과가 없습니다</h3>
+					</div>
+				</c:if>
 				<c:forEach items="${boardList }" var="board" varStatus="status">
 					<div class="col-md-6 col-lg-3 ftco-animate">
 						<div class="product">
-							<a href="boardDetail.board?bodNum=${board.bodNum}" class="img-prod" style="justify-content: center; align-items: center; display: flex;">
-								<img class="img-thumbnail" src="<%=resourcesPath%>/images/${board.bodImage==null ? 'noimage.png' : board.bodImage}" alt="Colorlib Template" style="height: 250px; width: 100%; object-fit: cover;">
+							<a href="boardDetail.board?bodNum=${board.bodNum}" class="img-prod" style="justify-content: center; align-items: center; display: flex;"> <img class="img-thumbnail" src="<%=resourcesPath%>/images/${board.bodImage==null ? 'noimage.png' : board.bodImage}" alt="Colorlib Template" style="height: 250px; width: 100%; object-fit: cover;">
 
 							</a>
 							<div class="text py-3 pb-4 px-3 text-center">
@@ -113,11 +130,9 @@
 
 </body>
 <%@include file="../common/footer.jsp"%>
-<a target="_blank" href="https://icons8.com/icon/2744/%EC%97%84%EC%A7%80-%EC%B2%99">추천</a>
-icon by
+<a target="_blank" href="https://icons8.com/icon/2744/%EC%97%84%EC%A7%80-%EC%B2%99">추천</a> icon by
 <a target="_blank" href="https://icons8.com">Icons8</a>
 <br>
-<a target="_blank" href="https://icons8.com/icon/10271/%EC%97%84%EC%A7%80-%EC%B2%99">엄지 척</a>
-icon by
+<a target="_blank" href="https://icons8.com/icon/10271/%EC%97%84%EC%A7%80-%EC%B2%99">엄지 척</a> icon by
 <a target="_blank" href="https://icons8.com">Icons8</a>
 </html>

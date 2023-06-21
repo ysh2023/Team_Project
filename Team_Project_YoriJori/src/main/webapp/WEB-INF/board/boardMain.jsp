@@ -45,11 +45,11 @@
 		<a class="btn btn-primary" href="write.board" class="active">게시글 작성</a>
 	</div>
 	<div class="container pt-2" align="right">
-<!-- 	<form action="refRecommend.board" method="post">
+	<form action="refRecommend.board" method="post">
 		<input name="ingredient"  type="text">
 		<input name="ingredient"  type="text">
 		<input  type="submit" value="냉장고 검색">
-	</form> -->
+	</form> 
 		
 	</div>
 
@@ -147,7 +147,7 @@
 					<ul class="product-category">
 						<c:forEach items="${ingredientCategorys}" var="category">
 							<li>
-								<a href="main.board?whatColumn=ingredientCategory&keyword=${category }" ${selectCategory == category ? 'class="active"':"" }>${category }</a>
+								<a href="main.board?whatColumn=ingredientCategory&keyword=${category =='그외 식재료' ? 'other' : category }" ${selectCategory == category ? 'class="active"':"" }>${category }</a>
 							</li>
 						</c:forEach>
 
