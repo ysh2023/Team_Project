@@ -19,14 +19,11 @@
                 <thead>
                   <tr>
                     <th scope="col">주문번호</th>
+                    <th scope="col">상품이름</th>
                     <th scope="col">결제금액</th>
-                    <th scope="col">이메일</th>
-                    <th scope="col">이름</th>
-                    <th scope="col">주소</th>
-                    <th scope="col">우편번호</th>
-                    <th scope="col">번호</th>
                     <th scope="col">구매 날짜</th>
                     <th scope="col">아이디</th>
+                    <th scope="col">거래 상태</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -34,14 +31,14 @@
                 <c:forEach var="ord" items="${lists}">
                  <tr>
                     <th scope="row"><a href="orderdetailList.am?ordnum=${ord.ordnum}">${ord.ordnum}</a></th>
+                    <td>${ord.ordpdname}</td>
                     <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${ord.ordtotalpay}" />원</td>
-                    <td>${ord.ordemail}</td>
-                    <td>${ord.ordname}</td>
-                    <td>${ord.ordaddr}</td>
-                    <td>${ord.ordzipcode}</td>
-                    <td>${ord.ordtel}</td>
                     <td>${ord.orddate}</td>
                     <td>${ord.ordmemid}</td>
+                    <td>
+                    <input type="button" onclick="location.href='adminCancelPayOrd.am?ordnum=${ord.ordnum}'" value="환불 승인">
+	                <%-- <a href="adminCancelPayOrd.am?ordnum=${ord.ordnum}">환불 승인</a> --%>
+                    </td>
                   </tr>
                 </c:forEach>
          
