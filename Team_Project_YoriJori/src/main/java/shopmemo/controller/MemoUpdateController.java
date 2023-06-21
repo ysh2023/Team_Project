@@ -47,15 +47,20 @@ public class MemoUpdateController {
 				Map<String,Integer> map = new HashMap<String,Integer>();
 				map.put("memonum", memobean.getMemonum());
 				
-				for(int i=0; i<memonum_arr.length; i++) {
-					//System.out.println("checked memonum: "+memonum_arr[i]);
-					if(memobean.getMemonum() == memonum_arr[i]) {
-						flag = true;
+				if(memonum_arr != null) {
+					for(int i=0; i<memonum_arr.length; i++) {
+						//System.out.println("checked memonum: "+memonum_arr[i]);
+						if(memobean.getMemonum() == memonum_arr[i]) {
+							flag = true;
+						}
 					}
-				}
-				
-				if(flag == true) {
-					map.put("memoflag", 1);
+					
+					if(flag == true) {
+						map.put("memoflag", 1);
+					}else {
+						map.put("memoflag", 0);
+					}
+					
 				}else {
 					map.put("memoflag", 0);
 				}
