@@ -4,7 +4,7 @@
 <c:forEach items="${ commentsList}" var="comment" varStatus="status">
 	<li class="comment" style="margin-left: ${comment.refLevel * 50}px;">
 		<div class="vcard bio">
-			<img src="<%=request.getContextPath()%>/resources/images/person_1.jpg" alt="Image placeholder">
+			<img src="<%=request.getContextPath()%>/resources/images/user_img.jpg" alt="Image placeholder">
 		</div>
 		<div class="comment-body">
 			<h3>${comment.id }</h3>

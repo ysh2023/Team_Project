@@ -466,7 +466,7 @@
 							<c:forEach items="${ commentsList}" var="comment" varStatus="status">
 								<li class="comment" style="margin-left: ${comment.refLevel * 80}px;">
 									<div class="vcard bio">
-										<img src="<%=resourcesPath%>/images/person_1.jpg" alt="Image placeholder">
+										<img src="<%=resourcesPath%>/images/user_img.jpg" alt="Image placeholder">
 									</div>
 									<div class="comment-body">
 										<h3>${comment.id }</h3>
