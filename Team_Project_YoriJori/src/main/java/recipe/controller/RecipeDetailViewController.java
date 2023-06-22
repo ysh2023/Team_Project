@@ -62,6 +62,7 @@ public class RecipeDetailViewController {
 		model.addAttribute("foodList", foodList);
 		model.addAttribute("reviewList", reviewList);
 		model.addAttribute("SelectedRecipeCount", SelectedRecipeCount);
+		session.setAttribute("destination", "redirect:/detail.re?recipenum="+recipenum);
 		return getPage; 
 	}                    
 }
