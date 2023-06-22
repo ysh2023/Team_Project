@@ -186,7 +186,7 @@
                 <c:forEach var="board" items="${boardlist}">
 	                <div class="post-item clearfix">
 	                  <img src="<%=resourcesPath%>/images/${board.bodImage != '' ? board.bodImage : 'noimage.png' }" width="60" height="60">
-	                  <h4><a href="#">${board.title}</a></h4>
+	                  <h4><a href="boardDetail.board?bodNum=${board.bodNum}">${board.title}</a></h4>
 	                  <p>${board.tags}</p>
 	                </div>
 				</c:forEach>
@@ -213,7 +213,7 @@
                       <c:forEach var="sell" items="${topseller}">
                       <tr>
                         <th scope="row">${sell.ranknum}위</th>
-                        <td><a href="#" class="text-primary fw-bold">${sell.ordpdname}</a></td>
+                        <td><a href="prdDetail.prd?pdname=${sell.ordpdname}" class="text-primary fw-bold">${sell.ordpdname}</a></td>
                         <td class="fw-bold">${sell.sellnum}</td>
                       </tr>
                       </c:forEach>

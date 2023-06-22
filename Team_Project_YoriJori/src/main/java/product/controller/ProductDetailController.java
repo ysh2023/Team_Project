@@ -21,12 +21,21 @@ public class ProductDetailController {
 	ProductDao pdao;
 	
 	@RequestMapping(value = command, method = RequestMethod.GET)
-	public String doAction(@RequestParam("pdnum") int pdnum,Model model) {
+	public String doAction(@RequestParam(value="pdnum",required=false) String pdnum,
+			@RequestParam(value="pdname",required=false) String pdname, Model model) {
 		
-		ProductBean product = pdao.getByNum(pdnum);
-		int pdstock = product.getPdstock();
-		model.addAttribute("product",product);
-		model.addAttribute("pdstock",pdstock);
+		if(pdname != null) {
+			ProductBean product = pdao.getByName(pdname);
+			int pdstock = product.getPdstock();
+			model.addAttribute("product",product);
+			model.addAttribute("pdstock",pdstock);
+		}else {
+			ProductBean product = pdao.getByNum(Integer.parseInt(pdnum));
+			int pdstock = product.getPdstock();
+			model.addAttribute("product",product);
+			model.addAttribute("pdstock",pdstock);
+		}
+		
 
 		return getPage;
 	}

@@ -20,6 +20,9 @@ select count(*) from (select * from product
 </select>
 <select id="GetByNum" resultType="product.model.ProductBean"> select * from product where pd_num=#{pdnum} </select>
 	
+<select id="GetByName" resultType="product.model.ProductBean">
+	select * from product where pd_name=#{pdname}
+</select>
 
 	<update id="UpdateStock">
 		update product

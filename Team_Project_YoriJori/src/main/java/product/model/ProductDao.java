@@ -72,6 +72,13 @@ private String namespace = "product.model.Product";
 	}
 
 
+	public ProductBean getByName(String pdname) {
+		ProductBean pd= sqlSessionTemplate.selectOne(namespace+".GetByName",pdname);
+		
+		return pd;
+	}
+
+
 
 
 }
