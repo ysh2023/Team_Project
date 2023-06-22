@@ -20,7 +20,9 @@
 												<span class="reply" id="deleteComment${status.index+1 }" onclick="deleteComment(${comment.comNum})" style="cursor: pointer; margin-left: 5px;">삭제</span>
 												<span class="reply" id="updateComment${status.index+1 }" onclick="handleUpdateComment(${status.index+1})" style="cursor: pointer; margin-left: 5px;">수정</span>
 											</c:if>
-											<span class="reply btn-primary" onclick="commentReport(${comment.comNum })" style="cursor: pointer; margin-left: 5px;">신고하기</span>
+											<c:if test="${loginInfo.id != comment.id }">
+												<span class="reply btn-primary" onclick="commentReport(${comment.comNum })" style="cursor: pointer; margin-left: 5px;">신고하기</span>
+											</c:if>
 			</p>
 		</div>
 	</li>

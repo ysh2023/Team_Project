@@ -11,7 +11,8 @@
 <script type="text/javascript">
 	function addComments(comNum) {
 		if (`${loginInfo.id}` == '') {
-			if (confirm('로그인 필요')) {
+			if (confirm('로그인 후 이용가능합니다\n로그인 하시겠습니까?')) {
+				<%session.setAttribute("destination", "redirect:/boardDetail.board?bodNum="+request.getParameter("bodNum"));%>
 				location.href = 'login.mb';
 			} 
 		}else{
@@ -179,6 +180,7 @@
 	function loingCheck(){
 		if (`${loginInfo.id}` == '') {
 			if (confirm('로그인 후 신고 가능합니다\n로그인 하시겠습니까?')) {
+				<%session.setAttribute("destination", "redirect:/boardDetail.board?bodNum="+request.getParameter("bodNum"));%>
 				location.href = 'login.mb';
 				return;
 			}else{
@@ -210,6 +212,7 @@
 	function recommendClick(){
 		if (`${loginInfo.id}` == '') {
 			if (confirm('로그인 후 추천 가능합니다\n로그인 하시겠습니까?')) {
+				<%session.setAttribute("destination", "redirect:/boardDetail.board?bodNum="+request.getParameter("bodNum"));%>
 				location.href = 'login.mb';
 				return;
 			}else{
@@ -331,7 +334,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-6 mb-5 ftco-animate">
-					<a href="images/product-1.jpg" class="image-popup"> <img src="<%=resourcesPath%>/images/${board.bodImage}" class="img-fluid" alt="요리 대표 이미지">
+					<a href="images/product-1.jpg" class="image-popup"> <img src="<%=resourcesPath%>/images/${board.bodImage == null ? 'noimage.png' : board.bodImage}" class="img-fluid" alt="요리 대표 이미지">
 					</a>
 				</div>
 				<div class="col-lg-6 product-details pl-md-5 ftco-animate">
@@ -390,7 +393,10 @@
 
 					<c:forEach items="${boardIngredientList}" var="boardIngredient" varStatus="status">
 
-						<li style="inline: block; float: left; margin-right: 40px"><a href="shop.prd?whatColumn=no&searchName=${boardIngredient.bigName}">${boardIngredient.bigName }</a> -${ boardIngredient.bigAmount}</li>
+						<li style="inline: block; float: left; margin-right: 40px"><a href="shop.prd?whatColumn=no&searchName=${boardIngredient.bigName}">${boardIngredient.bigName }</a><c:if test="${boardIngredient.bigAmount == null }">
+						 -${ boardIngredient.bigAmount}
+						</c:if>
+						 </li>
 
 					</c:forEach>
 				</div>
@@ -476,7 +482,9 @@
 												<span class="reply" id="deleteComment${status.index+1 }" onclick="deleteComment(${comment.comNum})" style="cursor: pointer; margin-left: 5px;">삭제</span>
 												<span class="reply" id="updateComment${status.index+1 }" onclick="handleUpdateComment(${status.index+1})" style="cursor: pointer; margin-left: 5px;">수정</span>
 											</c:if>
-											<span class="reply btn-primary" onclick="commentReport(${comment.comNum })" style="cursor: pointer; margin-left: 5px;">신고하기</span>
+											<c:if test="${loginInfo.id != comment.id }">
+												<span class="reply btn-primary" onclick="commentReport(${comment.comNum })" style="cursor: pointer; margin-left: 5px;">신고하기</span>
+											</c:if>
 										</p>
 									</div>
 								</li>
@@ -532,12 +540,6 @@
 	</div>
 </body>
 <%@include file="../common/footer.jsp"%>
-<a target="_blank" href="https://icons8.com/icon/2744/%EC%97%84%EC%A7%80-%EC%B2%99">추천</a> icon by
-<a target="_blank" href="https://icons8.com">Icons8</a>
-<a target="_blank" href="https://icons8.com/icon/10271/%EC%97%84%EC%A7%80-%EC%B2%99">추천</a> icon by
-<a target="_blank" href="https://icons8.com">Icons8</a>
-<a target="_blank" href="https://icons8.com/icon/84119/%EB%A9%94%EB%89%B4-2">메뉴 2</a> icon by
-<a target="_blank" href="https://icons8.com">Icons8</a>
 </html>
 
 

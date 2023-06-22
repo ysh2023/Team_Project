@@ -20,28 +20,29 @@
 		</if>
 	</select>
 	<select id="GetAllBoard" resultType="board.model.BoardBean">
-	select board.bod_num, title, servings, time, category, tags, id, bod_image <if test="id!=''">, rec</if> from board <if test="id!=''">full outer join (select count(*)as rec , bod_num from recommend where id=#{id} group by bod_num) sel on sel.bod_num = board.bod_num  </if>
+	select board.bod_num, title, servings, time, category, tags, id, bod_image, bod_origin <if test="id!=''">, rec</if> from board <if test="id!=''">full outer join (select count(*)as rec , bod_num from recommend where id=#{id} group by bod_num) sel on sel.bod_num = board.bod_num  </if>
 		<if test="keyword!='%All%'">
 		<choose>
 			<when test="whatColumn=='foodCategory'">
 				  where category like #{keyword} order by bod_num
 			</when>
 			<when test="whatColumn=='ingredientCategory'">
-				where <if test="id!=''">board.</if>bod_num in(select bod_num from boardIngredient where ing_num <if test="category!='other'">in(select ing_num from ingredient where ing_category like #{keyword}) </if><if test="category=='other'">is null</if>)
+				where <if test="id!=''">board.</if>bod_num in(select bod_num from boardIngredient where ing_num <if test="category!='other'">in(select ing_num from ingredient where ing_category like #{keyword}) </if><if test="category=='other'">is null</if>) order by <if test="id!=''">board.</if>bod_num
 			</when>
 			<when test="whatColumn=='search'">
-			where <if test="id!=''">board.</if>bod_num in(select bod_num from boardIngredient where ing_num in(select ing_num from ingredient where ing_category like #{keyword})) or category like #{keyword}  or tags like #{keyword} or title like #{keyword} order by bod_num
+			where <if test="id!=''">board.</if>bod_num in(select bod_num from boardIngredient where ing_num in(select ing_num from ingredient where ing_category like #{keyword})) or category like #{keyword}  or tags like #{keyword} or title like #{keyword} order by <if test="id!=''">board.</if>bod_num
 			</when>
 		</choose>
 		</if>
+		<if test="keyword=='%All%'"> order by bod_num</if>
 	</select>
 	<insert id="InsertBoard">insert into board values(bod_seq.nextval, #{title},
-		#{servings}, #{time}, #{category}, #{tags}, #{id}, #{bodImage})</insert>
-	<update id="UpdateBoard">update board set title=#{title}, servings = #{servings}, time = #{time}, category = #{category}, tags = #{tags}, id = #{id}, bod_image = #{bodImage} where bod_num = #{bodNum} </update>
+		#{servings}, #{time}, #{category}, #{tags}, #{id}, #{bodImage}, #{bodOrigin})</insert>
+	<update id="UpdateBoard">update board set title=#{title}, servings = #{servings}, time = #{time}, category = #{category}, tags = #{tags}, id = #{id}, bod_image = #{bodImage}, bod_origin = #{bodOrigin} where bod_num = #{bodNum} </update>
 	<insert id="InsertBoardContent">insert into boardcontent values(bcn_seq.nextval,
-		#{image}, #{bodContent}, bod_seq.currval)</insert>
+		#{image},#{originImage}, #{bodContent}, bod_seq.currval)</insert>
 	<insert id="UpdateInsertBoardContent">insert into boardcontent values(bcn_seq.nextval,
-		#{image}, #{bodContent}, #{bodNum})</insert>
+		#{image},#{originImage}, #{bodContent}, #{bodNum})</insert>
 	<insert id="InsertBoardIngredient">
 	insert into boardingredient values(big_seq.nextval, bod_seq.currval, #{bigName},#{bigAmount}, <if test="ingNum=='null'">null</if><if test="ingNum!='null'">#{ingNum}</if>)
 	</insert>
@@ -56,6 +57,7 @@
 	</select>
 	<select id="GetBoardByBodNum" resultType="board.model.BoardBean">select * from board where bod_num = #{bodNum}</select>
 	<select id="GetBoardContentByBodNum" resultType="board.model.BoardContentBean">select * from boardcontent where bod_num = #{bod_num} order by bim_num</select>
+	<select id="GetBoardContentImageByBodNum" resultType="String">select image from boardContent where bod_num = #{bodNum}</select>
 	<select id="GetAllIngredient" resultType="ingredient.model.IngBean">select * from ingredient order by ing_num</select>
 	<select id="GetCommentByBodNum" resultType="board.model.CommentsBean">select * from comments where bod_num = #{bodNum} order by ref desc,  ref_step asc, ref_level asc</select>
 	<select id="GetIngredientCategory" resultType="String">select distinct ing_category from ingredient</select>

@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <title>관리자 페이지</title>
 </head>
-<%@include file="./../../common/admin_header.jsp"%>
+<%@include file="./../common/admin_header.jsp"%>
 <style>
 </style>
 <body>
@@ -24,7 +24,7 @@
 				<div class="col-lg-12">
 					<div class="card">
 						<div class="card-body">
-							<table class="table datatable">
+							<table class="table datatable" style="max-height: 930px; overflow: auto;">
 								<thead>
 									<tr>
 										<th scope="col" style="width: 50px;">번호</th>
@@ -69,7 +69,7 @@
 
 </body>
 
-<%@include file="./../../common/admin_footer.jsp"%>
+<%@include file="./../common/admin_footer.jsp"%>
 <script>
 	
 	function deleteBoard(bodNum){

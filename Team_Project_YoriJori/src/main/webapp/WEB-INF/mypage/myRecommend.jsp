@@ -15,7 +15,7 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="card">
-						<div class="card-body">
+						<div class="card-body" style="max-height: 930px; overflow: auto;">
 							<table class="table datatable">
 								<thead>
 									<tr>

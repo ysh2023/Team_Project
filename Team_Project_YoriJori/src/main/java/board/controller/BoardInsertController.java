@@ -3,6 +3,7 @@ package board.controller;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.UUID;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
@@ -56,12 +57,13 @@ public class BoardInsertController {
 
 		String uploadPath = servletContext.getRealPath("/resources/images");
 		String str = "c:\\tempUpload";
-		File destination;
-		File destination_local;
-
+		File destination = null;
+		File destination_local = null;
+		File destination_local_in = null;
+		MultipartFile multi = null;
 		BoardBean boardBean = new BoardBean();
 
-		// �Խñ� ���̺�
+		// 사용자 레시피 저장
 		boardBean.setTitle(boardFormBean.getTitle());
 		boardBean.setServings(
 				boardFormBean.getServings().equals("") ? 0 : Integer.parseInt(boardFormBean.getServings()));
@@ -69,24 +71,34 @@ public class BoardInsertController {
 		boardBean.setCategory(boardFormBean.getCategory());
 		boardBean.setTags(boardFormBean.getTags());
 		boardBean.setId(((MemberBean) session.getAttribute("loginInfo")).getId());
-		boardBean.setBodImage(boardFormBean.getBod_image());
-		int boardResult = bdao.insertBoard(boardBean);
 
-		for (int i = 0; i < boardFormBean.getIng_num().length; i++) {
-			System.out.println(boardFormBean.getBig_name()[i] + "1");
-			System.out.println(boardFormBean.getBig_amount()[i] + "2");
-			System.out.println(boardFormBean.getIng_num()[i] + "3");
-			System.out.println();
+		String uuid = UUID.randomUUID().toString();
+		String[] imgName = null;
+		if (!boardFormBean.getBod_image().equals("")) {
+			imgName = boardFormBean.getBod_image().split("\\.");
+			boardBean.setBodImage(imgName[0] + uuid + "." + imgName[1]);
+			boardBean.setBodOrigin(boardFormBean.getBod_image());
+
+		} else {
+			boardBean.setBodOrigin(boardFormBean.getBod_image());
+			boardBean.setBodImage(boardFormBean.getBod_image());
 		}
 
-		destination = new File(uploadPath + File.separator + boardFormBean.getBod_image_upload().getOriginalFilename());
-		destination_local = new File(str + File.separator + boardFormBean.getBod_image_upload().getOriginalFilename());
-		MultipartFile multi = boardFormBean.getBod_image_upload();
+		int boardResult = bdao.insertBoard(boardBean);
 
-		if (boardResult > 0) {
+		// 게시글 대표 이미지 처리
+		if (boardResult > 0 && !boardFormBean.getBod_image().equals("")) {
+			destination = new File(
+					uploadPath + File.separator + boardFormBean.getBod_image_upload().getOriginalFilename());
+			destination_local = new File(str + File.separator + boardBean.getBodImage());
+			destination_local_in = new File(uploadPath + File.separator + boardBean.getBodImage());
+			multi = boardFormBean.getBod_image_upload();
 			try {
 				multi.transferTo(destination);
-				FileCopyUtils.copy(destination, destination_local);
+				int resultCopy = FileCopyUtils.copy(destination, destination_local);
+				if (resultCopy > 0) {
+					FileCopyUtils.copy(destination_local, destination_local_in);
+				}
 			} catch (IllegalStateException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -94,39 +106,60 @@ public class BoardInsertController {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
+		}
+
+		if (boardResult > 0) {
+
 			int boardIngredientResult = 0;
 			int boardContentResult = 0;
 
+			// 사용자 레시피 식재료 저장
 			for (int i = 0; i < boardFormBean.getBig_name().length; i++) {
 				BoardIngredientBean boardIngredientBean = new BoardIngredientBean();
 				boardIngredientBean.setBigName(boardFormBean.getBig_name()[i]);
-				boardIngredientBean
-						.setBigAmount(boardFormBean.getBig_amount()[i] == null ? "" : boardFormBean.getBig_amount()[i]);
+				boardIngredientBean.setBigAmount(
+						boardFormBean.getBig_amount()[i].equals("") ? "" : boardFormBean.getBig_amount()[i]);
 				boardIngredientBean.setIngNum(boardFormBean.getIng_num()[i]);
 				boardIngredientResult += bdao.insertBoardIngredient(boardIngredientBean);
 
 			}
 
-			for (int i = 0; i < boardFormBean.getBod_content().length; i++) {
+			System.out.println(boardFormBean.getImage().length);
+			System.out.println(boardFormBean.getBod_content().length);
+			// 사용자 레시피 조리과정 저장
+			for (int i = 0; i < boardFormBean.getImage().length; i++) {
+				if (!boardFormBean.getImage()[i].equals("")) {
+					uuid = UUID.randomUUID().toString();
+					imgName = boardFormBean.getImage()[i].split("\\.");
+				}
 				BoardContentBean boardContentBean = new BoardContentBean();
-				boardContentBean.setImage(boardFormBean.getImage()[i] == null ? "" : boardFormBean.getImage()[i]);
-				boardContentBean.setBodContent(
-						boardFormBean.getBod_content()[i] == null ? "" : boardFormBean.getBod_content()[i]);
-				boardContentResult += bdao.insertBoardContent(boardContentBean);
-			}
+				boardContentBean
+						.setImage(boardFormBean.getImage()[i].equals("") ? "" : imgName[0] + uuid + "." + imgName[1]);
+				boardContentBean
+						.setOriginImage(boardFormBean.getImage()[i].equals("") ? "" : boardFormBean.getImage()[i]);
 
-			if (boardContentResult > 0) {
+				if (boardFormBean.getBod_content().length == 0) { // bodContent가 1개일때 입력안하면 못가져와서 처리해주는 부분
+					boardContentBean.setBodContent("");
+				} else {
+					boardContentBean.setBodContent(
+							boardFormBean.getBod_content()[i].equals("") ? "" : boardFormBean.getBod_content()[i]);
+				}
 
-				for (int i = 0; i < boardFormBean.getUpload().length; i++) {
+				boardContentResult = bdao.insertBoardContent(boardContentBean);
+
+				if (boardContentResult > 0 && !boardFormBean.getImage()[i].equals("")) {
 					destination = new File(
 							uploadPath + File.separator + boardFormBean.getUpload()[i].getOriginalFilename());
-					destination_local = new File(
-							str + File.separator + boardFormBean.getUpload()[i].getOriginalFilename());
+					destination_local = new File(str + File.separator + boardContentBean.getImage());
+					destination_local_in = new File(uploadPath + File.separator + boardContentBean.getImage());
 					multi = boardFormBean.getUpload()[i];
 
 					try {
 						multi.transferTo(destination);
-						int a = FileCopyUtils.copy(destination, destination_local);
+						int resultCopy = FileCopyUtils.copy(destination, destination_local);
+						if (resultCopy > 0) {
+							FileCopyUtils.copy(destination_local, destination_local_in);
+						}
 					} catch (IllegalStateException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -134,6 +167,7 @@ public class BoardInsertController {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
+
 				}
 			}
 

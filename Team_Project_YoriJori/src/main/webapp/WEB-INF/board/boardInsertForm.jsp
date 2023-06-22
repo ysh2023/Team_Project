@@ -15,7 +15,7 @@
 	function addCookProcess() {
 
 		$('#cookProcess')
-				.append('<div class="row" id='+cookProcessIndex+'><div class="col-md-12"><div class="pt-3 pb-2"><label for="bod_content" name="processLabel">조리과정 </label><input class="btn btn-danger " style="margin-left: 20px;width:60px; height:40px;" type="button" value="삭제" onclick="removeCookProcess(\''+ cookProcessIndex + '\')"></div><div class="row"><div class="col-md-6"><textarea name="bod_content" cols="40" rows="10" style="resize: none;" class="form-control text-left px-3" placeholder=""></textarea></div><div class="col-md-6" style="display : flex; width:100%; justify-content: space-between;"><div  class="drop-zone" style="width:100%;"><span class="drop-zone__prompt">이미지를 끌어다놓거나 클릭하세요</span> <input id=drop'+cookProcessIndex+' type="file" name="upload" class="drop-zone__input"></div></div></div></div></div>'
+				.append('<div class="row" id='+cookProcessIndex+'><div class="col-md-12" ><div class="pt-3 pb-2"><label for="bod_content" name="processLabel">조리과정 </label><input class="btn btn-danger " style="margin-left: 20px;width:60px; height:40px;" type="button" value="삭제" onclick="removeCookProcess(\''+ cookProcessIndex + '\')"></div><div class="row"><div class="col-md-6" ><textarea name="bod_content" cols="40" rows="10" style="resize: none;" class="form-control text-left px-3" placeholder=""></textarea></div><div class="col-md-6" style="display: flex; justify-content: center;"><div  class="drop-zone"  style="width: 400px; height: 284px;"><span class="drop-zone__prompt">이미지를 끌어다놓거나 클릭하세요</span> <input id=drop'+cookProcessIndex+' type="file" name="upload" class="drop-zone__input"></div></div></div></div></div>'
 						/* '<div class="row" id='+cookProcessIndex+'><div class="col-md-6"> <label for="country">조리과정 </label> <textarea name="bod_content" cols="40" rows="10" style="resize: none;" class="form-control text-left px-3" placeholder=""></textarea> </div> <div  class="col-md-6"><input type="file" name="upload"><input class="btn btn-danger py-2 px-2" type="button" value="삭제" onclick="removeCookProcess(\''
 								+ cookProcessIndex + '\')"></div>	</div>' */
 								);
@@ -142,7 +142,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="col-md-6">
+							<div class="col-md-6" style="display: flex; justify-content: center;">
 								<div class="drop-zone" id="zone" style="width: 400px; height: 300px;">
 									<span class="drop-zone__prompt" style="justify-content: space-between;">레시피 대표 사진을
 										끌어다 놓거나 <br>여기를 클릭해서 업로드하세요
@@ -249,10 +249,12 @@
 									<div class="row">
 										<div class="col-md-6">
 											<textarea name="bod_content" cols="40" rows="10" style="resize: none;"
-												class="form-control text-left px-3" placeholder=""></textarea>
+												class="form-control text-left px-3" placeholder="조리과정을 작성해주세요"></textarea>
 										</div>
-										<div class="col-md-6">
-											<div class="drop-zone" style="width: 100%; height: 100%; min-height: 200px;">
+										<input type="hidden" value=" " name="contentIter">
+										<div class="col-md-6" style="display: flex; justify-content: center;">
+										
+											<div class="drop-zone" style="width: 400px; height: 284px;">
 												<span class="drop-zone__prompt">이미지를 끌어다놓거나 클릭하세요</span> <input type="file" id="f1"
 													name="upload" class="drop-zone__input">
 											</div>
