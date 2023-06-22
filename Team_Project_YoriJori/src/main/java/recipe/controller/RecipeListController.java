@@ -93,6 +93,7 @@ public class RecipeListController {
 			mav.addObject("pageInfo", pageInfo);
 			mav.setViewName(getPage);
 		}
+		session.setAttribute("destination", "redirect:/list.re");
 		return mav;
 	}
 	

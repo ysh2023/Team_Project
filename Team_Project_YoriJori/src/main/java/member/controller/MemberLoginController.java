@@ -104,6 +104,7 @@ public class MemberLoginController {
 				mav.setViewName(getPage);
 			}
 		}
+		session.removeAttribute("destination");
 		return mav;
 	}
 }

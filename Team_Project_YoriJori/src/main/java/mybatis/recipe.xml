@@ -148,7 +148,7 @@
   	</update>
   	<select id="GetRecipeForMain" resultType="recipe.model.RecipeBean">
   		select recipe.recipe_num,recipe.recipe_name,recipe.recipe_category,recipe.servings,recipe.cook_image,recipe.readcount
-		from recipe join (select rownum as rank, recipe_num from(select recipe_num, count(*)as bookmarknum from bookmark group by recipe_num order by bookmarknum desc)) mark on recipe.recipe_num = mark.recipe_num
+		from recipe full outer join (select rownum as rank, recipe_num from(select recipe_num, count(*)as bookmarknum from bookmark group by recipe_num order by bookmarknum desc)) mark on recipe.recipe_num = mark.recipe_num
 		where rank between 1 and 4
   	</select>
   </mapper>

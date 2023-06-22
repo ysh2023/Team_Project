@@ -24,7 +24,7 @@
 	
 	function goReview(){
 		if (`${loginInfo.id}` == '') {
-			if (confirm('로그인 필요')) {
+			if (confirm('리뷰작성은 로그인이 필요합니다.')) {
 				location.href ='login.mb';
 				
 			} 
