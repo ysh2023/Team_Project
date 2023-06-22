@@ -1,6 +1,38 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file= "./../common/admin_header.jsp" %>
+<script>
+	function checkdeleteComment(id) {
+		if(confirm('정말 삭제하시겠습니까')){
+			location.href="deleteReport.am?id="+id;
+		}else{
+			
+		}
+	}
+	
+	function checkdeleteReview(id) {
+		if(confirm('정말 삭제하시겠습니까')){
+			location.href="deleteReveiwReport.am?id="+id;
+		}else{
+			
+		}
+	}
+</script>
+
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>
+
+function stop(id){
+	
+	var check=confirm("삭제 하시겠습니까?");
+	if(check==true){
+		location.href="deleteMb.am?id="+id;
+	}
+
+}
+	
+</script>
+
 
 <main id="main" class="main">
 
@@ -56,7 +88,7 @@
                      </form>
                    
                     </td>
-                    <td><a href="deleteMb.am?id=${i.id}">강제탈퇴</a></td>
+                    <td><a href="#" onclick="stop('${i.id}')">강제탈퇴</a></td>
                     <td><a href="deleteReport.am?id=${i.id}">내역삭제</a></td>
                   </tr>
                 </c:forEach>
@@ -82,7 +114,7 @@
                      </form>
                    
                     </td>
-                    <td><a href="deleteMb.am?id=${i.id}">강제탈퇴</a></td>
+                    <td><a href="#" onclick="stop('${i.id}')">강제탈퇴</a></td>
                     <td><a href="deleteReveiwReport.am?id=${i.id}">내역삭제</a></td>
                   </tr>
                 </c:forEach>

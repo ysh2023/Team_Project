@@ -26,6 +26,8 @@ public class AdminMemberDeleteController {
 	@RequestMapping(value = command, method = RequestMethod.GET)
 	public String doAction(@RequestParam("id") String id) {
 		
+		
+		
 		mdao.deleteMember(id);
 		
 

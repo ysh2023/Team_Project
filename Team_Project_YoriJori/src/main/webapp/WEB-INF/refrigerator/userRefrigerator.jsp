@@ -221,9 +221,9 @@
           <span class="subheading" style="padding-top:20px;">My refrigerator</span>
 	      <h2 class="mb-4">나의 냉장고</h2>
 		  <p style="color: black;">현재 ${loginInfo.mname}님이 보유한 <b>${totalCnt}개</b>의 식재료를 한 눈에 확인할 수 있어요.</p>
-		  <input class="btn btn-primary" type="button" value="냉장고 속 식재료가 포함된 추천 레시피 보기" onclick="recipe()" style="background-color: #F2BC1B; color: black; ">
+		  <input class="btn btn-primary" type="button" value="냉장고 속 식재료가 포함된 추천 레시피 보기" <c:if test="${totalCnt eq 0}">disabled="disabled"</c:if> onclick="recipe()" style="background-color: #F2BC1B; color: black; ">
 		  &nbsp;
-		  <input class="btn btn-secondary" type="button" value="냉장고 속 식재료가 포함된 회원 레시피 보기" onclick="board()">
+		  <input class="btn btn-secondary" type="button" value="냉장고 속 식재료가 포함된 회원 레시피 보기" <c:if test="${totalCnt eq 0}">disabled="disabled"</c:if> onclick="board()">
 		  <div style="display:none;">
 		  	<form id="recipeForm" action="Recommend.re">
 		  	  <c:forEach var="list" items="${allList}">
@@ -373,7 +373,7 @@
 								Date expiry = sdf.parse(refdday);
 								
 								long result = (now.getTime() - expiry.getTime());
-								long dday = result/(24*60*60*1000);
+								long dday = result/(24*60*60*1000)-1;
 								pageContext.setAttribute("dday",dday);
 							%>
 							<!-- 소비기한 임박 알림 아이콘 & 디데이 표시 -->
@@ -457,7 +457,7 @@
 								Date expiry = sdf.parse(refdday);
 								
 								long result = (now.getTime() - expiry.getTime());
-								long dday = result/(24*60*60*1000);
+								long dday = result/(24*60*60*1000)-1;
 								pageContext.setAttribute("dday",dday);
 							%>
 							<!-- 소비기한 임박 알림 아이콘 & 디데이 표시 -->
@@ -541,7 +541,7 @@
 								Date expiry = sdf.parse(refdday);
 								
 								long result = (now.getTime() - expiry.getTime());
-								long dday = result/(24*60*60*1000);
+								long dday = result/(24*60*60*1000)-1;
 								pageContext.setAttribute("dday",dday);
 							%>
 							<!-- 소비기한 임박 알림 아이콘 & 디데이 표시 -->
@@ -625,7 +625,7 @@
 								Date expiry = sdf.parse(refdday);
 								
 								long result = (now.getTime() - expiry.getTime());
-								long dday = result/(24*60*60*1000);
+								long dday = result/(24*60*60*1000)-1;
 								pageContext.setAttribute("dday",dday);
 							%>
 							<!-- 소비기한 임박 알림 아이콘 & 디데이 표시 -->

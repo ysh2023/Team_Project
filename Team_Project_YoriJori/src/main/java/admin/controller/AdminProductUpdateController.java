@@ -54,8 +54,15 @@ public class AdminProductUpdateController {
 		
 		if(productBean.getPdimage().equals("")) {
 			productBean.setPdimage(productBean.getUpload2());
-		}
 
+			System.out.println("사진"+productBean.getPdimage());
+			
+			int cnt = adao.updateProduct(productBean);
+			
+			return gotoPage;
+			
+		}
+		else {
 			String filePath = servletContext.getRealPath("/resources/img_pd");
 			File deleteImage = new File(filePath +File.separator+productBean.getUpload2()); //삭제하려는 이미지
 			File destination = new File(filePath + File.separator + productBean.getUpload().getOriginalFilename()); //수정하려는(업로드할) 이미지
@@ -84,6 +91,7 @@ public class AdminProductUpdateController {
 			}
 		
 		
+	}
 	}
 	
 	

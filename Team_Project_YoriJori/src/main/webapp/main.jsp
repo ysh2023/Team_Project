@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<script type="text/javascript">
+	location.href="/ex";
+</script>
 <!-- header -->
 <%@include file= "WEB-INF/common/header.jsp" %>
 
@@ -101,40 +103,63 @@
 						<div class="col-md-6 order-md-last align-items-stretch d-flex">
 							<div class="category-wrap-2 ftco-animate img align-self-stretch d-flex" style="background-image: url(<%=conPath%>/images/category.jpg);">
 								<div class="text text-center">
-									<h2>Vegetables</h2>
-									<p>Protect the health of every home</p>
-									<p><a href="#" class="btn btn-primary">Shop now</a></p>
+									<h2>Recipe</h2>
+									<p>사용자들이 많이 저장한 레시피</p>
+									<p><a href="list.re" class="btn btn-primary">보러가기</a></p>
 								</div>
 							</div>
 						</div>
-						<div class="col-md-6">
-							<div class="category-wrap ftco-animate img mb-4 d-flex align-items-end" style="background-image: url(<%=resourcesPath%>/images/category-1.jpg);">
-								<div class="text px-3 py-1">
-									<h2 class="mb-0"><a href="#">Fruits</a></h2>
+						
+						<c:forEach var="recipe" items="${recipeList}" varStatus="status">
+							<c:choose>
+								<c:when test="${status.index == 0}">
+									<div class="col-md-6">
+									
+									<div class="category-wrap ftco-animate img mb-4 d-flex align-items-end" style="background-image: url(${recipe.cookimage}); cursor: pointer;" onclick="location.href='detail.re?recipenum=${recipe.recipenum}'" >
+									<div class="text px-3 py-1">
+										<h2 class="mb-0"><a href="detail.re?recipenum=${recipe.recipenum}">${recipe.recipename }</a></h2>
+									</div>
 								</div>
-							</div>
-							<div class="category-wrap ftco-animate img d-flex align-items-end" style="background-image: url(<%=resourcesPath%>/images/category-2.jpg);">
-								<div class="text px-3 py-1">
-									<h2 class="mb-0"><a href="#">Vegetables</a></h2>
+								
+								</c:when>
+								<c:when test="${status.index == 1}">
+									<div class="category-wrap ftco-animate img mb-4 d-flex align-items-end" style="background-image: url(${recipe.cookimage});cursor: pointer; "  onclick="location.href='detail.re?recipenum=${recipe.recipenum}'">
+									<div class="text px-3 py-1">
+										<h2 class="mb-0"><a href="detail.re?recipenum=${recipe.recipenum}">${recipe.recipename }</a></h2>
+									</div>
 								</div>
-							</div>
-						</div>
+								</div>
+								</div>
+								</div>
+								</c:when>
+								<c:when test="${status.index == 2}">
+									<div class="col-md-4">
+									<div class="category-wrap ftco-animate img mb-4 d-flex align-items-end" style="background-image: url(${recipe.cookimage});cursor: pointer;" onclick="location.href='detail.re?recipenum=${recipe.recipenum}'">
+									<div class="text px-3 py-1">
+										<h2 class="mb-0"><a href="detail.re?recipenum=${recipe.recipenum}">${recipe.recipename }</a></h2>
+									</div>
+								</div>
+							
+								</c:when>
+								<c:when test="${status.index == 3}">
+									<div class="category-wrap ftco-animate img mb-4 d-flex align-items-end" style="background-image: url(${recipe.cookimage});cursor: pointer;" onclick="location.href='detail.re?recipenum=${recipe.recipenum}'">
+									<div class="text px-3 py-1">
+										<h2 class="mb-0"><a href="detail.re?recipenum=${recipe.recipenum}">${recipe.recipename }</a></h2>
+									</div>
+								</div>
+								</div>
+								</div>
+								</div>
+								</c:when>
+							</c:choose>
+						</c:forEach>
+						
+						
 					</div>
 				</div>
-				<div class="col-md-4">
-					<div class="category-wrap ftco-animate img mb-4 d-flex align-items-end" style="background-image: url(<%=resourcesPath%>/images/category-3.jpg);">
-						<div class="text px-3 py-1">
-							<h2 class="mb-0"><a href="#">Juices</a></h2>
-						</div>		
-					</div>
-					<div class="category-wrap ftco-animate img d-flex align-items-end" style="background-image: url(<%=resourcesPath%>/images/category-4.jpg);">
-						<div class="text px-3 py-1">
-							<h2 class="mb-0"><a href="#">Dried</a></h2>
-						</div>
-					</div>
+			
 				</div>
 			</div>
-		</div>
 	</section>
 	<!-- END 2nd section -->
 

@@ -40,10 +40,9 @@ private String namespace = "order.model.Order";
 	}
 
 
-	public List<OrderBean> getByIdOrder(String id, Paging pageInfo) {
+	public List<OrderBean> getByIdOrder(String id) {
 		List<OrderBean> lists = new ArrayList<OrderBean>();
-		RowBounds rowBounds = new RowBounds(pageInfo.getOffset(), pageInfo.getLimit());
-		lists = sqlSessionTemplate.selectList(namespace+".GetByIdOrder",id,rowBounds);
+		lists = sqlSessionTemplate.selectList(namespace+".GetByIdOrder",id);
 		return lists;
 	}
 	

@@ -42,41 +42,59 @@ public class MemoUpdateController {
 			boolean flag = false;
 			List<MemoBean> userMemo = memodao.getUserMemo(id);
 			
-			for(MemoBean memobean : userMemo) {
-				//System.out.println("memonum: "+memobean.getMemonum());
-				Map<String,Integer> map = new HashMap<String,Integer>();
-				map.put("memonum", memobean.getMemonum());
-				
-				for(int i=0; i<memonum_arr.length; i++) {
-					//System.out.println("checked memonum: "+memonum_arr[i]);
-					if(memobean.getMemonum() == memonum_arr[i]) {
-						flag = true;
-					}
-				}
-				
-				if(flag == true) {
-					map.put("memoflag", 1);
-				}else {
-					map.put("memoflag", 0);
-				}
-				
-				cnt += memodao.updateMemo(map);
-				flag = false;
-			}
-			
-			if(cnt!=-1) {
-				System.out.println("메모 update 성공");
-				request.setAttribute("msg", "메모 저장을 완료했습니다.");
+			if(userMemo.isEmpty()) {
+				request.setAttribute("msg", "메모를 작성하세요");
 				
 				if(destination.equals("ref")) {
 	        		request.setAttribute("url", "/ex/page.ref?myscroll="+myscroll);
 	        	}else if(destination.equals("prd")) {
 	        		request.setAttribute("url", "/ex/shop.prd?myscroll="+myscroll);
 	        	}
+				
+			}else {
+				for(MemoBean memobean : userMemo) {
+					//System.out.println("memonum: "+memobean.getMemonum());
+					Map<String,Integer> map = new HashMap<String,Integer>();
+					map.put("memonum", memobean.getMemonum());
+					
+					if(memonum_arr != null) {
+						for(int i=0; i<memonum_arr.length; i++) {
+							//System.out.println("checked memonum: "+memonum_arr[i]);
+							if(memobean.getMemonum() == memonum_arr[i]) {
+								flag = true;
+							}
+						}
+						
+						if(flag == true) {
+							map.put("memoflag", 1);
+						}else {
+							map.put("memoflag", 0);
+						}
+						
+					}else {
+						map.put("memoflag", 0);
+					}
+					
+					cnt += memodao.updateMemo(map);
+					flag = false;
+				}
+				
+				if(cnt!=-1) {
+					System.out.println("메모 update 성공");
+					request.setAttribute("msg", "메모 저장을 완료했습니다.");
+					
+					if(destination.equals("ref")) {
+		        		request.setAttribute("url", "/ex/page.ref?myscroll="+myscroll);
+		        	}else if(destination.equals("prd")) {
+		        		request.setAttribute("url", "/ex/shop.prd?myscroll="+myscroll);
+		        	}
+				}
+				
 			}
 			
 			model.addAttribute("loginInfo", loginInfo);
 			return "alert";
+			
 	}
 			
 			

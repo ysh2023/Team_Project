@@ -1,6 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file= "./../common/admin_header.jsp" %>
+<script>
+	function checkdeleteComment(id , repNum) {
+		if(confirm('정말 삭제하시겠습니까')){
+			location.href="deleteComment.am?id="+id+"&repNum="+repNum;
+		}else{
+			
+		}
+	}
+	
+	function checkdeleteReview(id , rerepnum) {
+		if(confirm('정말 삭제하시겠습니까')){
+			alert(id);
+			alert(rerepnum);
+			location.href="deleteComment.am?id="+id+"&rerepnum="+rerepnum;
+		}else{
+			
+		}
+	}
+</script>
+
 
 <main id="main" class="main">
   <section class="section">
@@ -33,7 +53,7 @@
                     <td>${i.comcontent}</td>
                     <td>${i.reasons}</td>
                     <td>${i.repDiscription}</td>
-                    <td><a href="deleteComment.am?id=${i.id}&comNum=${i.comNum}">삭제</a></td>
+                    <td><span onclick="checkdeleteComment('${id}','${i.count}')" style="color: blue; cursor: pointer;">삭제</span></td>
                   </tr>
                 </c:forEach>
                 </tbody>
@@ -75,7 +95,7 @@
                     <td>${i.review}</td>
                     <td>${i.reportreason}</td>
                     <td>${i.reportcontent}</td>
-                    <td><a href="deleteComment.am?id=${i.id}&reviewnum=${i.reviewnum}">삭제</a></td>
+                    <td><span onclick="checkdeleteReview('${id}','${i.count}')" style="color: blue; cursor: pointer;">삭제</span></td>
                   </tr>
                 </c:forEach>
                 </tbody>

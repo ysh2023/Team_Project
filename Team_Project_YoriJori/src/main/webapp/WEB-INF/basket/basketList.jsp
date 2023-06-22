@@ -91,7 +91,9 @@
     						<span><fmt:formatNumber type="number" maxFractionDigits="3" value="${totalAmount+Baesong}" />원</span>
     					</p>
     				</div>
+    				<c:if test="${BCount >= 1 }">
     				<p><a href="orderpay.ord?totalAmount=${totalAmount}&Baesong=${Baesong}" class="btn btn-primary py-3 px-4">주문하기</a></p>
+    				</c:if>
     			</div>
     		</div>
 			</div>

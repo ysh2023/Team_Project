@@ -15,7 +15,7 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="card">
-						<div class="card-body" style="max-height: 930px; overflow: auto;">
+						<div class="card-body" style="overflow: scroll; max-height: 930px;">
 							<table id="tables" class="table datatable">
 								<thead>
 									<tr>
@@ -50,6 +50,9 @@
 
 	</main>
 </body>
+<section style="margin-top: 100px;">
+	<%@include file= "./../common/footer.jsp" %>
+</section>
 <Script>
 	function deleteComment(comNum){
 		var isOk = confirm(comNum+ '번 댓글을 삭제하시겠습니까?');

@@ -30,20 +30,14 @@ public class MypageOrderListContoroller {
 			@RequestParam(value="pageNumber",required = false) String pageNumber,
 			HttpServletRequest request) {
 		MemberBean loginInfo = (MemberBean)session.getAttribute("loginInfo");
-		String url= request.getContextPath()+command;
 		
 		int totalCount=odao.getTotalCount(loginInfo.getId());
 		
-		String whatColumn=null;
-		String keyword=null;
-		
-		Paging pageInfo= new Paging(pageNumber,"7",totalCount,url,whatColumn,keyword,null);
-		List<OrderBean> slist = odao.getByIdOrder(loginInfo.getId(),pageInfo);
+		List<OrderBean> slist = odao.getByIdOrder(loginInfo.getId());
 		 
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(getPage);
 		mav.addObject("slist", slist);
-		mav.addObject("pageInfo",pageInfo);
 		return mav;  
 	} 
 
