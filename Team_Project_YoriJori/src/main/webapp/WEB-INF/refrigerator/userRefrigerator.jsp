@@ -373,7 +373,7 @@
 								Date expiry = sdf.parse(refdday);
 								
 								long result = (now.getTime() - expiry.getTime());
-								long dday = result/(24*60*60*1000);
+								long dday = result/(24*60*60*1000)-1;
 								pageContext.setAttribute("dday",dday);
 							%>
 							<!-- 소비기한 임박 알림 아이콘 & 디데이 표시 -->
@@ -457,7 +457,7 @@
 								Date expiry = sdf.parse(refdday);
 								
 								long result = (now.getTime() - expiry.getTime());
-								long dday = result/(24*60*60*1000);
+								long dday = result/(24*60*60*1000)-1;
 								pageContext.setAttribute("dday",dday);
 							%>
 							<!-- 소비기한 임박 알림 아이콘 & 디데이 표시 -->
@@ -541,7 +541,7 @@
 								Date expiry = sdf.parse(refdday);
 								
 								long result = (now.getTime() - expiry.getTime());
-								long dday = result/(24*60*60*1000);
+								long dday = result/(24*60*60*1000)-1;
 								pageContext.setAttribute("dday",dday);
 							%>
 							<!-- 소비기한 임박 알림 아이콘 & 디데이 표시 -->
@@ -625,7 +625,7 @@
 								Date expiry = sdf.parse(refdday);
 								
 								long result = (now.getTime() - expiry.getTime());
-								long dday = result/(24*60*60*1000);
+								long dday = result/(24*60*60*1000)-1;
 								pageContext.setAttribute("dday",dday);
 							%>
 							<!-- 소비기한 임박 알림 아이콘 & 디데이 표시 -->
