@@ -36,6 +36,7 @@ public class BasketListController {
 			return mav;
 		}else { // 로그인 했을때
 			List<JoinBean> slist = bdao.getBasketList(loginInfo.getId());
+			int BCount = bdao.BasketCount(loginInfo.getId());
 			int totalAmount = 0;
 			for(int i=0;i<slist.size();i++) {
 				totalAmount += (slist.get(i).getBskqty()* slist.get(i).getPdprice());
@@ -46,6 +47,7 @@ public class BasketListController {
 			}else { // 5만원 이하일시 배송비 3000원
 				Baesong = 3000;
 			}
+			mav.addObject("BCount", BCount);
 			mav.addObject("Baesong", Baesong);
 			mav.setViewName(getPage);
 			mav.addObject("slist", slist);

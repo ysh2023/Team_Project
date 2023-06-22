@@ -53,7 +53,13 @@
 	          	</div>
 	          	<div class="w-100">
 		          	<div class="col-md-12">
-		          		<p style="color: #000;">상품 재고 : ${product.pdstock }</p>
+		          		<c:if test="${product.pdstock >= 1 }">
+		          			<p style="color: #000;">상품 재고 : ${product.pdstock }</p>
+		          		</c:if>
+		          		<c:if test="${product.pdstock <= 0 }">
+		          			<p style="color: #000;">상품 재고 : 품절</p>
+		          		</c:if>
+		          		
 		          	</div>
 	          	</div>
           	</div>
