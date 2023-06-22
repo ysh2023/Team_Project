@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,7 +30,7 @@ public class MemberLoginKakaoController {
 		@RequestMapping(value = command, method = RequestMethod.GET)
 		public String doAction(@RequestParam("profileNickname")String name,
 				@RequestParam("accountEmail")String id,HttpSession session,
-				HttpServletResponse response
+				HttpServletResponse response,Model model
 				
 				) throws ParseException {
 
@@ -40,23 +41,18 @@ public class MemberLoginKakaoController {
 		    System.out.println(name);
 	        System.out.println(id);
 	        
-	        MemberBean mb= new MemberBean();
-	       
-	        
-	        mb.setId(id);
-	        mb.setMname(name);
-	        mb.setPw("카카오");
-	        mb.setAge(0);
-	        mb.setEmail(id);
-	        mb.setTel("01011111111");
-	        mb.setArea1("카카오 수정바람");
-	        mb.setArea2("");
 	        
 	        if(mdao.GetMemberById(id)==null) {
-	        	mdao.insertMember(mb);
-	        
+	        	
+	        	
+	            MemberBean mb= new MemberBean();
+	        	 mb.setId(id);
+	        	 mb.setMname(name);
+	        	model.addAttribute("mb",mb);
+	        	
+	        	return "registerForm";
+	        	
 	        }
-	        session.setAttribute("loginInfo", mb);
 	        
 			}
 			else {

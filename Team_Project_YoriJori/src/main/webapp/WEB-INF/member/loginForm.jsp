@@ -128,13 +128,13 @@ function kakaoLogin(){
 					novalidate>
 						<div class="mb-3">
 							<label for="id">아이디</label> <input type="text"
-								class="form-control" name="id" required value="admin">
+								class="form-control" name="id"  required >
 							<div class="invalid-feedback">아이디를 입력해주세요.</div>
 						</div>
 
 					<div class="mb-3">
 						<label for="pw">비밀번호</label> <input type="password" name="password"
-							class="form-control" required value="1234">
+							class="form-control" required>
 						<div class="invalid-feedback">비밀번호 입력해주세요.</div>
 					</div>
 					
