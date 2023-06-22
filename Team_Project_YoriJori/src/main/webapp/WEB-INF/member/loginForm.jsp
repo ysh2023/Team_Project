@@ -14,9 +14,46 @@ String resourcesPath = request.getContextPath() + "/resources";
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script type="text/javascript" src="/js/admin/cate_manage.js"></script>
 
 <title>로그인화면</title>
+
+<script>
+window.Kakao.init("7e584e270b43673d5f03e41074fc3c4e");
+
+function kakaoLogin(){
+    
+    window.Kakao.Auth.login({
+        scope:'profile_nickname, account_email',
+        success: function(authObj){
+ 
+            console.log(authObj);
+            window.Kakao.API.request({
+                url:'/v2/user/me',
+                success: res => {
+                    const kakao_account = res.kakao_account;
+                    console.log(kakao_account);
+                    
+                    alert(JSON.stringify(res));
+                    
+                     console.log(res);
+                    console.log(res.properties['nickname']);
+                     console.log(res.kakao_account['email']);
+                      
+                      const profileNickname = res.properties['nickname'];
+                      const accountEmail = res.kakao_account['email'];
+                      const gender = res.kakao_account['gender'];
+                      
+                      location.href='loginkakao.mb?profileNickname='+profileNickname+'&accountEmail='+accountEmail;
+                }
+            });
+            
+        }
+    });
+}
+
+</script>
 
 
 <!-- Bootstrap CSS -->
@@ -106,7 +143,10 @@ String resourcesPath = request.getContextPath() + "/resources";
 						</button>
 					<button class="btn btn-primary btn-lg btn-block" type="button" onclick="location.href='insert.mb'" >
 					회원가입
-						</button>					
+						</button>
+						
+						<a href="javascript:kakaoLogin();"></a>
+			<img src="https://www.kefe.co.kr/m/image/sub/signup/signup_28.jpg" style="height: 30px; width: auto; margin-top: 10px;" onclick="kakaoLogin();" >					
 				</form>
 			</div>
 		</div>

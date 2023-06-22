@@ -62,8 +62,8 @@
             		<span class="flaticon-diet"></span>
               </div>
               <div class="media-body">
-                <h3 class="heading">Always Fresh</h3>
-                <span>Product well package</span>
+                <h3 class="heading">검증된 신선함</h3>
+                <span>당일생산/유통기한 내 폐기 원칙 준수</span>
               </div>
             </div>    
           </div>
