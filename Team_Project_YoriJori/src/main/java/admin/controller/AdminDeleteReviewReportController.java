@@ -20,7 +20,12 @@ public class AdminDeleteReviewReportController {
 
 	@RequestMapping(value = command, method = RequestMethod.GET)
 	public String doAction(@RequestParam("id") String id) {
-		adao.deleteReviewReport(id);
+		int cnt = adao.deleteReviewReport(id);
+		if(cnt>0) {
+			System.out.println("삭제성공");
+		}else {
+			System.out.println("삭제성공");
+		}
 		return getPage;
 	}
 

@@ -37,6 +37,7 @@ public class RecipeReviewUpdateController {
 		List<RecipeReviewBean> reviewList = rdao.getReviewbyRecipe(Integer.parseInt(recipenum));
 		if(cnt>0) {
 			model.addAttribute("reviewList",reviewList);
+			model.addAttribute("recipenum",recipenum);
 			model.addAttribute("id",((MemberBean)session.getAttribute("loginInfo")).getId());
 		}else {
 			

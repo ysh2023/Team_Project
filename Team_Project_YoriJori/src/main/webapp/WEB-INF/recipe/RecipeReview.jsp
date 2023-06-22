@@ -1,26 +1,31 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:forEach var="review" items="${reviewList}">
+<c:forEach var="review" items="${reviewList}" varStatus="status">
 	<li class="comment">
 		<div class="vcard bio">
+			<!-- 괜찮은 이미지 넣기 -->
 			<img
 				src="<%=request.getContextPath()%>/resources/images/user_img.jpg"
 				alt="Image placeholder">
 		</div>
 		<div class="comment-body">
 			<h3>${review.id}</h3>
+			<!-- 시간 넣기 -->
 			<div class="meta">${review.reviewdate}</div>
 			<p>${review.review}</p>
 			<p>
-				<span class="reply" onclick="reviewReport(${review.reviewnum})"
-					style="cursor: pointer;">신고하기</span>
+				<c:if test="${review.id != id }">
+					<span class="reply" onclick="reviewReport(${review.reviewnum})"
+						style="cursor: pointer;">신고하기</span>
+				</c:if>
 				<c:if test="${review.id == id }">
-					<span class="reply" onclick=""
+					<span class="reply" onclick="updateHandle(${status.index+1})"
 						style="cursor: pointer; margin-left: 10px;">수정</span>
 					<span class="reply"
-						onclick="location.href='deleteReview.re?reviewnum=${review.reviewnum}&recipenum=${recipe.recipenum}'"
+						onclick="deleteReview(${review.reviewnum},${recipenum})"
 						style="cursor: pointer; margin-left: 10px;">삭제</span>
+
 				</c:if>
 			</p>
 		</div>
@@ -33,7 +38,8 @@
 				cols="30" rows="5" class="form-control" style="resize: none;"></textarea>
 		</div>
 		<div class="form-group">
-			<input type="button" onclick="updateReview(${review.reviewnum})"
+			<input type="button"
+				onclick="updateReview(${review.reviewnum},${recipenum})"
 				value="수정하기" class="btn py-3 px-4 btn-primary">
 		</div>
 	</li>

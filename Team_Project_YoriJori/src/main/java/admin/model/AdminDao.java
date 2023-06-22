@@ -118,14 +118,16 @@ public class AdminDao {
 		sqlSessionTemplate.delete(namespace + ".DeleteReport", id);
 	}
 	
-	public void deleteReviewReport(String id) {
-		sqlSessionTemplate.delete(namespace+".DeleteReviewReport", id);
+	public int deleteReviewReport(String id) {
+		int cnt= sqlSessionTemplate.delete(namespace+".DeleteReviewReport", id);
+		return cnt;
 	}
-	public void deleteComment(String comNum) {
-		sqlSessionTemplate.delete(namespace + ".DeleteComment", comNum);
+	public void deleteComment(String repNum) {
+		sqlSessionTemplate.delete(namespace + ".DeleteComment", repNum);
 	}
-	public void deleteReview(String reviewnum) {
-		sqlSessionTemplate.delete(namespace+".DeleteReview",reviewnum);
+	public int deleteReview(String rerepnum) {
+		int cnt= sqlSessionTemplate.delete(namespace+".DeleteReview",rerepnum);
+		return cnt;
 	}
 	
 	/* 식재료 */

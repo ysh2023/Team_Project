@@ -1,7 +1,5 @@
 package com.spring.ex;
 
-import java.text.DateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -15,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import product.model.ProductBean;
 import product.model.ProductDao;
+import recipe.model.RecipeBean;
+import recipe.model.RecipeDao;
 
 /**
  * Handles requests for the application home page.
@@ -27,10 +27,18 @@ public class HomeController {
 	@Autowired
 	ProductDao pdao;
 	
+	@Autowired
+	RecipeDao rdao;
+	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		
+		//레시피
+		List<RecipeBean> recipeList = rdao.getRecipeForMain();
 		
+		model.addAttribute("recipeList", recipeList);
+		
+		//상품
 		List<ProductBean> plists= pdao.getAllProducts();
 		
 		model.addAttribute("plists",plists);
