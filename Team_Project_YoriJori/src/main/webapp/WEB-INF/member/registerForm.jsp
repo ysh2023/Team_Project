@@ -112,7 +112,7 @@ function kakaopost() {
 						</div>
 						<div class="col-md-6 mb-3">
 							<label for="mname">이름</label> <input type="text"
-								class="form-control" name="mname">
+								class="form-control" name="mname" required>
 							<div class="invalid-feedback">이름을 입력해주세요.</div>
 						</div>
 					</div>
