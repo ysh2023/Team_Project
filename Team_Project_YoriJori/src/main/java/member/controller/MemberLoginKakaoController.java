@@ -64,6 +64,9 @@ public class MemberLoginKakaoController {
 					e.printStackTrace();
 				}
 			}
+			MemberBean mb2= mdao.GetMemberById(id);
+			
+			session.setAttribute("loginInfo", mb2);
 	        
 			String destination = (String)session.getAttribute("destination");
 			System.out.println("destination: "+destination);
