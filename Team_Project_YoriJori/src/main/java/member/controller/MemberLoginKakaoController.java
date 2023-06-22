@@ -42,14 +42,13 @@ public class MemberLoginKakaoController {
 	        
 	        MemberBean mb= new MemberBean();
 	       
-	        
 	        mb.setId(id);
 	        mb.setMname(name);
-	        mb.setPw("카카오");
+	        mb.setPw(" ");
 	        mb.setAge(0);
-	        mb.setEmail(id);
-	        mb.setTel("01011111111");
-	        mb.setArea1("카카오 수정바람");
+	        mb.setEmail(" ");
+	        mb.setTel(" ");
+	        mb.setArea1(" ");
 	        mb.setArea2("");
 	        
 	        if(mdao.GetMemberById(id)==null) {
