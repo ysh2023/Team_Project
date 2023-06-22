@@ -23,10 +23,10 @@
 	
 	
 	function goReview(){
-		
 		if (`${loginInfo.id}` == '') {
 			if (confirm('로그인 필요')) {
-				location.href = 'login.mb';
+				location.href ='login.mb';
+				
 			} 
 		}else{
 		
@@ -140,6 +140,30 @@ function updateReview(reviewnum,recipenum){
 		}
 	});
 }
+
+function deleteReview(reviewnum,recipenum){
+	
+	if(confirm('정말 댓글을 삭제하시겠습니까')){
+		$.ajax({
+			url:'deleteReview.re',
+			data:({
+				recipenum: recipenum,
+				reviewnum: reviewnum,
+			}),
+			success: function(data){
+				$('.comment-list').html($.trim(data));
+				$("textarea[name=UcomContent"+reviewnum+"]").val("");
+			},
+			error:function(request, status, error){
+				alert('에러 관리자에게 문의하세요');
+				alert("status : " + request.status + ", message : " + request.responseText + ", error : " + error);
+			}
+		});
+	}else{
+		alert('삭제안함');
+	}
+
+}
 </script>
 
 <section class="ftco-section">
@@ -242,16 +266,17 @@ function updateReview(reviewnum,recipenum){
 									<div class="meta">${review.reviewdate}</div>
 									<p>${review.review}</p>
 									<p>
+										<c:if test="${review.id != id }">
 										<span class="reply"
 											onclick="reviewReport(${review.reviewnum})"
 											style="cursor: pointer;">신고하기</span>
-											
+										</c:if>
 										<c:if test="${review.id == id }">
 										<span class="reply"
 											onclick="updateHandle(${status.index+1})"
 											style="cursor: pointer; margin-left: 10px;">수정</span>
 										<span class="reply"
-											onclick="location.href='deleteReview.re?reviewnum=${review.reviewnum}&recipenum=${recipe.recipenum}'"
+											onclick="deleteReview(${review.reviewnum},${recipe.recipenum})"
 											style="cursor: pointer; margin-left: 10px;">삭제</span>
 											
 										</c:if>

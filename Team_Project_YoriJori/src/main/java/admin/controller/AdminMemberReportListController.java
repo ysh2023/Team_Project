@@ -35,7 +35,9 @@ public class AdminMemberReportListController {
 	@RequestMapping(value = command, method = RequestMethod.GET)
 	public ModelAndView doAction(Model model, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
+		//id = 신고 당한사람 repdiscription = 신고한 사람 id를 가져옴
 		List<CommentReportBean> lists = adao.getReportlist();
+		//id = 신고 당한사람 reportcontent = 신고한 사람 id를 가져옴
 		List<RecipeReviewReportBean> recipelist = adao.getRecipeReportlist();
 		
 		

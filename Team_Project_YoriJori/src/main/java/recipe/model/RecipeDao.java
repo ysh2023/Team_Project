@@ -146,4 +146,8 @@ public class RecipeDao {
 		int cnt = sqlSessionTemplate.update(namespace+".UpdateReview", map);
 		return cnt;
 	}
+	public List<RecipeBean> getRecipeForMain(){
+		List<RecipeBean> list = sqlSessionTemplate.selectList(namespace+".GetRecipeForMain");
+		return list;
+	}
 }
