@@ -99,7 +99,7 @@ public class OrderPayController {
 			try {
 				response.setContentType("text/html; charset=UTF-8");
 				PrintWriter out = response.getWriter();
-				out.println("<script>alert('구매수량이 재고수량보다 많습니다.'); location.href='shop.prd?whatColumn=no&searchName=';</script>");
+				out.println("<script>alert('구매수량이 재고수량보다 많습니다.'); history.go(-1);</script>");
 				out.flush();
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -108,14 +108,7 @@ public class OrderPayController {
 			
 			JoinBean jb = new JoinBean();
 			if(loginInfo == null) {
-				try {
-					response.setContentType("text/html; charset=UTF-8");
-					PrintWriter out = response.getWriter();
-					out.println("<script>alert('로그인 후 이용 가능합니다.'); location.href='login.mb';</script>");
-					out.flush();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
+				session.setAttribute("destination", "redirect:/shop.prd?whatColumn=no&searchName=");	//destination 속성 설정
 				mav.setViewName("redirect:/login.mb");
 			}else {
 				jb.setPdname(pdname);

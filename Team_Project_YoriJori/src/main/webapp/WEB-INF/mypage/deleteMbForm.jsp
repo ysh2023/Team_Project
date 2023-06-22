@@ -12,11 +12,11 @@
 
 </form>
    
-<div style="margin-top: 1000px; margin-left: -800px;">
-<%@include file= "./../common/footer.jsp" %>
-</div> 
 
 
 </main>
 
+<div style="margin-top: 100px;">
+<%@include file= "./../common/footer.jsp" %>
+</div> 
     

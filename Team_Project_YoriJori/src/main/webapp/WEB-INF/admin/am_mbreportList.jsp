@@ -19,6 +19,21 @@
 	}
 </script>
 
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>
+
+function stop(id){
+	
+	var check=confirm("삭제 하시겠습니까?");
+	if(check==true){
+		location.href="deleteMb.am?id="+id;
+	}
+
+}
+	
+</script>
+
+
 <main id="main" class="main">
 
     <div class="pagetitle">
@@ -73,8 +88,8 @@
                      </form>
                    
                     </td>
-                    <td><a href="deleteMb.am?id=${i.id}">강제탈퇴</a></td>
-                    <td><span onclick="checkdeleteComment('${i.repDiscription}')" style="color: blue; cursor: pointer;">내역삭제</span></td>
+                    <td><a href="#" onclick="stop('${i.id}')">강제탈퇴</a></td>
+                    <td><a href="deleteReport.am?id=${i.id}">내역삭제</a></td>
                   </tr>
                 </c:forEach>
           		
@@ -99,8 +114,8 @@
                      </form>
                    
                     </td>
-                    <td><a href="deleteMb.am?id=${i.id}">강제탈퇴</a></td>
-                    <td><span onclick="checkdeleteReview('${i.reportcontent}')" style="color: blue; cursor: pointer;">내역삭제</span></td>
+                    <td><a href="#" onclick="stop('${i.id}')">강제탈퇴</a></td>
+                    <td><a href="deleteReveiwReport.am?id=${i.id}">내역삭제</a></td>
                   </tr>
                 </c:forEach>
           

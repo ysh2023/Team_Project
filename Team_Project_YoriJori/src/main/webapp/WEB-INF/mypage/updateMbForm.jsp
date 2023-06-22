@@ -81,7 +81,7 @@ function kakaopost() {
 
 </style>
 
-<main  id="main" style="margin-left: -20px">
+<main  id="main" style="margin-left: 20%;">
 
 
 	<div class="container">

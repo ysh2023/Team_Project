@@ -44,7 +44,7 @@ public class BasketUpdateController {
 			try {
 				response.setContentType("text/html; charset=UTF-8");
 				PrintWriter out = response.getWriter();
-				out.println("<script>alert('구매수량이 재고수량보다 많습니다.'); location.href='list.bsk';</script>");
+				out.println("<script>alert('구매수량이 재고수량보다 많습니다.'); history.go(-1);</script>");
 				out.flush();
 			} catch (IOException e) {
 				e.printStackTrace();

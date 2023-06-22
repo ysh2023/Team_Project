@@ -94,7 +94,7 @@ String resourcesPath = request.getContextPath() + "/resources";
                 pay_method: "card",
                 merchant_uid: "IMP"+makeMerchantUid, // 결제 고유 번호
                 name: '${ordpdname}', //상품명
-                amount: ${totalAmount}, //상품가격
+                amount: ${totalAmount+Baesong}, //상품가격
                 buyer_email: document.getElementById('ordemail').value,
                 buyer_name: document.getElementById('ordname').value,
                 buyer_tel: document.getElementById('ordtel').value,
@@ -179,7 +179,7 @@ String resourcesPath = request.getContextPath() + "/resources";
 						if (session.getAttribute("loginInfo") == null) {//로그인이 안된 상태라면?
 						%>
 						<a href="login.mb" style="font-size: 11px; height: 12px; margin-top: 20px; float: right;"> <img src="<%=resourcesPath%>/images/btn_login.png" style="height: 33px;"> 로그인
-						</a> <a href="insert.mb" style="font-size: 11px; height: 12px; margin-top: 20px; margin-right: 15px; float: right;"> <img src="<%=resourcesPath%>/images/btn_register.png" style="height: 33px;"> 회원가입
+						</a> <a href="insert.mb" style="font-size: 11px; height: 12px; margin-top: 20px; margin-right: 5px; float: right;"> <img src="<%=resourcesPath%>/images/btn_register.png" style="height: 33px;"> 회원가입
 						</a>
 
 						<%
@@ -190,9 +190,9 @@ String resourcesPath = request.getContextPath() + "/resources";
 							안녕하세요! </a> <a href="orderlist.mp"
 							style="font-size: 11px; height: 12px; margin-top: 20px; float: right;">
 							<img src="<%=resourcesPath%>/images/mypage.png"
-							style="height: 33px;"> 마이페이지
+							style="height: 33px;"> 내정보
 						</a> <a href="logout.mb"
-							style="font-size: 11px; height: 12px; margin-top: 20px; margin-right: 15px; float: right;">
+							style="font-size: 11px; height: 12px; margin-top: 20px; margin-right: 5px; float: right;">
 							<img src="<%=resourcesPath%>/images/btn_logout.png"
 							style="height: 33px;"> 로그아웃
 						</a>

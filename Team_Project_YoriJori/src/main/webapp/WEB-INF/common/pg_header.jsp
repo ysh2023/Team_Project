@@ -40,11 +40,12 @@
 #main {
 	margin-left: 20%;
 	margin-top: -1000px;
-	height: auto;
+	height: 1000px;
 	width: 80%;
 }
 </style>
 </head>
+
 <aside id="sidebar" class="sidebar">
 <ul id="nav1">
  	
@@ -69,8 +70,6 @@
  	<strong>  <li style="font-size: 30px">개인정보</li></strong> 
  	<li><a href="updateMb.mp">수정하기</a></li>
  	<li><a href="deleteMb.mp">탈퇴하기</a></li>
-   	
-   
    
 </ul>
 </aside>
