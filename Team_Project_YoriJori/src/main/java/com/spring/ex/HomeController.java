@@ -43,7 +43,7 @@ public class HomeController {
 		
 		model.addAttribute("plists",plists);
 
-		return "./../../main";
+		return "/home";
 	}
 
 
