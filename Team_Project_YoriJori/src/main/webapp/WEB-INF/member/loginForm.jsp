@@ -128,7 +128,7 @@ function kakaoLogin(){
 					novalidate>
 						<div class="mb-3">
 							<label for="id">아이디</label> <input type="text"
-								class="form-control" name="id" required>
+								class="form-control" name="id"  required >
 							<div class="invalid-feedback">아이디를 입력해주세요.</div>
 						</div>
 
