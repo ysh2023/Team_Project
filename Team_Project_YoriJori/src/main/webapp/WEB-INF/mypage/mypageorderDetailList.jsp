@@ -15,7 +15,7 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="card">
-						<div class="card-body">
+						<div class="card-body" style="overflow: scroll; max-height: 930px;">
 							<table class="table datatable">
 								<thead>
 									<tr>
@@ -47,6 +47,9 @@
 
 	</main>
 </body>
+<section style="margin-top: 100px;">
+	<%@include file= "./../common/footer.jsp" %>
+</section>
 
 <script src="<%=request.getContextPath()%>/resources/vendor/simple-datatables/simple-datatables.js"></script>
 <script src="<%=request.getContextPath()%>/resources/vendor/tinymce/tinymce.min.js"></script>

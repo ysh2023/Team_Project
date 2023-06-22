@@ -46,7 +46,7 @@ public class BasketInsertController {
 			try {
 				response.setContentType("text/html; charset=UTF-8");
 				PrintWriter out = response.getWriter();
-				out.println("<script>alert('구매수량이 재고수량보다 많습니다.'); location.href='shop.prd?whatColumn=no&searchName=';</script>");
+				out.println("<script>alert('구매수량이 재고수량보다 많습니다.'); history.go(-1);</script>");
 				out.flush();
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -80,7 +80,7 @@ public class BasketInsertController {
 					try {
 						response.setContentType("text/html; charset=UTF-8");
 						PrintWriter out = response.getWriter();
-						out.println("<script>alert('이미 장바구니에 등록된 상품입니다.'); location.href='shop.prd?whatColumn=no&searchName=';</script>");
+						out.println("<script>alert('이미 장바구니에 등록된 상품입니다.'); history.go(-1);</script>");
 						out.flush();
 					} catch (IOException e) {
 						e.printStackTrace();

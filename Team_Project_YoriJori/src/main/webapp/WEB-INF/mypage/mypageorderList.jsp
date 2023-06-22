@@ -15,10 +15,10 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="card">
-						<div class="card-body">
-							<table class="table datatable">
+						<div class="card-body" id="maindiv" style="overflow: scroll; max-height: 930px;">
+							<table class="table datatable" id="maintable">
 								<thead>
-									<tr>
+									<tr class="text-center">
  										  <th scope="col">주문번호</th>
 									      <th scope="col">상품명</th>
 									      <th scope="col">주문자 이름</th>
@@ -37,7 +37,7 @@
 						    </c:if>
 						    <c:if test="${not empty slist }">
 						    <c:forEach  var="order" items="${slist}">
-						      <tr class="text-center">
+						      <tr>
 						              <td scope="row"><a href="orderdetail.mp?ordnum=${order.ordnum }">${order.ordnum }</a></td> 
 								      <td>${order.ordpdname }</td>
 								      <td>${order.ordname }</td>
@@ -65,10 +65,11 @@
 				</div>
 			</div>
 		</section>
-
-
 	</main>
 </body>
+<section style="margin-top: 100px;">
+	<%@include file= "./../common/footer.jsp" %>
+</section>
 
 <script src="<%=request.getContextPath()%>/resources/vendor/simple-datatables/simple-datatables.js"></script>
 <script src="<%=request.getContextPath()%>/resources/vendor/tinymce/tinymce.min.js"></script>

@@ -31,14 +31,7 @@ public class BasketListController {
 		ModelAndView mav = new ModelAndView();
 		MemberBean loginInfo = (MemberBean)session.getAttribute("loginInfo");
 		if(loginInfo == null) { //로그인 안했을때
-			try {
-				response.setContentType("text/html; charset=UTF-8");
-				PrintWriter out = response.getWriter();
-				out.println("<script>alert('로그인 후 이용 가능합니다.'); location.href='login.mb';</script>");
-				out.flush();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+			session.setAttribute("destination", "redirect:/list.bsk");	//destination 속성 설정
 			mav.setViewName("redirect:/login.mb");
 			return mav;
 		}else { // 로그인 했을때
