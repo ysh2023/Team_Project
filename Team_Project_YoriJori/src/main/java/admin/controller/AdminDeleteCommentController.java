@@ -19,14 +19,17 @@ public class AdminDeleteCommentController {
 	
 
 	@RequestMapping(value = command, method = RequestMethod.GET)
-	public String doAction(@RequestParam("id") String id,@RequestParam(value="comNum", required = false) String comNum,@RequestParam(value="reviewnum", required = false) String reviewnum ) {
+	public String doAction(@RequestParam("id") String id,@RequestParam(value="repNum", required = false) String repNum,@RequestParam(value="rerepnum", required = false) String rerepnum ) {
 		
-		if(comNum!=null) {
-			System.out.println("colnum이 넘어옴");
-			 adao.deleteComment(comNum);
+		if(repNum!=null) {
+			 adao.deleteComment(repNum);
 		}else {
-			System.out.println("reviewnum넘어옴");
-			adao.deleteReview(reviewnum);
+			int cnt = adao.deleteReview(rerepnum);
+			if(cnt>0) {
+				System.out.println("삭제성공");
+			}else {
+				System.out.println("삭제실패");
+			}
 		}
 		
 		

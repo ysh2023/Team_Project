@@ -5,7 +5,8 @@
 <script>
 function recommendClick(recipenum){
 	if (`${loginInfo.id}` == '') {
-		if (confirm('로그인 후 추천 가능합니다\n로그인 하시겠습니까?')) {
+		if (confirm('로그인 후 찜 가능합니다\n로그인 하시겠습니까?')) {
+			<%session.setAttribute("destination", "redirect:/list.re");%>
 			location.href = 'login.mb';
 			return;
 		}else{
@@ -64,7 +65,7 @@ function recommendClick(recipenum){
     						<a class="active">구분별</a>
     					</td>
     					<td>
-    						<ul class="product-category">
+    						<ul class="product-category" style="margin-bottom: 20px">
     							<li><a href="list.re" ${selectCategory == 'All' ? 'class="active"':"" } >전체</a></li>
 		    					<li><a href="list.re?whatColumn=readcount&keyword=조회많은순"${selectCategory == '조회많은순' ? 'class="active"':"" }>조회많은순</a></li>
 		    					<li><a href="list.re?whatColumn=bookmark&keyword=찜많은순"${selectCategory == '찜많은순' ? 'class="active"':"" }>찜많은순</a></li>
@@ -76,7 +77,7 @@ function recommendClick(recipenum){
     						카테고리별
     					</td>
     					<td>
-    						<ul class="product-category">
+    						<ul class="product-category" tyle="margin-bottom: 20px">
 		    					<li><a href="list.re?whatColumn=recipecategory&keyword=반찬"${selectCategory == '반찬' ? 'class="active"':"" }>반찬</a></li>
 		    					<li><a href="list.re?whatColumn=recipecategory&keyword=국&amp;찌개"${selectCategory == '국&찌개' ? 'class="active"':"" }>국&찌개</a></li>
 		    					<li><a href="list.re?whatColumn=recipecategory&keyword=일품"${selectCategory == '일품' ? 'class="active"':"" }>일품</a></li>
@@ -90,7 +91,7 @@ function recommendClick(recipenum){
     						식재료별
     					</td>
     					<td>
-    						<ul class="product-category">
+    						<ul class="product-category" tyle="margin-bottom: 20px">
     							<li><a href="listByIng.re?whatColumn=foodcategory&keyword=곡류/콩/견과류"${selectCategory == '곡류/콩/견과류' ? 'class="active"':"" }>곡류/콩/견과류</a></li>
     							<li><a href="listByIng.re?whatColumn=foodcategory&keyword=소스/오일"${selectCategory == '소스/오일' ? 'class="active"':"" }>소스/오일</a></li>
     							<li><a href="listByIng.re?whatColumn=foodcategory&keyword=채소"${selectCategory == '채소' ? 'class="active"':"" }>채소</a></li>
@@ -106,8 +107,8 @@ function recommendClick(recipenum){
     						분류별
     					</td>
     					<td>
-	    					<ul class="product-category" id="category">
-		    					<li><a href="list.re?whatColumn=recipecategory&keyword=돼지고기"${selectCategory == '돼지고기' ? 'class="active"':"" }>돼지고기</a></li>
+	    					<ul class="product-category" id="category" style="margin-bottom: 20px">
+		    					<li style="margin-bottom: 20px"><a href="list.re?whatColumn=recipecategory&keyword=돼지고기"${selectCategory == '돼지고기' ? 'class="active"':"" }>돼지고기</a></li>
 		    					<li><a href="list.re?whatColumn=recipecategory&keyword=소고기"${selectCategory == '소고기' ? 'class="active"':"" }>소고기</a></li>
 		    					<li><a href="list.re?whatColumn=recipecategory&keyword=닭고기"${selectCategory == '닭고기' ? 'class="active"':"" }>닭고기</a></li>
 		    					<li><a href="list.re?whatColumn=recipecategory&keyword=육류"${selectCategory == '육류' ? 'class="active"':"" }>육류</a></li>

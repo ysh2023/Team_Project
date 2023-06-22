@@ -104,8 +104,9 @@
   	</update>
   	<!-- 조회수 순서대로 recipe가져오기 -->
   	<select id="GetAllRecipeByReadCount" resultType="recipe.model.RecipeBean">
-  		select * from recipe
-  		order by readcount desc
+  		select recipe.recipe_num,recipe.recipe_name,recipe.recipe_category,recipe.servings,recipe.cook_image,recipe.readcount<if test="id!=''">, sel.rec</if> from recipe 
+		<if test="id!=''"> full outer join (select count(*)as rec , recipe_num from bookmark where id=#{id} group by recipe_num) sel on sel.recipe_num = recipe.recipe_num</if>
+		order by readcount desc
   	</select>
   	<!-- bookmark번호로 recipe가져오기 -->
   	<select id="GetAllRecipeByBookMark" resultType="recipe.model.RecipeBean">
@@ -145,4 +146,9 @@
   	<update id="UpdateReview">
   		update review set review=#{review} where review_num=#{reviewnum}
   	</update>
+  	<select id="GetRecipeForMain" resultType="recipe.model.RecipeBean">
+  		select recipe.recipe_num,recipe.recipe_name,recipe.recipe_category,recipe.servings,recipe.cook_image,recipe.readcount
+		from recipe join (select rownum as rank, recipe_num from(select recipe_num, count(*)as bookmarknum from bookmark group by recipe_num order by bookmarknum desc)) mark on recipe.recipe_num = mark.recipe_num
+		where rank between 1 and 4
+  	</select>
   </mapper>

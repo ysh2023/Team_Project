@@ -1,6 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file= "./../common/admin_header.jsp" %>
+<script>
+	function checkdeleteComment(id) {
+		if(confirm('정말 삭제하시겠습니까')){
+			location.href="deleteReport.am?id="+id;
+		}else{
+			
+		}
+	}
+	
+	function checkdeleteReview(id) {
+		if(confirm('정말 삭제하시겠습니까')){
+			location.href="deleteReveiwReport.am?id="+id;
+		}else{
+			
+		}
+	}
+</script>
 
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
