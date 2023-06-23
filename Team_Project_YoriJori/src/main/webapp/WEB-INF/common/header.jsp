@@ -164,9 +164,13 @@ String resourcesPath = request.getContextPath() + "/resources";
 	
 	}
 	$(document).ready(function(){ 
-		//alert(1);
+		<!-- 메인화면이 아니면 쇼핑리스트 안보이게 바꿈-->
+		if(location.href != 'http://localhost:8080/ex/'){
+			$('.icon-shopping_cart').hide();
+		}
 	});
 </script>
+
 <body class="goto-here" onload="setToggle()">
 	<!-- header -->
 	<header>
@@ -286,8 +290,8 @@ String resourcesPath = request.getContextPath() + "/resources";
 								style="width: 18px; margin-right: 5px; margin-bottom: 2px;">
 								북마크 레시피
 						</a></li>
-						<li class="nav-item"><a href="list.bsk"
-							class="nav-link"><span class="icon-shopping_cart" style="color:#F2BC1B;"></span></a></li>
+						<li class="nav-item" id="countlist" ><a href="list.bsk"
+							class="nav-link"><span class="icon-shopping_cart" style="color:#F2BC1B;">[${cnt}]</span></a></li>
 					</ul>
 					</div>
 					</div>

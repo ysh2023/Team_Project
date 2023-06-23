@@ -8,14 +8,14 @@
     <section id="home-section" class="hero" style="height: 650px;">
 		  <div class="home-slider owl-carousel">
 		  <!-- first slide -->
-	      <div id="main-image" class="slider-item" style="background-image: url(<%=resourcesPath%>/images/bg_1.jpg);">
+	      <div id="main-image" class="slider-item" style="background-image: url(<%=resourcesPath%>/images/mainbanner.png);">
 	      	<div class="overlay"></div>
 	        <div class="container">
 	          <div class="row slider-text" data-scrollax-parent="true" style="height: 500px;">
 				<!-- text -->
 	            <div class="col-md-12 ftco-animate text-center" style="padding-top: 45px" >
-	              <h1 class="mb-2">We serve Fresh Vegestables &amp; Fruits</h1>
-	              <h2 class="subheading mb-4">We deliver organic vegetables &amp; fruits</h2>
+	              <h1 class="mb-2"><br></h1>
+	              <h2 class="subheading mb-4"><br> </h2><br>
 	              <p><a href="#" class="btn btn-primary">View Details</a></p>
 	            </div>
 	          </div>

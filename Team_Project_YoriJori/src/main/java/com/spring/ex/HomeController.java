@@ -13,6 +13,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import basket.model.BasketDao;
+import member.model.MemberBean;
+import order.model.OrderDao;
 import member.model.MemberBean;
 import product.model.ProductBean;
 import product.model.ProductDao;
@@ -37,9 +40,23 @@ public class HomeController {
 	@Autowired
 	RecipeDao rdao;
 	
+	@Autowired
+	BasketDao bdao;
+	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model, HttpSession session) {
-		
+		//장바구니
+		if((MemberBean)session.getAttribute("loginInfo")!=null) {
+			String id=((MemberBean)session.getAttribute("loginInfo")).getId();
+			int cnt = bdao.BasketCount(id);
+			if(cnt>0) {
+				model.addAttribute("cnt", cnt);
+			}else {
+				model.addAttribute("cnt", 0);
+			}
+		}else {
+			model.addAttribute("cnt", 0);
+		}
 		MemberBean loginInfo = (MemberBean)session.getAttribute("loginInfo");
 		if(loginInfo != null) {
 			//소비기한 알림
