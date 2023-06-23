@@ -11,7 +11,7 @@
     <section id="home-section" class="hero" style="height: 650px;">
 		  <div class="home-slider owl-carousel">
 		  <!-- first slide -->
-	      <div id="main-image" class="slider-item" style="background-image: url(<%=resourcesPath%>/images/bg_1.jpg);">
+	      <div id="main-image" class="slider-item" style="background-image: url(<%=resourcesPath%>/images/mainbanner.png);">
 	      	<div class="overlay"></div>
 	        <div class="container">
 	          <div class="row slider-text" data-scrollax-parent="true" style="height: 500px;">
