@@ -16,10 +16,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import basket.model.BasketDao;
 import member.model.MemberBean;
 import order.model.OrderDao;
+import member.model.MemberBean;
 import product.model.ProductBean;
 import product.model.ProductDao;
 import recipe.model.RecipeBean;
 import recipe.model.RecipeDao;
+import refrigerator.model.RefDao;
 
 /**
  * Handles requests for the application home page.
@@ -29,6 +31,9 @@ public class HomeController {
 
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
+	@Autowired
+	RefDao refdao;
+	
 	@Autowired
 	ProductDao pdao;
 	
@@ -51,6 +56,12 @@ public class HomeController {
 			}
 		}else {
 			model.addAttribute("cnt", 0);
+		}
+		MemberBean loginInfo = (MemberBean)session.getAttribute("loginInfo");
+		if(loginInfo != null) {
+			//소비기한 알림
+			int ddayCnt = refdao.getDdayCount(loginInfo.getId());
+			model.addAttribute("ddayCnt", ddayCnt);
 		}
 		
 		//레시피

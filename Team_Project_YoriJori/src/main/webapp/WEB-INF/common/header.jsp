@@ -279,8 +279,10 @@ String resourcesPath = request.getContextPath() + "/resources";
 					<div class="col-md-auto">
 					<ul class="nav me-auto" style="align-items: center; display: flex; justify-content: center;" >
 						<li class="nav-item"><a href="page.ref" class="nav-link" style="color:#ffffff;">
-								<img src="<%=resourcesPath%>/images/btn_circle.png"
-								style="width: 18px; margin-right: 5px; margin-bottom: 2px;">
+							<c:if test="${ddayCnt>0}"><i class="icon-warning" style="color:red;"></i><span style="color:red;">${ddayCnt}</span></c:if>
+							<c:if test="${ddayCnt <= 0}">
+								<img src="<%=resourcesPath%>/images/btn_circle.png" style="width: 18px; margin-right: 5px; margin-bottom: 2px;">
+							</c:if>
 								나의 냉장고
 						</a></li>
 						<li class="nav-item"><a href="bookmark.re" class="nav-link" style="color:#ffffff;">
