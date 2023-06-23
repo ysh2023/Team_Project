@@ -88,7 +88,13 @@ String resourcesPath = request.getContextPath() + "/resources";
   				alert("이메일을 입력해주세요.");
   				$('input[name=ordemail]').focus();
   				return false;
-  			}
+  			}else{
+  				var reg_email = /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
+ 			     if(!reg_email.test($('input[name=ordemail]').val())) {          
+ 			    	alert("올바른 이메일 형식이 아닙니다. ex) xxx@xxx.xxx or xxx@xxx.xx.xx")
+ 			        return false;         
+ 			     }
+ 			}
   		    IMP.request_pay({
   		    	pg : 'html5_inicis',
                 pay_method: "card",
