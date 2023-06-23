@@ -25,14 +25,14 @@
                 <thead>
                   <tr>
                     <th scope="col">주문번호</th>
-                    <th scope="col">결제금액</th>
-                    <th scope="col">이메일</th>
                     <th scope="col">이름</th>
-                    <th scope="col">주소</th>
+                    <th scope="col">이메일</th>
                     <th scope="col">우편번호</th>
+                    <th scope="col">주소</th>
                     <th scope="col">번호</th>
                     <th scope="col">구매 날짜</th>
-                    <th scope="col">아이디</th>
+                    <th scope="col">결제금액</th>
+                    <th scope="col">거래현황</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -40,17 +40,21 @@
                 <c:forEach var="ord" items="${lists}">
                  <tr>
                     <th scope="row"><a href="orderdetailList.am?ordnum=${ord.ordnum}">${ord.ordnum}</a></th>
-                    <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${ord.ordtotalpay}" />원</td>
-                    <td>${ord.ordemail}</td>
                     <td>${ord.ordname}</td>
-                    <td>${ord.ordaddr}</td>
+                    <td>${ord.ordemail}</td>
                     <td>${ord.ordzipcode}</td>
+                    <td>${ord.ordaddr}</td>
                     <td>${ord.ordtel}</td>
-                    <td>${ord.orddate}</td>
-                    <td>${ord.ordmemid}</td>
-                  </tr>
+                    <td>
+	                    <fmt:parseDate var="dateFmt" pattern="yyyy-MM-dd HH:mm" value="${ord.orddate}"/>
+	                    <fmt:formatDate value="${dateFmt}" pattern="yyyy-MM-dd HH:mm" var="det"/>
+	                    <c:out value="${det}"></c:out>
+                    </td>
+                    <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${ord.ordtotalpay}" />원</td>
+                    <td>${ord.ordpaystate}</td>
+                  </tr> 
                 </c:forEach>
-         
+          
                 </tbody>
               </table>
 

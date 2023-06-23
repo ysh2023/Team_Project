@@ -29,7 +29,7 @@
 								</thead>
 								<tbody>
 									 <c:if test="${empty slist}">
-						    	 <tr class="text-center">
+						    	 <tr class="text-center"> 
 						    	 	<td colspan="6">
 						    	 		주문 목록이 없습니다.
 						    	 	</td>
@@ -42,7 +42,11 @@
 								      <td>${order.ordpdname }</td>
 								      <td>${order.ordname }</td>
 								      <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${order.ordtotalpay}" />원</td> 
-								      <td>${order.orddate }</td>
+								      <td>
+										<fmt:parseDate var="dateFmt" pattern="yyyy-MM-dd HH:mm" value="${order.orddate}"/>
+					                    <fmt:formatDate value="${dateFmt}" pattern="yyyy-MM-dd HH:mm" var="det"/>
+					                    <c:out value="${det}"></c:out>
+									  </td>
 								      <td>
 								      	<c:if test="${order.ordpaystate == '결제 완료' }">
 								      		<input id="cancelpaybtn" type="button" value="환불 요청" onclick="location.href='cancelpay.mp?merchant_uid=${order.ordnum}'">
@@ -54,7 +58,7 @@
 								      		<p><span>환불 승인 완료 </span> </p>
 								      	</c:if>
 								      </td>
-						        
+						         
 						      </tr>
 								</c:forEach>
 						    	</c:if>
