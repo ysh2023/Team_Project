@@ -244,12 +244,12 @@
 	}
 	
 	function updateHandle(){
-		location.href='boardUpdate.board?bodNum=' + ${board.bodNum};
+		location.href='boardUpdate.board?bodNum=' +'${board.bodNum}';
 	}
 
 	function deleteHandle(){
 		if(confirm('삭제하시겠습니까?')){			
-			location.href='boardDelete.board?bodNum=' + ${board.bodNum};		
+			location.href='boardDelete.board?bodNum=' + '${board.bodNum}';		
 		}
 	}
 </script>

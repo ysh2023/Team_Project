@@ -40,6 +40,7 @@ public class BoardInsertController {
 	public String doAction(Model model, HttpSession session, HttpServletResponse response) throws IOException {
 		if (session.getAttribute("loginInfo") == null) {
 			response.setContentType("text/html; charset=utf-8");
+			session.setAttribute("destination", "redirect:/write.board");
 			response.getWriter().append("<script>alert('로그인 후 이용 가능합니다'); location.href='login.mb'</script>").flush();
 			return null;
 		} else {
@@ -124,8 +125,6 @@ public class BoardInsertController {
 
 			}
 
-			System.out.println(boardFormBean.getImage().length);
-			System.out.println(boardFormBean.getBod_content().length);
 			// 사용자 레시피 조리과정 저장
 			for (int i = 0; i < boardFormBean.getImage().length; i++) {
 				if (!boardFormBean.getImage()[i].equals("")) {

@@ -3,6 +3,7 @@ package board.controller;
 import java.io.File;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,35 +21,62 @@ public class BoardDeleteController {
 	private String page = "redirect:/main.board";
 
 	@Autowired
+	ServletContext servletContext;
+
+	@Autowired
 	BoardDao bdao;
 
 	@RequestMapping(value = command)
 	public String doAction(@RequestParam("bodNum") String bodNum, HttpSession session) {
 
+		String str = "c:\\tempUpload";
+		String serverPath = servletContext.getRealPath("/resources/images");
+
 		BoardBean boardBean = bdao.getBoardByBodNum(bodNum);
 		List<BoardContentBean> boardContentList = bdao.getBoardContentByBodNum(bodNum);
-		System.out.println(boardBean.getBodImage());
-		String str = "c:\\tempUpload";
-		if (boardBean.getBodImage() != null) {
-			File deleteFile = new File(str + File.separator + boardBean.getBodImage());
-			if (deleteFile.exists()) {
-				if (deleteFile.delete()) {
-					System.out.println("삭제성공");
-				}
-			}
-		}
-
-		for (BoardContentBean b : boardContentList) {
-			File deleteFile = new File(str + File.separator + b.getImage());
-			if (deleteFile.exists()) {
-				if (deleteFile.delete()) {
-					System.out.println("조리과정 삭제성공");
-				}
-			}
-		}
 
 		int result = bdao.deleteBoardByBodNum(bodNum);
 
+		if (result > 0) {
+			if (boardBean.getBodImage() != null) {
+				File deleteFile = new File(str + File.separator + boardBean.getBodImage());
+				File serverFile = new File(serverPath + File.separator + boardBean.getBodImage());
+				if (deleteFile.exists()) {
+					if (deleteFile.delete()) {
+						System.out.println("삭제성공");
+					}
+				}
+				if (serverFile.exists()) {
+					if (serverFile.delete()) {
+						System.out.println("서버 삭제성공");
+					}
+				}
+			}
+
+			if (boardContentList.size() > 0) {
+				for (int i = 0; i < boardContentList.size(); i++) {
+					System.out.println(boardContentList.get(i).getImage());
+					if (boardContentList.get(i).getImage() != null) {
+						File deleteFile = new File(str + File.separator + boardContentList.get(i).getImage());
+						File serverFile = new File(serverPath + File.separator + boardBean.getBodImage());
+						System.out.println("이미지 널 아님");
+						if (deleteFile.exists()) {
+							System.out.println("파일 있음");
+							if (deleteFile.delete()) {
+								System.out.println("조리과정 삭제성공");
+							}
+						}
+						if (serverFile.exists()) {
+							System.out.println("서버 파일 있음");
+							if (serverFile.delete()) {
+								System.out.println("서버 조리과정 삭제성공");
+							}
+						}
+					}
+				}
+			}
+
+		}
 		return page;
 	}
 }
