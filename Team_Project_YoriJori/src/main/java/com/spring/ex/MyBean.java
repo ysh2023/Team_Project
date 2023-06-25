@@ -28,6 +28,13 @@ public class MyBean implements InitializingBean {
 
 		String str = "c:/tempUpload";
 		File destination_local = new File(str);
+		if (!destination_local.exists()) {
+			if (destination_local.mkdir()) {
+				System.out.println("폴더가 없으므로 tempUpload폴더 생성");
+			} else {
+				System.out.println("tempUpload폴더 생성 실패");
+			}
+		}
 		FileUtils.copyDirectory(destination_local, destination);
 	}
 }

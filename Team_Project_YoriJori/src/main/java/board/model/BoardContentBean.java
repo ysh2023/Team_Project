@@ -3,8 +3,17 @@ package board.model;
 public class BoardContentBean {
 	private int bimNum;
 	private String image;
+	private String originImage;
 	private String bodContent;
 	private int bodNum;
+
+	public String getOriginImage() {
+		return originImage;
+	}
+
+	public void setOriginImage(String originImage) {
+		this.originImage = originImage;
+	}
 
 	public int getBimNum() {
 		return bimNum;

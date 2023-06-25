@@ -18,7 +18,7 @@
 
 		$('#cookProcess')
 				.append(
-						'<div class="row" id='+cookProcessIndex+'><div class="col-md-12"><div class="pt-3 pb-2"><label for="bod_content" name="processLabel">조리과정 </label><input class="btn btn-danger " style="margin-left: 20px;width:60px; height:40px;" type="button" value="삭제" onclick="removeCookProcess(\''+ cookProcessIndex + '\')"></div><div class="row"><div class="col-md-6"><textarea name="bod_content" cols="40" rows="10" style="resize: none;" class="form-control text-left px-3" placeholder=""></textarea></div><div class="col-md-6" style="display : flex; width:100%; justify-content: space-between;"><div  class="drop-zone" style="width:100%;"><span class="drop-zone__prompt">이미지를 끌어다놓거나 클릭하세요</span> <input id=drop'+cookProcessIndex+' type="file" name="upload" class="drop-zone__input"></div></div></div></div></div>');
+						'<div class="row" id='+cookProcessIndex+'><div class="col-md-12"><div class="pt-3 pb-2"><label for="bod_content" name="processLabel">조리과정 </label><input class="btn btn-danger " style="margin-left: 20px;width:60px; height:40px;" type="button" value="삭제" onclick="removeCookProcess(\''+ cookProcessIndex + '\')"></div><div class="row"><div class="col-md-6"><textarea name="bod_content" cols="40" rows="10" style="resize: none;" class="form-control text-left px-3" placeholder=""></textarea></div><div class="col-md-6" style="display: flex; justify-content: center;"><div  class="drop-zone" style="width: 400px; height: 284px;"><span class="drop-zone__prompt">이미지를 끌어다놓거나 클릭하세요</span> <input id=drop'+cookProcessIndex+' type="file" name="upload" class="drop-zone__input"><svg xmlns="http://www.w3.org/2000/svg" style="stroke: red; cursor: pointer; margin-left: 10px; position: absolute; top: 10px; right: 40px; display: none; z-index: 999;" width="40" height="40" fill="currentColor" class="bi bi-x-circle close__thumb" viewBox="-1 -1 18 18"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" /><path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" /></svg></div></div></div></div></div>');
 		uploadEvent(cookProcessIndex);
 		cookProcessIndex++;
 
@@ -99,6 +99,7 @@
 
 	/* 식재료 삭제 */
 	function removeIngredient(removeIndex) {
+		alert("zz");
 		$('#addingredient' + removeIndex).remove();
 	}
 </script>
@@ -117,30 +118,29 @@
 							<div class="col-md-6">
 								<div class="row">
 									<div class="col-md-12">
-										<label for="title" onclick="lodings()">* 요리명 <span id="titleMsg"></span></label><input
-											type="text" name="title" value="${board.title }" class="form-control text-left px-3"
-											placeholder="요리제목을 입력하세요">
+										<label for="title" onclick="lodings()">* 요리명 <span id="titleMsg"></span></label><input type="text" name="title" value="${board.title }" class="form-control text-left px-3" placeholder="요리제목을 입력하세요">
 									</div>
 								</div>
 								<div class="row pt-3">
 									<div class="col-md-12">
-										<label for="servings">몇인분 </label> <input type="number" name="servings"
-											value="${board.servings }" class="form-control text-left px-3" placeholder="예 : 1">
+										<label for="servings">몇인분 </label> <input type="number" name="servings" value="${board.servings }" class="form-control text-left px-3" placeholder="예 : 1">
 									</div>
 								</div>
 								<div class="row pt-3">
 									<div class="col-md-12">
-										<label for="time">조리시간 </label> <input type="number" name="time" value="${board.time }"
-											class="form-control text-left px-3" placeholder="조리시간(단위 : 분) 예 : 10">
+										<label for="time">조리시간 </label> <input type="number" name="time" value="${board.time }" class="form-control text-left px-3" placeholder="조리시간(단위 : 분) 예 : 10">
 									</div>
 								</div>
 							</div>
-							<div class="col-md-6">
-								<input type="hidden" name="prev_bod_image" value="${board.bodImage }">
+							<div class="col-md-6" style="display: flex; justify-content: center;">
+								<input type="hidden" name="prev_bod_image" value="${board.bodImage }"> <input type="hidden" name="prev_bod_origin" value="${board.bodOrigin }">
 								<div class="drop-zone" id="zone" style="width: 400px; height: 300px;">
-									<span class="drop-zone__prompt" style="justify-content: space-between;">레시피 대표 사진을
-										끌어다 놓거나 <br>여기를 클릭해서 업로드하세요
+									<span class="drop-zone__prompt" style="justify-content: space-between;">레시피 대표 사진을 끌어다 놓거나 <br>여기를 클릭해서 업로드하세요
 									</span> <input type="file" name="bod_image_upload" class="drop-zone__input" id="bod_image_upload">
+									<svg xmlns='http://www.w3.org/2000/svg' style='stroke: red; cursor: pointer; margin-left: 10px; position: absolute; top: 10px; right: 40px; display: none; z-index: 999;' width='40' height='40' fill='currentColor' class='bi bi-x-circle close__thumb' viewBox='-1 -1 18 18'>
+										<path d='M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z' />
+										
+										<path d='M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z' /></svg>
 								</div>
 
 							</div>
@@ -149,8 +149,7 @@
 					<div class="form-group">
 						<div class="row">
 							<div class="col-md-6">
-								<label for="category">* 카테고리 <span id="categoryMsg"></span></label> <select name="category"
-									class="form-control text-left px-3">
+								<label for="category">* 카테고리 <span id="categoryMsg"></span></label> <select name="category" class="form-control text-left px-3">
 									<option value="">카테고리를 선택해주세요
 										<c:forEach items="${categorys }" var="category">
 											<option <c:if test="${board.category eq category }">selected</c:if>>${category }
@@ -158,8 +157,7 @@
 								</select>
 							</div>
 							<div class="col-md-6">
-								<label for="tags">해쉬태그 </label> <input name="tags" type="text" value="${board.tags }"
-									class="form-control text-left px-3" placeholder="태그를 작성해주세요 예 : #김 #밥">
+								<label for="tags">해쉬태그 </label> <input name="tags" type="text" value="${board.tags }" class="form-control text-left px-3" placeholder="태그를 작성해주세요 예 : #김 #밥">
 
 							</div>
 						</div>
@@ -169,8 +167,7 @@
 							<div class="col-md-12">
 								<div class="row">
 									<div class="col-md-6">
-										<label for="inputIngName">식재료 </label> <input name="inputIngName" id="inputIngName"
-											list="ingNameList" class="form-control " placeholder="검색 후 추가 목록에 없으면 작성 후 추가">
+										<label for="inputIngName">식재료 </label> <input name="inputIngName" id="inputIngName" list="ingNameList" class="form-control " placeholder="검색 후 추가 목록에 없으면 작성 후 추가">
 										<datalist id="ingNameList">
 											<c:forEach items="${ingredients }" var="ingredient">
 												<option data-value="${ingredient.ingnum}" value="${ingredient.ingname}">${ingredient.ingnum}</option>
@@ -181,20 +178,17 @@
 										<label for="inputBig">용량</label>
 										<div class="row">
 											<div class="col-md-9">
-												<input type="text" name="inputBig" class="form-control text-left px-3"
-													placeholder="식재료 양을 적어주세요">
+												<input type="text" name="inputBig" class="form-control text-left px-3" placeholder="식재료 양을 적어주세요">
 
 											</div>
 											<div class="col-md-3">
-												<input class="btn btn-primary px-4 py-3" type="button" value="추가"
-													onclick="addIngredient()">
+												<input class="btn btn-primary px-4 py-3" type="button" value="추가" onclick="addIngredient()">
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-							<div class="col-md-12" id="selectIngName"
-								style="height: auto; display: flex; flex-wrap: wrap;">
+							<div class="col-md-12" id="selectIngName" style="height: auto; display: flex; flex-wrap: wrap;">
 								<c:forEach items="${boardIngredientList }" var="boardIngredientBean" varStatus="status">
 									<%-- 		<span style='border: 1px solid gray; border-radius: 20px; padding: 5px; margin: 5px;'
 										id="addingredient${status.index }"><input type='hidden' name='big_name'
@@ -204,19 +198,11 @@
 										value="${boardIngredientBean.ingNum }"><span style='cursor: pointer;'
 										onclick='removeIngredient(${status.index})'>X</span></span>
  --%>
-									<div style="border: 1px solid gray; border-radius: 80px; padding: 10px; margin: 10px;"
-										id="addingredient">
-										<input type="hidden" name="big_name" value=" ${boardIngredientBean.bigName }"> 식재료
-										: ${boardIngredientBean.bigName }<input type="hidden" name="big_amount"
-											value="${boardIngredientBean.bigAmount }"> / 용량 : ${boardIngredientBean.bigAmount }<input
-											type="hidden" name="ing_num" value="${boardIngredientBean.ingNum }">
-										<svg xmlns="http://www.w3.org/2000/svg"
-											style="stroke: red; cursor: pointer; margin-left: 10px;" width="25" height="25"
-											fill="currentColor" class="bi bi-x-circle" viewBox="-1 -1 18 18"
-											onclick="removeIngredient(${status.index})">
+									<div style="border: 1px solid gray; border-radius: 80px; padding: 10px; margin: 10px;" id="addingredient${status.index }">
+										<input type="hidden" name="big_name" value=" ${boardIngredientBean.bigName }"> 식재료 : ${boardIngredientBean.bigName }<input type="hidden" name="big_amount" value="${boardIngredientBean.bigAmount }"> / 용량 : ${boardIngredientBean.bigAmount == 'null' ? '' : boardIngredientBean.bigAmount }<input type="hidden" name="ing_num" value="${boardIngredientBean.ingNum == null ? 'null' : boardIngredientBean.ingNum  }">
+										<svg xmlns="http://www.w3.org/2000/svg" style="stroke: red; cursor: pointer; margin-left: 10px;" width="25" height="25" fill="currentColor" class="bi bi-x-circle" viewBox="-1 -1 18 18" onclick="removeIngredient(${status.index})">
 											<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-											<path
-												d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" /></svg>
+											<path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" /></svg>
 									</div>
 
 								</c:forEach>
@@ -231,14 +217,16 @@
 										<label for="bod_content">조리과정</label>
 										<div class="row">
 											<div class="col-md-6">
-												<textarea name="bod_content" cols="40" rows="10" style="resize: none;"
-													class="form-control text-left px-3" placeholder=""></textarea>
+												<textarea name="bod_content" cols="40" rows="10" style="resize: none;" class="form-control text-left px-3" placeholder=""></textarea>
 											</div>
-											<div class="col-md-6">
-												<div class="row">
-													<div class="col-md-8">
-														<input type="hidden" name="prev_image"> <input type="file" name="upload">
-													</div>
+											<div class="col-md-6" style="display: flex; justify-content: center;">
+												<input type="hidden" name="prev_image" value=""> <input type="hidden" name="originImage" value="">
+												<div class="drop-zone" style="width: 400px; height: 284px;">
+													<span class="drop-zone__prompt">이미지를 끌어다놓거나 클릭하세요</span> <input type="file" id="f1" name="upload" class="drop-zone__input">
+													<svg xmlns='http://www.w3.org/2000/svg' style='stroke: red; cursor: pointer; margin-left: 10px; position: absolute; top: 10px; right: 40px; display: none; z-index: 999;' width='40' height='40' fill='currentColor' class='bi bi-x-circle close__thumb' viewBox='-1 -1 18 18'>
+										<path d='M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z' />
+										
+										<path d='M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z' /></svg>
 												</div>
 											</div>
 										</div>
@@ -253,24 +241,24 @@
 										<div class="pt-3 pb-2">
 											<label for="bod_content">조리과정</label>
 											<c:if test="${status.index>0 }">
-												<input class="btn btn-danger " style="margin-left: 20px; width: 60px; height: 40px;"
-													type="button" value="삭제" onclick="removeCookProcess(${status.index})">
+												<input class="btn btn-danger " style="margin-left: 20px; width: 60px; height: 40px;" type="button" value="삭제" onclick="removeCookProcess(${status.index})">
 											</c:if>
 										</div>
 										<div class="row">
 											<div class="col-md-6">
-												<textarea name="bod_content" cols="40" rows="10" style="resize: none;"
-													class="form-control text-left px-3" placeholder="">${boardContentBean.bodContent }</textarea>
+												<textarea name="bod_content" cols="40" rows="10" style="resize: none;" class="form-control text-left px-3" placeholder="">${boardContentBean.bodContent }</textarea>
 
 											</div>
-											<div class="col-md-6">
+											<div class="col-md-6" style="display: flex; justify-content: center;">
 
 
-												<input type="hidden" name="prev_image"
-													value="${boardContentBean.image == null ? '' : boardContentBean.image }">
-												<div class="drop-zone" style="width: 100%; height: 100%;">
-													<span class="drop-zone__prompt">이미지를 끌어다놓거나 클릭하세요</span> <input type="file" id="f1"
-														name="upload" class="drop-zone__input">
+												<input type="hidden" name="prev_image" value="${boardContentBean.image == null ? '' : boardContentBean.image }"> <input type="hidden" name="originImage" value="${boardContentBean.originImage == null ? '' : boardContentBean.originImage }">
+												<div class="drop-zone" style="width: 400px; height: 284px;">
+													<span class="drop-zone__prompt">이미지를 끌어다놓거나 클릭하세요</span> <input type="file" id="f1" name="upload" class="drop-zone__input">
+													<svg xmlns='http://www.w3.org/2000/svg' style='stroke: red; cursor: pointer; margin-left: 10px; position: absolute; top: 10px; right: 40px; display: none; z-index: 999;' width='40' height='40' fill='currentColor' class='bi bi-x-circle close__thumb' viewBox='-1 -1 18 18'>
+										<path d='M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z' />
+										
+										<path d='M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z' /></svg>
 												</div>
 
 											</div>
@@ -283,8 +271,7 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<input class="btn btn-primary col-md-12 py-3" id="addCookProcessBtn" type="button"
-							value="조리과정추가" onclick="addCookProcess()">
+						<input class="btn btn-primary col-md-12 py-3" id="addCookProcessBtn" type="button" value="조리과정추가" onclick="addCookProcess()">
 					</div>
 					<div class="btn btn-primary py-3 px-4" onclick="submitHandle()">레시피 수정하기</div>
 				</form>
@@ -297,59 +284,97 @@
 
 </body>
 <script>
-	// 대표 이미지 불러오기
 
 
-	// 조리과정 이미지 불러오기
+	// 이미지 불러오는 처리
 	var contentListIndex = 0;
 	var cnt = ${fn:length(boardContentList)};
 	
 	document.querySelectorAll(".drop-zone__input").forEach((inputElement) => {
 		
-	  	console.log(inputElement);
-
+	  	// 대표 이미지 불러오기
 		if(contentListIndex==0){
-			const dz = inputElement.closest(".drop-zone");
-	
-			let tb = dz.querySelector(".drop-zone__thumb");
-			if (dz.querySelector(".drop-zone__prompt")) {
-				dz.querySelector(".drop-zone__prompt").remove();
-			}
-			
-			if(!tb){
-				tb = document.createElement("div");
-				tb.classList.add("drop-zone__thumb");
-			    dz.appendChild(tb);
-			}
-			
-			tb.dataset.label = '${board.bodImage}';
-			tb.style.backgroundImage = `url(<%=resourcesPath%>/images/${board.bodImage})`
-		}
-		
-		if( contentListIndex > 0){
-			var imgIndex = contentListIndex-1;
-			var imgsrc = f.prev_image[imgIndex].value;
-			if(imgsrc!=''){		
+			if('${board.bodImage}' != ''){			
 				const dz = inputElement.closest(".drop-zone");
 		
 				let tb = dz.querySelector(".drop-zone__thumb");
 				if (dz.querySelector(".drop-zone__prompt")) {
-					dz.querySelector(".drop-zone__prompt").remove();
+					dz.querySelector(".drop-zone__prompt").style.display = 'none';
 				}
 				
 				if(!tb){
 					tb = document.createElement("div");
 					tb.classList.add("drop-zone__thumb");
+				
+			  		let deleteButton = dz.querySelector(".close__thumb");
+				    deleteButton.style.display="inline-block";
+				    deleteButton.addEventListener("click", (e) => {
+				    	e.stopPropagation();
+					    isBoardUpload = false;
+			    		tb.remove();
+			    		dz.querySelector(".drop-zone__prompt").style.display = 'block';
+				   	 	deleteButton.style.display="none";
+				   	 	inputElement.type = "radio";
+				   	 	inputElement.type = "file";
+			    	});
+					
+				    dz.appendChild(tb);
+				}
+				
+				tb.dataset.label = '${board.bodOrigin}';
+				tb.style.backgroundImage = `url(<%=resourcesPath%>/images/${board.bodImage})`
+			}
+		}
+		
+	  	// 조리과정 이미지 불러오기
+		if( contentListIndex > 0){
+			var imgIndex = contentListIndex-1;
+			var imgsrc;
+			var originsrc;
+			if(f.prev_image.length!=null){
+				imgsrc = f.prev_image[imgIndex].value;
+				originsrc= f.originImage[imgIndex].value;		
+				console.log(originsrc+"오리진 이미지1");
+			}else{
+				imgsrc = f.prev_image.value;
+				originsrc = f.originImage.value;								
+				console.log(originsrc+"오리진 이미지2");
+			}
+			
+			if(imgsrc!=''){		
+				const dz = inputElement.closest(".drop-zone");
+		
+				let tb = dz.querySelector(".drop-zone__thumb");
+				if (dz.querySelector(".drop-zone__prompt")) {
+					dz.querySelector(".drop-zone__prompt").style.display = 'none';
+				}
+				
+				if(!tb){
+					tb = document.createElement("div");
+					tb.classList.add("drop-zone__thumb");
+					
+					let deleteButton = dz.querySelector(".close__thumb");
+				    deleteButton.style.display="inline-block";
+				    deleteButton.addEventListener("click", (e) => {
+				    	e.stopPropagation();
+					    isBoardUpload = false;
+			    		tb.remove();
+			    		dz.querySelector(".drop-zone__prompt").style.display = 'block';
+				   	 	deleteButton.style.display="none";
+				   	 	inputElement.type = "radio";
+				   	 	inputElement.type = "file";
+			    	});
+					
 				    dz.appendChild(tb);
 				}
 	
-				tb.dataset.label = imgsrc;
+				tb.dataset.label = originsrc;
 			
 				var url = `url(<%=resourcesPath%>/images/`+imgsrc;
 				tb.style.backgroundImage = url; 
 			}
 		} 
-		contentListIndex =contentListIndex+1;
+		contentListIndex++;
 	});
 	
 </script>
@@ -453,21 +478,34 @@
 	 * @param {HTMLElement} dropZoneElement
 	 * @param {File} file
 	 */
+	 // 이미지 등록하는 함수
 	function updateThumbnail(dropZoneElement, file) {
 		 
 		let thumbnailElement = dropZoneElement.querySelector(".drop-zone__thumb");
 
 	  	// First time - remove the prompt
-	  	if (dropZoneElement.querySelector(".drop-zone__prompt")) {
-	    	dropZoneElement.querySelector(".drop-zone__prompt").remove();
+ 	 	if (dropZoneElement.querySelector(".drop-zone__prompt")) {
+	    	dropZoneElement.querySelector(".drop-zone__prompt").style.display = 'none';
 	  	}
 
 	  	// First time - there is no thumbnail element, so lets create it
 	  	if (!thumbnailElement) {
-	    	thumbnailElement = document.createElement("div");
-	    	thumbnailElement.classList.add("drop-zone__thumb");
-	    	dropZoneElement.appendChild(thumbnailElement);
-	  	}
+		    thumbnailElement = document.createElement("div");
+		    thumbnailElement.classList.add("drop-zone__thumb");
+		   
+		    let deleteButton = dropZoneElement.querySelector(".close__thumb");
+		    deleteButton.style.display="inline-block";
+		    deleteButton.addEventListener("click", (e) => {
+		    	e.stopPropagation();
+		    	isBoardUpload = false;
+		    	thumbnailElement.remove();
+		   	 	dropZoneElement.querySelector(".drop-zone__prompt").style.display = 'block';
+		   	 	 deleteButton.style.display="none";
+		   	 	inputElement.type = "radio";
+		   	 	inputElement.type = "file";
+		    });
+		    dropZoneElement.appendChild(thumbnailElement);
+  		}
 
 	  	thumbnailElement.dataset.label = file.name;
 

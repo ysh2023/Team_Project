@@ -15,6 +15,24 @@ public class BoardFormBean {
 	private String[] ing_num;
 	private MultipartFile bod_image_upload;
 	private String prev_bod_image;
+	private String prev_bod_origin;
+	private String[] contentIter;
+
+	public String[] getContentIter() {
+		return contentIter;
+	}
+
+	public void setContentIter(String[] contentIter) {
+		this.contentIter = contentIter;
+	}
+
+	public String getPrev_bod_origin() {
+		return prev_bod_origin;
+	}
+
+	public void setPrev_bod_origin(String prev_bod_origin) {
+		this.prev_bod_origin = prev_bod_origin;
+	}
 
 	public String getPrev_bod_image() {
 		return prev_bod_image;
@@ -66,10 +84,20 @@ public class BoardFormBean {
 	}
 
 	private String[] bod_content;
+
 	private String[] image;
 	private String[] prev_image;
+	private String[] originImage;
 	private MultipartFile[] upload;
 	private String[] upload2;
+
+	public String[] getOriginImage() {
+		return originImage;
+	}
+
+	public void setOriginImage(String[] originImage) {
+		this.originImage = originImage;
+	}
 
 	public String[] getImage() {
 		return image;

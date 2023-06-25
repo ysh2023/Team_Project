@@ -11,6 +11,7 @@
 	function recommendClick(bodNum){
 		if (`${loginInfo.id}` == '') {
 			if (confirm('로그인 후 추천 가능합니다\n로그인 하시겠습니까?')) {
+				<%session.setAttribute("destination", "redirect:/main.board");%>
 				location.href = 'login.mb';
 				return;
 			}else{
@@ -44,28 +45,24 @@
 	<div class="container pt-2" align="right">
 		<a class="btn btn-primary" href="write.board" class="active">게시글 작성</a>
 	</div>
-	<div class="container pt-2" align="right">
+	<!-- <div class="container pt-2" align="right">
 	<form action="refRecommend.board" method="post">
 		<input name="ingredient"  type="text">
 		<input name="ingredient"  type="text">
 		<input  type="submit" value="냉장고 검색">
 	</form> 
 		
-	</div>
+	</div> -->
 
 	<section class="py-5 testimony-section">
 		<div class="container">
-			<!-- <div class="row justify-content-center mb-5 pb-3">
-          <div class="col-md-7 heading-section ftco-animate text-center">
-          	<span class="subheading">Testimony</span>
-            <h2 class="mb-4">Our satisfied customer says</h2>
-            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in</p>
-          </div>
-        </div> -->
 
 
 			<!-- 주간 인기 게시글 5개정도 -->
 			<div class="row ftco-animate">
+				<div class="col-md-12">
+						<h3 class="px-4">인기 추천 게시글</h3>
+				</div>
 				<div class="col-md-12">
 					<div class="carousel-testimony owl-carousel">
 						<c:forEach items="${topBoards }" var="topBoard" varStatus="status">
@@ -77,7 +74,7 @@
 									<%-- <div class="" style="background-image: url(<%=resourcesPath%>/images/${topBoard.bodImage==null ? 'noimage.png' : topBoard.bodImage}); background-size:cover; height:150px;width:100%;"></div> --%>
 									<div class="text text-center">
 										<p class=" pl-4 line" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
-											<span>${topBoard.title }</span><br>${topBoard.servings}인분 <br> <span class="position">${topBoard.tags == null ? '<br>' :  topBoard.tags}</span>
+											<font size="4">${topBoard.title }</font><br>${topBoard.servings}인분 <br> <span class="position">${topBoard.tags == null ? '<br>' :  topBoard.tags}</span>
 										<p>
 									</div>
 								</div>
@@ -132,23 +129,19 @@
 
 
 	<!-- 게시글 카테고리 영역 -->
-	<section class="ftco-section  ftco-no-pt ftco-no-pb">
+	<section class="ftco-section  ftco-no-pt ftco-no-pb" id="category">
 		<div class="container">
 			<div class="row justify-content-center" id="categorys">
 				<div class="col-md-10 mb-5 text-center">
 					<ul class="product-category">
 						<c:forEach items="${foodCategorys}" var="category">
-							<li>
-								<a href="main.board?whatColumn=foodCategory&keyword=${category }" ${selectCategory == category ? 'class="active"':"" }>${category }</a>
-							</li>
+							<li><a href="main.board?whatColumn=foodCategory&keyword=${category }#category" ${selectCategory == category ? 'class="active"':"" }>${category }</a></li>
 						</c:forEach>
 
 					</ul>
 					<ul class="product-category">
 						<c:forEach items="${ingredientCategorys}" var="category">
-							<li>
-								<a href="main.board?whatColumn=ingredientCategory&keyword=${category =='그외 식재료' ? 'other' : category }" ${selectCategory == category ? 'class="active"':"" }>${category }</a>
-							</li>
+							<li><a href="main.board?whatColumn=ingredientCategory&keyword=${category =='그외 식재료' ? 'other' : category }#category" ${selectCategory == category ? 'class="active"':"" }>${category }</a></li>
 						</c:forEach>
 
 					</ul>
@@ -161,13 +154,12 @@
 	<section class="ftco-section  ftco-no-pt">
 		<div class="container">
 			<div class="row">
-			
+
 				<!-- 게시글 -->
 				<c:forEach items="${boardList }" var="board" varStatus="status">
 					<div class="col-md-6 col-lg-3 ftco-animate">
 						<div class="product">
-							<a href="boardDetail.board?bodNum=${board.bodNum}" class="img-prod" style="justify-content: center; align-items: center; display: flex;">
-								<img class="img-thumbnail" src="<%=resourcesPath%>/images/${board.bodImage==null ? 'noimage.png' : board.bodImage}" alt="Colorlib Template" style="height: 250px; width: 100%; object-fit: cover;">
+							<a href="boardDetail.board?bodNum=${board.bodNum}" class="img-prod" style="justify-content: center; align-items: center; display: flex;"> <img class="img-thumbnail" src="<%=resourcesPath%>/images/${board.bodImage==null ? 'noimage.png' : board.bodImage}" alt="Colorlib Template" style="height: 250px; width: 100%; object-fit: cover;">
 
 							</a>
 							<div class="text py-3 pb-4 px-3 text-center">
@@ -210,11 +202,5 @@
 
 </body>
 <%@include file="../common/footer.jsp"%>
-<a target="_blank" href="https://icons8.com/icon/2744/%EC%97%84%EC%A7%80-%EC%B2%99">추천</a>
-icon by
-<a target="_blank" href="https://icons8.com">Icons8</a>
-<br>
-<a target="_blank" href="https://icons8.com/icon/10271/%EC%97%84%EC%A7%80-%EC%B2%99">엄지 척</a>
-icon by
-<a target="_blank" href="https://icons8.com">Icons8</a>
+
 </html>

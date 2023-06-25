@@ -204,4 +204,9 @@ public class BoardDao {
 		List<BoardBean> list = sessionTemplate.selectList(namespace + ".GetRefRecommendBoard", map, rowBounds);
 		return list;
 	}
+
+	public List<String> getBoardContentImageByBodNum(String bodNum) {
+		List<String> list = sessionTemplate.selectList(namespace + ".GetBoardContentImageByBodNum", bodNum);
+		return list;
+	}
 }
