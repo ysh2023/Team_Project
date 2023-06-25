@@ -31,6 +31,14 @@ String resourcesPath = request.getContextPath() + "/resources";
 <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&display=swap" rel="stylesheet">
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css" />
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap" rel="stylesheet">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap" rel="stylesheet">
+
 <!-- BootStrap -->
 <link rel="stylesheet" href="<%=resourcesPath%>/css/open-iconic-bootstrap.min.css">
 <link rel="stylesheet" href="<%=resourcesPath%>/css/animate.css">
@@ -280,7 +288,7 @@ String resourcesPath = request.getContextPath() + "/resources";
 					<ul class="nav me-auto" style="align-items: center; display: flex; justify-content: center;" >
 						<li class="nav-item"><a href="page.ref" class="nav-link" style="color:#ffffff;">
 							<c:if test="${ddayCnt>0}"><i class="icon-warning" style="color:red;"></i><span style="color:red;">${ddayCnt}</span></c:if>
-							<c:if test="${ddayCnt <= 0}">
+							<c:if test="${ddayCnt<=0 || ddayCnt eq null}">
 								<img src="<%=resourcesPath%>/images/btn_circle.png" style="width: 18px; margin-right: 5px; margin-bottom: 2px;">
 							</c:if>
 								나의 냉장고

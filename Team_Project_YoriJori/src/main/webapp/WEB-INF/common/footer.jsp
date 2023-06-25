@@ -4,7 +4,7 @@
 <% String resourcesPath2 = request.getContextPath() + "/resources"; %>
 
 <!-- footer -->
-<footer class="ftco-footer ftco-section">
+<footer class="ftco-footer ftco-section bg-light">
 	<div class="container">
     	<div class="row">
       		<div class="mouse">

@@ -5,32 +5,33 @@
 
 <!-- main -->
 	<!-- slider -->
-    <section id="home-section" class="hero" style="height: 650px;">
-		  <div class="home-slider owl-carousel">
-		  <!-- first slide -->
-	      <div id="main-image" class="slider-item" style="background-image: url(<%=resourcesPath%>/images/mainbanner.png);">
+     <section id="home-section" class="hero">
+		  <div class="home-slider owl-carousel" style="position: relative !important; height: 350px !important;">
+	      <div class="slider-item" style="background-image: url(<%=resourcesPath%>/images/image_4.jpg);">
 	      	<div class="overlay"></div>
 	        <div class="container">
-	          <div class="row slider-text" data-scrollax-parent="true" style="height: 500px;">
-				<!-- text -->
-	            <div class="col-md-12 ftco-animate text-center" style="padding-top: 45px" >
-	              <h1 class="mb-2"><br></h1>
-	              <h2 class="subheading mb-4"><br> </h2><br>
-	              <p><a href="#" class="btn btn-primary">View Details</a></p>
+	          <div class="row slider-text" data-scrollax-parent="true" style="margin: auto; padding: 50px;">
+	            <div class="col-md-12 ftco-animate text-center">
+	              <h1 style="font-family: 'Bagel Fat One', cursive;">" 야금야금 "</h1>
+	              <div style="background-color: #82ae46;">
+	              	<h2 class="subheading" style="font-weight: bold; padding-top: 10px;">#식재료 기반 레시피 큐레이션 &nbsp; #식재료 쇼핑</h2>
+	              </div>
 	            </div>
+
 	          </div>
 	        </div>
 	      </div>
-		  <!-- second slide -->
-	      <div id="main-image" class="slider-item" style="background-image: url(<%=resourcesPath%>/images/bg_2.jpg);">
+
+	      <div class="slider-item" style="background-image: url(<%=resourcesPath%>/images/recipe.jpg);">
 	      	<div class="overlay"></div>
 	        <div class="container">
-	          <div class="row slider-text" data-scrollax-parent="true">
-	            <div class="col-sm-12 ftco-animate text-center" style="padding-top: 45px" style="height: 500px;" >
-	              <h1 class="mb-2">100% Fresh &amp; Organic Foods</h1>
-	              <h2 class="subheading mb-4">We deliver organic vegetables &amp; fruits</h2>
-	              <p><a href="#" class="btn btn-primary">View Details</a></p>
+	          <div class="row slider-text" data-scrollax-parent="true" style="margin: auto; padding-top: 30px;">
+	            <div class="col-md-12 ftco-animate text-center">
+	              <h1 style="font-family: 'Nanum Pen Script', cursive;">" 카레닭봉구이 "</h1>
+	              <h2 class="subheading" style="font-weight: bold;">간편하게 완성하는 인기 에어프라이어 메뉴!</h2>
+	              <p><a href="detail.re?recipenum=680" class="btn btn-primary">레시피 보러가기</a></p>
 	            </div>
+
 	          </div>
 	        </div>
 	      </div>
@@ -39,9 +40,9 @@
     <!-- END slider -->
 
 	<!-- 1st section -->
-    <section class="ftco-section">
-			<div class="container">
-				<div class="row no-gutters ftco-services">
+    <section class="ftco-section" style="background-color: white;">
+		<div class="container">
+		<div class="row no-gutters ftco-services">
           <div class="col-md-4 text-center d-flex align-self-stretch ftco-animate">
             <div class="media block-6 services mb-md-0 mb-4">
               <div class="icon bg-color-1 active d-flex justify-content-center align-items-center mb-2">
