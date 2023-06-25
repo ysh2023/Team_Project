@@ -24,9 +24,9 @@
             <div class="ftco-footer-widget mb-4 ml-md-5">
               <h2 class="ftco-heading-2">Menu</h2>
               <ul class="list-unstyled">
-                <li><a href="#" class="py-2 d-block">장보기</a></li>
-                <li><a href="#" class="py-2 d-block">레시피</a></li>
-                <li><a href="#" class="py-2 d-block">방구석 쉐프</a></li>
+                <li><a href="shop.prd" class="py-2 d-block">장보기</a></li>
+                <li><a href="list.re" class="py-2 d-block">레시피</a></li>
+                <li><a href="main.board" class="py-2 d-block">방구석 쉐프</a></li>
               </ul>
             </div>
           </div>

@@ -88,7 +88,13 @@ String resourcesPath = request.getContextPath() + "/resources";
   				alert("이메일을 입력해주세요.");
   				$('input[name=ordemail]').focus();
   				return false;
-  			}
+  			}else{
+  				var reg_email = /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
+ 			     if(!reg_email.test($('input[name=ordemail]').val())) {          
+ 			    	alert("올바른 이메일 형식이 아닙니다. ex) xxx@xxx.xxx or xxx@xxx.xx.xx")
+ 			        return false;         
+ 			     }
+ 			}
   		    IMP.request_pay({
   		    	pg : 'html5_inicis',
                 pay_method: "card",
@@ -158,9 +164,13 @@ String resourcesPath = request.getContextPath() + "/resources";
 	
 	}
 	$(document).ready(function(){ 
-		//alert(1);
+		<!-- 메인화면이 아니면 쇼핑리스트 안보이게 바꿈-->
+		if(location.href != 'http://localhost:8080/ex/'){
+			$('.icon-shopping_cart').hide();
+		}
 	});
 </script>
+
 <body class="goto-here" onload="setToggle()">
 	<!-- header -->
 	<header>
@@ -269,8 +279,10 @@ String resourcesPath = request.getContextPath() + "/resources";
 					<div class="col-md-auto">
 					<ul class="nav me-auto" style="align-items: center; display: flex; justify-content: center;" >
 						<li class="nav-item"><a href="page.ref" class="nav-link" style="color:#ffffff;">
-								<img src="<%=resourcesPath%>/images/btn_circle.png"
-								style="width: 18px; margin-right: 5px; margin-bottom: 2px;">
+							<c:if test="${ddayCnt>0}"><i class="icon-warning" style="color:red;"></i><span style="color:red;">${ddayCnt}</span></c:if>
+							<c:if test="${ddayCnt <= 0}">
+								<img src="<%=resourcesPath%>/images/btn_circle.png" style="width: 18px; margin-right: 5px; margin-bottom: 2px;">
+							</c:if>
 								나의 냉장고
 						</a></li>
 						<li class="nav-item"><a href="bookmark.re" class="nav-link" style="color:#ffffff;">
@@ -278,8 +290,8 @@ String resourcesPath = request.getContextPath() + "/resources";
 								style="width: 18px; margin-right: 5px; margin-bottom: 2px;">
 								북마크 레시피
 						</a></li>
-						<li class="nav-item"><a href="list.bsk"
-							class="nav-link"><span class="icon-shopping_cart" style="color:#F2BC1B;"></span></a></li>
+						<li class="nav-item" id="countlist" ><a href="list.bsk"
+							class="nav-link"><span class="icon-shopping_cart" style="color:#F2BC1B;">[${cnt}]</span></a></li>
 					</ul>
 					</div>
 					</div>
