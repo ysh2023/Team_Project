@@ -35,6 +35,20 @@
 	          </div>
 	        </div>
 	      </div>
+	      
+	      <div class="slider-item" style="background-image: url(<%=resourcesPath%>/images/recipe4.jpg);">
+	      	<div class="overlay"></div>
+	        <div class="container">
+	          <div class="row slider-text" data-scrollax-parent="true" style="margin: auto; padding-top: 30px;">
+	            <div class="col-md-12 ftco-animate text-center">
+	              <h1 style="font-family: 'Nanum Pen Script', cursive;">" 순두부 계란 덮밥 "</h1>
+	              <h2 class="subheading" style="font-weight: bold;">쉽고 빠르게 따라할 수 있는 초보 레시피</h2>
+	              <p><a href="detail.re?recipenum=1018" class="btn btn-primary">레시피 보러가기</a></p>
+	            </div>
+
+	          </div>
+	        </div>
+	      </div>
 	    </div>
     </section>
     <!-- END slider -->
