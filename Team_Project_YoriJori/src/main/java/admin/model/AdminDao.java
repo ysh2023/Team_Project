@@ -136,7 +136,8 @@ public class AdminDao {
 		sqlSessionTemplate.delete(namespace+".DeleteReview",rerepnum);
 	}
 	public void deleteComments(String repNum) {
-		sqlSessionTemplate.delete(namespace+"DeleteComments", repNum);
+		int result= sqlSessionTemplate.delete(namespace+".DeleteComments", repNum);
+		System.out.println(result);
 	}
 	public boolean checkReport(String rerepnum) {
 		boolean flag = false;

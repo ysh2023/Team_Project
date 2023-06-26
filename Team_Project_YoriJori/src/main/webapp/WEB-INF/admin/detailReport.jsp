@@ -6,7 +6,7 @@
 
 	function checkdeleteComment(id , repNum) {
 		if(confirm('정말 삭제하시겠습니까')){
-			//location.href="deleteComment.am?id="+id+"&repNum="+repNum;
+			location.href="deleteComment.am?id="+id+"&repNum="+repNum;
 		}else{
 			
 		}
@@ -16,7 +16,7 @@
 		if(confirm('정말 삭제하시겠습니까')){
 			alert(id);
 			alert(rerepnum);
-			//location.href="deleteComment.am?id="+id+"&rerepnum="+rerepnum;
+			location.href="deleteComment.am?id="+id+"&rerepnum="+rerepnum;
 		}else{
 			
 		}
