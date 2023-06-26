@@ -129,9 +129,33 @@ public class AdminDao {
 		return cnt;
 	}
 	
-	public void updateReview(String rerepnum) {
-		sqlSessionTemplate.update(namespace+".UpdateReview",rerepnum);
+	public void updateReview(Map<String, String> map) {
+		sqlSessionTemplate.update(namespace+".UpdateReview",map);
 	}
+	public void deleteReview(String rerepnum) {
+		sqlSessionTemplate.delete(namespace+".DeleteReview",rerepnum);
+	}
+	public void deleteComments(String repNum) {
+		int result= sqlSessionTemplate.delete(namespace+".DeleteComments", repNum);
+		System.out.println(result);
+	}
+	public boolean checkReport(String rerepnum) {
+		boolean flag = false;
+		int cnt = sqlSessionTemplate.selectOne(namespace+".CheckReport",rerepnum);
+		if(cnt>0) {
+			flag = true;
+		}
+		return flag;
+	}
+	public boolean checkComment(String repnum) {
+		boolean flag = false;
+		int cnt = sqlSessionTemplate.selectOne(namespace+".CheckComment",repnum);
+		if(cnt>0) {
+			flag = true;
+		}
+		return flag;
+	}
+	
 	/* 식재료 */
 	public List<IngBean> getAllIng() {
 		List<IngBean> allList = sqlSessionTemplate.selectList(namespace + ".GetAllIng");
@@ -228,9 +252,9 @@ public class AdminDao {
 		return lists;
 	}
 
-	public int blindReport(String reqNum) {
+	public int blindReport(Map<String, String> map) {
 		int cnt = -1;
-		cnt = sqlSessionTemplate.update(namespace + ".UpdateCommentReport", reqNum);
+		cnt = sqlSessionTemplate.update(namespace + ".UpdateCommentReport", map);
 		return cnt;
 	}
 
