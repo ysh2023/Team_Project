@@ -19,6 +19,22 @@
 			
 		}
 	}
+	function checkblindComment((id , repNum) {
+		if(confirm('블라인드 처리 하시겠습니까')){
+			location.href="blindReport.am?id="+id+"&comNum="+repNum;
+		}else{
+			
+		}
+	}
+	
+	function checkblindReview(id , rerepnum) {
+		if(confirm('블라인드 처리 하시겠습니까')){
+			location.href="blindReport.am?id="+id+"&rerepnum="+rerepnum;
+		}else{
+			
+		}
+	}
+		
 </script>
 
 
@@ -42,7 +58,7 @@
                     <th scope="col">신고이유</th>
                     <th scope="col">상세설명</th>
                     <th scope="col">댓글삭제</th>
-  
+                    <th scope="col">댓글블라인드</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -54,6 +70,7 @@
                     <td>${i.reasons}</td>
                     <td>${i.repDiscription}</td>
                     <td><span onclick="checkdeleteComment('${id}','${i.count}')" style="color: blue; cursor: pointer;">삭제</span></td>
+                    <td><span onclick="checkblindComment('${id}','${i.count}')" style="color: blue; cursor: pointer;">블라인드</span></td>
                   </tr>
                 </c:forEach>
                 </tbody>
@@ -84,7 +101,7 @@
                     <th scope="col">신고이유</th>
                     <th scope="col">상세설명</th>
                     <th scope="col">댓글삭제</th>
-  
+  					<th scope="col">댓글블라인드</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -96,6 +113,7 @@
                     <td>${i.reportreason}</td>
                     <td>${i.reportcontent}</td>
                     <td><span onclick="checkdeleteReview('${id}','${i.count}')" style="color: blue; cursor: pointer;">삭제</span></td>
+                    <td><span onclick="checkblindReview('${id}','${i.count}')" style="color: blue; cursor: pointer;">블라인드</span></td>
                   </tr>
                 </c:forEach>
                 </tbody>
