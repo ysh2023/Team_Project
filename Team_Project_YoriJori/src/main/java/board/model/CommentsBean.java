@@ -9,6 +9,15 @@ public class CommentsBean {
 	private String createAt;
 	private int bodNum;
 	private String id;
+	private int report;
+
+	public int getReport() {
+		return report;
+	}
+
+	public void setReport(int report) {
+		this.report = report;
+	}
 
 	public String getCreateAt() {
 		return createAt;

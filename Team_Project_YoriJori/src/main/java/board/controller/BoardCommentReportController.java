@@ -24,7 +24,6 @@ public class BoardCommentReportController {
 	@RequestMapping(value = command)
 	public void doAction(@RequestParam("comNum") String comNum, @RequestParam("reasons") String reasons,
 			@RequestParam("repDiscription") String repDiscription, HttpSession session, HttpServletResponse response) {
-
 		CommentReportBean commentReportBean = new CommentReportBean();
 		commentReportBean.setReasons(reasons);
 		commentReportBean.setComNum(Integer.parseInt(comNum));
@@ -32,7 +31,6 @@ public class BoardCommentReportController {
 		commentReportBean.setId(((MemberBean) session.getAttribute("loginInfo")).getId());
 		int result = bdao.insertCommentReport(commentReportBean);
 		if (result > 0) {
-
 			try {
 				response.getWriter().append("신고가 접수되었습니다.").flush();
 			} catch (IOException e) {

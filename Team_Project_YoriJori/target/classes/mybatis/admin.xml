@@ -19,7 +19,7 @@
 		insert into product
 		values(prdseq.nextval,#{pdname},#{pdcategory},#{pdcontent},#{pdstock},#{pdprice},#{pdimage})
 	</insert>
-
+<update id="UpdateCommentReport">update comments set report = 1 where com_num = (select com_num from commentreport where rep_num = #{repNum})</update>
 	<select id="GetByNum" resultType="product.model.ProductBean">
 		select * from product
 		where
@@ -90,7 +90,7 @@
 		update review set report = 1 where review_num =(select review_num from review_report where re_rep_num=#{rerepnum})
 	</delete>
 	<!-- 사용자 게시글 -->
-	<select id="GetAllBoardAm" resultType="board.model.BoardBean">select board.bod_num, title, servings, time, category, tags, id, bod_image , rec from board full outer join (select count(*)as rec , bod_num from recommend group by bod_num) sel on sel.bod_num = board.bod_num order by bod_num </select>
+	<select id="GetAllBoardAm" resultType="board.model.BoardBean">select board.bod_num, title, servings, time, category, tags, id, bod_image , rec from board left outer join (select count(*)as rec , bod_num from recommend group by bod_num) sel on sel.bod_num = board.bod_num order by bod_num </select>
 	<delete id="DeleteBoard">delete from board where bod_num = #{bodNum}</delete>
 	
 	<select id="RecentBoard" resultType="board.model.BoardBean">

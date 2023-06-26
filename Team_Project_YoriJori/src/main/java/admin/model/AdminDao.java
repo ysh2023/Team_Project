@@ -15,7 +15,6 @@ import order.model.GroupBean;
 import order.model.OrderBean;
 import orderdetail.model.OrderDetailBean;
 import product.model.ProductBean;
-import recipe.model.RecipeReviewBean;
 import recipe.model.RecipeReviewReportBean;
 
 @Component("myAdminDao")
@@ -71,15 +70,14 @@ public class AdminDao {
 		lists = sqlSessionTemplate.selectList(namespace + ".GetAllMember");
 		return lists;
 	}
-	
+
 	public int getMemberCount() {
-		int totalMember = sqlSessionTemplate.selectOne(namespace+".CountAllMember");
+		int totalMember = sqlSessionTemplate.selectOne(namespace + ".CountAllMember");
 		return totalMember;
 	}
-	
-	
+
 	public int getRegisterCount(Map<String, String> map) {
-		int monthRegister = sqlSessionTemplate.selectOne(namespace+".CountRegister", map);
+		int monthRegister = sqlSessionTemplate.selectOne(namespace + ".CountRegister", map);
 		return monthRegister;
 	}
 
@@ -88,22 +86,23 @@ public class AdminDao {
 		lists = sqlSessionTemplate.selectList(namespace + ".GetReportCount");
 		return lists;
 	}
-	public List<RecipeReviewReportBean> getRecipeReportlist(){
-		List<RecipeReviewReportBean> list = sqlSessionTemplate.selectList(namespace+".GetRecipeReportlist");
+
+	public List<RecipeReviewReportBean> getRecipeReportlist() {
+		List<RecipeReviewReportBean> list = sqlSessionTemplate.selectList(namespace + ".GetRecipeReportlist");
 		return list;
 	}
-	
+
 	public List<CommentReportBean> getAllReport(String id) {
 		List<CommentReportBean> lists = new ArrayList<CommentReportBean>();
 		lists = sqlSessionTemplate.selectList(namespace + ".GetAllReport", id);
 		return lists;
 	}
-	
-	public List<RecipeReviewReportBean> getAllRecipeReport(String id){
-		List<RecipeReviewReportBean> list = sqlSessionTemplate.selectList(namespace+".GetAllRecipeReport", id);
+
+	public List<RecipeReviewReportBean> getAllRecipeReport(String id) {
+		List<RecipeReviewReportBean> list = sqlSessionTemplate.selectList(namespace + ".GetAllRecipeReport", id);
 		return list;
 	}
-	
+
 	public int getCountReportById(String id) {
 
 		int cnt = -1;
@@ -117,9 +116,9 @@ public class AdminDao {
 
 		sqlSessionTemplate.delete(namespace + ".DeleteReport", id);
 	}
-	
+
 	public int deleteReviewReport(String id) {
-		int cnt= sqlSessionTemplate.delete(namespace+".DeleteReviewReport", id);
+		int cnt = sqlSessionTemplate.delete(namespace + ".DeleteReviewReport", id);
 		return cnt;
 	}
 	public void deleteCommentReport(String repNum) {
@@ -169,11 +168,11 @@ public class AdminDao {
 		return cnt;
 	}
 
-	public List<BoardBean> getRecentBoard(){
-		List<BoardBean> list = sqlSessionTemplate.selectList(namespace+".RecentBoard");
+	public List<BoardBean> getRecentBoard() {
+		List<BoardBean> list = sqlSessionTemplate.selectList(namespace + ".RecentBoard");
 		return list;
 	}
-	
+
 	public List<BoardBean> getAllBoardAm() {
 		List<BoardBean> list = sqlSessionTemplate.selectList(namespace + ".GetAllBoardAm");
 		return list;
@@ -184,49 +183,55 @@ public class AdminDao {
 		cnt = sqlSessionTemplate.delete(namespace + ".DeleteBoard", bodNum);
 		return cnt;
 	}
-	
+
 	public int getOrderCount(Map<String, String> map) {
-		int ordernum = sqlSessionTemplate.selectOne(namespace+".CountOrder", map);
+		int ordernum = sqlSessionTemplate.selectOne(namespace + ".CountOrder", map);
 		return ordernum;
 	}
-	
+
 	public int getOrderSales(Map<String, String> map) {
-		int sales = sqlSessionTemplate.selectOne(namespace+".GetSales", map);
+		int sales = sqlSessionTemplate.selectOne(namespace + ".GetSales", map);
 		return sales;
 	}
-	
+
 	public List<GroupBean> getTopSeller() {
 		List<GroupBean> lists = new ArrayList<GroupBean>();
-		lists = sqlSessionTemplate.selectList(namespace+".TopSeller");
+		lists = sqlSessionTemplate.selectList(namespace + ".TopSeller");
 		return lists;
 	}
-	
+
 	public List<OrderBean> getAllOrder() {
-		List<OrderBean> lists= new ArrayList<OrderBean>();
-		lists = sqlSessionTemplate.selectList(namespace+".GetAllOrder"); 
+		List<OrderBean> lists = new ArrayList<OrderBean>();
+		lists = sqlSessionTemplate.selectList(namespace + ".GetAllOrder");
 		return lists;
 	}
 
 	public List<OrderDetailBean> getAllOrderDetail(String ordnum) {
-		List<OrderDetailBean> lists= new ArrayList<OrderDetailBean>();
-		lists = sqlSessionTemplate.selectList(namespace+".GetAllOrderDetail",ordnum); 
+		List<OrderDetailBean> lists = new ArrayList<OrderDetailBean>();
+		lists = sqlSessionTemplate.selectList(namespace + ".GetAllOrderDetail", ordnum);
 		return lists;
 	}
-	
+
 	public int ApproveCancelpay(String merchantuid) {
 		OrderBean ord = new OrderBean();
 		ord.setOrdnum(merchantuid);
 		ord.setOrdtel("환불 승인");
 		int cnt = 0;
-		cnt = sqlSessionTemplate.update(namespace+".ApproveCancelpay",ord);
+		cnt = sqlSessionTemplate.update(namespace + ".ApproveCancelpay", ord);
 		return cnt;
 	}
 
 	public List<OrderBean> getOrderCancelList() {
 		String paystate = "환불 요청";
-		List<OrderBean> lists= new ArrayList<OrderBean>();
-		lists = sqlSessionTemplate.selectList(namespace+".getOrderCancel",paystate); 
+		List<OrderBean> lists = new ArrayList<OrderBean>();
+		lists = sqlSessionTemplate.selectList(namespace + ".getOrderCancel", paystate);
 		return lists;
+	}
+
+	public int blindReport(String reqNum) {
+		int cnt = -1;
+		cnt = sqlSessionTemplate.update(namespace + ".UpdateCommentReport", reqNum);
+		return cnt;
 	}
 
 }
