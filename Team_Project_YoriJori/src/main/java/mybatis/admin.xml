@@ -80,11 +80,14 @@
 	<delete id="DeleteReviewReport">
 		delete from review_report where id=#{id}
 	</delete>
-	<delete id="DeleteComment">
+	<delete id="DeleteCommentReport">
 		delete from commentReport where rep_num=#{repNum}
 	</delete>
-	<delete id="DeleteReview">
+	<delete id="DeleteReviewReportByRerepnum">
 		delete from review_report where re_rep_num=#{rerepnum}
+	</delete>
+	<delete id="UpdateReview">
+		update review set report = 1 where review_num =(select review_num from review_report where re_rep_num=#{rerepnum})
 	</delete>
 	<!-- 사용자 게시글 -->
 	<select id="GetAllBoardAm" resultType="board.model.BoardBean">select board.bod_num, title, servings, time, category, tags, id, bod_image , rec from board full outer join (select count(*)as rec , bod_num from recommend group by bod_num) sel on sel.bod_num = board.bod_num order by bod_num </select>

@@ -253,6 +253,22 @@ function deleteReview(reviewnum,recipenum){
 					<h3 class="mb-5">등록된 리뷰 갯수 : ${reviewList.size()}</h3>
 					<ul class="comment-list">
 						<c:forEach var="review" items="${reviewList}" varStatus="status">
+							<c:if test="${review.report == 1 }">
+							<li class="comment">
+								<div class="vcard bio">
+									<!-- 괜찮은 이미지 넣기 -->
+									<img
+										src="<%=request.getContextPath()%>/resources/images/user_img.jpg"
+										alt="Image placeholder">
+								</div>
+								<div class="comment-body">
+									<h3>${review.id}</h3>
+									<!-- 시간 넣기 -->
+									<div class="meta">${review.reviewdate}</div>
+									<p>해당 댓글은 블라인드 처리되었습니다.</p>
+								</div>
+							</c:if>
+							<c:if test="${review.report == 0 }">
 							<li class="comment">
 								<div class="vcard bio">
 									<!-- 괜찮은 이미지 넣기 -->
@@ -296,7 +312,9 @@ function deleteReview(reviewnum,recipenum){
 											class="btn py-3 px-4 btn-primary">
 									</div>
 								</li>
+							</c:if>	
 						</c:forEach>
+
 					</ul>
 					<!-- END comment-list -->
 

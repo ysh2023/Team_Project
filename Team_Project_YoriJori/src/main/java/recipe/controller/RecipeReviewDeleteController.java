@@ -24,6 +24,8 @@ public class RecipeReviewDeleteController {
 	
 	@RequestMapping(value=command)
 	public String doAction(@RequestParam("reviewnum") int reviewnum,@RequestParam("recipenum") String recipenum,Model model,HttpSession session) {
+		System.out.println(reviewnum);
+		System.out.println(recipenum);
 		rdao.deleteReview(reviewnum);
 		List<RecipeReviewBean> reviewList = rdao.getReviewbyRecipe(Integer.parseInt(recipenum));
 		model.addAttribute("reviewList",reviewList);

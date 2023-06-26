@@ -5,7 +5,14 @@ public class RecipeReviewBean {
 	private String review;
 	private String id;
 	private String reviewdate;
+	private int report;
 	
+	public int getReport() {
+		return report;
+	}
+	public void setReport(int report) {
+		this.report = report;
+	}
 	public String getReviewdate() {
 		return reviewdate;
 	}

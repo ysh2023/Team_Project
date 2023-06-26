@@ -34,10 +34,11 @@ public class RecipeReviewReportController {
 		reportBean.setReportreason(reportreason);
 		reportBean.setReportcontent(reportcontent);
 		reportBean.setId(mb.getId());
-		System.out.println("revienum:"+reviewnum);
-		System.out.println("reportreason:"+reportreason);
-		System.out.println("reportcontent:"+reportcontent);
-		System.out.println("id:"+mb.getId());
+
+		//System.out.println("revienum:"+reviewnum);
+		//System.out.println("reportreason:"+reportreason);
+		//System.out.println("reportcontent:"+reportcontent);
+		//System.out.println("id:"+mb.getId());
 		
 		int cnt =rdao.insertReport(reportBean);
 		if(cnt>0) {
