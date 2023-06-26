@@ -8,8 +8,14 @@ public class RecipeReviewReportBean {
 	private String id;
 	private String count;
 	private String review; // 상세보기용
+	private int report;
 	
-	
+	public int getReport() {
+		return report;
+	}
+	public void setReport(int report) {
+		this.report = report;
+	}
 	public String getReview() {
 		return review;
 	}

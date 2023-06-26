@@ -8,8 +8,16 @@ public class CommentReportBean {
 	private String repDiscription;
 	private String comcontent; //해당 신고 댓글 내용 불러오기위해 넣음
 	private String count;
+	private int report;
 	
 	
+	public int getReport() {
+		return report;
+	}
+
+	public void setReport(int report) {
+		this.report = report;
+	}
 
 	public String getCount() {
 		return count;
