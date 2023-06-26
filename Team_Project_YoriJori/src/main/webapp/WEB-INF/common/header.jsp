@@ -174,7 +174,7 @@ String resourcesPath = request.getContextPath() + "/resources";
 	$(document).ready(function(){ 
 		<!-- 메인화면이 아니면 쇼핑리스트 안보이게 바꿈-->
 		if(location.href != 'http://localhost:8080/ex/'){
-			$('.icon-shopping_cart').hide();
+			$('#countlist').hide();
 		}
 	});
 </script>
