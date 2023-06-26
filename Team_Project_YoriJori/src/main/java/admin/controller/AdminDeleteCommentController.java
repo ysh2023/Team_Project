@@ -22,13 +22,14 @@ public class AdminDeleteCommentController {
 	public String doAction(@RequestParam("id") String id,@RequestParam(value="repNum", required = false) String repNum,@RequestParam(value="rerepnum", required = false) String rerepnum ) {
 		
 		if(repNum!=null) {
-			 adao.deleteComment(repNum);
+			 adao.deleteCommentReport(repNum);
 		}else {
-			int cnt = adao.deleteReview(rerepnum);
+			adao.updateReview(rerepnum);
+			int cnt = adao.deleteReviewReportByRerepnum(rerepnum);
 			if(cnt>0) {
-				System.out.println("삭제성공");
+				System.out.println("블라인드성공");
 			}else {
-				System.out.println("삭제실패");
+				System.out.println("블라인드실패");
 			}
 		}
 		
