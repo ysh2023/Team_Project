@@ -32,9 +32,13 @@ public class BoardCommentsInsertController {
 		commentsBean.setComContent(comContent);
 		commentsBean.setBodNum(Integer.parseInt(bodNum));
 		commentsBean.setId(((MemberBean) session.getAttribute("loginInfo")).getId());
+		System.out.println("bean 생성");
 
 		if (comNum.equals("0")) {
+			System.out.println("삽입");
 			int result = bdao.insertComment(commentsBean);
+			System.out.println("삽입 후");
+			System.out.println(result);
 			if (result > 0) {
 				model.addAttribute("commentsList", bdao.getCommentByBodNum(bodNum));
 

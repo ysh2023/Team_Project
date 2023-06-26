@@ -40,7 +40,6 @@
 									</tr>
 								</thead>
 								<tbody>
-
 									<c:forEach var="i" items="${lists}">
 										<tr>
 											<td scope="row" style="width: full; text-overflow: ellipsis; white-space: nowrap;">${i.bodNum}</td>

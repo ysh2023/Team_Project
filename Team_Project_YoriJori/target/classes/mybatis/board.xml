@@ -20,7 +20,7 @@
 		</if>
 	</select>
 	<select id="GetAllBoard" resultType="board.model.BoardBean">
-	select board.bod_num, title, servings, time, category, tags, id, bod_image, bod_origin <if test="id!=''">, rec</if> from board <if test="id!=''">full outer join (select count(*)as rec , bod_num from recommend where id=#{id} group by bod_num) sel on sel.bod_num = board.bod_num  </if>
+	select board.bod_num, title, servings, time, category, tags, id, bod_image, bod_origin <if test="id!=''">, rec</if> from board <if test="id!=''">left outer join (select count(*)as rec , bod_num from recommend where id=#{id} group by bod_num) sel on sel.bod_num = board.bod_num  </if>
 		<if test="keyword!='%All%'">
 		<choose>
 			<when test="whatColumn=='foodCategory'">
@@ -63,9 +63,9 @@
 	<select id="GetIngredientCategory" resultType="String">select distinct ing_category from ingredient</select>
 	<select id="GetBoardIngredientByBodNum" resultType="board.model.BoardIngredientBean">select * from boardIngredient where bod_num=#{bodNum}</select>
 	<delete id="DeleteBoardByBodNum">delete from board where bod_num = #{bodNum}</delete>
-	<insert id="InsertComment">insert into comments values(com_seq.nextval, #{comContent}, com_seq.currval, 0, 0, sysdate, #{bodNum}, #{id} )</insert>
+	<insert id="InsertComment">insert into comments values(com_seq.nextval, #{comContent}, com_seq.currval, 0, 0, sysdate, #{bodNum}, #{id}, 0 )</insert>
 	<update id="ReplyUpdate">update comments set ref_step = ref_step+1 where ref = #{ref} and ref_step > #{refStep} </update>
-	<insert id="ReplyInsert">insert into comments values(com_seq.nextval, #{comContent}, #{ref}, #{refStep}, #{refLevel}, sysdate, #{bodNum}, #{id} )</insert>
+	<insert id="ReplyInsert">insert into comments values(com_seq.nextval, #{comContent}, #{ref}, #{refStep}, #{refLevel}, sysdate, #{bodNum}, #{id},0 )</insert>
 	<delete id="DeleteComment">delete from comments where com_num = #{comNum}</delete>
 	<update id="UpdateComment">update comments set com_content = #{comContent}, createat = sysdate where com_num = #{comNum}</update>
 	<select id="GetCommentsByComNum" resultType="board.model.CommentsBean">select * from comments where com_num = #{comNum} </select>
