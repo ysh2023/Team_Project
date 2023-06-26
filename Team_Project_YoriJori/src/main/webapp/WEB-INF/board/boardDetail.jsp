@@ -12,7 +12,7 @@
 	function addComments(comNum) {
 		if (`${loginInfo.id}` == '') {
 			if (confirm('로그인 후 이용가능합니다\n로그인 하시겠습니까?')) {
-				<%session.setAttribute("destination", "redirect:/boardDetail.board?bodNum="+request.getParameter("bodNum"));%>
+				<%session.setAttribute("destination", "redirect:/boardDetail.board?bodNum=" + request.getParameter("bodNum"));%>
 				location.href = 'login.mb';
 			} 
 		}else{
@@ -45,6 +45,7 @@
 					error : function(data){
 						alert("댓글달기 실패");
 						alert($.trim(data));
+						console.log(data);
 					}
 				});
 			}else{
@@ -180,7 +181,7 @@
 	function loingCheck(){
 		if (`${loginInfo.id}` == '') {
 			if (confirm('로그인 후 신고 가능합니다\n로그인 하시겠습니까?')) {
-				<%session.setAttribute("destination", "redirect:/boardDetail.board?bodNum="+request.getParameter("bodNum"));%>
+				<%session.setAttribute("destination", "redirect:/boardDetail.board?bodNum=" + request.getParameter("bodNum"));%>
 				location.href = 'login.mb';
 				return;
 			}else{
@@ -212,7 +213,7 @@
 	function recommendClick(){
 		if (`${loginInfo.id}` == '') {
 			if (confirm('로그인 후 추천 가능합니다\n로그인 하시겠습니까?')) {
-				<%session.setAttribute("destination", "redirect:/boardDetail.board?bodNum="+request.getParameter("bodNum"));%>
+				<%session.setAttribute("destination", "redirect:/boardDetail.board?bodNum=" + request.getParameter("bodNum"));%>
 				location.href = 'login.mb';
 				return;
 			}else{
@@ -255,81 +256,6 @@
 </script>
 <body>
 	<!-- 요리 설명 -->
-	<%-- <section class="ftco-section ftco-category ftco-no-pt ftco-no-pb">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12 ftco-animate">
-					<div style="position: absolute; right: 20px; top: 20px;">
-						<span><img src="<%=resourcesPath%>/images/dotmenu.png" style="cursor: pointer; position: absolute;" onclick="menuTogle()"></span>
-						<ul id="menu" style="z-index: 999; position: absolute; top: 24px; right: 0px; width: 80px; text-align: left; list-style: none; display: none;">
-							<li style="cursor: pointer; background-color: pink;"><a href="${loginInfo == null ? '' :  'boardDelete.board?bodNum='}${loginInfo == null ? '' :board.bodNum}" style="cursor: pointer; background-color: pink; text-align: center; width: 80px;">삭제</a></li>
-							<li><a href="${loginInfo == null ? '' : 'boardUpdate.board?bodNum='}${loginInfo == null ? '' :board.bodNum}" style="cursor: pointer; background-color: green; text-align: center; width: 80px;">수정</a></li>
-						</ul>
-					</div>
-					<h2>${board.title }</h2>
-					<div align="center">
-						<img src="<%=resourcesPath%>/images/${board.bodImage}" style="max-width: 60%; max-height: 10%;">
-					</div>
-					<div class="row">
-						<div class="col-md-6">요리량 : ${board.servings }인분</div>
-						<div class="col-md-6">조리시간 : ${board.time }분</div>
-					</div>
-					<div>요리 분류 : ${board.category }</div>
-					<hr>
-					<h4>식재료</h4>
-					<table style="width: 100%;">
-						<c:forEach items="${boardIngredientList }" var="boardIngredient" varStatus="status">
-							<tr>
-								<td>식재료 :</td>
-								<td>${status.index+1 }${boardIngredient.bigName }</td>
-								<td>용량 :</td>
-								<td>${ boardIngredient.bigAmount}</td>
-							</tr>
-						</c:forEach>
-					</table>
-					<hr>
-					<h4>조리과정</h4>
-					<c:forEach items="${boardContentList }" var="boardContent"
-						varStatus="status">
-						<div>
-							조리과정 ${status.index+1 }${boardContent.bodContent }
-							<c:if test="${boardContent.image != ''}">
-								<img src="<%=resourcesPath%>/images/${boardContent.image}"
-									alt="조리과정 이미지">
-							</c:if>
-						</div>
-					</c:forEach>
-										<div class="row">
-						<div class="col-lg-12 ftco-animate">
-							<c:forEach items="${boardContentList}" var="boardContent" varStatus="status">
-								<h5>${status.index+1 }</h5>
-								<div class="row">
-									<div class="col-md-4">
-										<img src="<%=resourcesPath%>/images/${boardContent.image}" style="max-width: 300px; max-height: 250px;">
-
-									</div>
-									<div class="col-lg-8 blog-entry">
-										<div class="text d-block pl-md-4">
-											<h3 class="heading">${boardContent.bodContent}</h3>
-										</div>
-									</div>
-								</div>
-							</c:forEach>
-
-						</div>
-					</div>
-
-					<div>
-						<c:forEach items="${tags }" var="tag">${tag } </c:forEach>
-					</div>
-					<img alt="추천" id="recommend" align="right" width="40" height="40" src="<%=resourcesPath%>/images/${recommend=='0'? 'recommend1.png' : 'recommend2.png' }" style="cursor: pointer;" onclick="recommendClick()">
-				</div>
-			</div>
-		</div>
-	</section>
-	<hr> --%>
-
-
 	<section class="ftco-section">
 		<div class="container">
 			<div class="row">
@@ -343,11 +269,11 @@
 						<span><img src="<%=resourcesPath%>/images/dotmenu.png" style="cursor: pointer; position: absolute;" onclick="menuTogle()"></span>
 						<div id="menu" style="z-index: 999; position: absolute; top: 24px; right: -24px; width: 80px; text-align: left; border: 0.25px solid gray; border-radius: 10px; background-color: white; display: none;">
 							<div style="display: flex; flex-flow: column;">
-								<button ${loginInfo.id != board.id ? 'disabled' : '' } style="cursor: pointer; text-align: center; border-radius: 10px 10px 0px 0px; ${loginInfo.id != board.id ? 'color:gray;' : '' }" onclick="deleteHandle()">
-									<b>삭제</b>
-								</button>
-								<button ${loginInfo.id != board.id ? 'disabled' : '' } style="cursor: pointer; text-align: center; border-radius: 0px 0px 10px 10px;  ${loginInfo.id != board.id ? 'color:gray;' : '' }" onclick="updateHandle()">
+								<button class="btn" ${loginInfo.id == board.id or loginInfo.id =='admin' ? '':'disabled' } style="cursor: pointer; text-align: center; border-radius: 10px 10px 0px 0px;  ${loginInfo.id == board.id or loginInfo.id =='admin' ? '' : 'color:gray;' }" onclick="updateHandle()">
 									<b>수정</b>
+								</button>
+								<button class="btn"  ${loginInfo.id == board.id or loginInfo.id =='admin' ? '':'disabled' } style="cursor: pointer; text-align: center; border-radius: 0px 0px 10px 10px; ${loginInfo.id == board.id or loginInfo.id =='admin' ? '' : 'color:gray;'  }" onclick="deleteHandle()">
+									<b>삭제</b>
 								</button>
 							</div>
 						</div>
@@ -393,10 +319,10 @@
 
 					<c:forEach items="${boardIngredientList}" var="boardIngredient" varStatus="status">
 
-						<li style="inline: block; float: left; margin-right: 40px"><a href="shop.prd?whatColumn=no&searchName=${boardIngredient.bigName}">${boardIngredient.bigName }</a><c:if test="${boardIngredient.bigAmount == null }">
+						<li style="inline: block; float: left; margin-right: 40px"><a href="shop.prd?whatColumn=no&searchName=${boardIngredient.bigName}">${boardIngredient.bigName }</a>
+						<c:if test="${boardIngredient.bigAmount == null }">
 						 -${ boardIngredient.bigAmount}
-						</c:if>
-						 </li>
+						</c:if></li>
 
 					</c:forEach>
 				</div>
@@ -475,12 +401,12 @@
 											<fmt:parseDate value="${comment.createAt }" var="pdate" pattern="yyyy-MM-dd HH:mm:ss.S" />
 											<fmt:formatDate value="${pdate }" pattern="yyyy년 MM월 dd일 hh:mm" />
 										</div>
-										<p id="comment${status.index+1 }">${comment.comContent }</p>
+										<p id="comment${status.index+1 }">${comment.report == 1 ? '해당 댓글은 블라인드처리 되었습니다.' :comment.comContent }</p>
 										<p>
 											<span class="reply" id="reply${status.index+1 }" onclick="replyHandle(${status.index+1})" style="cursor: pointer;">댓글 달기</span>
-											<c:if test="${loginInfo.id == comment.id }">
-												<span class="reply" id="deleteComment${status.index+1 }" onclick="deleteComment(${comment.comNum})" style="cursor: pointer; margin-left: 5px;">삭제</span>
+											<c:if test="${loginInfo.id == comment.id  && comment.report != 1 || loginInfo.id == 'admin'}">
 												<span class="reply" id="updateComment${status.index+1 }" onclick="handleUpdateComment(${status.index+1})" style="cursor: pointer; margin-left: 5px;">수정</span>
+												<span class="reply" id="deleteComment${status.index+1 }" onclick="deleteComment(${comment.comNum})" style="cursor: pointer; margin-left: 5px;">삭제</span>
 											</c:if>
 											<c:if test="${loginInfo.id != comment.id }">
 												<span class="reply btn-primary" onclick="commentReport(${comment.comNum })" style="cursor: pointer; margin-left: 5px;">신고하기</span>

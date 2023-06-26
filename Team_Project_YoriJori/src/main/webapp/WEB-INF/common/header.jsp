@@ -112,8 +112,8 @@ String resourcesPath = request.getContextPath() + "/resources";
                 buyer_email: document.getElementById('ordemail').value,
                 buyer_name: document.getElementById('ordname').value,
                 buyer_tel: document.getElementById('ordtel').value,
-                buyer_addr: document.getElementById('ordaddr').value,
-                buyer_postcode: document.getElementById('ordzipcode').value 
+                buyer_addr: document.getElementById('area2').value,
+                buyer_postcode: document.getElementById('area1').value 
   			    }, function (rsp) { // callback
   			    	 if (rsp.success) {// 결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
                		  var msg = '결제가 완료되었습니다.';
