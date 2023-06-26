@@ -54,6 +54,7 @@
                     <td>${i.reasons}</td>
                     <td>${i.repDiscription}</td>
                     <td><span onclick="checkdeleteComment('${id}','${i.count}')" style="color: blue; cursor: pointer;">삭제</span></td>
+     
                   </tr>
                 </c:forEach>
                 </tbody>
@@ -96,6 +97,7 @@
                     <td>${i.reportreason}</td>
                     <td>${i.reportcontent}</td>
                     <td><span onclick="checkdeleteReview('${id}','${i.count}')" style="color: blue; cursor: pointer;">삭제</span></td>
+                    
                   </tr>
                 </c:forEach>
                 </tbody>
