@@ -18,7 +18,7 @@
 
 		$('#cookProcess')
 				.append(
-						'<div class="row" id='+cookProcessIndex+'><div class="col-md-12"><div class="pt-3 pb-2"><label for="bod_content" name="processLabel">조리과정 </label><input class="btn btn-danger " style="margin-left: 20px;width:60px; height:40px;" type="button" value="삭제" onclick="removeCookProcess(\''+ cookProcessIndex + '\')"></div><div class="row"><div class="col-md-6"><textarea name="bod_content" cols="40" rows="10" style="resize: none;" class="form-control text-left px-3" placeholder=""></textarea></div><div class="col-md-6" style="display: flex; justify-content: center;"><div  class="drop-zone" style="width: 400px; height: 284px;"><span class="drop-zone__prompt">이미지를 끌어다놓거나 클릭하세요</span> <input id=drop'+cookProcessIndex+' type="file" name="upload" class="drop-zone__input"><svg xmlns="http://www.w3.org/2000/svg" style="stroke: red; cursor: pointer; margin-left: 10px; position: absolute; top: 10px; right: 40px; display: none; z-index: 999;" width="40" height="40" fill="currentColor" class="bi bi-x-circle close__thumb" viewBox="-1 -1 18 18"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" /><path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" /></svg></div></div></div></div></div>');
+						'<div class="row" id='+cookProcessIndex+'><div class="col-md-12"><div class="pt-3 pb-2"><label for="bod_content" name="processLabel">조리과정 </label><input class="btn btn-danger " style="margin-left: 20px;width:60px; height:40px;" type="button" value="삭제" onclick="removeCookProcess(\''+ cookProcessIndex + '\')"></div><div class="row"><div class="col-md-6"><textarea name="bod_content" cols="40" rows="10" style="resize: none;" class="form-control text-left px-3" placeholder=""></textarea></div><div class="col-md-6" style="display: flex; justify-content: center;"><div  class="drop-zone" style="width: 400px; height: 284px; position: relative;"><span class="drop-zone__prompt">이미지를 끌어다놓거나 클릭하세요</span> <input id=drop'+cookProcessIndex+' type="file" name="upload" class="drop-zone__input"><svg xmlns="http://www.w3.org/2000/svg" style="stroke: red; cursor: pointer; margin-left: 10px; position: absolute; top: 10px; right: 0px; display: none; z-index: 999;" width="40" height="40" fill="currentColor" class="bi bi-x-circle close__thumb" viewBox="-1 -1 18 18"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" /><path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" /></svg></div></div></div></div></div>');
 		uploadEvent(cookProcessIndex);
 		cookProcessIndex++;
 
@@ -134,10 +134,10 @@
 							</div>
 							<div class="col-md-6" style="display: flex; justify-content: center;">
 								<input type="hidden" name="prev_bod_image" value="${board.bodImage }"> <input type="hidden" name="prev_bod_origin" value="${board.bodOrigin }">
-								<div class="drop-zone" id="zone" style="width: 400px; height: 300px;">
+								<div class="drop-zone" id="zone" style="width: 400px; height: 300px; position: relative;">
 									<span class="drop-zone__prompt" style="justify-content: space-between;">레시피 대표 사진을 끌어다 놓거나 <br>여기를 클릭해서 업로드하세요
 									</span> <input type="file" name="bod_image_upload" class="drop-zone__input" id="bod_image_upload">
-									<svg xmlns='http://www.w3.org/2000/svg' style='stroke: red; cursor: pointer; margin-left: 10px; position: absolute; top: 10px; right: 40px; display: none; z-index: 999;' width='40' height='40' fill='currentColor' class='bi bi-x-circle close__thumb' viewBox='-1 -1 18 18'>
+									<svg xmlns='http://www.w3.org/2000/svg' style='stroke: red; cursor: pointer; margin-left: 10px; position: absolute; top: 10px; right: 0px; display: none; z-index: 999;' width='40' height='40' fill='currentColor' class='bi bi-x-circle close__thumb' viewBox='-1 -1 18 18'>
 										<path d='M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z' />
 										
 										<path d='M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z' /></svg>
@@ -221,9 +221,9 @@
 											</div>
 											<div class="col-md-6" style="display: flex; justify-content: center;">
 												<input type="hidden" name="prev_image" value=""> <input type="hidden" name="originImage" value="">
-												<div class="drop-zone" style="width: 400px; height: 284px;">
+												<div class="drop-zone" style="width: 400px; height: 284px; position: relative;">
 													<span class="drop-zone__prompt">이미지를 끌어다놓거나 클릭하세요</span> <input type="file" id="f1" name="upload" class="drop-zone__input">
-													<svg xmlns='http://www.w3.org/2000/svg' style='stroke: red; cursor: pointer; margin-left: 10px; position: absolute; top: 10px; right: 40px; display: none; z-index: 999;' width='40' height='40' fill='currentColor' class='bi bi-x-circle close__thumb' viewBox='-1 -1 18 18'>
+													<svg xmlns='http://www.w3.org/2000/svg' style='stroke: red; cursor: pointer; margin-left: 10px; position: absolute; top: 10px; right: 0px; display: none; z-index: 999;' width='40' height='40' fill='currentColor' class='bi bi-x-circle close__thumb' viewBox='-1 -1 18 18'>
 										<path d='M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z' />
 										
 										<path d='M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z' /></svg>
