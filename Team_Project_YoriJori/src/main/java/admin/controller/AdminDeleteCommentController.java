@@ -23,9 +23,10 @@ public class AdminDeleteCommentController {
 		
 		if(repNum!=null) {
 			 adao.deleteCommentReport(repNum);
+			 adao.deleteComments(repNum);
 		}else {
-			adao.updateReview(rerepnum);
 			int cnt = adao.deleteReviewReportByRerepnum(rerepnum);
+			adao.deleteReview(rerepnum);
 			if(cnt>0) {
 				System.out.println("삭제성공");
 			}else {

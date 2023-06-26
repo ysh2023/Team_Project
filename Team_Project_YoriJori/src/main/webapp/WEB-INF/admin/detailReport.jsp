@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file= "./../common/admin_header.jsp" %>
+
 <script>
+
 	function checkdeleteComment(id , repNum) {
 		if(confirm('정말 삭제하시겠습니까')){
-			location.href="deleteComment.am?id="+id+"&repNum="+repNum;
+			//location.href="deleteComment.am?id="+id+"&repNum="+repNum;
 		}else{
 			
 		}
@@ -14,21 +16,21 @@
 		if(confirm('정말 삭제하시겠습니까')){
 			alert(id);
 			alert(rerepnum);
-			location.href="deleteComment.am?id="+id+"&rerepnum="+rerepnum;
+			//location.href="deleteComment.am?id="+id+"&rerepnum="+rerepnum;
 		}else{
 			
 		}
 	}
-	function checkblindComment((id , repNum) {
-		if(confirm('블라인드 처리 하시겠습니까')){
-			location.href="blindReport.am?id="+id+"&comNum="+repNum;
+	function checkblindComment(id , repNum) {
+		if(confirm('블라인드 처리/해제 하시겠습니까')){
+			location.href="blindReport.am?id="+id+"&repNum="+repNum;
 		}else{
 			
 		}
 	}
 	
 	function checkblindReview(id , rerepnum) {
-		if(confirm('블라인드 처리 하시겠습니까')){
+		if(confirm('블라인드 처리/해제 하시겠습니까')){
 			location.href="blindReport.am?id="+id+"&rerepnum="+rerepnum;
 		}else{
 			
@@ -36,7 +38,7 @@
 	}
 		
 </script>
-
+ 
 
 <main id="main" class="main">
   <section class="section">
@@ -48,7 +50,6 @@
               <h5 class="card-title">게시판상세신고내역</h5>
               
               
-              
               <div>
                 <table class="table datatable">
                 <thead> 
@@ -58,7 +59,7 @@
                     <th scope="col">신고이유</th>
                     <th scope="col">상세설명</th>
                     <th scope="col">댓글삭제</th>
-                    <th scope="col">댓글블라인드</th>
+                    <th scope="col">블라인드</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -70,7 +71,12 @@
                     <td>${i.reasons}</td>
                     <td>${i.repDiscription}</td>
                     <td><span onclick="checkdeleteComment('${id}','${i.count}')" style="color: blue; cursor: pointer;">삭제</span></td>
+                  	<c:if test="${i.report == 0}">
                     <td><span onclick="checkblindComment('${id}','${i.count}')" style="color: blue; cursor: pointer;">블라인드</span></td>
+                    </c:if> 
+                    <c:if test="${i.report == 1}">
+                    <td><span onclick="checkblindComment('${id}','${i.count}')" style="color: red; cursor: pointer;">블라인드 해제</span></td>
+                    </c:if> 
                   </tr>
                 </c:forEach>
                 </tbody>
@@ -101,7 +107,7 @@
                     <th scope="col">신고이유</th>
                     <th scope="col">상세설명</th>
                     <th scope="col">댓글삭제</th>
-  					<th scope="col">댓글블라인드</th>
+  					<th scope="col">블라인드</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -113,7 +119,12 @@
                     <td>${i.reportreason}</td>
                     <td>${i.reportcontent}</td>
                     <td><span onclick="checkdeleteReview('${id}','${i.count}')" style="color: blue; cursor: pointer;">삭제</span></td>
+                    <c:if test="${i.report == 0}">
                     <td><span onclick="checkblindReview('${id}','${i.count}')" style="color: blue; cursor: pointer;">블라인드</span></td>
+                    </c:if> 
+                    <c:if test="${i.report == 1}">
+                    <td><span onclick="checkblindReview('${id}','${i.count}')" style="color: red; cursor: pointer;">블라인드 해제</span></td>
+                    </c:if> 
                   </tr>
                 </c:forEach>
                 </tbody>
