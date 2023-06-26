@@ -57,7 +57,7 @@
   	
   	<insert id="InsertReview">
   		insert into review
-  		values(recipe_re_seq.nextval,#{review},#{id},sysdate,#{recipenum}) 
+  		values(recipe_re_seq.nextval,#{review},#{id},sysdate,#{recipenum},0) 
   	</insert>
   	
   	<select id="GetBookmarkCount" resultType="int">

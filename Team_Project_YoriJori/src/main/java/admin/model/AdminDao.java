@@ -121,16 +121,17 @@ public class AdminDao {
 		int cnt = sqlSessionTemplate.delete(namespace + ".DeleteReviewReport", id);
 		return cnt;
 	}
-
-	public void deleteComment(String repNum) {
-		sqlSessionTemplate.delete(namespace + ".DeleteComment", repNum);
+	public void deleteCommentReport(String repNum) {
+		sqlSessionTemplate.delete(namespace + ".DeleteCommentReport", repNum);
 	}
-
-	public int deleteReview(String rerepnum) {
-		int cnt = sqlSessionTemplate.delete(namespace + ".DeleteReview", rerepnum);
+	public int deleteReviewReportByRerepnum(String rerepnum) {
+		int cnt= sqlSessionTemplate.delete(namespace+".DeleteReviewReportByRerepnum",rerepnum);
 		return cnt;
 	}
-
+	
+	public void updateReview(String rerepnum) {
+		sqlSessionTemplate.update(namespace+".UpdateReview",rerepnum);
+	}
 	/* 식재료 */
 	public List<IngBean> getAllIng() {
 		List<IngBean> allList = sqlSessionTemplate.selectList(namespace + ".GetAllIng");

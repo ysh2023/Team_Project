@@ -1,6 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+function kakaopost() {
+    new daum.Postcode({
+        oncomplete: function(data) {
+           document.querySelector("#area1").value = data.zonecode;
+           document.querySelector("#area2").value =  data.address
+        }
+    }).open();
+}
+</script>    
 <%@include file= "./../common/header.jsp" %>
    <div class="hero-wrap hero-bread" style="background-image: url('<%=resourcesPath%>/images/bg_1.jpg');">
       <div class="container">
@@ -32,8 +45,10 @@
 		            <div class="w-100"></div>
 		            <div class="col-md-6">
 		            	<div class="form-group">
-		            		<label for="postcodezip">우편번호</label>
-	                  <input type="text" class="form-control" name="ordzipcode" id="ordzipcode" value="${mb.area1 }">
+		            		<label for="area1">우편번호</label> <input type="text"
+							class="form-control" value="${mb.area1 }" id="area1" name="area1" required > 
+									 <br>
+							 <input type="button" value="우편번호찾기"  onclick="kakaopost()">
 	                  <div class="invalid-feedback">
 		                우편번호를 입력해주세요.
 		              </div>
@@ -42,8 +57,9 @@
 		            <div class="w-100"></div>
 		            <div class="col-md-12">
 		            	<div class="form-group">
-	                	<label for="streetaddress">주소</label>
-	                  <input type="text" class="form-control" placeholder="주소를 입력해 주세요." name="ordaddr" id="ordaddr" value="${mb.area2 }">
+	                	<label for="area2">상세주소<span class="text-muted"></span></label> <input
+							type="text" class="form-control" value="${mb.area2 }" required name="area2" id="area2"
+							placeholder="상세주소를 입력해주세요.">
 	                  <div class="invalid-feedback">
 		                주소를 입력해주세요.
 		              </div>
@@ -111,4 +127,19 @@
       </div>
     </section> 
 <%@include file= "./../common/footer.jsp" %>
+	<script>
+    window.addEventListener('load', () => {
+      const forms = document.getElementsByClassName('validation-form');
 
+      Array.prototype.filter.call(forms, (form) => {
+        form.addEventListener('submit', function (event) {
+          if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+
+          form.classList.add('was-validated');
+        }, false);
+      });
+    }, false);
+  </script>

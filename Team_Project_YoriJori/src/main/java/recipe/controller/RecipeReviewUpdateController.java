@@ -29,7 +29,9 @@ public class RecipeReviewUpdateController {
 							@RequestParam("review") String review,
 							Model model,
 							HttpSession session) {
-		
+		System.out.println("update"+recipenum);
+		System.out.println(reviewnum);
+		System.out.println(review);
 		Map<String, String> map =new HashMap<String, String>();
 		map.put("reviewnum", reviewnum);
 		map.put("review", review);

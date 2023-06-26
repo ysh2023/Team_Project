@@ -55,6 +55,7 @@ function stop(id){
           <div class="card">
             <div class="card-body">
               <table class="table datatable">
+              <h3 style="color: navy; font-family: fantasy;">게시판 댓글 신고</h3>
                 <thead> 
                   <tr>
                     <th scope="col">아이디</th>
@@ -89,11 +90,41 @@ function stop(id){
                    
                     </td>
                     <td><a href="#" onclick="stop('${i.id}')">강제탈퇴</a></td>
-                    <td><a href="deleteReport.am?id=${i.id}">내역삭제</a></td>
+                    <td><span onclick="checkdeleteComment('${i.repDiscription}')" style="color: blue; cursor: pointer;">내역삭제</span></td>
                   </tr>
                 </c:forEach>
           		
-          		<c:forEach var="i" items="${recipelist}">
+        
+                </tbody>
+              </table>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+     <section class="section">
+      <div class="row">
+        <div class="col-lg-12">
+
+          <div class="card">
+            <div class="card-body">
+              <table class="table datatable">
+               <h3 style="color: navy; font-family: fantasy;">레시피 댓글 신고</h3>
+                <thead> 
+                  <tr>
+                    <th scope="col">아이디</th>
+                    <th scope="col">신고 횟수</th>
+                    <th scope="col">상세보기</th>
+                    <th scope="col">회원정지</th>
+                    <th scope="col">강제탈퇴</th>
+                    <th scope="col">내역삭제</th>
+                  </tr>
+                </thead>
+                <tbody>
+              
+                <c:forEach var="i" items="${recipelist}">
                  <tr>
                     <th scope="row">${i.id}</th>
                     <td>${i.count}</td>
@@ -115,7 +146,7 @@ function stop(id){
                    
                     </td>
                     <td><a href="#" onclick="stop('${i.id}')">강제탈퇴</a></td>
-                    <td><a href="deleteReveiwReport.am?id=${i.id}">내역삭제</a></td>
+                    <td><span onclick="checkdeleteReview('${i.reportcontent}')" style="color: blue; cursor: pointer;">내역삭제</span></td>
                   </tr>
                 </c:forEach>
           
@@ -129,6 +160,7 @@ function stop(id){
         </div>
       </div>
     </section>
+  
   
   </main>
 
