@@ -9,7 +9,16 @@ public class BoardBean {
 	private String tags;
 	private String id;
 	private String bodImage;
+	private String bodOrigin;
 	private String rec;
+
+	public String getBodOrigin() {
+		return bodOrigin;
+	}
+
+	public void setBodOrigin(String bodOrigin) {
+		this.bodOrigin = bodOrigin;
+	}
 
 	public String getRec() {
 		return rec;

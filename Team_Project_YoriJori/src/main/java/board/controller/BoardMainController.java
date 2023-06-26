@@ -33,6 +33,9 @@ public class BoardMainController {
 			HttpSession session) {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("whatColumn", whatColumn);
+		if (keyword == null) {
+			keyword = "All";
+		}
 		map.put("keyword", "%" + keyword + "%");
 		map.put("category", keyword);
 		String id = "";
@@ -56,7 +59,7 @@ public class BoardMainController {
 		ingredientCategory.add("그외 식재료");
 		model.addAttribute("foodCategorys", arr);
 		model.addAttribute("ingredientCategorys", ingredientCategory);
-		model.addAttribute("selectCategory", keyword == null ? "All" : keyword);
+		model.addAttribute("selectCategory", keyword == null ? "All" : keyword.equals("other") ? "그외 식재료" : keyword);
 		model.addAttribute("topBoards", bdao.getTopBoard());
 		model.addAttribute("pageInfo", pageInfo);
 		return page;

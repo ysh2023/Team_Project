@@ -10,7 +10,7 @@ import admin.model.AdminDao;
 @Controller
 public class AdminUserBoardListController {
 	private final String command = "/userBoard.am";
-	private String page = "user_board/am_userBoardList";
+	private String page = "am_userBoardList";
 
 	@Autowired
 	AdminDao adao;
