@@ -70,10 +70,10 @@ function stop(id){
               
                 <c:forEach var="i" items="${lists}">
                  <tr>
-                    <th scope="row">${i.id}</th>
+                    <th scope="row">${i.idOrigin}</th>
                     <td>${i.count}</td>
                    
-                    <td><a href="detailReport.am?id=${i.id}">상세보기</a></td>
+                    <td><a href="detailReport.am?id=${i.idOrigin}">상세보기</a></td>
                     
                  	 <td>
                  	   <form action="stopMember.am">

@@ -5,12 +5,20 @@ public class CommentReportBean {
 	private String reasons;
 	private int comNum;
 	private String id;
+	private String idOrigin;
 	private String repDiscription;
-	private String comcontent; //해당 신고 댓글 내용 불러오기위해 넣음
+	private String comcontent; // 해당 신고 댓글 내용 불러오기위해 넣음
 	private String count;
 	private int report;
-	
-	
+
+	public String getIdOrigin() {
+		return idOrigin;
+	}
+
+	public void setIdOrigin(String idOrigin) {
+		this.idOrigin = idOrigin;
+	}
+
 	public int getReport() {
 		return report;
 	}
