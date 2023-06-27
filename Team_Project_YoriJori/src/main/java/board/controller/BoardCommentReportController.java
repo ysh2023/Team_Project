@@ -23,12 +23,14 @@ public class BoardCommentReportController {
 
 	@RequestMapping(value = command)
 	public void doAction(@RequestParam("comNum") String comNum, @RequestParam("reasons") String reasons,
-			@RequestParam("repDiscription") String repDiscription, HttpSession session, HttpServletResponse response) {
+			@RequestParam("repDiscription") String repDiscription, @RequestParam("idOrigin") String idOrigin,
+			HttpSession session, HttpServletResponse response) {
 		CommentReportBean commentReportBean = new CommentReportBean();
 		commentReportBean.setReasons(reasons);
 		commentReportBean.setComNum(Integer.parseInt(comNum));
 		commentReportBean.setRepDiscription(repDiscription);
 		commentReportBean.setId(((MemberBean) session.getAttribute("loginInfo")).getId());
+		commentReportBean.setIdOrigin(idOrigin);
 		int result = bdao.insertCommentReport(commentReportBean);
 		if (result > 0) {
 			try {

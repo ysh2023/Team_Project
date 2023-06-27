@@ -70,7 +70,7 @@
 	<update id="UpdateComment">update comments set com_content = #{comContent}, createat = sysdate where com_num = #{comNum}</update>
 	<select id="GetCommentsByComNum" resultType="board.model.CommentsBean">select * from comments where com_num = #{comNum} </select>
 	<select id="GetReplyInsertRefStep" resultType="int">select max(ref_step) from comments where ref = #{ref} and ref_level =#{refLevel}</select>
-	<insert id="InsertCommentReport">insert into commentreport values(cor_seq.nextval, #{reasons}, #{comNum}, #{id}, #{repDiscription})</insert>
+	<insert id="InsertCommentReport">insert into commentreport values(cor_seq.nextval, #{reasons}, #{comNum}, #{id},#{idOrigin}, #{repDiscription})</insert>
 	
 	<select id="GetRecommend" resultType="board.model.RecommendBean" >select * from recommend where bod_num = #{bodNum} and id = #{id}</select>
 	<insert id="InsertRecommend">insert into recommend values(rec_seq.nextval, #{bodNum}, #{id})</insert>

@@ -166,8 +166,9 @@
 			UisOpen = true;
 		}
 	}
-	
-	function commentReport(comNum){
+	var idOrigin;
+	function commentReport(comNum,id){
+		idOrigin = id;
 		$('#reportScreen').fadeIn();
 		$('input[name=comNum]').val(comNum);
 	}
@@ -178,7 +179,7 @@
 		}
 	}
 	
-	function loingCheck(){
+	function loginCheck(){
 		if (`${loginInfo.id}` == '') {
 			if (confirm('로그인 후 신고 가능합니다\n로그인 하시겠습니까?')) {
 				<%session.setAttribute("destination", "redirect:/boardDetail.board?bodNum=" + request.getParameter("bodNum"));%>
@@ -195,7 +196,8 @@
 			data:({
 				comNum: $('input[name=comNum]').val(),
 				reasons : $('select[name=reasons]').val(),
-				repDiscription : $('textarea[name=repDiscription]').val()
+				repDiscription : $('textarea[name=repDiscription]').val(),
+				idOrigin : idOrigin
 			}),
 			success: function(data){
 				alert($.trim(data));
@@ -408,7 +410,7 @@
 												<span class="reply" id="deleteComment${status.index+1 }" onclick="deleteComment(${comment.comNum})" style="cursor: pointer; margin-left: 5px;">삭제</span>
 											</c:if>
 											<c:if test="${loginInfo.id != comment.id }">
-												<span class="reply btn-primary" onclick="commentReport(${comment.comNum })" style="cursor: pointer; margin-left: 5px;">신고하기</span>
+												<span class="reply btn-primary" onclick="commentReport(${comment.comNum },'${comment.id }')" style="cursor: pointer; margin-left: 5px;">신고하기</span>
 											</c:if>
 										</p>
 									</div>
@@ -459,7 +461,7 @@
 			<div class="pt-2 pb-2">
 				<textarea name="repDiscription" rows="6" class="form-control w-100" style="resize: none;" placeholder="내용을 적어주세요"></textarea>
 			</div>
-			<input class="btn btn-primary w-100" type="button" value="신고하기" onclick="loingCheck()">
+			<input class="btn btn-primary w-100" type="button" value="신고하기" onclick="loginCheck()">
 
 		</div>
 	</div>
