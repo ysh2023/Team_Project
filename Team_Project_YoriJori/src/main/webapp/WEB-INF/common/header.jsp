@@ -77,14 +77,14 @@ String resourcesPath = request.getContextPath() + "/resources";
   				$('input[name=name]').focus();
   				return false;
   			}
-  			if($('input[name=ordzipcode]').val() == ""){
+  			if($('input[name=area1]').val() == ""){
   				alert("우편번호를 입력해주세요.");
-  				$('input[name=ordzipcode]').focus();
+  				$('input[name=area1]').focus();
   				return false;
   			}
-  			if($('input[name=ordaddr]').val() == ""){
+  			if($('input[name=area2]').val() == ""){
   				alert("주소를 입력해주세요.");
-  				$('input[name=ordaddr]').focus();
+  				$('input[name=area2]').focus();
   				return false;
   			}
   			if($('input[name=ordtel]').val() == ""){
@@ -99,7 +99,7 @@ String resourcesPath = request.getContextPath() + "/resources";
   			}else{
   				var reg_email = /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
  			     if(!reg_email.test($('input[name=ordemail]').val())) {          
- 			    	alert("올바른 이메일 형식이 아닙니다. ex) xxx@xxx.xxx or xxx@xxx.xx.xx")
+ 			    	alert("올바른 이메일 형식이 아닙니다. \n ex) xxx@xxx.xxx or xxx@xxx.xx.xx")
  			        return false;         
  			     }
  			}
