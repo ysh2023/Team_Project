@@ -57,9 +57,9 @@
 	</select>
 
 	<select id="GetReportCount" resultType="board.model.CommentReportBean">
-		select  comments.id ,count(*) count, commentreport.id as repDiscription from comments 
-		join commentReport on comments.com_num = commentreport.com_num
-		group by comments.id , commentreport.id order by count(*) desc
+		select  commentreport.id_origin ,count(*) count, commentreport.id as repDiscription from comments 
+		right outer join commentReport on comments.com_num = commentreport.com_num
+		group by commentreport.id_origin , commentreport.id order by count(*) desc
 	</select>
 	
 	<select id="GetRecipeReportlist" resultType="recipe.model.RecipeReviewReportBean">
@@ -71,7 +71,7 @@
 	<select id="GetAllReport"
 		resultType="board.model.CommentReportBean">
 		select commentReport.id ,comments.com_content, comments.COM_NUM ,commentReport.REP_DISCRIPTION,commentReport.reasons, commentReport.rep_num as count,comments.report from comments 
-		join commentReport on comments.com_num = commentreport.com_num where comments.id=#{id}
+		right outer join commentReport on comments.com_num = commentreport.com_num where commentreport.id_origin=#{id}
 	</select>
 	
 	<select id="GetAllRecipeReport" resultType="recipe.model.RecipeReviewReportBean">

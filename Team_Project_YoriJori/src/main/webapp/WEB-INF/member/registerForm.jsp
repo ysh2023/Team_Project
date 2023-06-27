@@ -122,7 +122,7 @@ function kakaopost() {
 						<div class="invalid-feedback">비밀번호 입력해주세요.</div>
 					</div>
 					<div class="mb-3">
-						<label for="tel">전화번호</label> <input type="tel"
+						<label for="tel">전화번호</label> <input type="number"
 							class="form-control" name="tel" placeholder="01012341234"
 							required>
 						<div class="invalid-feedback">전화번호를 입력해주세요.</div>
@@ -134,7 +134,7 @@ function kakaopost() {
 						<div class="invalid-feedback">이메일을 입력해주세요.</div>
 					</div>
 					<div class="mb-3">
-						<label for="age">나이</label> <input type="text"
+						<label for="age">나이</label> <input type="number"
 							class="form-control" name="age" placeholder="24" required>
 						<div class="invalid-feedback">나이를 입력해주세요.</div>
 					</div>
