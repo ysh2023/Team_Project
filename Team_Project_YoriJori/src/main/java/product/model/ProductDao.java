@@ -23,7 +23,7 @@ private String namespace = "product.model.Product";
 	SqlSessionTemplate sqlSessionTemplate;
 	
 	public ProductDao() {
-		System.out.println("ProductDao()");
+		//System.out.println("ProductDao()");
 	}
 	
 	

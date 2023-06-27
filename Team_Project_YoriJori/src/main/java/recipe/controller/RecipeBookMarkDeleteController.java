@@ -35,23 +35,27 @@ public class RecipeBookMarkDeleteController {
 		int cnt = rdao.deleteBookmark(RBMBean);
 		
 		if(cnt>0) {
+			//bookmark삭제 성공시 북마크 table에서 존재하는 bookmark의 recipenum을 가저옴
 			List<Integer> BookmarkList = rdao.getBookmarkById(mb.getId());
 			List<RecipeBean> BookmarkRecipeList = new ArrayList<RecipeBean>();
 			List<String> foodcategory = new ArrayList<String>();
 			for(int i : BookmarkList) {
+				//가져온 recipenum으로 recipe 전체를 가져와서 넘겨줌
 				RecipeBean rbean = rdao.getRecipe(i);
 				BookmarkRecipeList.add(rbean);
+				//레시피 카테고리만 담아서 넘김
 				foodcategory.add(rbean.getRecipecategory());
 			}
+			//카테고리에서 중복을 제거 한뒤 recipebookmark.jsp로 넘겨줌
 			Set<String> distintList = new HashSet<String>(foodcategory);
 			List<String> category = new ArrayList<String>(distintList);
 			session.setAttribute("category", category);
 			model.addAttribute("BookmarkRecipeList", BookmarkRecipeList);
 			model.addAttribute("member", mb);
-			System.out.println("삭제성공");
+			System.out.println("북마크 삭제성공");
 			
 		}else {
-			System.out.println("삭제실패");
+			System.out.println("북마크 삭제실패");
 		}
 		return getPage;
 	}

@@ -35,8 +35,6 @@ public class RecipeListByIngredientController {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("selectCategory", keyword == null ? "All" : keyword);
 		Map<String, String> map = new HashMap<String, String>();
-		System.out.println(whatColumn);
-		System.out.println(keyword);
 		map.put("whatColumn", whatColumn);
 		map.put("keyword", keyword);
 		String id = "";
@@ -46,9 +44,6 @@ public class RecipeListByIngredientController {
 		map.put("id", id);
 		String url = request.getContextPath()+command;
 		List<String> ingredientList = rdao.getIngredientByCategory(keyword);
-		
-		System.out.println("===================");
-		System.out.println("크기"+ingredientList.size());
 		for(String x : ingredientList) {
 			System.out.println(x);
 		}
@@ -56,7 +51,6 @@ public class RecipeListByIngredientController {
 			ingredientList = (List<String>) session.getAttribute("ingredientList");
 			map.put("keyword", "%"+keyword+"%");
 			int ingrecipetotalCount=rdao.getingrecipeTotalCount(map); 
-			System.out.println("레시피갯수"+ingrecipetotalCount);
 			Paging2 pageInfo = new Paging2(pageNumber, "12", ingrecipetotalCount, url, whatColumn, keyword, null);
 			List<RecipeBean> recipeList = rdao.getAllRecipeByIngre(map,pageInfo);
 			
@@ -69,12 +63,9 @@ public class RecipeListByIngredientController {
 		}else {	
 			session.setAttribute("ingredientList", ingredientList);
 			session.setAttribute("keyword", keyword);
-			System.out.println("ingreListSize:"+ingredientList.size());
 			int foodRecipeTotalCount = rdao.getFoodRecipeTotalCount(map);
-			//System.out.println("레시피갯수"+foodRecipeTotalCount);
 			Paging2 pageInfo = new Paging2(pageNumber, "12", foodRecipeTotalCount, url, whatColumn, keyword, null);
 			List<RecipeBean> recipeList = rdao.getAllRecipeByFoodCate(map,pageInfo);
-			System.out.println("recipe갯수"+recipeList.size());
 			mav.addObject("keyword", keyword);
 			mav.addObject("recipeList", recipeList); 
 			mav.addObject("ingreList", ingredientList); 

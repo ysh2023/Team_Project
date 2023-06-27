@@ -21,7 +21,7 @@ private String namespace ="mypage.model.Mypage";
 	SqlSessionTemplate sqlSessionTemplate;
 	
 	public DibsDao() {
-		System.out.println("DibsDao()");
+		//System.out.println("DibsDao()");
 	}
 
 

@@ -20,7 +20,7 @@ private String namespace = "order.model.Order";
 	SqlSessionTemplate sqlSessionTemplate;
 	
 	public OrderDao() {
-		System.out.println("orderDao()");
+		//System.out.println("orderDao()");
 	}
 	
 	

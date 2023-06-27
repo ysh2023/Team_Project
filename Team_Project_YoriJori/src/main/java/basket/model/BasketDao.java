@@ -18,7 +18,7 @@ private String namespace = "basket.model.Basket";
 	SqlSessionTemplate sqlSessionTemplate;
 	
 	public BasketDao() {
-		System.out.println("BasketDao()");
+		//System.out.println("BasketDao()");
 	}
 
 	public int insertBasket(BasketBean bb) {

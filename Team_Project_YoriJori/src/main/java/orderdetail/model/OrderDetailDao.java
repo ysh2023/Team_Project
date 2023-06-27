@@ -15,7 +15,7 @@ private String namespace = "orderDetail.model.OrderDetail";
 	SqlSessionTemplate sqlSessionTemplate;
 	
 	public OrderDetailDao() {
-		System.out.println("OrderDetailDao()");
+		//System.out.println("OrderDetailDao()");
 	}
 
 	public int insertOrderDetail(OrderDetailBean odt) {
