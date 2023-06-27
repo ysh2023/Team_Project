@@ -32,7 +32,7 @@ import product.model.ProductDao;
 @Controller
 public class OrderInsertController {
 	private final String command="/orderinsert.ord";
-	private final String getPage="./../../main";
+	private final String getPage="redirect:/";
 	
 	@Autowired
 	OrderDao odao;
@@ -86,11 +86,15 @@ public class OrderInsertController {
 				odt.setOdtqty(mapLists.get(key));
 				odt.setOdtprice(amount);
 				cnt2 += odtdao.insertOrderDetail(odt);
+				System.out.println("장바구니cnt2:"+cnt2);
 				//상품 재고수량 감소
 				int stock_cnt = pdao.updatePqty(odt.getOdtpdnum(),odt.getOdtqty());
 			}
 			detail.deleteOrder();
+			System.out.println("장바구니cnt:"+cnt2);
+			if(cnt2>0) {
 			bdao.deleteIdBasket(loginInfo.getId()); // 장바구니 삭제
+			}
 			System.out.println("insertOrder 성공");
 		}else {
 			System.out.println("insertOrder 실패");

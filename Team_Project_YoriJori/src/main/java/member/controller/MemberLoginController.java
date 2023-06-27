@@ -49,8 +49,18 @@ public class MemberLoginController {
 		MemberBean mb = mdao.GetMemberById(input_id);
 		
 		
-		
-		
+		if(input_id.equals("") || input_password.equals("")) {
+			try {
+				out = response.getWriter();
+				out.println("<script>alert('값이 제대로 입력되지 않았습니다.');history.go(-1);</script>");
+				out.flush();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+			mav.setViewName(getPage);
+			
+		}else {
 		if(mb == null) { 
 			
 			try {
@@ -103,6 +113,7 @@ public class MemberLoginController {
 
 				mav.setViewName(getPage);
 			}
+		}
 		}
 		session.removeAttribute("destination");
 		return mav;
