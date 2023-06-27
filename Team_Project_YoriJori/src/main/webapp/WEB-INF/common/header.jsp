@@ -99,7 +99,7 @@ String resourcesPath = request.getContextPath() + "/resources";
   			}else{
   				var reg_email = /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
  			     if(!reg_email.test($('input[name=ordemail]').val())) {          
- 			    	alert("올바른 이메일 형식이 아닙니다. \n ex) xxx@xxx.xxx or xxx@xxx.xx.xx")
+ 			    	alert("올바른 이메일 형식이 아닙니다. \n ex) xxx@xxx.xxx 또는 xxx@xxx.xx.xx")
  			        return false;         
  			     }
  			}
