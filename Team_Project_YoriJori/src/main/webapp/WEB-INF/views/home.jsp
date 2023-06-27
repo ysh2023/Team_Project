@@ -22,14 +22,14 @@
 	        </div>
 	      </div>
 
-	      <div class="slider-item" style="background-image: url(<%=resourcesPath%>/images/recipe.jpg);">
+	      <div class="slider-item" style="background-image: url(<%=resourcesPath%>/images/recipe3.jpg);">
 	      	<div class="overlay"></div>
 	        <div class="container">
 	          <div class="row slider-text" data-scrollax-parent="true" style="margin: auto; padding-top: 30px;">
 	            <div class="col-md-12 ftco-animate text-center">
-	              <h1 style="font-family: 'Nanum Pen Script', cursive;">" 카레닭봉구이 "</h1>
-	              <h2 class="subheading" style="font-weight: bold;">간편하게 완성하는 인기 에어프라이어 메뉴!</h2>
-	              <p><a href="detail.re?recipenum=680" class="btn btn-primary">레시피 보러가기</a></p>
+	              <h1 style="font-family: 'Nanum Pen Script', cursive;">" 닭가슴살카레볶음밥 "</h1>
+	              <h2 class="subheading" style="font-weight: bold;">간편하게 완성하는 인기 메뉴!</h2>
+	              <p><a href="detail.re?recipenum=690" class="btn btn-primary">레시피 보러가기</a></p>
 	            </div>
 
 	          </div>
