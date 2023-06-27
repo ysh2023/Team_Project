@@ -61,23 +61,24 @@
 
 									<c:forEach items="${ arr}" var="ingredient" varStatus="status">
 										<div class="form-check form-check-inline">
-											
-											<input type="hidden" value="${refdday[status.index] }" name="refdday">
-											<input type="hidden" value="${arr[status.index] }" name="arr">
-											 <input class="form-check-input" type="checkbox" value="${ingredient }" id="flexCheckDefault" name="ingredient" checked> <label class="form-check-label" for="flexCheckDefault"> <c:set value="<%=new Date()%>" var="now" /> <fmt:parseDate pattern="yyyy-MM-dd" value="${refdday[status.index] }" var="parsedday" /> <c:set value="${now.getTime() - parsedday.getTime()}" var="result" /> <c:set value="${result/(24*60*60*1000) -1 }" var="dday" /> <c:choose>
-													
-													<c:when test="${dday==0 }">
+
+											<input type="hidden" value="${refdday[status.index] }" name="refdday"> <input type="hidden" value="${arr[status.index] }" name="arr"> <input class="form-check-input" type="checkbox" value="${ingredient }" id="flexCheckDefault" name="ingredient"> <label class="form-check-label" for="flexCheckDefault"> <c:set value="<%=new Date()%>" var="now" /> <fmt:parseDate pattern="yyyy-MM-dd" value="${refdday[status.index] }" var="parsedday" /> <c:set value="${now.getTime() - parsedday.getTime()}" var="result" /> <c:set value="${result/(24*60*60*1000) -1 }" var="dday" /> 
+											<fmt:parseNumber value="${dday }" integerOnly="true" var="dday2"/>
+											<c:choose>
+
+													<c:when test="${dday2==0 }">
 														<span style="color: red !important;">D-day</span>
+
 													</c:when>
-													<c:when test="${dday>-3 }">
-														<span style="color: red !important;">D<fmt:parseNumber value="${dday }" integerOnly="true"/></span>
+													<c:when test="${dday2>-3 }">
+														<span style="color: red !important;">D${dday2 }</span>
 													</c:when>
 													<c:otherwise>
-														D<fmt:parseNumber value="${dday }" integerOnly="true"/>
+														D${dday2 }
 													</c:otherwise>
 												</c:choose> ${ingredient }
 											</label>
-											
+
 										</div>
 									</c:forEach>
 
@@ -99,9 +100,9 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12 text-center">
-				<c:if test="${fn:length(boardList)==0 }">
-					<h3>일치하는 레시피가 없습니다</h3>
-				</c:if>
+					<c:if test="${fn:length(boardList)==0 }">
+						<h3>일치하는 레시피가 없습니다</h3>
+					</c:if>
 				</div>
 				<c:forEach items="${boardList }" var="board" varStatus="status">
 					<div class="col-md-6 col-lg-3 ftco-animate">
