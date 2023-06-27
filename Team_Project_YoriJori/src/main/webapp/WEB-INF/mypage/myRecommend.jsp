@@ -64,6 +64,16 @@
 
 	</main>
 </body>
+<script>
+
+function deleteRecommend(bodNum){
+	var isOk = confirm(bodNum+ '번 게시물 추천을 취소하시겠습니까?');
+	if(!isOk){
+		return false;
+	}
+}
+</script>
+
 <section style="margin-top: 100px;">
 	<%@include file= "./../common/footer.jsp" %>
 </section>

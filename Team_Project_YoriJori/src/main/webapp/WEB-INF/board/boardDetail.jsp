@@ -272,7 +272,7 @@
 								<button class="btn" ${loginInfo.id == board.id or loginInfo.id =='admin' ? '':'disabled' } style="cursor: pointer; text-align: center; border-radius: 10px 10px 0px 0px;  ${loginInfo.id == board.id or loginInfo.id =='admin' ? '' : 'color:gray;' }" onclick="updateHandle()">
 									<b>수정</b>
 								</button>
-								<button class="btn"  ${loginInfo.id == board.id or loginInfo.id =='admin' ? '':'disabled' } style="cursor: pointer; text-align: center; border-radius: 0px 0px 10px 10px; ${loginInfo.id == board.id or loginInfo.id =='admin' ? '' : 'color:gray;'  }" onclick="deleteHandle()">
+								<button class="btn" ${loginInfo.id == board.id or loginInfo.id =='admin' ? '':'disabled' } style="cursor: pointer; text-align: center; border-radius: 0px 0px 10px 10px; ${loginInfo.id == board.id or loginInfo.id =='admin' ? '' : 'color:gray;'  }" onclick="deleteHandle()">
 									<b>삭제</b>
 								</button>
 							</div>
@@ -319,8 +319,7 @@
 
 					<c:forEach items="${boardIngredientList}" var="boardIngredient" varStatus="status">
 
-						<li style="inline: block; float: left; margin-right: 40px"><a href="shop.prd?whatColumn=no&searchName=${boardIngredient.bigName}">${boardIngredient.bigName }</a>
-						<c:if test="${boardIngredient.bigAmount == null }">
+						<li style="inline: block; float: left; margin-right: 40px"><a href="shop.prd?whatColumn=no&searchName=${boardIngredient.bigName}">${boardIngredient.bigName }</a> <c:if test="${boardIngredient.bigAmount == null }">
 						 -${ boardIngredient.bigAmount}
 						</c:if></li>
 

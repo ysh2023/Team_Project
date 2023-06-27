@@ -13,16 +13,16 @@
 				<fmt:parseDate value="${comment.createAt }" var="pdate" pattern="yyyy-MM-dd HH:mm:ss.S" />
 				<fmt:formatDate value="${pdate }" pattern="yyyy년 MM월 dd일 hh:mm" />
 			</div>
-			<p id="comment${status.index+1 }">${comment.comContent }</p>
+			<p id="comment${status.index+1 }">${comment.report == 1 ? '해당 댓글은 블라인드처리 되었습니다.' :comment.comContent }</p>
 			<p>
 				<span class="reply" id="reply${status.index+1 }" onclick="replyHandle(${status.index+1})" style="cursor: pointer;">댓글 달기</span>
-											<c:if test="${loginInfo.id == comment.id }">
-												<span class="reply" id="deleteComment${status.index+1 }" onclick="deleteComment(${comment.comNum})" style="cursor: pointer; margin-left: 5px;">삭제</span>
-												<span class="reply" id="updateComment${status.index+1 }" onclick="handleUpdateComment(${status.index+1})" style="cursor: pointer; margin-left: 5px;">수정</span>
-											</c:if>
-											<c:if test="${loginInfo.id != comment.id }">
-												<span class="reply btn-primary" onclick="commentReport(${comment.comNum })" style="cursor: pointer; margin-left: 5px;">신고하기</span>
-											</c:if>
+				<c:if test="${loginInfo.id == comment.id  && comment.report != 1 || loginInfo.id == 'admin'}">
+					<span class="reply" id="updateComment${status.index+1 }" onclick="handleUpdateComment(${status.index+1})" style="cursor: pointer; margin-left: 5px;">수정</span>
+					<span class="reply" id="deleteComment${status.index+1 }" onclick="deleteComment(${comment.comNum})" style="cursor: pointer; margin-left: 5px;">삭제</span>
+				</c:if>
+				<c:if test="${loginInfo.id != comment.id }">
+					<span class="reply btn-primary" onclick="commentReport(${comment.comNum })" style="cursor: pointer; margin-left: 5px;">신고하기</span>
+				</c:if>
 			</p>
 		</div>
 	</li>
