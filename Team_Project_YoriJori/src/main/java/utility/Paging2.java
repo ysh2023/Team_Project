@@ -245,7 +245,7 @@ public class Paging2 {
 					+ added_param + "'>&gt</a></li></ul>";
 
 		}
-		System.out.println("result2:" + result);
+		//System.out.println("result2:" + result);
 		// result2 : <a href='/ex/list.ab?pageNumber=1&pageSize=2'>맨
 		// 처음</a>&nbsp;&nbsp;<a
 		// href='/ex/list.ab?pageNumber=3&pageSize=2&whatColumn=null&keyword=null'>이전</a>&nbsp;&nbsp;<font

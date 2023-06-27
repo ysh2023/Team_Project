@@ -170,7 +170,7 @@ function deleteReview(reviewnum,recipenum){
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-6 mb-5 ftco-animate">
-				<a href="images/product-1.jpg" class="d-flex justify-content-center"><img
+				<a  class="d-flex justify-content-center"><img
 					src="${recipe.cookimage}" class="img-fluid" alt="Colorlib Template"></a>
 			</div>
 			<div class="col-lg-6 product-details pl-md-5 ftco-animate">

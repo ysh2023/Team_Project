@@ -5,7 +5,7 @@
 <script>
 function recommendClick(recipenum){
 	if (`${loginInfo.id}` == '') {
-		if (confirm('로그인 후 찜 가능합니다\n로그인 하시겠습니까?')) {
+		if (confirm('로그인 후 북마크 추가 가능합니다\n로그인 하시겠습니까?')) {
 			location.href = 'login.mb';
 		}
 	}

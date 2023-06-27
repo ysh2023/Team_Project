@@ -16,14 +16,14 @@ public class MyBean implements InitializingBean {
 
 	@PostConstruct
 	public void init() {
-		System.out.println("init");
+		//System.out.println("init");
 	}
 
 	@Override
 	public void afterPropertiesSet() throws Exception {
-		System.out.println("----afterPropertiesSet--------");
+		//System.out.println("----afterPropertiesSet--------");
 		String uploadPath = servletContext.getRealPath("/resources/images/");
-		System.out.println(uploadPath);
+		//System.out.println(uploadPath);
 		File destination = new File(uploadPath);
 
 		String str = "c:/tempUpload";

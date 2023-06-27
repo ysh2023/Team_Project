@@ -22,7 +22,7 @@ public class RecipeBookMarkInsertController {
 	@Autowired
 	RecipeDao rdao;
 	
-	//recipeList에서 찜 버튼 눌렀을때 get
+	//recipeList에서 찜 버튼 눌렀을때 get(ajax사용)
 	@RequestMapping(value=command, method=RequestMethod.GET)
 	@ResponseBody
 	public String doAction(HttpSession session,@RequestParam("recipenum") int recipenum) {
@@ -57,7 +57,7 @@ public class RecipeBookMarkInsertController {
 		}
 	}
 	
-	//recipedetail에서 찜 버튼 눌렀을때 post
+	//recipedetail에서 찜 버튼 눌렀을때 post(insert,delete사용)
 	@RequestMapping(value=command,method=RequestMethod.POST)
 	public String doAction2(HttpSession session,@RequestParam("recipenum") int recipenum,Model model) {
 		if(session.getAttribute("loginInfo") == null) {
@@ -70,6 +70,7 @@ public class RecipeBookMarkInsertController {
 		BMBean.setId(mb.getId());
 		BMBean.setRecipenum(recipenum);
 		boolean flag = rdao.checkBookMark(BMBean);
+		//북마크가 이미 등록되어있는지 확인 되어있으면 삭제 없으면 추가
 		if(flag == false) {
 			rdao.insertBookMark(BMBean);
 		}else {
