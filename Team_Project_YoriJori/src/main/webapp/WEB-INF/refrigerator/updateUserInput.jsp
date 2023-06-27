@@ -47,7 +47,7 @@
       	</div>
       	<div class="form-group col-md-6">
       		<label for="inputname">*식재료명</label>
-      		<input class="form-control" type="text" id="inputname" name="refdetail" value="${joinbean.refdetail}">
+      		<input class="form-control" type="text" id="inputname" name="refdetail" value="${joinbean.refdetail}" required="required">
       	</div>
         <div class="form-group col-md-6">
 		  <label for="ingctg">*카테고리</label>
