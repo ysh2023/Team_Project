@@ -6,10 +6,18 @@ public class RecipeReviewReportBean {
 	private int reviewnum;
 	private String reportreason; //신고이유
 	private String id;
+	private String idorigin;
 	private String count;
 	private String review; // 상세보기용
 	private int report;
 	
+	
+	public String getIdorigin() {
+		return idorigin;
+	}
+	public void setIdorigin(String idorigin) {
+		this.idorigin = idorigin;
+	}
 	public int getReport() {
 		return report;
 	}

@@ -77,9 +77,10 @@ function updateHandle(index){
 }	
 
 
-function reviewReport(reviewnum){
+function reviewReport(reviewnum,reviewid){
 	$('#reportScreen').fadeIn();
 	$('input[name=reviewnum]').val(reviewnum);
+	$('input[name=reviewid]').val(reviewid);
 	
 
 }
@@ -104,6 +105,7 @@ function loingCheck(){
 		url:'report.re',
 		data:({
 			reviewnum: $('input[name=reviewnum]').val(),
+			reviewid: $('input[name=reviewid]').val(),
 			reportreason : $('select[name=reportreason]').val(),
 			reportcontent : $('textarea[name=reportcontent]').val()
 		}),
@@ -250,8 +252,8 @@ function deleteReview(reviewnum,recipenum){
 
 			<div class="col-lg-12 ftco-animate">
 				<div class="pt-5 mt-5">
-					<h3 class="mb-5">등록된 리뷰 갯수 : ${reviewList.size()}</h3>
 					<ul class="comment-list">
+					<h3 class="mb-5">등록된 리뷰 갯수 : ${reviewList.size()}</h3>
 						<c:forEach var="review" items="${reviewList}" varStatus="status">
 							<c:if test="${review.report == 1 }">
 							<li class="comment">
@@ -266,6 +268,12 @@ function deleteReview(reviewnum,recipenum){
 									<!-- 시간 넣기 -->
 									<div class="meta">${review.reviewdate}</div>
 									<p>해당 댓글은 블라인드 처리되었습니다.</p>
+									<c:if test="${review.id == id }">
+									<span class="reply"
+											onclick="deleteReview(${review.reviewnum},${recipe.recipenum})"
+											style="cursor: pointer; margin-left: 10px;">삭제</span>
+											
+										</c:if>
 								</div>
 							</c:if>
 							<c:if test="${review.report == 0 }">
@@ -284,7 +292,7 @@ function deleteReview(reviewnum,recipenum){
 									<p>
 										<c:if test="${review.id != id }">
 										<span class="reply"
-											onclick="reviewReport(${review.reviewnum})"
+											onclick="reviewReport(${review.reviewnum},'${review.id}')"
 											style="cursor: pointer;">신고하기</span>
 										</c:if>
 										<c:if test="${review.id == id }">
@@ -353,6 +361,7 @@ function deleteReview(reviewnum,recipenum){
 		</div>
 		<div>
 			<input class="form-controll" type="hidden" name="reviewnum">
+			<input class="form-controll" type="hidden" name="reviewid">
 			<select class="form-control" aria-label="Default select example"
 				name="reportreason" style="margin-bottom: 20px; border-radius: 10px">
 				<option>욕설

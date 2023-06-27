@@ -72,7 +72,7 @@
   	
   	<insert id="InsertReport">
   		insert into review_report
-  		values(recipe_report_seq.nextval,#{reportcontent},#{reviewnum},#{reportreason},#{id})
+  		values(recipe_report_seq.nextval,#{reportcontent},#{reviewnum},#{reportreason},#{id},#{idorigin})
   	</insert>
   	
   	<select id="CheckBookMark" resultType="int">
@@ -149,6 +149,6 @@
   	<select id="GetRecipeForMain" resultType="recipe.model.RecipeBean">
   		select recipe.recipe_num,recipe.recipe_name,recipe.recipe_category,recipe.servings,recipe.cook_image,recipe.readcount
 		from recipe full outer join (select rownum as rank, recipe_num from(select recipe_num, count(*)as bookmarknum from bookmark group by recipe_num order by bookmarknum desc)) mark on recipe.recipe_num = mark.recipe_num
-		where rank between 1 and 4
+		order by rank
   	</select>
   </mapper>
