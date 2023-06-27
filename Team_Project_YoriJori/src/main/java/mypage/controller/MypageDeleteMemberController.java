@@ -19,7 +19,7 @@ import member.model.MemberDao;
 public class MypageDeleteMemberController {
 	private final String command = "/deleteMb.mp";
 	private final String getPage = "/deleteMbForm";
-	private String gotoPage = "./../../main";
+	private String gotoPage = "redirect:/";
 	
 	@Autowired
 	MemberDao mdao;
@@ -45,20 +45,13 @@ public class MypageDeleteMemberController {
 		String pw= request.getParameter("pw");
 		
 		System.out.println("pw"+pw);
-		System.out.println("pw"+mb.getId());
+		System.out.println("id"+mb.getId());
 		
-		if(mb.getPw().equals("pw")) {
+		if(mb.getPw().equals(pw)) {
 			int cnt= mdao.deleteMember(mb.getId());
-			
-			try {
-				out = response.getWriter();
-				out.println("<script>alert('삭제가 완료되었습니다.');history.go(-1);</script>");
-				out.flush();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			
+	
 			session.invalidate();
+			return gotoPage;
 		}
 		else {
 			try {
