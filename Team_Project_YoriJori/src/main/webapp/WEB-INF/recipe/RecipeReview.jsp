@@ -1,9 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:forEach var="review" items="${reviewList}" varStatus="status">
+	<h3 class="mb-5">등록된 리뷰 갯수 : ${reviewList.size()}</h3>
+						<c:forEach var="review" items="${reviewList}" varStatus="status">
 							<c:if test="${review.report == 1 }">
-								<p>해당 댓글은 블라인드처리 되었습니다.</p>
+							<li class="comment">
+								<div class="vcard bio">
+									<!-- 괜찮은 이미지 넣기 -->
+									<img
+										src="<%=request.getContextPath()%>/resources/images/user_img.jpg"
+										alt="Image placeholder">
+								</div>
+								<div class="comment-body">
+									<h3>${review.id}</h3>
+									<!-- 시간 넣기 -->
+									<div class="meta">${review.reviewdate}</div>
+									<p>해당 댓글은 블라인드 처리되었습니다.</p>
+									<c:if test="${review.id == id }">
+									<span class="reply"
+											onclick="deleteReview(${review.reviewnum},${recipenum})"
+											style="cursor: pointer; margin-left: 10px;">삭제</span>
+											
+										</c:if>
+								</div>
 							</c:if>
 							<c:if test="${review.report == 0 }">
 							<li class="comment">
@@ -21,7 +40,7 @@
 									<p>
 										<c:if test="${review.id != id }">
 										<span class="reply"
-											onclick="reviewReport(${review.reviewnum})"
+											onclick="reviewReport(${review.reviewnum},'${review.id}')"
 											style="cursor: pointer;">신고하기</span>
 										</c:if>
 										<c:if test="${review.id == id }">

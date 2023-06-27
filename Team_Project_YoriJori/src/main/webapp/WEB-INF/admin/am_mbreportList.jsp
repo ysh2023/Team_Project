@@ -126,10 +126,10 @@ function stop(id){
               
                 <c:forEach var="i" items="${recipelist}">
                  <tr>
-                    <th scope="row">${i.id}</th>
+                    <th scope="row">${i.idorigin}</th>
                     <td>${i.count}</td>
                    
-                    <td><a href="detailReport.am?id=${i.id}">상세보기</a></td>
+                    <td><a href="detailReport.am?id=${i.idorigin}">상세보기</a></td>
                     
                  	 <td>
                  	   <form action="stopMember.am">
@@ -146,7 +146,7 @@ function stop(id){
                    
                     </td>
                     <td><a href="#" onclick="stop('${i.id}')">강제탈퇴</a></td>
-                    <td><span onclick="checkdeleteReview('${i.reportcontent}')" style="color: blue; cursor: pointer;">내역삭제</span></td>
+                    <td><span onclick="checkdeleteReview('${i.idorigin}')" style="color: blue; cursor: pointer;">내역삭제</span></td>
                   </tr>
                 </c:forEach>
           

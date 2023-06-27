@@ -24,6 +24,7 @@ public class RecipeReviewReportController {
 	
 	@RequestMapping(value=command)
 	public void doAction(@RequestParam ("reviewnum") String reviewnum , 
+							@RequestParam ("reviewid") String reviewid ,
 							@RequestParam ("reportreason") String reportreason,
 							@RequestParam("reportcontent") String reportcontent,
 							HttpSession session,
@@ -34,8 +35,10 @@ public class RecipeReviewReportController {
 		reportBean.setReportreason(reportreason);
 		reportBean.setReportcontent(reportcontent);
 		reportBean.setId(mb.getId());
+		reportBean.setIdorigin(reviewid);
 
 		//System.out.println("revienum:"+reviewnum);
+		System.out.println("reviewid:"+reviewid);
 		//System.out.println("reportreason:"+reportreason);
 		//System.out.println("reportcontent:"+reportcontent);
 		//System.out.println("id:"+mb.getId());

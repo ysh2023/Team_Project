@@ -37,13 +37,13 @@
 							<label class="form-check-label" for="flexCheckDefault">
 							<c:choose>
 								<c:when test="${day[status.index] == 0}">
-									<span style="color: red !important;">D-day</span>
+									<span style="color: red !important;">D-day&nbsp;${ingredient}</span>
 								</c:when>
 								<c:when test="${day[status.index] >-3}">
-									<span style="color: red !important;">D${day[status.index]}</span>
+									<span style="color: red !important;">D${day[status.index]}&nbsp;${ingredient}</span>
 								</c:when>
 								<c:otherwise>
-									D${day[status.index]}${ingredient}
+									D${day[status.index]}&nbsp;${ingredient}
 								</c:otherwise>
 							</c:choose>
 							</label>
