@@ -44,7 +44,7 @@ public class BoardUpdateController {
 		model.addAttribute("boardContentList", bdao.getBoardContentByBodNum(bodNum));
 		model.addAttribute("boardIngredientList", bdao.getBoardIngredientByBodNum(bodNum));
 
-		String[] categoryss = { "밥", "국", "찌개", "반찬", "라면", "기타" };
+		String[] categoryss = { "밥", "국", "반찬", "고기", "라면", "패스트푸드", "간식", "기타" };
 		model.addAttribute("categorys", categoryss);
 		model.addAttribute("ingredients", bdao.getAllIngredient());
 
@@ -106,16 +106,15 @@ public class BoardUpdateController {
 			}
 		}
 
-		System.out.println(boardFormBean.getBod_image() + "보드 이미지 있음?");
 		// 게시글 대표 이미지 삽입
 		if (boardResult > -1 && boardFormBean.getBod_image() != null) {
-			System.out.println("대표 이미지 삽입\n");
-			System.out.println(prevBoardBean.getBodImage());
-			System.out.println(boardBean.getBodImage());
-			System.out.println(prevBoardBean.getBodImage().equals(boardBean.getBodImage()));
+//			System.out.println("대표 이미지 삽입\n");
+//			System.out.println(prevBoardBean.getBodImage());
+//			System.out.println(boardBean.getBodImage());
+//			System.out.println(prevBoardBean.getBodImage().equals(boardBean.getBodImage()));
 
 			if (!prevBoardBean.getBodImage().equals(boardBean.getBodImage())) {
-				System.out.println("달라서 삽입");
+				// System.out.println("달라서 삽입");
 				destination = new File(
 						uploadPath + File.separator + boardFormBean.getBod_image_upload().getOriginalFilename());
 				destination_local = new File(str + File.separator + boardBean.getBodImage());
@@ -127,8 +126,8 @@ public class BoardUpdateController {
 					if (resultCopy > 0) {
 
 						FileCopyUtils.copy(destination_local, destination_local_in);
-						System.out.println("복사 완료\n복사경로");
-						System.out.println(destination_local_in);
+						// System.out.println("복사 완료\n복사경로");
+						// System.out.println(destination_local_in);
 					}
 				} catch (IllegalStateException e1) {
 					// TODO Auto-generated catch block
@@ -138,7 +137,7 @@ public class BoardUpdateController {
 					e1.printStackTrace();
 				}
 			} else {
-				System.out.println("같아서 냅둠");
+				// System.out.println("같아서 냅둠");
 			}
 		}
 
@@ -149,7 +148,7 @@ public class BoardUpdateController {
 
 			// 식재료 테이블 삭제 후 수정
 			if (bdao.deleteBoardIngredient(boardFormBean.getBod_num()) > -1) {
-				System.out.println("삭제는 일단 성공");
+				// System.out.println("삭제는 일단 성공");
 				for (int i = 0; i < boardFormBean.getBig_name().length; i++) {
 					BoardIngredientBean boardIngredientBean = new BoardIngredientBean();
 					boardIngredientBean.setBodNum(boardFormBean.getBod_num());
@@ -215,7 +214,7 @@ public class BoardUpdateController {
 					if (boardContentResult > 0) {
 						if (boardContentBean.getImage() != null) {
 							insertBoardContentList.add(boardContentBean.getImage());
-							System.out.println(boardContentBean.getImage());
+							// System.out.println(boardContentBean.getImage());
 						}
 
 						if (boardFormBean.getUpload()[i].getOriginalFilename().equals("")
@@ -247,10 +246,9 @@ public class BoardUpdateController {
 					}
 				}
 
-				//
 				for (int i = 0; i < prevBoardContentList.size(); i++) {
 					if (insertBoardContentList.contains(prevBoardContentList.get(i))) {
-						prevBoardContentList.remove(i);
+						prevBoardContentList.set(i, "");
 					}
 				}
 
@@ -258,8 +256,9 @@ public class BoardUpdateController {
 					destination_local = new File(str + File.separator + prevBoardContentList.get(i));
 					if (destination_local.exists()) {
 						if (destination_local.delete()) {
-							System.out.println("조리과정 이미지 삭제 성공");
-							System.out.println(prevBoardContentList.get(i));
+							// System.out.println("조리과정 이미지 삭제 성공");
+							// System.out.println(destination_local);
+							// System.out.println(prevBoardContentList.get(i));
 						}
 					}
 				}

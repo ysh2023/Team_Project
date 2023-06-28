@@ -31,8 +31,9 @@
 	
 	var isBoardUpload = false;
 	/* 유효성 검사  */
+	var isCheck = false;
 	function submitHandle() {
-		var isCheck = true;
+		isCheck = true;
 		if(!isBoardUpload){
 			isCheck= false;
 			alert("대표 이미지를 등록해 주세요");
