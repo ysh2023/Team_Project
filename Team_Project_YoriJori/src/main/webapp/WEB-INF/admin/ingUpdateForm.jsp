@@ -125,12 +125,12 @@
                   	<img src="<%=resourcesPath%>/images/icon/${ingbean.ingicon}" style="max-height:50px;"><br>
                   	${ingbean.ingicon}
                   </div>
-                  <input type="file" class="form-control" id="upload" name="upload">
+                  <input type="file" class="form-control" id="upload" name="upload" required>
 				  <input type="hidden" name="origin" value="${ingbean.ingicon}">
                 </div>
                 <div class="col-md-12">
                   <label for="ingname" class="form-label">식재료명</label>
-                  <input type="text" class="form-control" id="ingname" name="ingname" value="${ingbean.ingname}" onkeydown="keyd()" required>
+                  <input type="text" class="form-control" id="ingname" name="ingname" value="${ingbean.ingname}" maxlength="15" onkeydown="keyd()" required>
                   <div style="margin-top: 10px;">
                     <input type="button" class="btn btn-secondary btn-sm" value="중복체크" onClick="ingCheck(${ingbean.ingnum})">
                     &nbsp;<span id="dupl" class="invalid-feedback"></span>
