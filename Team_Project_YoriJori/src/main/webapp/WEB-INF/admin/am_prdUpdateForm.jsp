@@ -25,7 +25,7 @@ String cateArr[]= {"채소","과일","쌀/견과","정육/계란류","우유/유
                 <div class="row mb-3">
                   <label for="inputText" class="col-sm-2 col-form-label" >상품명</label>
                   <div class="col-sm-10">
-                    <input type="text" name="pdname" class="form-control" value="${product.pdname}" required>
+                    <input type="text" name="pdname" class="form-control" maxlength="10" value="${product.pdname}" required>
                   </div>
                   
                 </div>
@@ -47,20 +47,20 @@ String cateArr[]= {"채소","과일","쌀/견과","정육/계란류","우유/유
                 <div class="row mb-3">
                   <label for="inputText" class="col-sm-2 col-form-label">상품 설명</label>
                   <div class="col-sm-10">
-                    <textarea class="form-control"  name="pdcontent" style="height: 100px" >${product.pdcontent}</textarea>
+                    <textarea class="form-control"   maxlength="10" name="pdcontent" style="height: 100px" >${product.pdcontent}</textarea>
                   </div>
                 </div>
                 <div class="row mb-3">
                   <label for="inputNumber"  class="col-sm-2 col-form-label">재고량</label>
                   <div class="col-sm-10">
-                    <input type="number" class="form-control" name="pdstock" value="${product.pdstock}" required>
+                    <input type="number" class="form-control"  min="1" max="80" name="pdstock" value="${product.pdstock}" required>
                   </div>
                 </div>
                 
                  <div class="row mb-3">
                    <label for="inputNumber" class="col-sm-2 col-form-label" >가격</label>
                   <div class="col-sm-10">
-                     <input type="number" class="form-control"  name="pdprice" value="${product.pdprice}" required>
+                     <input type="number" class="form-control"  min="1" max="100000"  name="pdprice"  maxlength="4" value="${product.pdprice}" required>
                   </div>
                  </div>
                 
