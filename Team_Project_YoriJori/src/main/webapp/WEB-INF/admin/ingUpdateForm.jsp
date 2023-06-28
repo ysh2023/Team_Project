@@ -146,7 +146,7 @@
                 </div>
                 <div class="col-md-12">
                   <label for="expiry" class="form-label">소비기한</label>
-                  <input type="text" class="form-control" id="expiry" name="expiry" value="${ingbean.expiry}" required>
+                  <input type="text" class="form-control" id="expiry" name="expiry" value="${ingbean.expiry}" max="999" required>
                 </div>
                 <div class="text-center">
                   <button type="submit" class="btn btn-primary">수정하기</button>

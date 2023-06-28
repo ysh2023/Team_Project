@@ -5,16 +5,15 @@
 <html>
 <body>
 	<main id="main" class="main">	
-		<div class="pagetitle">
-			<h1>주문 목록</h1>
-
+		<div class="pagetitle" style="margin: 20px; font-size: 30pt !important;">
+			<b>주문 목록</b>
 		</div>
 		<!-- End Page Title -->
 
 		<section class="section">
 			<div class="row">
 				<div class="col-lg-12">
-					<div class="card">
+					<div class="card" style="margin:20px; margin-top: 0px;">
 						<div class="card-body" id="maindiv" style="overflow: scroll; max-height: 930px;">
 							<table class="table datatable" id="maintable">
 								<thead>
