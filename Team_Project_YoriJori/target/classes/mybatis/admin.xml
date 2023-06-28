@@ -63,9 +63,9 @@
 	</select>
 	
 	<select id="GetRecipeReportlist" resultType="recipe.model.RecipeReviewReportBean">
-		select  review.id ,count(*) count , review_report.id as reportcontent from review_report 
-		join review on review.review_num = review_report.review_num 
-		group by review.id,review_report.id order by count(*) desc
+		select  review_report.id_origin ,count(*) count , review_report.id  from review_report 
+		left outer join review on review.review_num = review_report.review_num 
+		group by review_report.id_origin,review_report.id order by count(*) desc
 	</select>
 	
 	<select id="GetAllReport"
@@ -75,15 +75,15 @@
 	</select>
 	
 	<select id="GetAllRecipeReport" resultType="recipe.model.RecipeReviewReportBean">
-		select review_report.id ,review.review,review.review_num ,review_report.report_content,  review_report.report_reason,review_report.re_rep_num as count,review.report from review 
-		join review_report on review.review_num = review_report.review_num where review.id=#{id}
+		select review_report.id ,review.review,review.review_num ,review_report.report_content,review_report.report_reason,review_report.re_rep_num as count,review.report,review_report.id_origin from review 
+		right outer join review_report on review.review_num = review_report.review_num where review_report.id_origin=#{id}
 	</select>
 	
 	<delete id="DeleteReport">
 	delete from commentReport where id=#{id}
 	</delete>
 	<delete id="DeleteReviewReport">
-		delete from review_report where id=#{id}
+		delete from review_report where id_origin=#{id}
 	</delete>
 	<delete id="DeleteCommentReport">
 		delete from commentReport where rep_num=#{repNum}

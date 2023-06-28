@@ -17,6 +17,7 @@ import basket.model.BasketDao;
 import basket.model.JoinBean;
 import member.model.MemberBean;
 import oracle.net.aso.s;
+import orderdetail.map.DetailList;
 
 @Controller
 public class BasketListController {
@@ -30,6 +31,10 @@ public class BasketListController {
 	public ModelAndView doAction(HttpSession session,HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView();
 		MemberBean loginInfo = (MemberBean)session.getAttribute("loginInfo");
+		DetailList detail = (DetailList)session.getAttribute("detail");
+		if(detail != null) {
+			detail.deleteOrder();
+		}
 		if(loginInfo == null) { //로그인 안했을때
 			session.setAttribute("destination", "redirect:/list.bsk");	//destination 속성 설정
 			mav.setViewName("redirect:/login.mb");

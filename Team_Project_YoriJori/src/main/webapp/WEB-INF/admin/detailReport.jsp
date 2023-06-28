@@ -67,7 +67,12 @@
                 <c:forEach var="i" items="${lists}">
                  <tr>
                     <th scope="row">${i.id}</th>
+                    <c:if test="${i.comcontent == null }">
+                    	<td><span style="color: red;">삭제된 댓글</span></td>
+                    </c:if>
+                    <c:if test="${i.comcontent != null }">
                     <td>${i.comcontent}</td>
+                    </c:if>
                     <td>${i.reasons}</td>
                     <td>${i.repDiscription}</td>
                     <td><span onclick="checkdeleteComment('${id}','${i.count}')" style="color: blue; cursor: pointer;">삭제</span></td>
@@ -115,7 +120,12 @@
                 <c:forEach var="i" items="${recipeList}">
                  <tr>
                     <th scope="row">${i.id}</th>
+                    <c:if test="${i.review == null }">
+                    	<td><span style="color: red;">삭제된 댓글</span></td>
+                    </c:if>
+                    <c:if test="${i.review != null }">
                     <td>${i.review}</td>
+                    </c:if>
                     <td>${i.reportreason}</td>
                     <td>${i.reportcontent}</td>
                     <td><span onclick="checkdeleteReview('${id}','${i.count}')" style="color: blue; cursor: pointer;">삭제</span></td>

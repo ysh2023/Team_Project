@@ -77,7 +77,7 @@ function stop(id){
                     
                  	 <td>
                  	   <form action="stopMember.am">
-                 	  <input type="hidden" value="${i.id}" name="id">
+                 	  <input type="hidden" value="${i.idOrigin}" name="id">
                  	    <input type="hidden" value="ys" name="check">
                  	 <select id="stopdate" name="stopdate">
                     <option value="7">7일</option>
@@ -89,7 +89,7 @@ function stop(id){
                      </form>
                    
                     </td>
-                    <td><a href="#" onclick="stop('${i.id}')">강제탈퇴</a></td>
+                    <td><a href="#" onclick="stop('${i.idOrigin}')">강제탈퇴</a></td>
                     <td><span onclick="checkdeleteComment('${i.repDiscription}')" style="color: blue; cursor: pointer;">내역삭제</span></td>
                   </tr>
                 </c:forEach>
@@ -126,14 +126,14 @@ function stop(id){
               
                 <c:forEach var="i" items="${recipelist}">
                  <tr>
-                    <th scope="row">${i.id}</th>
+                    <th scope="row">${i.idorigin}</th>
                     <td>${i.count}</td>
                    
-                    <td><a href="detailReport.am?id=${i.id}">상세보기</a></td>
+                    <td><a href="detailReport.am?id=${i.idorigin}">상세보기</a></td>
                     
                  	 <td>
                  	   <form action="stopMember.am">
-                 	  <input type="hidden" value="${i.id}" name="id">
+                 	  <input type="hidden" value="${i.idorigin}" name="id">
                  	    <input type="hidden" value="ys" name="check">
                  	 <select id="stopdate" name="stopdate">
                     <option value="7">7일</option>
@@ -145,8 +145,8 @@ function stop(id){
                      </form>
                    
                     </td>
-                    <td><a href="#" onclick="stop('${i.id}')">강제탈퇴</a></td>
-                    <td><span onclick="checkdeleteReview('${i.reportcontent}')" style="color: blue; cursor: pointer;">내역삭제</span></td>
+                    <td><a href="#" onclick="stop('${i.idorigin}')">강제탈퇴</a></td>
+                    <td><span onclick="checkdeleteReview('${i.idorigin}')" style="color: blue; cursor: pointer;">내역삭제</span></td>
                   </tr>
                 </c:forEach>
           

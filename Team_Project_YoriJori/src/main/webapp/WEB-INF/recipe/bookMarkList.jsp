@@ -50,7 +50,7 @@ function selectCate(){
 			class="row no-gutters slider-text align-items-center justify-content-center">
 			<div class="col-md-9 ftco-animate text-center">
 				<p class="breadcrumbs">
-					<span class="mr-2"><a href="index.html">${requestScope.mname}</a></span>
+					<span class="mr-2"><a href="index.html">${name}</a></span>
 					<span>님의</span>
 				</p>
 				<h1 class="mb-0 bread">관심 레시피</h1>

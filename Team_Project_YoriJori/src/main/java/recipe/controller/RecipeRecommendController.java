@@ -118,6 +118,7 @@ public class RecipeRecommendController {
 		String url = request.getContextPath()+"/Recommend.re";
 		Paging2 pageInfo = new Paging2(pageNumber, "12",recipeTotalCount, url, null, null, null);
 		List<RecipeBean> recipeList = rdao.getRecipeListByIngredient(map,pageInfo);
+		mav.addObject("ingredient", ingredient);
 		mav.addObject("pageInfo", pageInfo);
 		mav.addObject("ingreList", ingreList);
 		mav.addObject("recipeList", recipeList);

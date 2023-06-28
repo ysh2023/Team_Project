@@ -47,6 +47,7 @@ public class RecipeBookMarkListController {
 			}
 			Set<String> distintList = new HashSet<String>(foodcategory);
 			List<String> category = new ArrayList<String>(distintList);
+			model.addAttribute("name", mb.getMname());
 			session.setAttribute("category", category);
 			model.addAttribute("BookmarkRecipeList", BookmarkRecipeList);
 			return getPage;
@@ -75,6 +76,7 @@ public class RecipeBookMarkListController {
 		}
 		Set<String> distintList = new HashSet<String>(foodcategory);
 		List<String> category = new ArrayList<String>(distintList);
+		model.addAttribute("name", mb.getMname());
 		session.setAttribute("category", category);
 		model.addAttribute("BookmarkRecipeList", BookmarkRecipeList);
 		
