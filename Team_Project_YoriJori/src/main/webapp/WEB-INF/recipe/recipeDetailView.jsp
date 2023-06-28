@@ -312,7 +312,7 @@ function deleteReview(reviewnum,recipenum){
 									<div class="form-group">
 										<label for="message">수정할 답글을 입력</label>
 										<textarea name="UcomContent${review.reviewnum}" id="message"
-											cols="30" rows="5" class="form-control" style="resize: none;"></textarea>
+											cols="30" rows="5" class="form-control" style="resize: none;" maxlength="100" ></textarea>
 									</div>
 									<div class="form-group">
 										<input type="button"
@@ -331,7 +331,7 @@ function deleteReview(reviewnum,recipenum){
 						<div class="form-group">
 							<label for="message">리뷰</label>
 							<textarea name="review" id="message" cols="30" rows="5"
-								class="form-control"></textarea>
+								class="form-control" maxlength="100"></textarea>
 						</div>
 						<div class="form-group">
 							<input type="button" value="리뷰 남기기"
@@ -374,7 +374,7 @@ function deleteReview(reviewnum,recipenum){
 		</div>
 		<div>
 			<textarea name="reportcontent" rows="6" class="w-100"
-				style="resize: none; border-radius: 10px; margin-bottom: 10px" placeholder="내용을 적어주세요"></textarea>
+				style="resize: none; border-radius: 10px; margin-bottom: 10px" placeholder="내용을 적어주세요" maxlength="100"></textarea>
 		</div>
 		<input class="btn btn-primary w-100" type="button" value="신고하기"
 			onclick="loingCheck()">

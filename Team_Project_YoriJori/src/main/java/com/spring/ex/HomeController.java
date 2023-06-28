@@ -73,7 +73,7 @@ public class HomeController {
 		List<ProductBean> plists= pdao.getAllProducts();
 		
 		model.addAttribute("plists",plists);
-
+		session.removeAttribute("destination");
 		return "/home";
 	}
 
