@@ -89,7 +89,7 @@ function stop(id){
                      </form>
                    
                     </td>
-                    <td><a href="#" onclick="stop('${i.id}')">강제탈퇴</a></td>
+                    <td><a href="#" onclick="stop('${i.idOrigin}')">강제탈퇴</a></td>
                     <td><span onclick="checkdeleteComment('${i.repDiscription}')" style="color: blue; cursor: pointer;">내역삭제</span></td>
                   </tr>
                 </c:forEach>
@@ -145,7 +145,7 @@ function stop(id){
                      </form>
                    
                     </td>
-                    <td><a href="#" onclick="stop('${i.id}')">강제탈퇴</a></td>
+                    <td><a href="#" onclick="stop('${i.idorigin}')">강제탈퇴</a></td>
                     <td><span onclick="checkdeleteReview('${i.idorigin}')" style="color: blue; cursor: pointer;">내역삭제</span></td>
                   </tr>
                 </c:forEach>
