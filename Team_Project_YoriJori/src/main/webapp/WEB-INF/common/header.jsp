@@ -73,7 +73,7 @@ String resourcesPath = request.getContextPath() + "/resources";
   		
   		$('#requestPay').click(function(){
   			if($('input[name=name]').val() == ""){
-  				alert("아이디를 입력해주세요.");
+  				alert("이름을 입력해주세요.");
   				$('input[name=name]').focus();
   				return false;
   			}
