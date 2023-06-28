@@ -9,67 +9,31 @@
 	rel="stylesheet">
 <script type="text/javascript" src="<%=resourcesPath%>/vendor/simple-datatables/simple-datatables.js"></script>
 
-<style>
-#nav1 {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-	width: 20%;
-	height: 1000px;
-	background-color: #f1f1f1;
-	display: block;
-	text-align: center;
-}
+<div class="row">
+	<div class="col-lg-2 sidebar ftco-animate fadeInUp ftco-animated" style="border-left: 0px !important; border: 2px solid gray !important; margin: 20px; margin-left: 40px; min-width: 242px; max-width: 242px;">
+		 <div class="sidebar-box ftco-animate fadeInUp ftco-animated">
+		   <div style="margin-bottom: 20px;">
+            <img src="<%=resourcesPath%>/images/mypage.png" style="height: 20px; margin-bottom: 10px; margin-right: 5px;">
+            <h3 class="heading" style="display:inline !important; margin-bottom:0px !important;"><b>마이페이지</b></h3>
+           </div>
+            <ul class="categories">
+              <li>
+              	<b style="color: black;">상품</b><br>
+              	<a href="orderlist.mp"><i class="icon-receipt"></i>&nbsp; 주문 목록</a>
+              	<a href="listDibs.mp"><i class="icon-heart"></i>&nbsp; 찜한 상품</a>
+              </li>
+              <li>
+              	<b style="color: black;">게시물</b><br>
+              	<a href="myBoard.mp"><i class="icon-pencil"></i>&nbsp; 내가 쓴 게시물</a>
+              	<a href="myComment.mp"><i class="icon-pencil"></i>&nbsp; 내가 쓴 댓글</a>
+              	<a href="myRecommend.mp"><i class="icon-thumbs-up"></i>&nbsp; 내가 추천한 글</a>
+              </li>
+              <li>
+              	<b style="color: black;">개인정보</b><br>
+              	<a href="updateMb.mp">수정하기</a>
+              	<a href="deleteMb.mp">탈퇴하기</a>
+              </li>
+            </ul>
+         </div>
+	</div>
 
-#nav1 a {
-	display: block;
-	color: #000;
-	padding: 8px 16px;
-	text-decoration: none;
-}
-
-#nav1 li a.active {
-	background-color: #555;
-	color: white;
-}
-
-#nav1 li a:hover:not(.active) {
-	background-color: #555;
-}
-
-#main {
-	margin-left: 20%;
-	margin-top: -1000px;
-	height: 1000px;
-	width: 80%;
-}
-</style>
-</head>
-
-<aside id="sidebar" class="sidebar">
-<ul id="nav1">
- 	
- 	 <strong><li style="font-size: 30px">주문</li></strong> 
-   	<li><a href="orderlist.mp">주문목록</a></li>
-   	
-   	 <strong><li style="font-size: 30px">게시물</li></strong> 
-		<li>
-			<a href="myBoard.mp">내가 쓴 게시물</a>
-		</li>
-		<li>
-			<a href="myComment.mp">내가 쓴 댓글</a>
-		</li>
-		<li>
-			<a href="myRecommend.mp">내가 추천한 글</a>
-		</li>
-   	
-   	<strong><li style="font-size: 30px">찜</li></strong> 
-   	<li><a href="listDibs.mp">찜한 상품</a></li>
-   	  
-      
- 	<strong>  <li style="font-size: 30px">개인정보</li></strong> 
- 	<li><a href="updateMb.mp">수정하기</a></li>
- 	<li><a href="deleteMb.mp">탈퇴하기</a></li>
-   
-</ul>
-</aside>

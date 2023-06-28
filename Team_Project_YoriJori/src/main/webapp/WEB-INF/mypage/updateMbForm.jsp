@@ -81,14 +81,12 @@ function kakaopost() {
 
 </style>
 
-<main  id="main" style="margin-left: 20%;">
-
-
-	<div class="container">
-		<div class="input-form-backgroud row">
-			<div class="input-form col-md-12 mx-auto">
-
-				<h4 class="mb-3">회원정보 수정</h4>
+<div class="col-lg-9 ftco-animate fadeInUp ftco-animated" style="margin-top:30px; border-left: 0px !important;">
+	<div class="pagetitle" style="margin-left:20px">
+		<span>개인정보</span>
+		<h2 style="font-weight: bolder;">개인정보 수정하기</h2>
+	</div>
+			<div class="input-form col-md-12 mx-auto" style="margin-left:20px !important; margin-bottom: 50px;">
 				<form class="validation-form" action="updateMb.mp" method="post"
 					novalidate>
 					<div class="row">
@@ -150,7 +148,7 @@ function kakaopost() {
 			</div>
 		</div>
 </div>
-	</main>
+
 	<script>
     window.addEventListener('load', () => {
       const forms = document.getElementsByClassName('validation-form');
@@ -169,6 +167,5 @@ function kakaopost() {
   </script>
   
      
-<div style="margin-top: 100px;">
+
 <%@include file= "./../common/footer.jsp" %>
-</div> 

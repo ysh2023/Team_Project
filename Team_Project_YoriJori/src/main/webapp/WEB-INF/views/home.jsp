@@ -113,7 +113,7 @@
 				<div class="col-md-8">
 					<div class="row">
 						<div class="col-md-6 order-md-last align-items-stretch d-flex">
-							<div class="category-wrap-2 ftco-animate img align-self-stretch d-flex" style="background-image: url(<%=conPath%>/images/category.jpg);">
+							<div class="category-wrap-2 ftco-animate img align-self-stretch d-flex" style="background-image: url(<%=resourcesPath%>/images/category.jpg);">
 								<div class="text text-center">
 									<h2>Recipe</h2>
 									<p>사용자들이 많이 저장한 레시피</p>
