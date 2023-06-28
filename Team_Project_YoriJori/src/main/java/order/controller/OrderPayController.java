@@ -93,6 +93,10 @@ public class OrderPayController {
 			) {
 		ModelAndView mav = new ModelAndView();
 		MemberBean loginInfo = (MemberBean)session.getAttribute("loginInfo");
+		DetailList detail = (DetailList)session.getAttribute("detail");
+		if(detail != null) {
+			detail.deleteOrder();
+		}
 		ProductBean pb = pdao.getByNum(pdnum);
 		//구매하기 눌렀을시 재고수량 체크
 		if(pb.getPdstock() < qty) {
@@ -118,7 +122,7 @@ public class OrderPayController {
 				slist.add(jb);
 				
 				// DetailList session 설정
-				DetailList detail = (DetailList)session.getAttribute("detail");
+				detail = (DetailList)session.getAttribute("detail");
 				if(detail == null) {
 					detail = new DetailList();
 				}
