@@ -16,7 +16,7 @@
 									<!-- 시간 넣기 -->
 									<div class="meta">${review.reviewdate}</div>
 									<p>해당 댓글은 블라인드 처리되었습니다.</p>
-									<c:if test="${review.id == id }">
+									<c:if test="${review.id == id or id == 'admin' }">
 									<span class="reply"
 											onclick="deleteReview(${review.reviewnum},${recipenum})"
 											style="cursor: pointer; margin-left: 10px;">삭제</span>
@@ -43,7 +43,7 @@
 											onclick="reviewReport(${review.reviewnum},'${review.id}')"
 											style="cursor: pointer;">신고하기</span>
 										</c:if>
-										<c:if test="${review.id == id }">
+										<c:if test="${review.id == id or id == 'admin' }">
 										<span class="reply"
 											onclick="updateHandle(${status.index+1})"
 											style="cursor: pointer; margin-left: 10px;">수정</span>
