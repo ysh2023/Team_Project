@@ -77,7 +77,7 @@ function stop(id){
                     
                  	 <td>
                  	   <form action="stopMember.am">
-                 	  <input type="hidden" value="${i.id}" name="id">
+                 	  <input type="hidden" value="${i.idOrigin}" name="id">
                  	    <input type="hidden" value="ys" name="check">
                  	 <select id="stopdate" name="stopdate">
                     <option value="7">7일</option>
@@ -133,7 +133,7 @@ function stop(id){
                     
                  	 <td>
                  	   <form action="stopMember.am">
-                 	  <input type="hidden" value="${i.id}" name="id">
+                 	  <input type="hidden" value="${i.idorigin}" name="id">
                  	    <input type="hidden" value="ys" name="check">
                  	 <select id="stopdate" name="stopdate">
                     <option value="7">7일</option>
