@@ -125,7 +125,7 @@
                   	<img src="<%=resourcesPath%>/images/icon/${ingbean.ingicon}" style="max-height:50px;"><br>
                   	${ingbean.ingicon}
                   </div>
-                  <input type="file" class="form-control" id="upload" name="upload">
+                  <input type="file" class="form-control" id="upload" name="upload" required="required">
 				  <input type="hidden" name="origin" value="${ingbean.ingicon}">
                 </div>
                 <div class="col-md-12">
