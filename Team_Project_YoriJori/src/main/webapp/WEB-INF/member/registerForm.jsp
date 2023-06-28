@@ -107,30 +107,30 @@ function kakaopost() {
 					<div class="row">
 						<div class="col-md-6 mb-3">
 							<label for="id">아이디</label> <input type="text"
-								class="form-control" name="id" value="${mb.id}" required>
+								class="form-control" name="id" value="${mb.id}"  maxlength="6" required>
 							<div class="invalid-feedback">아이디를 입력해주세요.</div>
 						</div>
 						<div class="col-md-6 mb-3">
 							<label for="mname">이름</label> <input type="text"
-								class="form-control" name="mname" value="${mb.mname}" required>
+								class="form-control" name="mname" value="${mb.mname}"   maxlength="6" required>
 							<div class="invalid-feedback">이름을 입력해주세요.</div>
 						</div>
 					</div>
 					<div class="mb-3">
 						<label for="pw">비밀번호</label> <input type="password" name="pw"
-							class="form-control" required>
+							class="form-control" required   maxlength="10">
 						<div class="invalid-feedback">비밀번호 입력해주세요.</div>
 					</div>
 					<div class="mb-3">
 						<label for="tel">전화번호</label> <input type="number"
 							class="form-control" name="tel" placeholder="01012341234"
-							required>
+							    required>
 						<div class="invalid-feedback">전화번호를 입력해주세요.</div>
 					</div>
 					<div class="mb-3">
 						<label for="email">이메일</label> <input type="email"
 							class="form-control" id="email" name="email" placeholder="you@example.com"
-							required>
+							required   >
 						<div class="invalid-feedback">이메일을 입력해주세요.</div>
 					</div>
 					<div class="mb-3">
@@ -141,7 +141,7 @@ function kakaopost() {
 
 					<div class="mb-3">
 						<label for="area1">우편번호</label> <input type="text"
-							class="form-control" id="area1" name="area1" required > 
+							class="form-control" id="area1" name="area1" required   maxlength=10"> 
 									 <br>
 							 <input type="button" value="우편번호찾기"  onclick="kakaopost()">
 					
@@ -151,7 +151,7 @@ function kakaopost() {
 
 					<div class="mb-3">
 						<label for="area2">상세주소<span class="text-muted"></span></label> <input
-							type="text" class="form-control" required name="area2" id="area2"
+							type="text" class="form-control" required name="area2" id="area2"  maxlength=10"
 							placeholder="상세주소를 입력해주세요.">
 						<div class="invalid-feedback">상세주소를 입력해주세요.</div>
 					</div>

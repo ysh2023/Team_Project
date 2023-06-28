@@ -2,6 +2,7 @@ package admin.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -34,7 +35,7 @@ public class AdminInsertStopController {
 
 	@RequestMapping(value = command, method = RequestMethod.GET)
 	public String doAction(HttpServletRequest request, HttpServletResponse response,
-			@RequestParam("check") String check) {
+			@RequestParam("check") String check) throws ParseException {
 
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = null;
@@ -51,6 +52,7 @@ public class AdminInsertStopController {
 		cal.add(Calendar.DATE, stopdate_temp); // 날짜만큼 더하기
 
 		SimpleDateFormat dtFormat = new SimpleDateFormat("yyyyMMdd");
+		
 
 		int month = cal.get(Calendar.MONTH) + 1;
 		sb.setStopdate(dtFormat.format(cal.getTime()));
@@ -60,6 +62,17 @@ public class AdminInsertStopController {
 
 		if (check.equals("ys")) {
 
+			
+			if(mdao.searchStopById(sb.getId())) {
+				try {
+					out = response.getWriter();
+					out.println("<script>alert('이미 정지회원입니다');history.go(-1);</script>");
+					out.flush();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				
+			}else {
 				mdao.insertStop(sb);
 				try {
 					out = response.getWriter();
@@ -69,6 +82,7 @@ public class AdminInsertStopController {
 					e.printStackTrace();
 				}
 				adao.deleteReport(request.getParameter("id")); //정지먹으면 삭제하기
+			}
 				return getPage;
 			} 
 		

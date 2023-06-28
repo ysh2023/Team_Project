@@ -25,7 +25,7 @@
               <!-- General Form Elements -->
               <form  action="insertPrd.am" method="post" enctype="multipart/form-data">
                 <div class="row mb-3">
-                  <label for="inputText" class="col-sm-2 col-form-label" >상품명</label>
+                  <label for="inputText" class="col-sm-2 col-form-label"  maxlength="10" >상품명</label>
                   <div class="col-sm-10">
                     <input type="text" name="pdname" class="form-control" required>
                   </div>
@@ -50,20 +50,20 @@
                 <div class="row mb-3">
                   <label for="inputText" class="col-sm-2 col-form-label">상품 설명</label>
                   <div class="col-sm-10">
-                    <textarea class="form-control"  name="pdcontent" style="height: 100px"></textarea>
+                    <textarea class="form-control" maxlength="10"  name="pdcontent" style="height: 100px"></textarea>
                   </div>
                 </div>
                 <div class="row mb-3">
                   <label for="inputNumber"  class="col-sm-2 col-form-label">재고량</label>
                   <div class="col-sm-10">
-                    <input type="number" class="form-control" name="pdstock" required>
+                    <input type="number" class="form-control" min="1" max="80" name="pdstock" required>
                   </div>
                 </div>
                 
                  <div class="row mb-3">
                    <label for="inputNumber" class="col-sm-2 col-form-label" >가격</label>
                   <div class="col-sm-10">
-                     <input type="number" class="form-control"  name="pdprice" required>
+                     <input type="number" class="form-control"  min="1" max="100000" name="pdprice" required>
                   </div>
                  </div>
                 

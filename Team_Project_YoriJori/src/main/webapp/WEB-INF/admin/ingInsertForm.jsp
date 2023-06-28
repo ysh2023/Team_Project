@@ -121,7 +121,7 @@
                 </div>
                 <div class="col-md-12">
                   <label for="ingname" class="form-label">식재료명</label>
-                  <input type="text" class="form-control" id="ingname" name="ingname" onkeydown="keyd()" required>
+                  <input type="text" class="form-control" id="ingname" name="ingname" onkeydown="keyd()" maxlength="15" required>
                   <div style="margin-top: 10px;">
                     <input type="button" class="btn btn-secondary btn-sm" value="중복체크" onClick="ingCheck()">
                     &nbsp;<span id="dupl" class="invalid-feedback"></span>
@@ -137,7 +137,7 @@
                 </div>
                 <div class="col-md-12">
                   <label for="expiry" class="form-label">소비기한</label>
-                  <input type="number" class="form-control" id="expiry" name="expiry" required>
+                  <input type="number" class="form-control" id="expiry" name="expiry" max="999" required>
                 </div>
                 <div class="text-center">
                   <button type="submit" class="btn btn-primary">추가하기</button>
