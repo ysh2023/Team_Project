@@ -27,7 +27,7 @@
 	        <div class="container">
 	          <div class="row slider-text" data-scrollax-parent="true" style="margin: auto; padding-top: 30px;">
 	            <div class="col-md-12 ftco-animate text-center">
-	              <h1 style="font-family: 'Nanum Pen Script', cursive;">" 닭 가슴살 카레 볶음밥 "</h1>
+	              <h1 style="font-family: 'Nanum Pen Script', cursive;">" 닭가슴살 카레 볶음밥 "</h1>
 	              <h2 class="subheading" style="font-weight: bold;">간편하게 완성하는 인기 메뉴!</h2>
 	              <p><a href="detail.re?recipenum=690" class="btn btn-primary">레시피 보러가기</a></p>
 	            </div>
