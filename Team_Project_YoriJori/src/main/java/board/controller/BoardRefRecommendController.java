@@ -40,22 +40,20 @@ public class BoardRefRecommendController {
 		if (ingredient != null) {
 
 			String[] refdday = request.getParameterValues("refdday");
-			if(refdday != null) {
+			if (refdday != null) {
 				model.addAttribute("refdday", refdday);
 			}
-			
+
 			String[] ingreList = ingredient.split(",");
 			if (arr == null) {
 				arr = ingreList;
 			}
-			for (String a : ingreList) {
-				System.out.println(a);
-			}
-			if (ingredient.split(",") == null) {
 
-			} else {
-
-			}
+//			if (ingredient.split(",") == null) {
+//
+//			} else {
+//
+//			}
 			int ingredientCount = ingreList.length;
 			// 식재료를 count만큼 가진 recipe를 얻기위한 count
 			String count = String.valueOf(ingredientCount);

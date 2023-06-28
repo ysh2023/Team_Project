@@ -12,7 +12,7 @@
 		
 		
 	
-	var cookProcessIndex = ${fn:length(boardContent)}+1;
+	var cookProcessIndex = ${fn:length(boardContentList)}+1;
 	/* 조리과정 추가  */
 	function addCookProcess() {
 

@@ -130,7 +130,6 @@ public class BoardDao {
 	public int insertReplyComment(CommentsBean commentsBean) {
 		int cnt = -1;
 		cnt = sessionTemplate.insert(namespace + ".ReplyInsert", commentsBean);
-		System.out.println("cnt " + cnt);
 		return cnt;
 	}
 
