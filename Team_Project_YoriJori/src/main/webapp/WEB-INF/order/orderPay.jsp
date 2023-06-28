@@ -19,7 +19,7 @@ function kakaopost() {
       <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center">
           <div class="col-md-9 ftco-animate text-center">
-          	<p class="breadcrumbs"><span class="mr-2"><a href="<%=conPath%>/main.jsp">Home</a></span> <span>결제</span></p>
+          	<p class="breadcrumbs"><span>결제</span></p>
             <h1 class="mb-0 bread">결제 하기</h1>
           </div>
         </div>
@@ -100,13 +100,13 @@ function kakaopost() {
 		    						<span>배송비</span>
 		    						<span><fmt:formatNumber type="number" maxFractionDigits="3" value="${Baesong }" />원</span>
 		    					</p>
-		    					<p class="d-flex">
+<!-- 		    					<p class="d-flex">
 		    						<span>할인가격</span>
 		    						<span>0원</span>
-		    					</p>
+		    					</p> -->
 		    					<hr>
 		    					<p class="d-flex total-price">
-		    						<span>Total</span>
+		    						<span>결제 금액</span>
 		    						<span><fmt:formatNumber type="number" maxFractionDigits="3" value="${totalAmount+Baesong}" />원</span>
 		    					</p>
 								</div>
