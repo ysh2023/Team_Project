@@ -71,14 +71,19 @@ function recommendClick(recipenum){
 			    			<div class="form-check form-check-inline">
 			    			<input type="hidden" value="${ingredient}" name="ingreList">
 			    			<input type="hidden" value="${day[status.index]}" name="day">
-							<input class="form-check-input" type="checkbox" value="${ingredient}" id="flexCheckDefault" name="keyword">
-							<label class="form-check-label" for="flexCheckDefault">
+							<input class="form-check-input" type="checkbox" value="${ingredient}" id="flexCheckDefault+${status.index}" name="keyword">
+							<label class="form-check-label" for="flexCheckDefault+${status.index}">
 							<c:choose>
 								<c:when test="${day[status.index] == 0}">
 									<span style="color: red !important;">D-day&nbsp;${ingredient}</span>
 								</c:when>
 								<c:when test="${day[status.index] >-3}">
+									<c:if test="${day[status.index]<0}">
 									<span style="color: red !important;">D${day[status.index]}&nbsp;${ingredient}</span>
+									</c:if>
+									<c:if test="${day[status.index]>0}">
+									<span style="color: red !important;">D+${day[status.index]}&nbsp;${ingredient}</span>
+									</c:if>
 								</c:when>
 								<c:otherwise>
 									D${day[status.index]}&nbsp;${ingredient}
