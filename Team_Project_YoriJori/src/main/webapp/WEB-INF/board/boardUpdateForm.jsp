@@ -167,7 +167,7 @@
 							<div class="col-md-12">
 								<div class="row">
 									<div class="col-md-6">
-										<label for="inputIngName">식재료 </label> <input name="inputIngName" id="inputIngName" list="ingNameList" class="form-control " placeholder="검색 후 추가 목록에 없으면 작성 후 추가">
+										<label for="inputIngName">* 식재료 </label> <input name="inputIngName" id="inputIngName" list="ingNameList" class="form-control " placeholder="검색 후 추가 목록에 없으면 작성 후 추가">
 										<datalist id="ingNameList">
 											<c:forEach items="${ingredients }" var="ingredient">
 												<option data-value="${ingredient.ingnum}" value="${ingredient.ingname}">${ingredient.ingnum}</option>

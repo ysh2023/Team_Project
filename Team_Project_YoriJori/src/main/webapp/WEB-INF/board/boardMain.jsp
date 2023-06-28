@@ -43,7 +43,7 @@
 
 	<!-- 	style="position: fixed; bottom: 50px; right: 20px; z-index: 999;" -->
 	<div class="container pt-2" align="right">
-		<a class="btn btn-primary" href="write.board" class="active">게시글 작성</a>
+		<a class="btn btn-primary" href="write.board" class="active">글작성</a>
 	</div>
 	<!-- <div class="container pt-2" align="right">
 	<form action="refRecommend.board" method="post">
