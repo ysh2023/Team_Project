@@ -285,8 +285,4 @@ $(document).ready(function(){
 </section>
 
 
-
-
-
-
 <%@include file= "./../common/footer.jsp" %>

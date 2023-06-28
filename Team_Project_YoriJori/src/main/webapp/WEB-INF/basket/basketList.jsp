@@ -7,8 +7,8 @@
       <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center">
           <div class="col-md-9 ftco-animate text-center">
-          	<p class="breadcrumbs"><span class="mr-2"><a href="<%=conPath%>/main.jsp">Home</a></span> <span>주문목록</span></p>
-            <h1 class="mb-0 bread">주문 목록 확인</h1>
+          	<p class="breadcrumbs"><span>장바구니</span></p>
+            <h1 class="mb-0 bread">장바구니</h1>
           </div>
         </div>
       </div>
@@ -81,10 +81,10 @@
     						<span>배송비</span>
     						<span><fmt:formatNumber type="number" maxFractionDigits="3" value="${Baesong }" />원</span>
     					</p>
-    					<p class="d-flex">
+<!--     					<p class="d-flex">
     						<span>할인가격</span>
     						<span>0원</span>
-    					</p>
+    					</p> -->
     					<hr>
     					<p class="d-flex total-price">
     						<span>결제 금액</span>
