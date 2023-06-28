@@ -56,7 +56,6 @@ public class RecipeRecommendController {
 			long dday = result / (24*60*60*1000) -1;
 			day.add(dday);
 		}
-		
 		int ingredientCount = ingreList.length;;
 		//식재료를 count만큼 가진 recipe를 얻기위한 count
 		String str = "";

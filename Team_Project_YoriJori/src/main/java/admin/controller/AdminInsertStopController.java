@@ -52,6 +52,7 @@ public class AdminInsertStopController {
 		cal.add(Calendar.DATE, stopdate_temp); // 날짜만큼 더하기
 
 		SimpleDateFormat dtFormat = new SimpleDateFormat("yyyyMMdd");
+		
 
 		int month = cal.get(Calendar.MONTH) + 1;
 		sb.setStopdate(dtFormat.format(cal.getTime()));

@@ -4,7 +4,7 @@
 <%@include file="./../common/pg_header.jsp"%>
 <html>
 <body>
-	<main id="main" class="main">
+	<main id="main" class="main">	
 		<div class="pagetitle">
 			<h1>주문 목록</h1>
 
