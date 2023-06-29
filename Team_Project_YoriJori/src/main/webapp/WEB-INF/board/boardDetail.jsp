@@ -327,14 +327,24 @@
 						  </c:if>
 						  <c:if test="${loginInfo != null}">
 							<c:set var="refflag" value="false"/>
+							<c:set var="detailflag" value="false"/>
 							<c:forEach items="${refList}" var="ref">
 							  <c:if test="${not refflag}">
-							    <c:if test="${fn:contains(boardIngredient.bigName, ref.ingname)}">
+							    <c:if test="${ref.ingnum != 1 && fn:contains(boardIngredient.bigName, ref.ingname)}">
 							      &nbsp;
 							      <a href="update.ref?refnum=${ref.refnum}&ingnum=${ref.ingnum}" style="color:gray">
 							        <i class="icon-check-circle"></i> ${ref.ingname}
 							      </a>
 							      <c:set var="refflag" value="true"/>
+							    </c:if>
+							  </c:if>
+							  <c:if test="${not detailflag}">
+							    <c:if test="${ref.ingnum eq 1 && fn:contains(boardIngredient.bigName, ref.refdetail)}">
+							        &nbsp;
+							        <a href="update.ref?refnum=${ref.refnum}&ingnum=${ref.ingnum}" style="color:gray">
+							          <i class="icon-check-circle"></i> ${ref.refdetail}
+							        </a>
+							        <c:set var="detailflag" value="true"/>
 							    </c:if>
 							  </c:if>
 							</c:forEach>

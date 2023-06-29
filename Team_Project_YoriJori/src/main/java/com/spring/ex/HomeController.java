@@ -45,9 +45,16 @@ public class HomeController {
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model, HttpSession session) {
-		//장바구니
+		
 		if((MemberBean)session.getAttribute("loginInfo")!=null) {
 			String id=((MemberBean)session.getAttribute("loginInfo")).getId();
+			
+			//나의 냉장고
+			int ddayCnt = refdao.getDdayCount(id);
+			model.addAttribute("ddayCnt", ddayCnt);
+			session.setAttribute("ddayCnt",ddayCnt);
+			
+			//장바구니
 			int bskcnt = bdao.BasketCount(id);
 			if(bskcnt>0) {
 				model.addAttribute("bskcnt", bskcnt);
@@ -55,14 +62,10 @@ public class HomeController {
 				model.addAttribute("bskcnt", 0);
 			}
 			session.setAttribute("bskcnt",bskcnt);
+			
+			
 		}else {
 			model.addAttribute("bskcnt", 0);
-		}
-		MemberBean loginInfo = (MemberBean)session.getAttribute("loginInfo");
-		if(loginInfo != null) {
-			//소비기한 알림
-			int ddayCnt = refdao.getDdayCount(loginInfo.getId());
-			model.addAttribute("ddayCnt", ddayCnt);
 		}
 		
 		//레시피

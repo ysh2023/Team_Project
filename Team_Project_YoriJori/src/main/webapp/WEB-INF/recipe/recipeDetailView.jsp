@@ -211,26 +211,36 @@ function deleteReview(reviewnum,recipenum){
 				</p>
 				<div class="d-flex justify-content-center">
 					<ul>
-						<c:forEach items="${foodList}" var="food">
-							<li style="inline: block; float: left; margin-right: 40px">
-							  <a href="shop.prd?whatColumn=no&searchName=${food.foodname}&ck=ys">${food.foodname}</a>
-							  ${food.foodamount}
-							  <c:if test="${loginInfo != null}">
-							    <c:set var="refflag" value="false"/>
-							    <c:forEach items="${refList}" var="ref">
-							      <c:if test="${not refflag}">
-							        <c:if test="${fn:contains(food.foodname, ref.ingname)}">
+					  <c:forEach items="${foodList}" var="food">
+					    <li style="inline: block; float: left; margin-right: 40px">
+							<a href="shop.prd?whatColumn=no&searchName=${food.foodname}&ck=ys">${food.foodname}</a>
+							${food.foodamount}
+							<c:if test="${loginInfo != null}">
+							  <c:set var="refflag" value="false"/>
+							  <c:set var="detailflag" value="false"/>
+							  <c:forEach items="${refList}" var="ref">
+							    <c:if test="${not refflag}">
+							      <c:if test="${ref.ingnum != 1 && fn:contains(food.foodname, ref.ingname)}">
+							        &nbsp;
+							        <a href="update.ref?refnum=${ref.refnum}&ingnum=${ref.ingnum}" style="color:gray">
+							          <i class="icon-check-circle"></i> ${ref.ingname}
+							        </a>
+							        <c:set var="refflag" value="true"/>
+							      </c:if>
+							    </c:if>
+							    <c:if test="${not detailflag}">
+							      <c:if test="${ref.ingnum eq 1 && fn:contains(food.foodname, ref.refdetail)}">
 							          &nbsp;
 							          <a href="update.ref?refnum=${ref.refnum}&ingnum=${ref.ingnum}" style="color:gray">
-							            <i class="icon-check-circle"></i> ${ref.ingname}
+							            <i class="icon-check-circle"></i> ${ref.refdetail}
 							          </a>
-							          <c:set var="refflag" value="true"/>
-							         </c:if>
+							          <c:set var="detailflag" value="true"/>
 							      </c:if>
-							    </c:forEach>
-							  </c:if>			
-							</li>
-						</c:forEach>
+							    </c:if>
+							  </c:forEach>
+						    </c:if>		
+						</li>
+					  </c:forEach>
 					</ul>
 				</div>
 			</div>
