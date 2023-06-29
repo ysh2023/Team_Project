@@ -32,8 +32,22 @@ public class BasketDeleteController {
 			Model model, HttpServletRequest request,HttpSession session,HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView();
 		int cnt = bdao.deleteBasket(bsknum);
-		if(cnt > 1) {
+		if(cnt >= 1) {
 			System.out.println("장바구니 삭제 성공");
+			int bskcnt = ((Integer) session.getAttribute("bskcnt"));
+			if((MemberBean)session.getAttribute("loginInfo")!=null) {
+				String id=((MemberBean)session.getAttribute("loginInfo")).getId();
+				bskcnt = bdao.BasketCount(id);
+				if(bskcnt>0) {
+					model.addAttribute("bskcnt", bskcnt);
+				}else {
+					model.addAttribute("bskcnt", 0);
+				}
+				session.setAttribute("bskcnt",bskcnt);
+			}else {
+				model.addAttribute("bskcnt", 0);
+			}
+			mav.addObject("bskcnt", bskcnt);
 		}else {
 			System.out.println("장바구니 삭제 실패");
 		}

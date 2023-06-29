@@ -9,8 +9,6 @@
 
 <%
 String conPath = request.getContextPath();
-%>
-<%
 String resourcesPath = request.getContextPath() + "/resources";
 %>
 <style>
@@ -171,12 +169,12 @@ String resourcesPath = request.getContextPath() + "/resources";
 		}
 	
 	}
-	$(document).ready(function(){ 
+/* 	$(document).ready(function(){ 
 		<!-- 메인화면이 아니면 쇼핑리스트 안보이게 바꿈-->
 		if(location.href != 'http://localhost:8080/ex/'){
 			$('#countlist').hide();
 		}
-	});
+	}); */
 </script>
 
 <body class="goto-here" onload="setToggle()">
@@ -285,20 +283,36 @@ String resourcesPath = request.getContextPath() + "/resources";
 					<!-- right nav -->
 					<div class="col-md-auto">
 					<ul class="nav me-auto" style="align-items: center; display: flex; justify-content: center;" >
-						<li class="nav-item"><a href="page.ref" class="nav-link" style="color:#ffffff;">
-							<c:if test="${ddayCnt>0}"><i class="icon-warning" style="color:red;"></i><span style="color:red;">${ddayCnt}</span></c:if>
-							<c:if test="${ddayCnt<=0 || ddayCnt eq null}">
-								<img src="<%=resourcesPath%>/images/btn_circle.png" style="width: 18px; margin-right: 5px; margin-bottom: 2px;">
+						<li class="nav-item">
+						  <a href="page.ref" class="nav-link" style="color:#ffffff;">
+						    <c:if test="${ddayCnt eq null}">
+						      <img src="<%=resourcesPath%>/images/btn_circle.png" style="width: 18px; margin-right: 5px; margin-bottom: 2px;">
+						    </c:if>
+						    <c:if test="${ddayCnt != null}">
+								<c:if test="${ddayCnt>0}">
+								  <i class="icon-warning" style="color:red;"></i>
+								  <span style="color:red;">${ddayCnt}</span>
+								</c:if>
+								<c:if test="${ddayCnt<=0}">
+									<img src="<%=resourcesPath%>/images/btn_circle.png" style="width: 18px; margin-right: 5px; margin-bottom: 2px;">
+								</c:if>
 							</c:if>
-								나의 냉장고
-						</a></li>
+							나의 냉장고
+						  </a>
+						</li>
 						<li class="nav-item"><a href="bookmark.re" class="nav-link" style="color:#ffffff;">
 								<img src="<%=resourcesPath%>/images/btn_circle.png"
 								style="width: 18px; margin-right: 5px; margin-bottom: 2px;">
 								북마크 레시피
 						</a></li>
+						<c:if test="${bskcnt == null }">
 						<li class="nav-item" id="countlist" ><a href="list.bsk"
-							class="nav-link"><span class="icon-shopping_cart" style="color:#F2BC1B;">[${cnt}]</span></a></li>
+							class="nav-link"><span class="icon-shopping_cart" style="color:#F2BC1B;">[0]</span></a></li>
+						</c:if>
+						<c:if test="${bskcnt != null }">
+						<li class="nav-item" id="countlist" ><a href="list.bsk"
+							class="nav-link"><span class="icon-shopping_cart" style="color:#F2BC1B;">[${bskcnt}]</span></a></li>
+						</c:if>
 					</ul>
 					</div>
 					</div>

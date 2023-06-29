@@ -79,6 +79,16 @@ public class MemberLoginController {
 				if(mdao.searchStopById(input_id)==false)  { //정지회원아닐때
 				session.setAttribute("loginInfo", mb);
 				
+				String id=((MemberBean)session.getAttribute("loginInfo")).getId();
+				int bskcnt = bdao.BasketCount(id);
+				if(bskcnt>0) {
+					mav.addObject("bskcnt", bskcnt);
+				}else {
+					mav.addObject("bskcnt", 0);
+				}
+				session.setAttribute("bskcnt",bskcnt);
+				mav.addObject("bskcnt", bskcnt);
+				
 				if(mb.getId().equals("admin")) {
 					mav.setViewName("redirect:main.am");
 				}else {
