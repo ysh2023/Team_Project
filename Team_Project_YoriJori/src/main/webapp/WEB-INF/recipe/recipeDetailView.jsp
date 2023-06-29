@@ -29,6 +29,10 @@
 				
 			} 
 		}else{
+			if($("textarea[name=review]").val().length==0){
+				alert("댓글을 입력해주세요")
+				$("textarea[name=review]").focus();
+			}else{
 		
 			$.ajax({
 					type : 'Get',
@@ -46,6 +50,7 @@
 						alert("status : " + request.status + ", message : " + request.responseText + ", error : " + error);
 					}
 			});
+			}
 		}
 	}
 	var UprevIndex = 0;
@@ -141,6 +146,7 @@ function updateReview(reviewnum,recipenum){
 			alert("status : " + request.status + ", message : " + request.responseText + ", error : " + error);
 		}
 	});
+	
 }
 
 function deleteReview(reviewnum,recipenum){
