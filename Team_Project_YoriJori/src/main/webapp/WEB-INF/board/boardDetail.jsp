@@ -321,9 +321,22 @@
 
 					<c:forEach items="${boardIngredientList}" var="boardIngredient" varStatus="status">
 
-						<li style="inline: block; float: left; margin-right: 40px"><a href="shop.prd?whatColumn=no&searchName=${boardIngredient.bigName}">${boardIngredient.bigName }</a> <c:if test="${boardIngredient.bigAmount == null }">
-						 -${ boardIngredient.bigAmount}
-						</c:if></li>
+						<li style="inline: block; float: left; margin-right: 40px"><a href="shop.prd?whatColumn=no&searchName=${boardIngredient.bigName}">${boardIngredient.bigName }</a>
+						  <c:if test="${boardIngredient.bigAmount == null }">
+						   -${ boardIngredient.bigAmount}
+						  </c:if>
+						  <c:if test="${loginInfo != null}">
+							<c:set var="refflag" value="false"/>
+							<c:forEach items="${refList}" var="ref">
+							  <c:if test="${not refflag}">
+							    <c:if test="${fn:contains(boardIngredient.bigName, ref.ingname)}">
+							      &nbsp;<i class="icon-check-circle"></i> ${ref.ingname}
+							      <c:set var="refflag" value="true"/>
+							    </c:if>
+							  </c:if>
+							</c:forEach>
+						  </c:if>	
+						</li>
 
 					</c:forEach>
 				</div>

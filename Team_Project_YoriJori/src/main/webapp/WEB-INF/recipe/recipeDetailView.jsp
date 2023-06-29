@@ -212,9 +212,21 @@ function deleteReview(reviewnum,recipenum){
 				<div class="d-flex justify-content-center">
 					<ul>
 						<c:forEach items="${foodList}" var="food">
-							<li style="inline: block; float: left; margin-right: 40px"><a
-								href="shop.prd?whatColumn=no&searchName=${food.foodname}&ck=ys">${food.foodname}</a>
-								${food.foodamount}</li>
+							<li style="inline: block; float: left; margin-right: 40px">
+							  <a href="shop.prd?whatColumn=no&searchName=${food.foodname}&ck=ys">${food.foodname}</a>
+							  ${food.foodamount}
+							  <c:if test="${loginInfo != null}">
+							    <c:set var="refflag" value="false"/>
+							    <c:forEach items="${refList}" var="ref">
+							      <c:if test="${not refflag}">
+							        <c:if test="${fn:contains(food.foodname, ref.ingname)}">
+							          &nbsp;<i class="icon-check-circle"></i> ${ref.ingname}
+							          <c:set var="refflag" value="true"/>
+							         </c:if>
+							      </c:if>
+							    </c:forEach>
+							  </c:if>			
+							</li>
 						</c:forEach>
 					</ul>
 				</div>
