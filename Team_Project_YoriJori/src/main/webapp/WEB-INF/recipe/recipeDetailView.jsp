@@ -220,7 +220,10 @@ function deleteReview(reviewnum,recipenum){
 							    <c:forEach items="${refList}" var="ref">
 							      <c:if test="${not refflag}">
 							        <c:if test="${fn:contains(food.foodname, ref.ingname)}">
-							          &nbsp;<i class="icon-check-circle"></i> ${ref.ingname}
+							          &nbsp;
+							          <a href="update.ref?refnum=${ref.refnum}&ingnum=${ref.ingnum}" style="color:gray">
+							            <i class="icon-check-circle"></i> ${ref.ingname}
+							          </a>
 							          <c:set var="refflag" value="true"/>
 							         </c:if>
 							      </c:if>
