@@ -155,13 +155,12 @@
 		<div class="row mt-5">
 			<div class="col text-center">
 				<div class="block-27">
-					<ul>${pageInfo.pagingHtmlRef}
+					<ul>${pageInfo.pagingHtml}
 					</ul>
 				</div>
 			</div>
 		</div>
 	</section>
-
 </body>
 <%@include file="../common/footer.jsp"%>
 <a target="_blank" href="https://icons8.com/icon/2744/%EC%97%84%EC%A7%80-%EC%B2%99">추천</a> icon by
