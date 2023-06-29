@@ -18,6 +18,8 @@ import board.model.BoardDao;
 import board.model.BoardIngredientBean;
 import board.model.RecommendBean;
 import member.model.MemberBean;
+import refrigerator.model.RefBean;
+import refrigerator.model.RefDao;
 
 @Controller
 public class BoardDetailController {
@@ -26,6 +28,9 @@ public class BoardDetailController {
 
 	@Autowired
 	BoardDao bdao;
+	
+	@Autowired
+	RefDao refdao;
 
 	@RequestMapping(value = command)
 	public String doAction(Model model, @RequestParam(value = "bodNum") String bodNum, HttpSession session) {
@@ -52,6 +57,13 @@ public class BoardDetailController {
 			} else {
 				model.addAttribute("recommend", 1);
 			}
+			
+			/* 냉장고 전체 리스트 */
+			Map<String,String> listMap = new HashMap<String,String>();
+			listMap.put("id", memberBean.getId());
+			listMap.put("arrange", "r.inputdate");
+			List<RefBean> refList = refdao.getUserRef(listMap);
+			model.addAttribute("refList",refList);
 		}
 		return page;
 	}
