@@ -385,13 +385,16 @@
 							</div>
 
 						</div>
-						<hr>
 
 						<!-- 댓글 목록 -->
 						<ul class="comment-list" id="comment-list">
-
+							<c:set value="-1" var="refboder"/>
 							<c:forEach items="${ commentsList}" var="comment" varStatus="status">
+								<c:if test="${refboder != comment.ref }"><li><hr></li></c:if>
 								<li class="comment" style="margin-left: ${comment.refLevel * 80}px;">
+								<c:set value="${comment.ref}" var="refboder"/>
+								
+								
 									<div class="vcard bio">
 										<img src="<%=resourcesPath%>/images/user_img.jpg" alt="Image placeholder">
 									</div>

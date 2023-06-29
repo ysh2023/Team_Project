@@ -62,21 +62,35 @@
 									<c:forEach items="${ arr}" var="ingredient" varStatus="status">
 										<div class="form-check form-check-inline">
 
-											<input type="hidden" value="${refdday[status.index] }" name="refdday"> <input type="hidden" value="${arr[status.index] }" name="arr"> <input class="form-check-input" type="checkbox" value="${ingredient }" id="flexCheckDefault" name="ingredient"> <label class="form-check-label" for="flexCheckDefault"> <c:set value="<%=new Date()%>" var="now" /> <fmt:parseDate pattern="yyyy-MM-dd" value="${refdday[status.index] }" var="parsedday" /> <c:set value="${now.getTime() - parsedday.getTime()}" var="result" /> <c:set value="${result/(24*60*60*1000) -1 }" var="dday" /> 
-											<fmt:parseNumber value="${dday }" integerOnly="true" var="dday2"/>
+											<input type="hidden" value="${refdday[status.index] }" name="refdday">
+											<input type="hidden" value="${arr[status.index] }" name="arr">
+											<input class="form-check-input" type="checkbox" value="${ingredient }" id="flexCheckDefault${status.index }" name="ingredient">
+											<label class="form-check-label" for="flexCheckDefault${status.index }"> 
+											<c:set value="<%=new Date()%>" var="now" /> 
+											<fmt:parseDate pattern="yyyy-MM-dd" value="${refdday[status.index] }" var="parsedday" /> 
+											<c:set value="${now.getTime() - parsedday.getTime()}" var="result" /> 
+											<c:set value="${result/(24*60*60*1000) -1 }" var="dday" /> 
+											<c:if test="${dday>0 }"><c:set value="${dday +(1-(dday%1))%1  }" var="dday"/>
+											</c:if>
+											<fmt:parseNumber value="${dday }" integerOnly="true" var="numberDday" /> 
 											<c:choose>
 
-													<c:when test="${dday2==0 }">
-														<span style="color: red !important;">D-day</span>
+													<c:when test="${numberDday==0 }">
+														<span style="color: red !important;">D-day&nbsp;${ingredient }</span>
 
 													</c:when>
-													<c:when test="${dday2>-3 }">
-														<span style="color: red !important;">D${dday2 }</span>
+													<c:when test="${numberDday>-3 }">
+														<c:if test="${numberDday<0}">
+															<span style="color: red !important;">D${numberDday}&nbsp;${ingredient}</span>
+														</c:if>
+														<c:if test="${numberDday>0}">
+															<span style="color: red !important;">D+${numberDday}&nbsp;${ingredient}</span>
+														</c:if>
 													</c:when>
 													<c:otherwise>
-														D${dday2 }
+														D${numberDday } ${ingredient}
 													</c:otherwise>
-												</c:choose> ${ingredient }
+												</c:choose>
 											</label>
 
 										</div>

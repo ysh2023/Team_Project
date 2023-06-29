@@ -20,6 +20,7 @@ import board.model.BoardBean;
 import member.model.MemberBean;
 import order.model.GroupBean;
 import order.model.OrderBean;
+import orderdetail.model.DetailGroupBean;
 
 @Controller
 public class AdminMainController {
@@ -102,6 +103,10 @@ public class AdminMainController {
 				/* 판매량 많은 상품 상위 5개 */
 				List<GroupBean> topseller = adao.getTopSeller();
 				model.addAttribute("topseller", topseller);
+				
+				/* 판매량 많은 상품 상위 5개(낱개) */
+				List<DetailGroupBean> detailtopseller = adao.getDetailTopSeller();
+				model.addAttribute("detailtopseller", detailtopseller);
 				
 				
 				/* 사용자 게시판 상위 5개 */

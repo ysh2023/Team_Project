@@ -26,7 +26,7 @@ import member.model.MemberBean;
 
 @Controller
 public class BoardInsertController {
-	private final String command = "write.board";
+	private final String command = "/write.board";
 	private String formPage = "boardInsertForm";
 	private String page = "redirect:/main.board";
 
@@ -40,6 +40,7 @@ public class BoardInsertController {
 	public String doAction(Model model, HttpSession session, HttpServletResponse response) throws IOException {
 		if (session.getAttribute("loginInfo") == null) {
 			response.setContentType("text/html; charset=utf-8");
+			session.setAttribute("destination", "redirect:/write.board");
 			session.setAttribute("destination", "redirect:/write.board");
 			response.getWriter().append("<script>alert('로그인 후 이용 가능합니다'); location.href='login.mb'</script>").flush();
 			return null;

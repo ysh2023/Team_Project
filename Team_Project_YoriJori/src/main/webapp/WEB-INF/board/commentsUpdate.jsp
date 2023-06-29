@@ -1,8 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<c:set value="-1" var="refboder" />
 <c:forEach items="${ commentsList}" var="comment" varStatus="status">
-	<li class="comment" style="margin-left: ${comment.refLevel * 50}px;">
+	<c:if test="${refboder != comment.ref }">
+		<li><hr></li>
+	</c:if>
+	<li class="comment" style="margin-left: ${comment.refLevel * 50}px;"><c:set value="${comment.ref}" var="refboder" />
 		<div class="vcard bio">
 			<img src="<%=request.getContextPath()%>/resources/images/user_img.jpg" alt="Image placeholder">
 		</div>
@@ -24,8 +28,7 @@
 					<span class="reply btn-primary" onclick="commentReport(${comment.comNum })" style="cursor: pointer; margin-left: 5px;">신고하기</span>
 				</c:if>
 			</p>
-		</div>
-	</li>
+		</div></li>
 	<li style="display: none;" id="replyForm${status.index+1 }" class="px-5 py-4 ">
 		<div class="form-group">
 			<label for="message">답글을 입력</label>

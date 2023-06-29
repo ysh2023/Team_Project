@@ -43,12 +43,12 @@ public class BoardDeleteController {
 				File serverFile = new File(serverPath + File.separator + boardBean.getBodImage());
 				if (deleteFile.exists()) {
 					if (deleteFile.delete()) {
-						System.out.println("삭제성공");
+						// System.out.println("삭제성공");
 					}
 				}
 				if (serverFile.exists()) {
 					if (serverFile.delete()) {
-						System.out.println("서버 삭제성공");
+						// System.out.println("서버 삭제성공");
 					}
 				}
 			}
@@ -59,17 +59,16 @@ public class BoardDeleteController {
 					if (boardContentList.get(i).getImage() != null) {
 						File deleteFile = new File(str + File.separator + boardContentList.get(i).getImage());
 						File serverFile = new File(serverPath + File.separator + boardBean.getBodImage());
-						System.out.println("이미지 널 아님");
+
 						if (deleteFile.exists()) {
-							System.out.println("파일 있음");
+
 							if (deleteFile.delete()) {
-								System.out.println("조리과정 삭제성공");
+								// System.out.println("조리과정 삭제성공");
 							}
 						}
 						if (serverFile.exists()) {
-							System.out.println("서버 파일 있음");
 							if (serverFile.delete()) {
-								System.out.println("서버 조리과정 삭제성공");
+								// System.out.println("서버 조리과정 삭제성공");
 							}
 						}
 					}
