@@ -43,7 +43,20 @@ public class RecipeRecommendController {
 		ModelAndView mav = new ModelAndView();
 		//List<String>을 넘기기 위해 Bean을 만들어서 입력받은 값을 List로 가져옴
 		String[] ingreList = request.getParameterValues("ingredient");
+		//페이징을 위한 세션 설정
+		if(session.getAttribute("ingreList")==null) {
+			session.setAttribute("ingreList", ingreList);
+		}
+		if(ingreList == null) {
+			ingreList = (String[])session.getAttribute("ingreList");
+		}
 		String[] refdday = request.getParameterValues("refdday");
+		if(session.getAttribute("refdday")==null) {
+			session.setAttribute("refdday", refdday);
+		}
+		if(refdday == null) {
+			refdday = (String[])session.getAttribute("refdday");
+		}
 		List<Integer> day = new ArrayList<Integer>();
 		for(int i=0; i<refdday.length; i++) {
 			Date now = new Date();
@@ -61,15 +74,28 @@ public class RecipeRecommendController {
 			}
 			day.add((int)dday);
 		}
-		int ingredientCount = ingreList.length;;
+		int ingredientCount = ingreList.length;
 		//식재료를 count만큼 가진 recipe를 얻기위한 count
 		String str = "";
 		//넘어온 식재료List를 sql에 맞게 변형
-		for(int i=0;i<ingredientCount;i++) {
-			if(i==ingredientCount-1) {
-				str += ingreList[i];
-			}else {
-				str += ingreList[i]+"|";
+		//선택한 식재료레시피 검색을 str 조건문
+		if(session.getAttribute("ingredient") != null) {
+			String[] ingredient  = (String[])session.getAttribute("ingredient");
+			int Count = ingredient.length;
+			for(int i=0;i<Count;i++) {
+				if(i==Count-1) {
+					str += ingredient[i];
+				}else {
+					str += ingredient[i]+"|";
+				}
+			}
+		}else {
+			for(int i=0;i<ingredientCount;i++) {
+				if(i==ingredientCount-1) {
+					str += ingreList[i];
+				}else {
+					str += ingreList[i]+"|";
+				}
 			}
 		}
 		Map<String, String> map = new HashMap<String, String>();
@@ -111,7 +137,8 @@ public class RecipeRecommendController {
 				str += ingredient[i]+"|";
 			}
 		}
-		
+		//식재료 선택 검색시 검색 식재료 유지를 위한 session
+		session.setAttribute("ingredient", ingredient);
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("str", str);
 		String id = "";
