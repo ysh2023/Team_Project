@@ -48,14 +48,15 @@ public class HomeController {
 		//장바구니
 		if((MemberBean)session.getAttribute("loginInfo")!=null) {
 			String id=((MemberBean)session.getAttribute("loginInfo")).getId();
-			int cnt = bdao.BasketCount(id);
-			if(cnt>0) {
-				model.addAttribute("cnt", cnt);
+			int bskcnt = bdao.BasketCount(id);
+			if(bskcnt>0) {
+				model.addAttribute("bskcnt", bskcnt);
 			}else {
-				model.addAttribute("cnt", 0);
+				model.addAttribute("bskcnt", 0);
 			}
+			session.setAttribute("bskcnt",bskcnt);
 		}else {
-			model.addAttribute("cnt", 0);
+			model.addAttribute("bskcnt", 0);
 		}
 		MemberBean loginInfo = (MemberBean)session.getAttribute("loginInfo");
 		if(loginInfo != null) {

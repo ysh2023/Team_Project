@@ -72,6 +72,15 @@ public class BasketInsertController {
 					cnt = bdao.insertBasket(bb);
 					if(cnt != -1) {
 						System.out.println("장바구니 insert 성공");
+						String id=((MemberBean)session.getAttribute("loginInfo")).getId();
+						int bskcnt = bdao.BasketCount(id);
+						if(bskcnt>0) {
+							model.addAttribute("bskcnt", bskcnt);
+						}else {
+							model.addAttribute("bskcnt", 0);
+						}
+						session.setAttribute("bskcnt",bskcnt);
+						mav.addObject("bskcnt", bskcnt);
 					}else {
 						System.out.println("장바구니 insert 실패");
 					}
