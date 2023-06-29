@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import ingredient.model.IngBean;
 import ingredient.model.IngDao;
 import member.model.MemberBean;
+import refrigerator.model.JoinBean;
 import refrigerator.model.RefBean;
 import refrigerator.model.RefDao;
 
@@ -86,10 +87,22 @@ public class RefInsertController {
 			System.out.println("check: " + rowchk[i]);
 
 			RefBean refbean = new RefBean();
-        	refbean.setId(id);
-        	refbean.setIngnum(rowchk[i]);
-        	refbean.setRefstorage(refstorage);
-        	
+	        refbean.setId(id);
+	        refbean.setIngnum(rowchk[i]);
+	        refbean.setRefstorage(refstorage);
+	        if(rowchk[i]==1) {
+	        	//System.out.println("사용자: "+refbean.getRefdetail());
+	        	if(refbean.getRefdetail() == null) {
+	        		refbean.setRefdetail("직접 입력");
+	        	}
+	        	
+	        	//System.out.println("사용자: "+refbean.getRefdetail());
+	        }else {
+	        	refbean.setRefdetail("");
+	        }
+	        
+	        
+	    
         	SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
         	Date now = new Date();	//sysdate(재료 추가일)
         	Calendar cal = Calendar.getInstance();
@@ -105,6 +118,7 @@ public class RefInsertController {
 		}
         
         if(cnt!=-1) {
+        	
         	System.out.println("냉장고 insert 성공");
         	request.setAttribute("msg", "선택하신 식재료가 냉장고에 추가되었습니다.");
 			request.setAttribute("url", "/ex/page.ref");

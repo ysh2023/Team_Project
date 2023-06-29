@@ -178,6 +178,17 @@
 	  ]]> 
 	</select>
 	
+	<select id="DetailTopSeller" resultType="orderdetail.model.DetailGroupBean">
+		<![CDATA[
+		select rownum as ranknum, pd_name, sellnum from (
+			select p.pd_name, count(odt.odt_pdnum) as sellnum 
+			from orderdetail odt full outer join product p
+			on odt.odt_pdnum = p.pd_num
+			group by pd_name order by count(odt.odt_pdnum) desc
+		) where rownum <= 5
+	  ]]> 
+	</select>
+	
 	<select id="GetAllOrder" resultType="order.model.OrderBean">
 		select * from orders
 		order by ord_date desc
