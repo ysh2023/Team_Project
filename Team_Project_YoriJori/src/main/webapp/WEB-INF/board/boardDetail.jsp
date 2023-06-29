@@ -407,7 +407,7 @@
 										</div>
 										<p id="comment${status.index+1 }">${comment.report == 1 ? '해당 댓글은 블라인드처리 되었습니다.' :comment.comContent }</p>
 										<p>
-											<span class="reply" id="reply${status.index+1 }" onclick="replyHandle(${status.index+1})" style="cursor: pointer;">댓글 달기</span>
+											<span class="reply" id="reply${status.index+1 }" onclick="replyHandle(${status.index+1})" style="cursor: pointer;">답글 달기</span>
 											<c:if test="${loginInfo.id == comment.id  && comment.report != 1 || loginInfo.id == 'admin'}">
 												<span class="reply" id="updateComment${status.index+1 }" onclick="handleUpdateComment(${status.index+1})" style="cursor: pointer; margin-left: 5px;">수정</span>
 												<span class="reply" id="deleteComment${status.index+1 }" onclick="deleteComment(${comment.comNum})" style="cursor: pointer; margin-left: 5px;">삭제</span>
