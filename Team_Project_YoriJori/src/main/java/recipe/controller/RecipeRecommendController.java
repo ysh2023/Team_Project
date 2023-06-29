@@ -1,5 +1,6 @@
 package recipe.controller;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -9,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,7 +83,6 @@ public class RecipeRecommendController {
 		String url = request.getContextPath()+command;
 		Paging2 pageInfo = new Paging2(pageNumber, "12",recipeTotalCount, url, whatColumn, keyword, null);
 		List<RecipeBean> recipeList = rdao.getRecipeListByIngredient(map,pageInfo);
-		
 		mav.addObject("day", day);
 		mav.addObject("ingreList", ingreList);
 		mav.addObject("pageInfo", pageInfo);
@@ -91,12 +92,14 @@ public class RecipeRecommendController {
 	}
 	
 	@RequestMapping(value=command, method = RequestMethod.POST)
-	public ModelAndView doAction(@RequestParam(value="pageNumber",required=false) String pageNumber,@RequestParam(value="whatColumn") String whatColumn,HttpServletRequest request,HttpSession session) {
+	public ModelAndView doAction(@RequestParam(value="pageNumber",required=false) String pageNumber,@RequestParam(value="whatColumn") String whatColumn,HttpServletRequest request,HttpSession session,HttpServletResponse response) {
 		System.out.println("post요청");
+		response.setContentType("text/html; charset=utf-8");
 		String[] ingreList = request.getParameterValues("ingreList");
 		String[] ingredient = request.getParameterValues("keyword");
 		String[] day = request.getParameterValues("day");
-		
+		if (ingredient != null) {
+			
 		ModelAndView mav = new ModelAndView();
 		int ingredientCount = ingredient.length;
 		String str = "";
@@ -127,5 +130,13 @@ public class RecipeRecommendController {
 		mav.addObject("day", day);
 		mav.setViewName(getPage);
 		return mav;
+		}else {
+			try {
+				response.getWriter().append("<script>alert('식재료 하나를 선택해주세요');history.back();</script>").flush();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			return null;
+		}
 	}
 }
