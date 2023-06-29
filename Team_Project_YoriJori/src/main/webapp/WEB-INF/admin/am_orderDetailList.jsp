@@ -5,7 +5,7 @@
 <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>주문 목록</h1>
+      <h1>주문 관리</h1>
       <nav style="margin-top: 10px;">
         <ol class="breadcrumb">
           <li class="breadcrumb-item">식재료 쇼핑몰</li>

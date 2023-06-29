@@ -66,8 +66,8 @@
 	
 	<!-- insert -->
 	<insert id="InsertRef">
-		insert into refrigerator(ref_num,id,ing_num,inputdate,ref_dday,ref_storage)
-		values(refseq.nextval,#{id},#{ingnum},sysdate,#{refdday},#{refstorage})
+		insert into refrigerator(ref_num,id,ing_num,inputdate,ref_dday,ref_storage,ref_detail)
+		values(refseq.nextval,#{id},#{ingnum},sysdate,#{refdday},#{refstorage},#{refdetail})
 	</insert>
 	
 	<!-- detail -->

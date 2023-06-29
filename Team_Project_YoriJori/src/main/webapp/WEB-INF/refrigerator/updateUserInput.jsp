@@ -15,6 +15,17 @@
 			return false;
 		}
 	}
+	
+	function submitCheck(){
+		if($('input[name="refdetail"]').val().trim() == ''){
+			alert('식재료명이 공백입니다.');
+	        $('input[name="refdetail"]').focus();
+	        return false;
+		}else{
+			document.getElementById('updateUser').submit();
+		}
+	}//submitCheck
+	
 </script>
 
 <!-- title -->
@@ -36,7 +47,7 @@
 	</div>
 	<div class="comment-form-wrap col-md-12 mx-auto" style="max-width: 800px; margin: auto;">
 	  <!-- 수정 폼 -->
-  	  <form name="refDetail" action="update.ref" method="post" class="p-5 bg-light">
+  	  <form id="updateUser" name="refDetail" action="update.ref" method="post" class="p-5 bg-light" onSubmit="return submitCheck()">
   	    <input type="hidden" name="refnum" value="${joinbean.refnum}">
 		<div class="row align-items-end">
 		<div class="form-group col-md-12">

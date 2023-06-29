@@ -189,7 +189,7 @@ String resourcesPath = request.getContextPath() + "/resources";
 					<div class="col">
 						<!-- 메인 로고 -->
 
-						<a class="navbar-brand" href="/ex"> <img
+						<a class="navbar-brand" href="/ex/"> <img
 							src="<%=resourcesPath%>/images/logo.png" style="height: 60px;">
 						</a>
 						<!-- login -->

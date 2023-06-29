@@ -35,7 +35,7 @@ function kakaopost() {
 	          		<div class="col-md-6">
 	                <div class="form-group">
 	                	<label for="name">이름</label>
-	                  <input type="text" class="form-control" name="name" id="ordname" value="${mb.mname }" >
+	                  <input type="text" class="form-control" name="name" id="ordname" maxlength="6" value="${mb.mname }" >
 	                	<div class="invalid-feedback">
 			                이름을 입력해주세요.
 			            </div>
@@ -46,7 +46,7 @@ function kakaopost() {
 		            <div class="col-md-6">
 		            	<div class="form-group">
 		            		<label for="area1">우편번호</label> <input type="text"
-							class="form-control" value="${mb.area1 }" id="area1" name="area1" required > 
+							class="form-control" value="${mb.area1 }" id="area1" name="area1" maxlength="10" required > 
 									 <br>
 							 <input type="button" value="우편번호찾기"  onclick="kakaopost()">
 	                  <div class="invalid-feedback">
@@ -58,7 +58,7 @@ function kakaopost() {
 		            <div class="col-md-12">
 		            	<div class="form-group">
 	                	<label for="area2">상세주소<span class="text-muted"></span></label> <input
-							type="text" class="form-control" value="${mb.area2 }" required name="area2" id="area2"
+							type="text" class="form-control" value="${mb.area2 }" required name="area2" maxlength="20" id="area2"
 							placeholder="상세주소를 입력해주세요.">
 	                  <div class="invalid-feedback">
 		                주소를 입력해주세요.
@@ -69,7 +69,7 @@ function kakaopost() {
 		            <div class="col-md-6">
 	                <div class="form-group">
 	                	<label for="phone">핸드폰 번호</label>
-	                  <input type="text" class="form-control" placeholder="" name="ordtel" id="ordtel" value="${mb.tel }">
+	                  <input type="text" class="form-control" placeholder="" name="ordtel" id="ordtel" maxlength="11" value="${mb.tel }">
 	                  <div class="invalid-feedback">
 		                핸드폰 번호를 입력해주세요.
 		              </div>
@@ -78,7 +78,7 @@ function kakaopost() {
 	              <div class="col-md-6">
 	                <div class="form-group">
 	                	<label for="emailaddress">이메일 주소</label>
-	                  <input type="text" class="form-control" placeholder="" name="ordemail" id="ordemail" value="${mb.email}">
+	                  <input type="text" class="form-control" placeholder="" name="ordemail" id="ordemail" maxlength="20" value="${mb.email}">
 	                  <div class="invalid-feedback">
 		                이메일을 입력해주세요.
 		              </div>

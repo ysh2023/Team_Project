@@ -1,5 +1,6 @@
 package recipe.controller;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -9,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +44,7 @@ public class RecipeRecommendController {
 		//List<String>을 넘기기 위해 Bean을 만들어서 입력받은 값을 List로 가져옴
 		String[] ingreList = request.getParameterValues("ingredient");
 		String[] refdday = request.getParameterValues("refdday");
-		List<Long> day = new ArrayList<Long>();
+		List<Integer> day = new ArrayList<Integer>();
 		for(int i=0; i<refdday.length; i++) {
 			Date now = new Date();
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -52,9 +54,12 @@ public class RecipeRecommendController {
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
-			long result = (now.getTime() - parsedday.getTime());
-			long dday = result / (24*60*60*1000) -1;
-			day.add(dday);
+			double result = (now.getTime() - parsedday.getTime());
+			double dday = result / (24*60*60*1000)-1;
+			if(dday>0) {
+				dday = dday +(1-(dday%1))%1;
+			}
+			day.add((int)dday);
 		}
 		int ingredientCount = ingreList.length;;
 		//식재료를 count만큼 가진 recipe를 얻기위한 count
@@ -78,7 +83,6 @@ public class RecipeRecommendController {
 		String url = request.getContextPath()+command;
 		Paging2 pageInfo = new Paging2(pageNumber, "12",recipeTotalCount, url, whatColumn, keyword, null);
 		List<RecipeBean> recipeList = rdao.getRecipeListByIngredient(map,pageInfo);
-		
 		mav.addObject("day", day);
 		mav.addObject("ingreList", ingreList);
 		mav.addObject("pageInfo", pageInfo);
@@ -88,12 +92,14 @@ public class RecipeRecommendController {
 	}
 	
 	@RequestMapping(value=command, method = RequestMethod.POST)
-	public ModelAndView doAction(@RequestParam(value="pageNumber",required=false) String pageNumber,@RequestParam(value="whatColumn") String whatColumn,HttpServletRequest request,HttpSession session) {
+	public ModelAndView doAction(@RequestParam(value="pageNumber",required=false) String pageNumber,@RequestParam(value="whatColumn") String whatColumn,HttpServletRequest request,HttpSession session,HttpServletResponse response) {
 		System.out.println("post요청");
+		response.setContentType("text/html; charset=utf-8");
 		String[] ingreList = request.getParameterValues("ingreList");
 		String[] ingredient = request.getParameterValues("keyword");
 		String[] day = request.getParameterValues("day");
-		
+		if (ingredient != null) {
+			
 		ModelAndView mav = new ModelAndView();
 		int ingredientCount = ingredient.length;
 		String str = "";
@@ -124,5 +130,13 @@ public class RecipeRecommendController {
 		mav.addObject("day", day);
 		mav.setViewName(getPage);
 		return mav;
+		}else {
+			try {
+				response.getWriter().append("<script>alert('식재료 하나를 선택해주세요');history.back();</script>").flush();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			return null;
+		}
 	}
 }

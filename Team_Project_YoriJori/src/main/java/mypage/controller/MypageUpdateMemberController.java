@@ -40,7 +40,7 @@ public class MypageUpdateMemberController {
 
 	
 	@RequestMapping(value = command, method = RequestMethod.POST)
-	public String update(MemberBean mb,Model model,HttpServletResponse response) {
+	public String update(MemberBean mb,Model model,HttpServletResponse response,HttpSession session) {
 
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = null;
@@ -58,6 +58,7 @@ public class MypageUpdateMemberController {
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
+				session.setAttribute("loginInfo",  mdao.GetMemberById(mb.getId()));
 			
 		}
 		
