@@ -1,6 +1,8 @@
 package recipe.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -17,6 +19,8 @@ import recipe.model.RecipeBookMarkBean;
 import recipe.model.RecipeContentBean;
 import recipe.model.RecipeDao;
 import recipe.model.RecipeReviewBean;
+import refrigerator.model.RefBean;
+import refrigerator.model.RefDao;
 
 @Controller
 public class RecipeDetailViewController {
@@ -25,6 +29,9 @@ public class RecipeDetailViewController {
 	
 	@Autowired
 	RecipeDao rdao;
+	
+	@Autowired
+	RefDao refdao;
 	
 	@RequestMapping(value=command)
 	public String doAction(HttpSession session,Model model,@RequestParam(value="recipenum") int recipenum) {
@@ -55,7 +62,15 @@ public class RecipeDetailViewController {
 		int SelectedRecipeCount = rdao.getBookmarkCount(recipenum);
 		if(mb != null) {
 			model.addAttribute("id", mb.getId());
+			
+			/* 냉장고 전체 리스트 */
+			Map<String,String> listMap = new HashMap<String,String>();
+			listMap.put("id", mb.getId());
+			listMap.put("arrange", "r.inputdate");
+			List<RefBean> refList = refdao.getUserRef(listMap);
+			model.addAttribute("refList",refList);
 		}
+		
 		model.addAttribute("msg", msg);
 		model.addAttribute("recipe", rbean);
 		model.addAttribute("recipeContentList", recipeContentList);
