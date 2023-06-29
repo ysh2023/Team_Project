@@ -35,8 +35,6 @@ function kakaoLogin(){
                     const kakao_account = res.kakao_account;
                     console.log(kakao_account);
                     
-                    alert(JSON.stringify(res));
-                    
                      console.log(res);
                     console.log(res.properties['nickname']);
                      console.log(res.kakao_account['email']);

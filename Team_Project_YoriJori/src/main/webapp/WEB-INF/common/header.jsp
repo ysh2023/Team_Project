@@ -114,14 +114,14 @@ String resourcesPath = request.getContextPath() + "/resources";
                 buyer_postcode: document.getElementById('area1').value 
   			    }, function (rsp) { // callback
   			    	 if (rsp.success) {// 결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
-               		  var msg = '결제가 완료되었습니다.';
-               	        msg += '주문 번호 : ' + rsp.merchant_uid;
-               	        msg += '상품 이름 : ' + rsp.name;
-               	        msg += '결제 금액 : ' + rsp.paid_amount;
-               	        msg += '구매자 이메일 : ' + rsp.buyer_email;
-               	        msg += '구매자 이름 : ' + rsp.buyer_name;
-               	        msg += '구매자 번호 : ' + rsp.buyer_tel;
-               	        msg += '구매자 주소 : ' + rsp.buyer_addr;
+               		  var msg = '결제가 완료되었습니다.\n';
+               	        msg += '주문 번호 : ' + rsp.merchant_uid + "\n";
+               	        msg += '상품 이름 : ' + rsp.name + "\n";
+               	        msg += '결제 금액 : ' + rsp.paid_amount + "\n";
+               	        msg += '구매자 이메일 : ' + rsp.buyer_email + "\n";
+               	        msg += '구매자 이름 : ' + rsp.buyer_name + "\n";
+               	        msg += '구매자 번호 : ' + rsp.buyer_tel + "\n";
+               	        msg += '구매자 주소 : ' + rsp.buyer_addr + "\n";
                	        msg += '구매자 우편번호 : ' + rsp.buyer_postcode;
                	        alert(msg);
                            location.href="orderinsert.ord?merchant_uid="+rsp.merchant_uid+"&name="+rsp.name+"&amount="+rsp.paid_amount+"&buyer_email="+rsp.buyer_email+
