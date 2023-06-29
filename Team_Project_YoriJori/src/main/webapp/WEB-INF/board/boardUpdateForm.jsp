@@ -49,6 +49,15 @@
 		} else {
 			$('#categoryMsg').html('');
 		}
+		
+		if(document.getElementById('selectIngName').childElementCount==0	){
+			$('#ingredientMsg').html(
+					'<font >식재료를 추가해주세요</font>');
+			$('#inputIngName').focus();
+			isCheck = false;
+		}else{
+			$('#ingredientMsg').html('');			
+		}
 
 		if (isCheck) {
 			f.submit();
@@ -167,7 +176,7 @@
 							<div class="col-md-12">
 								<div class="row">
 									<div class="col-md-6">
-										<label for="inputIngName">* 식재료 </label> <input name="inputIngName" id="inputIngName" list="ingNameList" class="form-control " placeholder="검색 후 추가 목록에 없으면 작성 후 추가">
+										<label for="inputIngName">* 식재료 </label><span class="err" id="ingredientMsg"></span> <input name="inputIngName" id="inputIngName" list="ingNameList" class="form-control " placeholder="검색 후 추가 목록에 없으면 작성 후 추가">
 										<datalist id="ingNameList">
 											<c:forEach items="${ingredients }" var="ingredient">
 												<option data-value="${ingredient.ingnum}" value="${ingredient.ingname}">${ingredient.ingnum}</option>

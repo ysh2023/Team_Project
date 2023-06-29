@@ -53,7 +53,9 @@
 	<delete id="DeleteBoardContent">delete from boardContent where bod_num = #{bodNum}</delete>
 	
 	<select id="GetTopBoard" resultType="board.model.BoardBean">
-		select board.bod_num, title, servings, time, category, tags, id, bod_image from board inner join (select count(*)cnt, bod_num  from recommend group by bod_num order by cnt desc) sel on board.bod_num = sel.bod_num
+		<![CDATA[
+		select bod_num, title, servings, time, category, tags, id, bod_image from (select board.bod_num, title, servings, time, category, tags, id, bod_image, rownum from board inner join (select count(*) cnt, bod_num  from recommend group by bod_num order by cnt desc) sel on board.bod_num = sel.bod_num where rownum <=5)
+		]]>
 	</select>
 	<select id="GetBoardByBodNum" resultType="board.model.BoardBean">select * from board where bod_num = #{bodNum}</select>
 	<select id="GetBoardContentByBodNum" resultType="board.model.BoardContentBean">select * from boardcontent where bod_num = #{bod_num} order by bim_num</select>
@@ -66,7 +68,7 @@
 	<insert id="InsertComment">insert into comments values(com_seq.nextval, #{comContent}, com_seq.currval, 0, 0, sysdate, #{bodNum}, #{id}, 0 )</insert>
 	<update id="ReplyUpdate">update comments set ref_step = ref_step+1 where ref = #{ref} and ref_step > #{refStep} </update>
 	<insert id="ReplyInsert">insert into comments values(com_seq.nextval, #{comContent}, #{ref}, #{refStep}, #{refLevel}, sysdate, #{bodNum}, #{id},0 )</insert>
-	<delete id="DeleteComment">delete from comments where com_num = #{comNum}</delete>
+	<update id="DeleteComment">update comments set report = 2 where com_num = #{comNum}</update>
 	<update id="UpdateComment">update comments set com_content = #{comContent}, createat = sysdate where com_num = #{comNum}</update>
 	<select id="GetCommentsByComNum" resultType="board.model.CommentsBean">select * from comments where com_num = #{comNum} </select>
 	<select id="GetReplyInsertRefStep" resultType="int">select max(ref_step) from comments where ref = #{ref} and ref_level =#{refLevel}</select>

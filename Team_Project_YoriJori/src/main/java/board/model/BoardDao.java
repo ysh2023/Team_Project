@@ -66,7 +66,8 @@ public class BoardDao {
 	}
 
 	public List<BoardBean> getTopBoard() {
-		List<BoardBean> boardList = sessionTemplate.selectList(namespace + ".GetTopBoard");
+		RowBounds rowBounds = new RowBounds(0, 5);
+		List<BoardBean> boardList = sessionTemplate.selectList(namespace + ".GetTopBoard", rowBounds);
 
 		return boardList;
 	}
@@ -116,7 +117,7 @@ public class BoardDao {
 
 	public int deleteCommentByComNum(String comNum) {
 		int cnt = -1;
-		cnt = sessionTemplate.delete(namespace + ".DeleteComment", comNum);
+		cnt = sessionTemplate.update(namespace + ".DeleteComment", comNum);
 		return cnt;
 
 	}

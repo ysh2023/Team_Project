@@ -30,23 +30,33 @@ public class BoardRefRecommendController {
 	public String doAction(Model model, @RequestParam(value = "whatColumn", required = false) String whatColumn,
 			@RequestParam(value = "keyword", required = false) String keyword,
 			@RequestParam(value = "pageNumber", required = false) String pageNumber, HttpServletRequest request,
-			HttpSession session, String ingredient, String[] arr, HttpServletResponse response) {
+			HttpSession session, String ingredient, String[] arr, String[] refdday, HttpServletResponse response) {
 		response.setContentType("text/html; charset=utf-8");
 		Map<String, String> map = new HashMap<String, String>();
 		String id = "";
 		if (session.getAttribute("loginInfo") != null) {
 			id = ((MemberBean) session.getAttribute("loginInfo")).getId();
 		}
+		if (ingredient == null) {
+			ingredient = (String) session.getAttribute("ingredient");
+		}
+
 		if (ingredient != null) {
 
-			String[] refdday = request.getParameterValues("refdday");
 			if (refdday != null) {
 				model.addAttribute("refdday", refdday);
 			}
+			if (refdday == null) {
+				refdday = (String[]) session.getAttribute("refdday");
+			}
 
 			String[] ingreList = ingredient.split(",");
-			if (arr == null) {
-				arr = ingreList;
+			if (session.getAttribute("arr") == null) {
+				if (arr == null) {
+					arr = ingreList;
+				}
+			} else {
+				arr = (String[]) session.getAttribute("arr");
 			}
 
 //			if (ingredient.split(",") == null) {
@@ -54,6 +64,10 @@ public class BoardRefRecommendController {
 //			} else {
 //
 //			}
+			session.setAttribute("arr", arr);
+			session.setAttribute("refdday", refdday);
+			session.setAttribute("ingredient", ingredient);
+
 			int ingredientCount = ingreList.length;
 			// 식재료를 count만큼 가진 recipe를 얻기위한 count
 			String count = String.valueOf(ingredientCount);
@@ -73,6 +87,7 @@ public class BoardRefRecommendController {
 			int totalCount = bdao.getRefRecommendTotalCount(map);
 			Paging pageInfo = new Paging(pageNumber, "12", totalCount, request.getContextPath() + command, null, null,
 					null);
+			// pageInfo.setIngredient(ingredient);
 			model.addAttribute("boardList", bdao.getRefRecommendBoard(map, pageInfo));
 			model.addAttribute("ingreList", ingreList);
 			model.addAttribute("pageInfo", pageInfo);
