@@ -18,8 +18,19 @@ public class Paging {
 	private String pagingHtml = "";// 하단의 숫자 페이지 링크
 	// private String pagingStatus = ""; //상단 우측의 현재 페이지 위치 표시
 	// 검색을 위한 변수 추가
+	private String pagingHtmlRef = "";// 하단의 숫자 페이지 링크
 	private String whatColumn = ""; // 검색 모드(작성자, 글제목, 전체 검색은 all) 등등
 	private String keyword = ""; // 검색할 단어
+	private String ingredient = "";
+
+	public String getIngredient() {
+		return ingredient;
+	}
+
+	public void setIngredient(String ingredient) {
+		this.ingredient = ingredient;
+		this.pagingHtmlRef = getPagingHtmlRef(url);
+	}
 
 	public int getTotalCount() {
 		return totalCount;
@@ -138,6 +149,14 @@ public class Paging {
 		this.pagingHtml = pagingHtml;
 	}
 
+	public String getPagingHtmlRef() {
+		return pagingHtmlRef;
+	}
+
+	public void setPagingHtmlRef(String pagingHtmlRef) {
+		this.pagingHtmlRef = pagingHtmlRef;
+	}
+
 	public String getWhatColumn() {
 		return whatColumn;
 	}
@@ -245,6 +264,49 @@ public class Paging {
 
 			result += "<li><a href='" + url + "?pageNumber=" + (this.endPage + 1) + "&pageSize=" + this.pageSize
 					+ added_param + "'>다음</a></li>";
+		}
+		// System.out.println("result2:"+result);
+		// result2 : <a href='/ex/list.ab?pageNumber=1&pageSize=2'>맨
+		// 처음</a>&nbsp;&nbsp;<a
+		// href='/ex/list.ab?pageNumber=3&pageSize=2&whatColumn=null&keyword=null'>이전</a>&nbsp;&nbsp;<font
+		// color='red'>4</font>&nbsp;&nbsp;<a
+		// href='/ex/list.ab?pageNumber=5&pageSize=2&whatColumn=null&keyword=null'>5</a>&nbsp;
+
+		return result;
+	}
+
+	private String getPagingHtmlRef(String url) { // 페이징 문자열을 만든다.
+		//// System.out.println("getPagingHtml url:"+url);
+		// getPagingHtml url:/ex/list.ab
+		System.out.println(getIngredient());
+		String result = "";
+		String added_param = "&whatColumn=" + whatColumn + "&keyword=" + keyword + "&searchName=" + searchName; // &whatColumn=singer&keyword=아
+
+		if (this.beginPage != 1) { // 앞쪽, pageSize:한 화면에 보이는 레코드 수
+
+			result += "<li><a href='" + url + "?pageNumber=" + (this.beginPage - 1) + "&pageSize=" + this.pageSize
+					+ added_param + "&ingredient=" + this.ingredient + "'>이전</a></li>";
+		}
+
+		// 가운데
+		for (int i = this.beginPage; i <= this.endPage; i++) {
+			if (i == this.pageNumber) {
+				result += "<li class='active'><span>" + i + "</span></li>";
+
+			} else {
+				result += "<li><a href='" + url + "?pageNumber=" + i + "&pageSize=" + this.pageSize + added_param
+						+ "&ingredient=" + this.ingredient + "'>" + i + "</a></li>";
+
+			}
+		}
+
+		//// System.out.println("result:"+result);
+		//// System.out.println();
+
+		if (this.endPage != this.totalPage) { // 뒤쪽
+
+			result += "<li><a href='" + url + "?pageNumber=" + (this.endPage + 1) + "&pageSize=" + this.pageSize
+					+ added_param + "&ingredient=" + this.ingredient + "'>다음</a></li>";
 		}
 		// System.out.println("result2:"+result);
 		// result2 : <a href='/ex/list.ab?pageNumber=1&pageSize=2'>맨

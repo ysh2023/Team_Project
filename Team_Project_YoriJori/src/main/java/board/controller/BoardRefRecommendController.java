@@ -30,7 +30,7 @@ public class BoardRefRecommendController {
 	public String doAction(Model model, @RequestParam(value = "whatColumn", required = false) String whatColumn,
 			@RequestParam(value = "keyword", required = false) String keyword,
 			@RequestParam(value = "pageNumber", required = false) String pageNumber, HttpServletRequest request,
-			HttpSession session, String ingredient, String[] arr, HttpServletResponse response) {
+			HttpSession session, String ingredient, String[] arr, String[] refdday, HttpServletResponse response) {
 		response.setContentType("text/html; charset=utf-8");
 		Map<String, String> map = new HashMap<String, String>();
 		String id = "";
@@ -39,7 +39,6 @@ public class BoardRefRecommendController {
 		}
 		if (ingredient != null) {
 
-			String[] refdday = request.getParameterValues("refdday");
 			if (refdday != null) {
 				model.addAttribute("refdday", refdday);
 			}
@@ -73,6 +72,8 @@ public class BoardRefRecommendController {
 			int totalCount = bdao.getRefRecommendTotalCount(map);
 			Paging pageInfo = new Paging(pageNumber, "12", totalCount, request.getContextPath() + command, null, null,
 					null);
+			pageInfo.setIngredient(ingredient);
+			System.out.println(pageInfo.getIngredient());
 			model.addAttribute("boardList", bdao.getRefRecommendBoard(map, pageInfo));
 			model.addAttribute("ingreList", ingreList);
 			model.addAttribute("pageInfo", pageInfo);
