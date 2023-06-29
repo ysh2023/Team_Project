@@ -210,10 +210,10 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <c:forEach var="sell" items="${topseller}">
+                      <c:forEach var="sell" items="${detailtopseller}">
                       <tr>
                         <th scope="row">${sell.ranknum}위</th>
-                        <td><a href="prdDetail.prd?pdname=${sell.ordpdname}" class="text-primary fw-bold">${sell.ordpdname}</a></td>
+                        <td><a href="prdDetail.prd?pdname=${sell.pdname}" class="text-primary fw-bold">${sell.pdname}</a></td>
                         <td class="fw-bold">${sell.sellnum}</td>
                       </tr>
                       </c:forEach>

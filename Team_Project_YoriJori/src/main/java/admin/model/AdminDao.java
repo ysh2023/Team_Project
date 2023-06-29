@@ -13,6 +13,7 @@ import board.model.CommentReportBean;
 import ingredient.model.IngBean;
 import order.model.GroupBean;
 import order.model.OrderBean;
+import orderdetail.model.DetailGroupBean;
 import orderdetail.model.OrderDetailBean;
 import product.model.ProductBean;
 import recipe.model.RecipeReviewReportBean;
@@ -221,6 +222,11 @@ public class AdminDao {
 	public List<GroupBean> getTopSeller() {
 		List<GroupBean> lists = new ArrayList<GroupBean>();
 		lists = sqlSessionTemplate.selectList(namespace + ".TopSeller");
+		return lists;
+	}
+	public List<DetailGroupBean> getDetailTopSeller() {
+		List<DetailGroupBean> lists = new ArrayList<DetailGroupBean>();
+		lists = sqlSessionTemplate.selectList(namespace + ".DetailTopSeller");
 		return lists;
 	}
 
