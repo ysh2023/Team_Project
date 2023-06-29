@@ -42,7 +42,7 @@ public class RecipeRecommendController {
 		//List<String>을 넘기기 위해 Bean을 만들어서 입력받은 값을 List로 가져옴
 		String[] ingreList = request.getParameterValues("ingredient");
 		String[] refdday = request.getParameterValues("refdday");
-		List<Long> day = new ArrayList<Long>();
+		List<Integer> day = new ArrayList<Integer>();
 		for(int i=0; i<refdday.length; i++) {
 			Date now = new Date();
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -52,9 +52,12 @@ public class RecipeRecommendController {
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
-			long result = (now.getTime() - parsedday.getTime());
-			long dday = result / (24*60*60*1000) -1;
-			day.add(dday);
+			double result = (now.getTime() - parsedday.getTime());
+			double dday = result / (24*60*60*1000)-1;
+			if(dday>0) {
+				dday = dday +(1-(dday%1))%1;
+			}
+			day.add((int)dday);
 		}
 		int ingredientCount = ingreList.length;;
 		//식재료를 count만큼 가진 recipe를 얻기위한 count
