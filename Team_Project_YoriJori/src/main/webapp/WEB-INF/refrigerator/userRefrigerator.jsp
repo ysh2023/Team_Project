@@ -394,7 +394,7 @@
 							</c:if>
 							<c:if test="${dday > 0}">
 								<i class="icon-warning" style="color:red;"></i>
-								<b style="color: red">D+${dday}</b>
+								<b style="color: red">D+${dday+2}</b>
 							</c:if>
 						  </div>
 					    </c:forEach>
@@ -478,7 +478,7 @@
 							</c:if>
 							<c:if test="${dday > 0}">
 								<i class="icon-warning" style="color:red;"></i>
-								<b style="color: red">D+${dday}</b>
+								<b style="color: red">D+${dday+1}</b>
 							</c:if>
 						  </div>
 					    </c:forEach>
@@ -562,7 +562,7 @@
 							</c:if>
 							<c:if test="${dday > 0}">
 								<i class="icon-warning" style="color:red;"></i>
-								<b style="color: red">D+${dday}</b>
+								<b style="color: red">D+${dday+1}</b>
 							</c:if>
 						  </div>
 					    </c:forEach>
@@ -646,7 +646,7 @@
 							</c:if>
 							<c:if test="${dday > 0}">
 								<i class="icon-warning" style="color:red;"></i>
-								<b style="color: red">D+${dday}</b>
+								<b style="color: red">D+${dday+1}</b>
 							</c:if>
 						  </div>
 					    </c:forEach>
