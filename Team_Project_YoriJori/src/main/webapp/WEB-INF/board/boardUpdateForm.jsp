@@ -108,7 +108,6 @@
 
 	/* 식재료 삭제 */
 	function removeIngredient(removeIndex) {
-		alert("zz");
 		$('#addingredient' + removeIndex).remove();
 	}
 </script>

@@ -83,16 +83,16 @@ public class AdminMainController {
 				int june = adao.getRegisterCount(mapJune);
 				model.addAttribute("june",june);
 				
-				/* 6월 주문, 매출 */
+				/* 1년 주문, 매출 */
 				Map<String, String> mapOrder = new HashMap<String, String>();
-				mapOrder.put("start", "2023-06-01");
-				mapOrder.put("end", "2023-06-30");
+				mapOrder.put("start", "2023-01-01");
+				mapOrder.put("end", "2023-12-31");
 				int ordernum = adao.getOrderCount(mapOrder);
 				model.addAttribute("ordernum",ordernum);
 				
 				Map<String, String> mapSales = new HashMap<String, String>();
-				mapSales.put("start", "2023-06-01");
-				mapSales.put("end", "2023-06-30");
+				mapSales.put("start", "2023-01-01");
+				mapSales.put("end", "2023-12-31");
 				int sales = adao.getOrderSales(mapSales);
 				model.addAttribute("sales",sales);
 				

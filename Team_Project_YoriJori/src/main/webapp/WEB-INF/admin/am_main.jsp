@@ -26,7 +26,7 @@
             <div class="col-xxl-4 col-md-6">
               <div class="card info-card sales-card">
                 <div class="card-body">
-                  <h5 class="card-title" style="font-weight: bold !important;">주문량 <span>| 이번 달</span></h5>
+                  <h5 class="card-title" style="font-weight: bold !important;">주문량 <span>| 이번 년도</span></h5>
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -46,7 +46,7 @@
             <div class="col-xxl-4 col-md-6">
               <div class="card info-card revenue-card">
                 <div class="card-body">
-                  <h5 class="card-title" style="font-weight: bold !important;">매출 <span>| 이번 달</span></h5>
+                  <h5 class="card-title" style="font-weight: bold !important;">매출 <span>| 이번 년도</span></h5>
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">

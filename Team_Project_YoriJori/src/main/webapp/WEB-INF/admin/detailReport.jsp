@@ -19,17 +19,25 @@
 			
 		}
 	}
-	function checkblindComment(id , repNum) {
+	function checkblindComment(id , repNum, comcontent) {
 		if(confirm('블라인드 처리/해제 하시겠습니까')){
-			location.href="blindReport.am?id="+id+"&repNum="+repNum;
+			if(comcontent == ""){
+				alert('이미 삭제된 댓글은 블라인드처리가 불가능 합니다.');
+			}else{
+				location.href="blindReport.am?id="+id+"&repNum="+repNum;
+			}
 		}else{
 			
 		}
 	}
 	
-	function checkblindReview(id , rerepnum) {
+	function checkblindReview(id , rerepnum, review) {
 		if(confirm('블라인드 처리/해제 하시겠습니까')){
-			location.href="blindReport.am?id="+id+"&rerepnum="+rerepnum;
+			if(review == ""){
+				alert('이미 삭제된 댓글은 블라인드처리가 불가능 합니다.');
+			}else{
+				location.href="blindReport.am?id="+id+"&rerepnum="+rerepnum;
+			}
 		}else{
 			
 		}
@@ -75,10 +83,10 @@
                     <td>${i.repDiscription}</td>
                     <td><span onclick="checkdeleteComment('${id}','${i.count}')" style="color: blue; cursor: pointer;">삭제</span></td>
                   	<c:if test="${i.report == 0}">
-                    <td><span onclick="checkblindComment('${id}','${i.count}')" style="color: blue; cursor: pointer;">블라인드</span></td>
+                    <td><span onclick="checkblindComment('${id}','${i.count}','${i.comcontent}')" style="color: blue; cursor: pointer;">블라인드</span></td>
                     </c:if> 
                     <c:if test="${i.report == 1}">
-                    <td><span onclick="checkblindComment('${id}','${i.count}')" style="color: red; cursor: pointer;">블라인드 해제</span></td>
+                    <td><span onclick="checkblindComment('${id}','${i.count}','${i.comcontent}')" style="color: red; cursor: pointer;">블라인드 해제</span></td>
                     </c:if> 
                   </tr>
                 </c:forEach>
@@ -128,10 +136,10 @@
                     <td>${i.reportcontent}</td>
                     <td><span onclick="checkdeleteReview('${id}','${i.count}')" style="color: blue; cursor: pointer;">삭제</span></td>
                     <c:if test="${i.report == 0}">
-                    <td><span onclick="checkblindReview('${id}','${i.count}')" style="color: blue; cursor: pointer;">블라인드</span></td>
+                    <td><span onclick="checkblindReview('${id}','${i.count}','${i.review}')" style="color: blue; cursor: pointer;">블라인드</span></td>
                     </c:if> 
                     <c:if test="${i.report == 1}">
-                    <td><span onclick="checkblindReview('${id}','${i.count}')" style="color: red; cursor: pointer;">블라인드 해제</span></td>
+                    <td><span onclick="checkblindReview('${id}','${i.count}','${i.review}')" style="color: red; cursor: pointer;">블라인드 해제</span></td>
                     </c:if> 
                   </tr>
                 </c:forEach>

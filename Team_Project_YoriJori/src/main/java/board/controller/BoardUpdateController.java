@@ -44,7 +44,7 @@ public class BoardUpdateController {
 		model.addAttribute("boardContentList", bdao.getBoardContentByBodNum(bodNum));
 		model.addAttribute("boardIngredientList", bdao.getBoardIngredientByBodNum(bodNum));
 
-		String[] categoryss = { "밥", "국", "반찬", "고기", "라면", "패스트푸드", "간식", "기타" };
+		String[] categoryss = { "밥", "국", "찌개", "반찬", "라면", "기타" };
 		model.addAttribute("categorys", categoryss);
 		model.addAttribute("ingredients", bdao.getAllIngredient());
 
