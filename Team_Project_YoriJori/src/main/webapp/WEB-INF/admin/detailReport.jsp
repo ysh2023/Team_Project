@@ -73,10 +73,10 @@
                 <c:forEach var="i" items="${lists}">
                  <tr>
                     <th scope="row">${i.id}</th>
-                    <c:if test="${i.comcontent == null }">
+                    <c:if test="${i.report == 2 }">
                     	<td><span style="color: red;">삭제된 댓글</span></td>
                     </c:if>
-                    <c:if test="${i.comcontent != null }">
+                    <c:if test="${i.report != 2 }">
                     <td>${i.comcontent}</td>
                     </c:if>
                     <td>${i.reasons}</td>
@@ -87,6 +87,9 @@
                     </c:if> 
                     <c:if test="${i.report == 1}">
                     <td><span onclick="checkblindComment('${id}','${i.count}','${i.comcontent}')" style="color: red; cursor: pointer;">블라인드 해제</span></td>
+                    </c:if> 
+                    <c:if test="${i.report == 2}">
+                    <td><span style="color: red;">삭제된 댓글</span></td>
                     </c:if> 
                   </tr>
                 </c:forEach>

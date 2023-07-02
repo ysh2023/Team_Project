@@ -23,7 +23,7 @@
 		update comments set report = #{num} where com_num = (select com_num from commentreport where rep_num = #{repNum})
 	</update>
 	<delete id="DeleteComments">
-		delete comments where com_num = (select com_num from commentreport where rep_num = #{repNum})
+		update comments set report = 2 where com_num = (select com_num from commentreport where rep_num = #{repNum})
 	</delete>
 	<select id="GetByNum" resultType="product.model.ProductBean">
 		select * from product
