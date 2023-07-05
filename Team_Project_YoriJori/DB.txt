@@ -1,0 +1,627 @@
+--product 테이블 (6/9최종수정)
+--xlsx등록하시면 됨(등록한 칼럼명 그대로)
+drop sequence prdseq;
+create sequence prdseq start with 102 increment by 1 nocache ;
+
+drop table product cascade constraints;
+create table product (
+	pd_num number primary key,			
+	pd_name varchar2(50) not null,	
+	pd_category varchar2(50) not null,		
+	pd_content varchar2(50),
+	pd_stock number default 30,
+	pd_price number not null,
+	pd_image varchar2(50) not null
+);
+update product set pd_stock=20;
+
+--member 테이블 (회원)
+drop table member  cascade constraints;
+CREATE TABLE member (
+   id   varchar2(30) primary key   NOT NULL,
+   m_name   varchar2(30)   NOT NULL,
+   pw   varchar2(40)   NOT NULL,
+   tel   varchar2(40)   NOT NULL,
+   age   number   NOT NULL,
+   area1   varchar2(100)   NOT NULL, --우편번호
+   area2   varchar2(100)   NULL, 
+   email  varchar2(100)   NOT NULL,
+	 inputdate date default sysdate
+);
+
+insert into member(id,m_name,pw,tel,age,area1,area2,email) values('admin','관리자','1234','01011112222',23,'18699','203동 230호','skql3398@naver.com');
+insert into member(id,m_name,pw,tel,age,area1,area2,email) values('moon','문수현','1234','01045544554',24,'20567','401동 1403호','tkakd33@gmail.com');
+insert into member(id,m_name,pw,tel,age,area1,area2,email) values('hong','홍길동','1234','01010101010',24,'20567','401동 1403호','abc@abcd.abc');
+insert into member(id,m_name,pw,tel,age,area1,area2,email) values('temp1','일호','1234','01011111111',24,'20567','401동 1403호','abc@abcd.bbb');
+commit;
+
+
+col id for a4;
+col m_name for a6;
+col pw for a6;
+col tel for a10;
+col area1 for a5;
+col area2 for a6;
+col email for a10;
+col inputdate for a10;
+
+select * from member;
+
+
+--찜기능
+drop table dibs cascade constraints;
+create table dibs(
+  dibs_num number primary key, --담긴 순서
+  dibs_id varchar2(50) references member(id) on delete set null, --회원아이디
+  dibs_pdnum number references product(pd_num) on delete set null --상품 번호 
+);
+drop sequence dibseq ;
+create sequence dibseq start with 102 increment by 1 nocache ;
+
+
+--정지멤버
+drop table stopmb cascade constraints;
+Create table stopmb (
+id references member(id) on delete cascade not null,
+stopdate varchar2(30) not null);
+
+insert into
+member(id,m_name,pw,tel,age,area1,area2,email)
+values('ex','예시',1234,01011111111,24,'12344','201동','skql3398@naver.com');
+
+insert into stopmb values('ex','20230701');
+
+
+--주문, 장바구니
+drop sequence seqbsk_num ;
+create sequence seqbsk_num start with 1 increment by 1 nocache ;
+DROP TABLE basket CASCADE CONSTRAINTS;
+
+-- bsk_num : 장바구니 번호, bsk_id : 회원 번호, bsk_pdnum : 상품 번호 , bsk_date : 주문 일자 , bsk_qty :주문 수량 
+create table basket(
+  bsk_num number primary key,
+  bsk_id varchar2(50) references member(id) on delete cascade not null,
+  bsk_pdnum number references product(pd_num) on delete cascade not null,
+  bsk_qty number,
+  bsk_date date default sysdate 
+);
+
+
+DROP TABLE orders CASCADE CONSTRAINTS;
+
+create table orders(
+  ord_num varchar2(30) primary key,
+  ord_pdname varchar2(50),
+  ord_totalpay number,
+  ord_email varchar2(100),
+  ord_name varchar2(30),
+  ord_addr varchar2(300),
+  ord_zipcode varchar2(30),
+  ord_tel varchar2(50),
+  ord_date date default sysdate,
+  ord_memid varchar2(50) references member(id) on delete cascade not null,
+	ord_paystate varchar2(20) default '결제 완료'
+);
+
+insert into orders values('IMp000','참치','4690','aa@aaa.aaa','홍길동','서울','16016','01011112222','2023-06-15','hong','결제 완료');
+
+drop sequence seqodt_num ;
+create sequence seqodt_num start with 1 increment by 1 nocache ;
+DROP TABLE orderdetail CASCADE CONSTRAINTS;
+
+-- odt_num : 주문상세번호 ,odt_id : 주문자아이디, odt_ordnum : 주문번호, odt_pdnum : 상품번호, odt_qty : 구매 수량, odt_price : 총 구매가격 
+create table orderdetail(
+  odt_num number primary key,
+  odt_id varchar2(30) references member(id) on delete cascade not null,
+  odt_ordnum varchar2(30) references orders(ord_num) on delete cascade not null,
+  odt_pdnum number references product(pd_num) on delete cascade not null,
+  odt_qty number,
+  odt_price number
+);
+
+commit;
+
+-- 식재료, 냉장고, 메모
+drop sequence ingseq;
+create sequence ingseq
+	increment by 1
+	start with 173 
+	minvalue 1
+	maxvalue 10000
+	nocache;
+
+--ingredient 테이블 (식재료)
+drop table ingredient cascade constraints;
+create table ingredient(
+	ing_num number primary key,			--식재료 번호
+	ing_category varchar2(50) not null,	--식재료 카테고리
+	ing_name varchar2(50) not null,		--식재료명
+	expiry number,						--소비기간(일)
+	ing_icon varchar2(100) default 'Food.png' --아이콘 이미지
+);
+--식재료 insert는 구글 드라이브 식재료 최종.xlsx 파일
+
+	--refrigerator 테이블(사용자 냉장고)
+drop sequence refseq;
+create sequence refseq
+	increment by 1
+	start with 12 
+	minvalue 1
+	maxvalue 10000
+	nocache;
+
+drop table refrigerator;
+create table refrigerator(
+	ref_num number primary key,
+	id varchar2(30) references member(id) on delete cascade not null, 			--member 아이디
+	ing_num number references ingredient(ing_num) on delete cascade not null,	--ingredient 번호
+	inputdate date default sysdate,				--식재료 추가한 날짜
+	ref_dday date,								--유통기한
+	ref_storage varchar2(20) default '냉장',		--보관 위치(냉장/냉동/실온)
+	ref_detail varchar2(100)		--상세 메모
+);
+
+--냉장고 insert는 구글 드라이브 
+
+--memo 테이블(장보기 메모)
+drop sequence memoseq;
+create sequence memoseq
+	increment by 1
+	start with 1 
+	minvalue 1
+	maxvalue 10000
+	nocache;
+
+drop table shopmemo cascade constraints;
+create table shopmemo(
+	memo_num number primary key,
+  id varchar2(30) references member(id) on delete cascade not null, 			--member 아이디
+	memo_task varchar2(50) not null,  --살것
+	memo_flag number default 0 not null,  --체크 여부
+	memo_content varchar2(100)		--메모 내용
+);
+
+insert into shopmemo values(memoseq.nextval,'hong','소고기',0,'국거리용 한 팩');
+insert into shopmemo values(memoseq.nextval,'hong','다진마늘',1,'');
+insert into shopmemo values(memoseq.nextval,'hong','미역',0,'');
+commit;
+
+--레시피
+drop sequence recipe_seq;
+create sequence recipe_seq
+  increment by 1
+  start with 1
+  minvalue 1
+  maxvalue 1000000
+  nocache;
+     
+drop table recipe cascade constraints;
+CREATE TABLE RECIPE (
+	recipe_num	number		NOT NULL,
+	recipe_name	varchar2(300)		NULL,
+	recipe_category	varchar2(50)		NULL,
+	servings	number		NULL,
+	cook_image	varchar2(500)		NULL,
+	readcount number
+);
+
+drop sequence RE_CON_seq;
+create sequence RE_CON_seq
+  increment by 1
+  start with 1
+  minvalue 1
+  maxvalue 1000000
+  nocache;
+
+drop table RECIPE_CONTENT cascade constraints;
+CREATE TABLE RECIPE_CONTENT (
+	recipe_content_num	number		NOT NULL,
+	recipe_num	number		NOT NULL,
+	cook_content	varchar2(2000)		NULL,
+	recipe_image	varchar2(500)		NULL
+);
+
+
+drop sequence RE_FOOD_seq;
+create sequence RE_FOOD_seq
+  increment by 1
+  start with 1
+  minvalue 1
+  maxvalue 1000000
+  nocache;
+
+drop table RECIPE_FOOD cascade constraints;
+CREATE TABLE RECIPE_FOOD (
+	food_num	number		NOT NULL,
+	recipe_num	number		NOT NULL,
+	food_category	varchar2(60)		NULL,
+	food_name	varchar2(200)		NULL,
+	food_amount varchar2(50)
+);
+
+drop sequence bookmark_seq;
+create sequence bookmark_seq
+	increment by 1
+  	start with 1
+  	minvalue 1
+  	maxvalue 10000
+  	nocache;	
+
+drop table BOOKMARK cascade constraints; 
+CREATE TABLE BOOKMARK (
+	BOOK_NUM number NOT NULL,
+	id varchar2(30) NOT NULL,
+	recipe_num number	NOT NULL
+);
+
+drop sequence recipe_re_seq;
+create sequence recipe_re_seq
+  increment by 1
+  start with 1
+  minvalue 1
+  maxvalue 10000
+  nocache;
+
+drop table REVIEW cascade constraints;
+CREATE TABLE REVIEW (
+	REVIEW_NUM number NOT NULL,
+	review varchar2(300)	NULL,
+	id varchar2(30) NOT NULL,
+	review_date varchar2(50) NULL,
+	recipe_num number NOT NULL,
+	report number default(0)
+);
+
+drop sequence recipe_report_seq;
+create sequence recipe_report_seq
+ increment by 1
+  start with 1
+  minvalue 1
+  maxvalue 10000
+  nocache;
+
+drop table REVIEW_REPORT;
+CREATE TABLE REVIEW_REPORT (
+	RE_REP_NUM	number	NOT NULL,
+	REPORT_CONTENT	varchar2(300)	NOT NULL,
+	REVIEW_NUM	number	NOT NULL,
+	REPORT_REASON	varchar2(30)	NULL,
+	id varchar2(30) NOT NULL,
+	id_origin varchar2(30) NOT NULL
+);
+
+
+ALTER TABLE "RECIPE" ADD CONSTRAINT "PK_RECIPE" PRIMARY KEY (
+	recipe_num
+);
+
+ALTER TABLE "RECIPE_CONTENT" ADD CONSTRAINT "PK_RECIPE_CONTENT" PRIMARY KEY (
+	recipe_content_num,
+	recipe_num
+);
+
+ALTER TABLE "RECIPE_FOOD" ADD CONSTRAINT "PK_RECIPE_FOOD" PRIMARY KEY (
+	food_num
+);
+
+ALTER TABLE "RECIPE_CONTENT" ADD CONSTRAINT "FK_RECIPE_TO_RECIPE_CONTENT_1" FOREIGN KEY (	recipe_num ) REFERENCES RECIPE ( 	recipe_num )ON DELETE CASCADE;
+
+ALTER TABLE "RECIPE_FOOD" ADD CONSTRAINT "FK_RECIPE_TO_RECIPE_FOOD_1" FOREIGN KEY (
+	recipe_num
+)
+REFERENCES RECIPE (
+	recipe_num
+)ON DELETE CASCADE;
+
+ALTER TABLE BOOKMARK ADD CONSTRAINT PK_BOOKMARK PRIMARY KEY (
+	BOOK_NUM
+);
+ALTER TABLE BOOKMARK ADD CONSTRAINT FK_member_TO_BOOKMARK_1 FOREIGN KEY (
+	id
+)
+REFERENCES member (
+	id
+);
+
+ALTER TABLE BOOKMARK ADD CONSTRAINT FK_RECIPE_TO_BOOKMARK_1 FOREIGN KEY (
+	recipe_num
+)
+REFERENCES RECIPE (
+	recipe_num
+);
+
+ALTER TABLE REVIEW ADD CONSTRAINT PK_REVIEW PRIMARY KEY (
+	REVIEW_NUM
+);
+ALTER TABLE REVIEW ADD CONSTRAINT FK_member_TO_REVIEW_1 FOREIGN KEY (
+	id
+)
+REFERENCES member (
+	id
+)on delete cascade;
+
+ALTER TABLE REVIEW ADD CONSTRAINT FK_RECIPE_TO_REVIEW_1 FOREIGN KEY (
+	recipe_num
+)
+REFERENCES RECIPE (
+	recipe_num
+);
+
+ALTER TABLE REVIEW_REPORT ADD CONSTRAINT PK_REVIEW_REPORT PRIMARY KEY (
+	RE_REP_NUM
+);
+
+ALTER TABLE REVIEW_REPORT ADD CONSTRAINT FK_member_TO_REVIEW_REPORT_1 FOREIGN KEY (
+	id_origin
+)
+REFERENCES member (
+	id
+)on delete cascade;	
+
+
+--구글 드라이브에서 데이터 (만개)들어간 데이터 3개 import후
+update recipe set readcount=0;
+commit;
+
+
+
+--게시글
+drop sequence bod_seq;
+create sequence bod_seq
+  increment by 1
+  start with 1
+  minvalue 1
+  maxvalue 1000000
+  nocache;
+  
+-- 사용자 게시글
+drop table board cascade constraints;
+CREATE TABLE board (
+	bod_num number NOT NULL,
+	title varchar2(200)	NOT NULL,
+	servings number NULL,
+	time number NULL,
+	category varchar2(200)	NULL,
+	tags varchar2(200)	NULL,
+	id varchar2(30)	NOT NULL,
+	bod_image varchar2(1000) NULL,
+  bod_origin varchar2(1000)
+);
+
+
+ALTER TABLE board ADD CONSTRAINT PK_BOARD PRIMARY KEY (
+	bod_num
+);
+
+ALTER TABLE board ADD CONSTRAINT FK_member_TO_board_1 FOREIGN KEY (
+	id
+)
+REFERENCES member (
+	id
+)on delete cascade;
+
+insert into board values(bod_seq.nextval, '초간단 밥짓기', 1, 30, '밥', '#흰밥 #밥','admin','bob1.jpg' ,'bob1.jpg');
+insert into board values(bod_seq.nextval, '치킨마요덮밥', 2, 30, '밥', '#밥 #치킨마요 덮밥 #치킨마요','moon','cmd1.jpg','cmd1.jpg' );
+
+drop sequence bcn_seq;
+create sequence bcn_seq
+  increment by 1
+  start with 1
+  minvalue 1
+  maxvalue 1000000
+  nocache;
+
+-- 사용자 게시글 조리과정
+DROP TABLE BOARDCONTENT;
+CREATE TABLE boardContent (
+	bim_num	number		NOT NULL,
+	image	varchar2(1000)		NULL,
+  origin_image	varchar2(1000)		NULL,
+	bod_content	varchar(2000)		NULL,
+	bod_num	number		NOT NULL
+);
+
+ALTER TABLE boardContent ADD CONSTRAINT PK_BOARDCONTENT PRIMARY KEY (
+	bim_num
+);
+
+ALTER TABLE boardContent ADD CONSTRAINT FK_board_TO_boardContent_1 FOREIGN KEY (
+	bod_num
+)
+REFERENCES board (
+	bod_num
+)on delete cascade;
+
+insert into boardContent values(bcn_seq.nextval, 'cmd2.jpg','cmd2.jpg','치킨은 먹기 좋은 크기로 썰어주고 양파는 채 썰어 준비해주세요',2);
+insert into boardContent values(bcn_seq.nextval, 'cmd3.jpg','cmd3.jpg','팬에 식용유를 살짝 두르고 양파를 볶아주세요',2);
+insert into boardContent values(bcn_seq.nextval, 'cmd4.jpg','cmd4.jpg','양파가 투명해지면 간장 6, 맛술 4, 올리고 당 또는 꿀 3 넣고 바글바글 끓이다 혹시 단 게 싫으면 올리고당으로 해주세요. 아무래도 꿀이 더 달달해요. 아님 양을 줄여주세요.',2);
+insert into boardContent values(bcn_seq.nextval, 'cmd5.jpg','cmd5.jpg','잘라 놓은 치킨을 넣고',2);
+insert into boardContent values(bcn_seq.nextval, 'cmd6.jpg','cmd6.jpg','치킨에 양념이 배도록 볶아주면 끝!',2);
+insert into boardContent values(bcn_seq.nextval, 'cmd7.jpg','cmd7.jpg','달걀 2개를 풀어 스크램블을 만들어 주세요.',2);
+insert into boardContent values(bcn_seq.nextval, 'cmd8.jpg','cmd8.jpg','그릇에 밥을 적당하게 담고',2);
+insert into boardContent values(bcn_seq.nextval, 'cmd9.jpg','cmd9.jpg','스크램블 그리고 치킨을 올려주세요.',2);
+insert into boardContent values(bcn_seq.nextval, 'cmd10.jpg','cmd10.jpg','김가루 + 파를 올리고 마요네즈를 뿌려주면 치킨 마요 덮밥 완성 ^^',2);
+
+insert into boardContent values(bcn_seq.nextval, 'bob2.jpg','bob2.jpg','쌀을 씻어 물기를 빼고 준비한다',1);
+insert into boardContent values(bcn_seq.nextval, 'bob3.jpg','bob3.jpg','위생 비닐에 쌀을 넣고 물을 넣어 공기를 빼고 입구를 넉넉히 묶는다.',1);
+insert into boardContent values(bcn_seq.nextval, 'bob4.jpg','bob4.jpg','냄비에 물이 끓기 시작하면 쌀 봉지를 넣고 뚜껑을 닫아 약 20분간 끓인다.',1);
+
+drop sequence big_seq;
+create sequence big_seq
+  increment by 1
+  start with 1
+  minvalue 1
+  maxvalue 1000000
+  nocache;
+
+--사용자 게시글 식재료
+drop table boardIngredient;
+CREATE TABLE boardIngredient (
+	big_num	number		NOT NULL,
+	bod_num	number		NOT NULL,
+	big_name	varchar2(60)		NULL,
+  big_amount varchar2(60) NULL,
+  ing_num	number	NULL
+);
+--select * from recipe_food;
+--select * from boardIngredient
+ALTER TABLE boardIngredient ADD CONSTRAINT PK_BOARDINGREDIENT PRIMARY KEY (
+	big_num
+);
+
+ALTER TABLE boardIngredient ADD CONSTRAINT FK_board_TO_boardIngredient_1 FOREIGN KEY (
+	bod_num
+)
+REFERENCES board (
+	bod_num
+)on delete cascade;
+
+ALTER TABLE boardIngredient ADD CONSTRAINT FK_ingredient_TO_boardIngredient_1 FOREIGN KEY (
+	ing_num
+)
+REFERENCES ingredient (
+	ing_num
+);
+
+
+insert into boardIngredient values(big_seq.nextval, 2,'순살치킨','7조각',NULL);
+insert into boardIngredient values(big_seq.nextval, 2,'양파','1/2개',NULL);
+insert into boardIngredient values(big_seq.nextval, 2,'달걀','2개',NULL);
+insert into boardIngredient values(big_seq.nextval, 2,'김가루',null,NULL);
+insert into boardIngredient values(big_seq.nextval, 2,'마요네즈',null,NULL);
+insert into boardIngredient values(big_seq.nextval, 2,'파',null,NULL);
+insert into boardIngredient values(big_seq.nextval, 2,'간장','6',NULL);
+insert into boardIngredient values(big_seq.nextval, 2,'맛술','4',NULL);
+insert into boardIngredient values(big_seq.nextval, 2,'올리고당 또는 꿀','3',NULL);
+insert into boardIngredient values(big_seq.nextval, 1,'쌀','1/2cup',NULL);
+insert into boardIngredient values(big_seq.nextval, 1,'물','1/2cup',NULL);
+
+-----------------------------------------------------
+drop sequence rec_seq;
+create sequence rec_seq
+  increment by 1
+  start with 1
+  minvalue 1
+  maxvalue 1000000
+  nocache;
+  
+-- 게시글 추천
+drop table recommend;
+CREATE TABLE recommend (
+	rec_num	number		NOT NULL,
+	bod_num	number		NOT NULL,
+	id	varchar2(30)		NOT NULL
+);
+
+ALTER TABLE recommend ADD CONSTRAINT PK_RECOMMEND PRIMARY KEY (
+	rec_num
+);
+
+
+ALTER TABLE recommend ADD CONSTRAINT FK_board_TO_recommend_1 FOREIGN KEY (
+	bod_num
+)
+REFERENCES board (
+	bod_num
+)on delete cascade;
+
+ALTER TABLE recommend ADD CONSTRAINT FK_member_TO_recommend_1 FOREIGN KEY (
+	id
+)
+REFERENCES member (
+	id
+)on delete cascade;
+
+insert into recommend values(rec_seq.nextval, 1,'admin');
+insert into recommend values(rec_seq.nextval, 1,'moon');
+insert into recommend values(rec_seq.nextval, 2,'admin');
+
+--------------------------------------------------------------------------------
+
+drop sequence com_seq;
+create sequence com_seq
+  increment by 1
+  start with 1
+  minvalue 1
+  maxvalue 1000000
+  nocache;
+  
+-- 댓글
+drop table comments;
+CREATE TABLE comments (
+	com_num	number		NOT NULL,
+	com_content	varchar2(900)		NOT NULL,
+	ref	number		NOT NULL,
+	ref_step	number		NOT NULL,
+	ref_level	number		NOT NULL,
+  createAt	date		NULL,
+	bod_num	number		NOT NULL,
+  id	varchar2(30)		NOT NULL,
+	report number default(0)
+);
+
+
+ALTER TABLE comments ADD CONSTRAINT PK_COMMENT PRIMARY KEY (
+	com_num
+);
+
+ALTER TABLE comments ADD CONSTRAINT FK_board_TO_comment_1 FOREIGN KEY (
+	bod_num
+)
+REFERENCES board (
+	bod_num
+)on delete cascade;
+
+ALTER TABLE comments ADD CONSTRAINT FK_member_TO_comments_1 FOREIGN KEY (
+	id
+)
+REFERENCES member (
+	id
+)on delete cascade;
+
+
+
+drop sequence cor_seq;
+create sequence cor_seq
+  increment by 1
+  start with 1
+  minvalue 1
+  maxvalue 1000000
+  nocache;
+ 
+-- 댓글 신고
+drop table commentReport;
+CREATE TABLE commentReport (
+	rep_num	number		NOT NULL,
+	reasons	varchar2(900)		NOT NULL,
+	com_num	number		NOT NULL,
+	id	varchar2(30)		NOT NULL,
+	id_origin varchar2(30)		NOT NULL,
+  rep_discription varchar2(300) NULL
+);
+
+ALTER TABLE commentReport ADD CONSTRAINT PK_COMMENTREPORT PRIMARY KEY (
+	rep_num
+);
+
+ALTER TABLE commentReport ADD CONSTRAINT FK_member_TO_commentReport_1 FOREIGN KEY (
+	id_origin
+)
+REFERENCES member (
+	id
+) on delete cascade;
+
+---------------------------------------------------------------------------
+
+insert into orderdetail values(seqodt_num.nextval,'hong','IMp000','47',1,1690);
+
+insert into review values(recipe_re_seq.nextval,'삭제','moon',sysdate,'68',0); 
+insert into review values(recipe_re_seq.nextval,'블라인드','moon',sysdate,'68',1);
+insert into review values(recipe_re_seq.nextval,'블라인드','hong',sysdate,'68',0);
+insert into review values(recipe_re_seq.nextval,'내역삭제','temp1',sysdate,'68',0); 
+insert into review_report values(recipe_report_seq.nextval,'블라인드','2','광고','hong','moon');
+insert into review_report values(recipe_report_seq.nextval,'삭제','1','광고','hong','moon');
+insert into review_report values(recipe_report_seq.nextval,'블라인드','3','광고','moon','hong');
+insert into review_report values(recipe_report_seq.nextval,'내역삭제','4','광고','moon','temp1');
+delete review where review_num = 2;
+commit;

@@ -1,0 +1,6 @@
+우선 DB.txt 에 있는 테이블을 전부 생성한 후
+
+DB에 삽입해야 할 파일들에 있는 엑셀파일들을 테이블에 맟춰서 값을 넣어줍니다. 
+총 6개 파일 (ingredient,refrigerator,recipe,RECIPE_CONTENT,RECIPE_FOOD,product)
+
+그리고 밑에 빼둔 insert 문을 마지막으로 삽입하면 DB는 끝이 납니다.
